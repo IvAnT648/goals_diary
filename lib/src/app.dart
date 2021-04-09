@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import '../common/res.dart';
 import '../generated/l10n.dart';
 
 class Application extends StatelessWidget {
@@ -9,6 +10,12 @@ class Application extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Goals Diary',
+      theme: ThemeData(
+        primaryColor: AppColors.primary,
+        primaryColorLight: AppColors.primary[10],
+        primaryColorDark: AppColors.primary[-10],
+        accentColor: AppColors.accent,
+      ),
       home: Container(
         color: Colors.blue,
       ),
