@@ -47,7 +47,15 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-
+  /// `Goals Diary`
+  String get appName {
+    return Intl.message(
+      'Goals Diary',
+      name: 'appName',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
