@@ -4,7 +4,7 @@ import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 
-abstract class AppColors {
+class AppColors {
   static AppColorSwatch primary = AppColorSwatch.withDefaultIndex({
     10: Color(0xFF6DA8E3),
     0: Color(0xFF428AE0),
@@ -50,6 +50,9 @@ abstract class AppColors {
     -10: Color(0xFF686867),
     -20: Color(0xFF000000),
   });
+
+  static Color regularText = gray[-20];
+  static Color hintText = gray[-10];
 }
 
 class AppColorSwatch extends Color {
