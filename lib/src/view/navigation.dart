@@ -1,10 +1,35 @@
-
 import 'package:flutter/material.dart';
 
-class Navigation {
-  static const String initialRoute = '/';
+import 'screens/screens.dart';
 
-  static final Map<String, WidgetBuilder> routes = {
-    '/': (_) => Container(color: Colors.amber),
-  };
+class ScreenNavigationProvider {
+  static String initialRoute = LoginScreen.id;
+
+  static Map<String, WidgetBuilder> getRoutes() {
+    final Map<String, WidgetBuilder> routes = {};
+    _routes.forEach((el) => routes[el.id] = el.builder);
+    return routes;
+  }
+
+  static List<RouteInfo> _routes = [
+    RouteInfo(
+      id: LoginScreen.id,
+      builder: (_) => LoginScreen(),
+    ),
+  ];
+}
+
+class RouteInfo {
+  final String id;
+  final WidgetBuilder builder;
+
+  RouteInfo({
+    required this.id,
+    required this.builder,
+  });
+
+  @override
+  String toString() {
+    return 'RouteInfo(id: $id, builder: $builder)';
+  }
 }
