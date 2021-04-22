@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import '../common/res/styles.dart';
 import '../generated/l10n.dart';
+import 'view/navigation.dart';
 
 class Application extends StatelessWidget {
   @override
@@ -16,9 +17,6 @@ class Application extends StatelessWidget {
         primaryColorDark: AppColors.primary[-10],
         accentColor: AppColors.accent,
       ),
-      home: Container(
-        color: Colors.blue,
-      ),
       localizationsDelegates: [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -26,6 +24,8 @@ class Application extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
+      initialRoute: Navigation.initialRoute,
+      routes: Navigation.routes,
     );
   }
 }
