@@ -30,7 +30,11 @@ class AppColors {
 
   static const background = Color(0xFFFFFFFF);
 
+  static const onBackground = Color(0xFF686867);
+
   static const surface = Color(0xFFFFFFFF);
+
+  static const onSurface = Color(0xFF686867);
 
   static AppColorSwatch positive = AppColorSwatch.withDefaultIndex({
     10: Color(0xFF72E9C1),
