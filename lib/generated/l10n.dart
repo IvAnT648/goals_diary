@@ -56,6 +56,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Sign in`
+  String get screenLoginTitle {
+    return Intl.message(
+      'Sign in',
+      name: 'screenLoginTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nickname`
+  String get screenLoginNicknameLabel {
+    return Intl.message(
+      'Nickname',
+      name: 'screenLoginNicknameLabel',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

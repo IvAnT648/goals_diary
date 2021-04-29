@@ -1,3 +1,6 @@
 {
-  "appName": "Дневник целей"
+  "appName": "Дневник целей",
+
+  "screenLoginTitle": "Вход в систему",
+  "screenLoginNicknameLabel": "Никнейм"
 }

@@ -1,3 +1,6 @@
 {
-  "appName": "Goals Diary"
+  "appName": "Goals Diary",
+
+  "screenLoginTitle": "Sign in",
+  "screenLoginNicknameLabel": "Nickname"
 }
