@@ -116,7 +116,7 @@ extension on List<int> {
     var distance = (first - value).abs();
     var closestIndex = 0;
 
-    for(var i = 1; i < length; i++) {
+    for (var i = 1; i < length; i++) {
       final closestDistance = (this[i] - value).abs();
       if (closestDistance < distance) {
         closestIndex = i;

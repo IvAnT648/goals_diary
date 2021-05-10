@@ -12,6 +12,11 @@ class Application extends StatelessWidget {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.dark,
+        statusBarBrightness: Brightness.dark,
+        systemNavigationBarColor: Colors.white,
+        systemNavigationBarDividerColor: Colors.white,
+        systemNavigationBarIconBrightness: Brightness.dark,
       ),
       child: MaterialApp(
         title: 'Goals Diary',
@@ -48,7 +53,7 @@ class Application extends StatelessWidget {
         ],
         supportedLocales: S.delegate.supportedLocales,
         initialRoute: ScreenNavigationProvider.initialRoute,
-        routes: ScreenNavigationProvider.getRoutes(),
+        routes: ScreenNavigationProvider.routes,
       ),
     );
   }
