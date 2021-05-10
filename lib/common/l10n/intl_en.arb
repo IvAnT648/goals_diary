@@ -2,5 +2,6 @@
   "appName": "Goals Diary",
 
   "screenLoginTitle": "Sign in",
-  "screenLoginNicknameLabel": "Nickname"
+  "screenLoginNicknameLabel": "Nickname",
+  "screenLoginPasswordLabel": "Password"
 }

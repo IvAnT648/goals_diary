@@ -76,6 +76,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Password`
+  String get screenLoginPasswordLabel {
+    return Intl.message(
+      'Password',
+      name: 'screenLoginPasswordLabel',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static _notInlinedMessages(_) => <String, Function> {
     "appName" : MessageLookupByLibrary.simpleMessage("Goals Diary"),
     "screenLoginNicknameLabel" : MessageLookupByLibrary.simpleMessage("Nickname"),
+    "screenLoginPasswordLabel" : MessageLookupByLibrary.simpleMessage("Password"),
     "screenLoginTitle" : MessageLookupByLibrary.simpleMessage("Sign in")
   };
 }
