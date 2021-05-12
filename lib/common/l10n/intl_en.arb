@@ -1,9 +1,17 @@
 {
   "appName": "Goals Diary",
 
-  "screenLoginTitle": "Sign in",
+  "screenLoginTitle": "Sign In",
   "screenLoginNicknameLabel": "Nickname",
   "screenLoginPasswordLabel": "Password",
   "screenLoginSignInButton": "Enter",
-  "screenLoginSignUpButton": "Create a new account"
+  "screenLoginSignUpButton": "Create a new account",
+
+  "screenSignUpTitle": "Sign Up",
+  "screenSignUpNameLabel": "Name",
+  "screenSignUpNicknameLabel": "Nickname",
+  "screenSignUpPasswordLabel": "Password",
+  "screenSignUpPasswordConfirmLabel": "Confirm password",
+  "screenSignUpSubmitButton": "Sign up",
+  "screenSignUpToSignInButton": "Sign in"
 }

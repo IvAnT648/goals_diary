@@ -30,6 +30,18 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter"),
         "screenLoginSignUpButton":
             MessageLookupByLibrary.simpleMessage("Create a new account"),
-        "screenLoginTitle": MessageLookupByLibrary.simpleMessage("Sign in")
+        "screenLoginTitle": MessageLookupByLibrary.simpleMessage("Sign In"),
+        "screenSignUpNameLabel": MessageLookupByLibrary.simpleMessage("Name"),
+        "screenSignUpNicknameLabel":
+            MessageLookupByLibrary.simpleMessage("Nickname"),
+        "screenSignUpPasswordConfirmLabel":
+            MessageLookupByLibrary.simpleMessage("Confirm password"),
+        "screenSignUpPasswordLabel":
+            MessageLookupByLibrary.simpleMessage("Password"),
+        "screenSignUpSubmitButton":
+            MessageLookupByLibrary.simpleMessage("Sign up"),
+        "screenSignUpTitle": MessageLookupByLibrary.simpleMessage("Sign Up"),
+        "screenSignUpToSignInButton":
+            MessageLookupByLibrary.simpleMessage("Sign in")
       };
 }

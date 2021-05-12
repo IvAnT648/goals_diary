@@ -23,7 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appName": MessageLookupByLibrary.simpleMessage("Дневник целей"),
         "screenLoginNicknameLabel":
-            MessageLookupByLibrary.simpleMessage("Никнейм"),
+            MessageLookupByLibrary.simpleMessage("Логин"),
         "screenLoginPasswordLabel":
             MessageLookupByLibrary.simpleMessage("Пароль"),
         "screenLoginSignInButton":
@@ -31,6 +31,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenLoginSignUpButton":
             MessageLookupByLibrary.simpleMessage("Создать новый аккаунт"),
         "screenLoginTitle":
-            MessageLookupByLibrary.simpleMessage("Вход в систему")
+            MessageLookupByLibrary.simpleMessage("Вход в систему"),
+        "screenSignUpNameLabel": MessageLookupByLibrary.simpleMessage("Имя"),
+        "screenSignUpNicknameLabel":
+            MessageLookupByLibrary.simpleMessage("Логин"),
+        "screenSignUpPasswordConfirmLabel":
+            MessageLookupByLibrary.simpleMessage("Пароль ещё раз"),
+        "screenSignUpPasswordLabel":
+            MessageLookupByLibrary.simpleMessage("Пароль"),
+        "screenSignUpSubmitButton":
+            MessageLookupByLibrary.simpleMessage("Зарегистрироваться"),
+        "screenSignUpTitle":
+            MessageLookupByLibrary.simpleMessage("Регистрация"),
+        "screenSignUpToSignInButton":
+            MessageLookupByLibrary.simpleMessage("Войти в существующий аккаунт")
       };
 }

@@ -1,11 +1,15 @@
+
 import 'package:flutter/material.dart';
-import 'package:goals_diary/common/res/styles.dart';
 
+import '../../../../common/res/styles.dart';
 import '../../../../generated/l10n.dart';
-import '../../components/export.dart';
+import '../../components.dart';
 
-class LoginScreen extends StatelessWidget {
-  static String id = '/login';
+class SignUpScreen extends StatelessWidget {
+  static const double _inputFieldsPadding = 40;
+  static const String id = '/sign-up';
+
+  const SignUpScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +28,9 @@ class LoginScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 90),
+                padding: const EdgeInsets.only(top: 40),
                 child: Text(
-                  S.current.screenLoginTitle,
+                  S.current.screenSignUpTitle,
                   style: TextStyles.h1,
                 ),
               ),
@@ -34,18 +38,26 @@ class LoginScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   AppTextField(
-                    label: S.current.screenLoginNicknameLabel,
+                    label: S.current.screenSignUpNameLabel,
                   ),
-                  const SizedBox(height: 40),
+                  const SizedBox(height: _inputFieldsPadding),
                   AppTextField(
-                    label: S.current.screenLoginPasswordLabel,
+                    label: S.current.screenSignUpNicknameLabel,
+                  ),
+                  const SizedBox(height: _inputFieldsPadding),
+                  AppTextField(
+                    label: S.current.screenSignUpPasswordLabel,
+                  ),
+                  const SizedBox(height: _inputFieldsPadding),
+                  AppTextField(
+                    label: S.current.screenSignUpPasswordConfirmLabel,
                   ),
                   const SizedBox(height: 60),
                   RoundedButton(
                     onTap: () {
                       // TODO: login
                     },
-                    text: S.current.screenLoginSignInButton,
+                    text: S.current.screenSignUpSubmitButton,
                   ),
                 ],
               ),
@@ -54,9 +66,9 @@ class LoginScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 40),
                 child: HyperLinkButton(
                   onTap: () {
-                    // TODO: move to create account screen
+                    Navigator.pop(context);
                   },
-                  text: S.current.screenLoginSignUpButton,
+                  text: S.current.screenSignUpToSignInButton,
                 ),
               ),
             ],
@@ -66,3 +78,4 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
+

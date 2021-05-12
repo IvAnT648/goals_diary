@@ -60,10 +60,10 @@ class S {
     );
   }
 
-  /// `Sign in`
+  /// `Sign In`
   String get screenLoginTitle {
     return Intl.message(
-      'Sign in',
+      'Sign In',
       name: 'screenLoginTitle',
       desc: '',
       args: [],
@@ -105,6 +105,76 @@ class S {
     return Intl.message(
       'Create a new account',
       name: 'screenLoginSignUpButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign Up`
+  String get screenSignUpTitle {
+    return Intl.message(
+      'Sign Up',
+      name: 'screenSignUpTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get screenSignUpNameLabel {
+    return Intl.message(
+      'Name',
+      name: 'screenSignUpNameLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nickname`
+  String get screenSignUpNicknameLabel {
+    return Intl.message(
+      'Nickname',
+      name: 'screenSignUpNicknameLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get screenSignUpPasswordLabel {
+    return Intl.message(
+      'Password',
+      name: 'screenSignUpPasswordLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm password`
+  String get screenSignUpPasswordConfirmLabel {
+    return Intl.message(
+      'Confirm password',
+      name: 'screenSignUpPasswordConfirmLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign up`
+  String get screenSignUpSubmitButton {
+    return Intl.message(
+      'Sign up',
+      name: 'screenSignUpSubmitButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign in`
+  String get screenSignUpToSignInButton {
+    return Intl.message(
+      'Sign in',
+      name: 'screenSignUpToSignInButton',
       desc: '',
       args: [],
     );

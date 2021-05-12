@@ -2,8 +2,16 @@
   "appName": "Дневник целей",
 
   "screenLoginTitle": "Вход в систему",
-  "screenLoginNicknameLabel": "Никнейм",
+  "screenLoginNicknameLabel": "Логин",
   "screenLoginPasswordLabel": "Пароль",
   "screenLoginSignInButton": "Войти",
-  "screenLoginSignUpButton": "Создать новый аккаунт"
+  "screenLoginSignUpButton": "Создать новый аккаунт",
+
+  "screenSignUpTitle": "Регистрация",
+  "screenSignUpNameLabel": "Имя",
+  "screenSignUpNicknameLabel": "Логин",
+  "screenSignUpPasswordLabel": "Пароль",
+  "screenSignUpPasswordConfirmLabel": "Пароль ещё раз",
+  "screenSignUpSubmitButton": "Зарегистрироваться",
+  "screenSignUpToSignInButton": "Войти в существующий аккаунт"
 }
