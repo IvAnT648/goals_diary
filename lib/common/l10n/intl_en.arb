@@ -13,5 +13,7 @@
   "screenSignUpPasswordLabel": "Password",
   "screenSignUpPasswordConfirmLabel": "Confirm password",
   "screenSignUpSubmitButton": "Sign up",
-  "screenSignUpToSignInButton": "Sign in"
+  "screenSignUpToSignInButton": "Sign in",
+
+  "screenMyGoalsTitle": "My goals"
 }

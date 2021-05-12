@@ -19,7 +19,7 @@ class S {
 
   static S get current {
     assert(_current != null,
-        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
+        'No instance of S was loaded. Try to initialize the S delegate before accessing S.of(context).');
     return _current!;
   }
 
@@ -175,6 +175,16 @@ class S {
     return Intl.message(
       'Sign in',
       name: 'screenSignUpToSignInButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My goals`
+  String get screenMyGoalsTitle {
+    return Intl.message(
+      'My goals',
+      name: 'screenMyGoalsTitle',
       desc: '',
       args: [],
     );

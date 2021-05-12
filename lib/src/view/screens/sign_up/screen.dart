@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../../common/res/styles.dart';
 import '../../../../generated/l10n.dart';
 import '../../components.dart';
+import '../screens.dart';
 
 class SignUpScreen extends StatelessWidget {
   static const double _inputFieldsPadding = 40;
@@ -33,7 +34,7 @@ class SignUpScreen extends StatelessWidget {
                   bottom: 10,
                 ),
                 child: Text(
-                  S.current.screenSignUpTitle,
+                  S.of(context).screenSignUpTitle,
                   style: TextStyles.h1,
                 ),
               ),
@@ -41,26 +42,27 @@ class SignUpScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   AppTextField(
-                    label: S.current.screenSignUpNameLabel,
+                    label: S.of(context).screenSignUpNameLabel,
                   ),
                   const SizedBox(height: _inputFieldsPadding),
                   AppTextField(
-                    label: S.current.screenSignUpNicknameLabel,
+                    label: S.of(context).screenSignUpNicknameLabel,
                   ),
                   const SizedBox(height: _inputFieldsPadding),
                   AppTextField(
-                    label: S.current.screenSignUpPasswordLabel,
+                    label: S.of(context).screenSignUpPasswordLabel,
                   ),
                   const SizedBox(height: _inputFieldsPadding),
                   AppTextField(
-                    label: S.current.screenSignUpPasswordConfirmLabel,
+                    label: S.of(context).screenSignUpPasswordConfirmLabel,
                   ),
                   const SizedBox(height: 70),
                   RoundedButton(
                     onTap: () {
-                      // TODO: login
+                      // TODO: correct login
+                      Navigator.pushReplacementNamed(context, MyGoalsScreen.id);
                     },
-                    text: S.current.screenSignUpSubmitButton,
+                    text: S.of(context).screenSignUpSubmitButton,
                   ),
                 ],
               ),
@@ -71,7 +73,7 @@ class SignUpScreen extends StatelessWidget {
                   onTap: () {
                     Navigator.pop(context);
                   },
-                  text: S.current.screenSignUpToSignInButton,
+                  text: S.of(context).screenSignUpToSignInButton,
                 ),
               ),
             ],

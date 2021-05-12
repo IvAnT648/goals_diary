@@ -13,5 +13,7 @@
   "screenSignUpPasswordLabel": "Пароль",
   "screenSignUpPasswordConfirmLabel": "Пароль ещё раз",
   "screenSignUpSubmitButton": "Зарегистрироваться",
-  "screenSignUpToSignInButton": "Войти в существующий аккаунт"
+  "screenSignUpToSignInButton": "Войти в существующий аккаунт",
+
+  "screenMyGoalsTitle": "Мои цели"
 }

@@ -32,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Создать новый аккаунт"),
         "screenLoginTitle":
             MessageLookupByLibrary.simpleMessage("Вход в систему"),
+        "screenMyGoalsTitle": MessageLookupByLibrary.simpleMessage("Мои цели"),
         "screenSignUpNameLabel": MessageLookupByLibrary.simpleMessage("Имя"),
         "screenSignUpNicknameLabel":
             MessageLookupByLibrary.simpleMessage("Логин"),

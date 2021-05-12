@@ -28,7 +28,7 @@ class SignInScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 90),
                 child: Text(
-                  S.current.screenLoginTitle,
+                  S.of(context).screenLoginTitle,
                   style: TextStyles.h1,
                 ),
               ),
@@ -36,18 +36,19 @@ class SignInScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   AppTextField(
-                    label: S.current.screenLoginNicknameLabel,
+                    label: S.of(context).screenLoginNicknameLabel,
                   ),
                   const SizedBox(height: _inputFieldsPadding),
                   AppTextField(
-                    label: S.current.screenLoginPasswordLabel,
+                    label: S.of(context).screenLoginPasswordLabel,
                   ),
                   const SizedBox(height: 60),
                   RoundedButton(
                     onTap: () {
-                      // TODO: login
+                      // TODO: correct login
+                      Navigator.pushReplacementNamed(context, MyGoalsScreen.id);
                     },
-                    text: S.current.screenLoginSignInButton,
+                    text: S.of(context).screenLoginSignInButton,
                   ),
                 ],
               ),
@@ -58,7 +59,7 @@ class SignInScreen extends StatelessWidget {
                   onTap: () {
                     Navigator.pushNamed(context, SignUpScreen.id);
                   },
-                  text: S.current.screenLoginSignUpButton,
+                  text: S.of(context).screenLoginSignUpButton,
                 ),
               ),
             ],

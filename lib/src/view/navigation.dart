@@ -16,5 +16,7 @@ class ScreenNavigationProvider {
     SignInScreen.id: (_) => SignInScreen(),
 
     SignUpScreen.id: (_) => SignUpScreen(),
+
+    MyGoalsScreen.id: (_) => MyGoalsScreen(),
   };
 }

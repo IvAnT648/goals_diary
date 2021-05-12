@@ -31,6 +31,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenLoginSignUpButton":
             MessageLookupByLibrary.simpleMessage("Create a new account"),
         "screenLoginTitle": MessageLookupByLibrary.simpleMessage("Sign In"),
+        "screenMyGoalsTitle": MessageLookupByLibrary.simpleMessage("My goals"),
         "screenSignUpNameLabel": MessageLookupByLibrary.simpleMessage("Name"),
         "screenSignUpNicknameLabel":
             MessageLookupByLibrary.simpleMessage("Nickname"),
