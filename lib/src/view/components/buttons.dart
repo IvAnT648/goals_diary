@@ -22,12 +22,14 @@ class TouchableArea extends StatelessWidget {
       children: [
         child,
         Positioned.fill(
-          child: InkWell(
-            onTap: onTap,
-            splashColor: hasSplashEffect
-                ? Theme.of(context).splashColor
-                : Colors.transparent,
-            highlightColor: AppColors.gray[20],
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: onTap,
+              splashColor: hasSplashEffect
+                  ? Theme.of(context).splashColor
+                  : Colors.transparent,
+            ),
           ),
         ),
       ],
@@ -87,7 +89,7 @@ class HyperLinkButton extends StatelessWidget {
         child: Text(
           text.toLowerCase(),
           style: TextStyles.italicNormal.copyWith(
-            color: AppColors.hintText,
+            color: AppColors.gray[-10],
           ),
         ),
       ),

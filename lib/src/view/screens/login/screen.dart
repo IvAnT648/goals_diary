@@ -6,44 +6,58 @@ import '../../components/export.dart';
 
 class LoginScreen extends StatelessWidget {
   static String id = '/login';
-  static const double _titlePadding = 90;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.background,
       body: SafeArea(
         top: true,
         child: Container(
           alignment: Alignment.center,
           padding: const EdgeInsets.symmetric(
-            horizontal: 58,
+            horizontal: 60,
           ),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: _titlePadding),
-              Text(
-                S.current.screenLoginTitle,
-                style: TextStyles.h1,
+              Padding(
+                padding: const EdgeInsets.only(top: 90),
+                child: Text(
+                  S.current.screenLoginTitle,
+                  style: TextStyles.h1,
+                ),
               ),
-              const SizedBox(height: _titlePadding),
-              AppTextField(
-                label: S.current.screenLoginNicknameLabel,
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  AppTextField(
+                    label: S.current.screenLoginNicknameLabel,
+                  ),
+                  const SizedBox(height: 40),
+                  AppTextField(
+                    label: S.current.screenLoginPasswordLabel,
+                  ),
+                  const SizedBox(height: 60),
+                  RoundedButton(
+                    onTap: () {
+                      // TODO: login
+                    },
+                    text: S.current.screenLoginSignInButton,
+                  ),
+                ],
               ),
-              const SizedBox(height: 40),
-              AppTextField(
-                label: S.current.screenLoginPasswordLabel,
-              ),
-              const SizedBox(height: 50),
-              RoundedButton(
-                onTap: () {},
-                text: 'Войти',
-              ),
-              const SizedBox(height: 80),
-              HyperLinkButton(
-                onTap: () {},
-                text: 'Создать новый аккаунт',
+              const SizedBox(height: 1),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 40),
+                child: HyperLinkButton(
+                  onTap: () {
+                    // TODO: move to create account screen
+                  },
+                  text: S.current.screenLoginSignUpButton,
+                ),
               ),
             ],
           ),

@@ -3,5 +3,7 @@
 
   "screenLoginTitle": "Sign in",
   "screenLoginNicknameLabel": "Nickname",
-  "screenLoginPasswordLabel": "Password"
+  "screenLoginPasswordLabel": "Password",
+  "screenLoginSignInButton": "Enter",
+  "screenLoginSignUpButton": "Create a new account"
 }

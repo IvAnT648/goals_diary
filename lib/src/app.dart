@@ -21,10 +21,15 @@ class Application extends StatelessWidget {
       child: MaterialApp(
         title: 'Goals Diary',
         theme: ThemeData(
+          brightness: Brightness.light,
           primaryColor: AppColors.primary,
           primaryColorLight: AppColors.primary[10],
           primaryColorDark: AppColors.primary[-10],
           accentColor: AppColors.accent,
+          errorColor: AppColors.negative,
+          highlightColor: Colors.white.withOpacity(.4),
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          scaffoldBackgroundColor: AppColors.background,
           colorScheme: ColorScheme(
             primary: AppColors.primary,
             primaryVariant: AppColors.primary[-10],
@@ -40,10 +45,12 @@ class Application extends StatelessWidget {
             onError: AppColors.onPrimary,
             brightness: Brightness.light,
           ),
-          pageTransitionsTheme: PageTransitionsTheme(builders: {
-            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-            TargetPlatform.android: CupertinoPageTransitionsBuilder(),
-          }),
+          pageTransitionsTheme: PageTransitionsTheme(
+              builders: {
+                TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+                TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+              }
+          ),
         ),
         localizationsDelegates: [
           S.delegate,

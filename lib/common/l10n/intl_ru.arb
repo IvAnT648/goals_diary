@@ -3,5 +3,7 @@
 
   "screenLoginTitle": "Вход в систему",
   "screenLoginNicknameLabel": "Никнейм",
-  "screenLoginPasswordLabel": "Пароль"
+  "screenLoginPasswordLabel": "Пароль",
+  "screenLoginSignInButton": "Войти",
+  "screenLoginSignUpButton": "Создать новый аккаунт"
 }
