@@ -41,7 +41,7 @@ class AppTextField extends StatelessWidget {
         isDense: true,
       ),
       style: TextStyle(
-        fontSize: 15,
+        fontSize: 16,
       ),
     );
   }

@@ -28,7 +28,10 @@ class SignUpScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 40),
+                padding: const EdgeInsets.only(
+                  top: 40,
+                  bottom: 10,
+                ),
                 child: Text(
                   S.current.screenSignUpTitle,
                   style: TextStyles.h1,
@@ -52,7 +55,7 @@ class SignUpScreen extends StatelessWidget {
                   AppTextField(
                     label: S.current.screenSignUpPasswordConfirmLabel,
                   ),
-                  const SizedBox(height: 60),
+                  const SizedBox(height: 70),
                   RoundedButton(
                     onTap: () {
                       // TODO: login
