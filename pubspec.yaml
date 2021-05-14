@@ -54,4 +54,4 @@ assets:
 
 flutter_intl:
   enabled: true
-  arb_dir: lib/common/l10n
+  arb_dir: lib/src/common/l10n

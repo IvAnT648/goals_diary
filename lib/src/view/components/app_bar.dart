@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:goals_diary/common/res.dart';
 
+import '../../common/res/styles.dart';
 import '../constants.dart';
 
 mixin DefaultPreferredSizeAppBar implements PreferredSizeWidget {

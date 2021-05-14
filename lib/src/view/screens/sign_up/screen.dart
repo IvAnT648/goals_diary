@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../../../../common/res/styles.dart';
+import '../../../common/res/styles.dart';
 import '../../../../generated/l10n.dart';
 import '../../components.dart';
 import '../screens.dart';

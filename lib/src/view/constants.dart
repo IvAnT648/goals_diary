@@ -9,3 +9,5 @@ const EdgeInsets HyperLinkButtonPadding = EdgeInsets.symmetric(
   vertical: 2,
   horizontal: 7,
 );
+
+const SmallScreenMaxHeight = 500;
