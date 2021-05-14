@@ -19,6 +19,11 @@ class MenuTopBar extends StatelessWidget with DefaultPreferredSizeAppBar {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      title: title == null ? null : Text(
+        title!,
+        style: TextStyles.h3.copyWith(color: AppColors.regularText),
+      ),
+      centerTitle: true,
       backgroundColor: AppColors.gray[20],
       leading: IconButton(
         color: AppColors.regularText,
