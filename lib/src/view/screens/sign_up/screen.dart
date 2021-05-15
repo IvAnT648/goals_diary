@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../common/res/styles.dart';
 import '../../../../generated/l10n.dart';
 import '../../components.dart';
-import '../screens.dart';
+import '../../screens.dart';
 
 class SignUpScreen extends StatelessWidget {
   static const double _inputFieldsPadding = 40;
