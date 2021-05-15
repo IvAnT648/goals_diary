@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../../common/res.dart';
+import '../../common/resources.dart';
 
 class AppTextField extends StatelessWidget {
   static const double _borderWidth = 1.2;

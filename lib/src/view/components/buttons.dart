@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../common/res/styles.dart';
+import '../../common/resources/styles.dart';
 import '../constants.dart';
 
 /// Interactive touchable area

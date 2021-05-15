@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../generated/l10n.dart';
-import '../../../common/res/styles.dart';
+import '../../../common/resources/styles.dart';
 import '../../components.dart';
 
 class MyGoalsScreen extends StatelessWidget {
