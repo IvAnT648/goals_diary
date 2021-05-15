@@ -12,34 +12,39 @@ class MyGoalsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return Scaffold(
       appBar: MenuTopBar(
         title: S.of(context).screenMyGoalsTitle,
       ),
       // TODO: fix drawer
       drawer: Container(width: 300, color: AppColors.primary),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // TODO: to add a new goal screen
-        },
-        child: Text(
-          '+',
-          style: TextStyle(
-            fontSize: 36,
-            color: theme.colorScheme.onPrimary,
-          ),
-        ),
-      ),
-      body: Padding(
+      floatingActionButton: _FloatingAddButton(),
+      body: Container(
         padding: EdgeInsets.all(35),
-        child: ListView.builder(
-          itemBuilder: (context, index) {
-            return Container();
-          },
+      ),
+    );
+  }
+}
+
+class _FloatingAddButton extends StatelessWidget {
+  const _FloatingAddButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return FloatingActionButton(
+      onPressed: () {
+        // TODO: to add a new goal screen
+      },
+      child: Text(
+        '+',
+        style: TextStyle(
+          fontSize: 36,
+          color: theme.colorScheme.onPrimary,
         ),
       ),
     );
   }
 }
+
 
