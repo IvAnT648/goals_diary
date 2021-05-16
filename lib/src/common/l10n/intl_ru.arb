@@ -10,6 +10,9 @@
   "commonSaturdayShort": "сб",
   "commonSundayShort": "вс",
 
+  "commonPublicGoal": "Публичная",
+  "commonPrivateGoal": "Приватная",
+
   "screenLoginTitle": "Вход в аккаунт",
   "screenLoginNicknameLabel": "Логин",
   "screenLoginPasswordLabel": "Пароль",
@@ -24,5 +27,13 @@
   "screenSignUpSubmitButton": "Зарегистрироваться",
   "screenSignUpToSignInButton": "Войти в существующий аккаунт",
 
-  "screenMyGoalsTitle": "Мои цели"
+  "screenMyGoalsTitle": "Мои цели",
+  "screenEditGoalTitle": "Редактировать цель",
+  "screenEditGoalNewTitle": "Создать цель",
+  "screenEditGoalTitleLabel": "Название цели",
+  "screenEditGoalDescriptionLabel": "Описание цели",
+  "screenEditGoalTypeLabel": "Тип цели:",
+  "screenEditGoalNotificationsEnabledLabel": "Получать push-уведомления",
+  "screenEditGoalNotificationsTimeLabel": "Время уведомлений",
+  "screenEditGoalSaveButton": "Сохранить"
 }

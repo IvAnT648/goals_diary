@@ -61,6 +61,7 @@ class Application extends StatelessWidget {
         supportedLocales: S.delegate.supportedLocales,
         initialRoute: ScreenNavigationProvider.initialRoute,
         routes: ScreenNavigationProvider.routes,
+        onGenerateRoute: ScreenNavigationProvider.onGenerateRoute,
       ),
     );
   }

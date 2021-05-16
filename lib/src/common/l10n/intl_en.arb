@@ -10,6 +10,9 @@
   "commonSaturdayShort": "sat",
   "commonSundayShort": "sun",
 
+  "commonPublicGoal": "Public",
+  "commonPrivateGoal": "Private",
+
   "screenLoginTitle": "Sign In",
   "screenLoginNicknameLabel": "Nickname",
   "screenLoginPasswordLabel": "Password",
@@ -24,5 +27,13 @@
   "screenSignUpSubmitButton": "Sign up",
   "screenSignUpToSignInButton": "Sign in",
   
-  "screenMyGoalsTitle": "My goals"
+  "screenMyGoalsTitle": "My goals",
+  "screenEditGoalTitle": "Edit the goal",
+  "screenEditGoalNewTitle": "Create a goal",
+  "screenEditGoalTitleLabel": "Title",
+  "screenEditGoalDescriptionLabel": "Description",
+  "screenEditGoalTypeLabel": "Goal type:",
+  "screenEditGoalNotificationsEnabledLabel": "Receive push-notifications",
+  "screenEditGoalNotificationsTimeLabel": "Notifications time",
+  "screenEditGoalSaveButton": "Save"
 }

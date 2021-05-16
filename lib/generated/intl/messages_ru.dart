@@ -26,11 +26,29 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ежедневно"),
         "commonFridayShort": MessageLookupByLibrary.simpleMessage("пт"),
         "commonMondayShort": MessageLookupByLibrary.simpleMessage("пн"),
+        "commonPrivateGoal": MessageLookupByLibrary.simpleMessage("Приватная"),
+        "commonPublicGoal": MessageLookupByLibrary.simpleMessage("Публичная"),
         "commonSaturdayShort": MessageLookupByLibrary.simpleMessage("сб"),
         "commonSundayShort": MessageLookupByLibrary.simpleMessage("вс"),
         "commonThursdayShort": MessageLookupByLibrary.simpleMessage("чт"),
         "commonTuesdayShort": MessageLookupByLibrary.simpleMessage("вт"),
         "commonWednesdayShort": MessageLookupByLibrary.simpleMessage("ср"),
+        "screenEditGoalDescriptionLabel":
+            MessageLookupByLibrary.simpleMessage("Описание цели"),
+        "screenEditGoalNewTitle":
+            MessageLookupByLibrary.simpleMessage("Создать цель"),
+        "screenEditGoalNotificationsEnabledLabel":
+            MessageLookupByLibrary.simpleMessage("Получать push-уведомления"),
+        "screenEditGoalNotificationsTimeLabel":
+            MessageLookupByLibrary.simpleMessage("Время уведомлений"),
+        "screenEditGoalSaveButton":
+            MessageLookupByLibrary.simpleMessage("Сохранить"),
+        "screenEditGoalTitle":
+            MessageLookupByLibrary.simpleMessage("Редактировать цель"),
+        "screenEditGoalTitleLabel":
+            MessageLookupByLibrary.simpleMessage("Название цели"),
+        "screenEditGoalTypeLabel":
+            MessageLookupByLibrary.simpleMessage("Тип цели:"),
         "screenLoginNicknameLabel":
             MessageLookupByLibrary.simpleMessage("Логин"),
         "screenLoginPasswordLabel":

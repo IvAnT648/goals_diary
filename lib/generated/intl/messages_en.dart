@@ -25,11 +25,29 @@ class MessageLookup extends MessageLookupByLibrary {
         "commonDailyPeriodicity": MessageLookupByLibrary.simpleMessage("daily"),
         "commonFridayShort": MessageLookupByLibrary.simpleMessage("fri"),
         "commonMondayShort": MessageLookupByLibrary.simpleMessage("mon"),
+        "commonPrivateGoal": MessageLookupByLibrary.simpleMessage("Private"),
+        "commonPublicGoal": MessageLookupByLibrary.simpleMessage("Public"),
         "commonSaturdayShort": MessageLookupByLibrary.simpleMessage("sat"),
         "commonSundayShort": MessageLookupByLibrary.simpleMessage("sun"),
         "commonThursdayShort": MessageLookupByLibrary.simpleMessage("thu"),
         "commonTuesdayShort": MessageLookupByLibrary.simpleMessage("tue"),
         "commonWednesdayShort": MessageLookupByLibrary.simpleMessage("wed"),
+        "screenEditGoalDescriptionLabel":
+            MessageLookupByLibrary.simpleMessage("Description"),
+        "screenEditGoalNewTitle":
+            MessageLookupByLibrary.simpleMessage("Create a goal"),
+        "screenEditGoalNotificationsEnabledLabel":
+            MessageLookupByLibrary.simpleMessage("Receive push-notifications"),
+        "screenEditGoalNotificationsTimeLabel":
+            MessageLookupByLibrary.simpleMessage("Notifications time"),
+        "screenEditGoalSaveButton":
+            MessageLookupByLibrary.simpleMessage("Save"),
+        "screenEditGoalTitle":
+            MessageLookupByLibrary.simpleMessage("Edit the goal"),
+        "screenEditGoalTitleLabel":
+            MessageLookupByLibrary.simpleMessage("Title"),
+        "screenEditGoalTypeLabel":
+            MessageLookupByLibrary.simpleMessage("Goal type:"),
         "screenLoginNicknameLabel":
             MessageLookupByLibrary.simpleMessage("Nickname"),
         "screenLoginPasswordLabel":

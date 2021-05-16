@@ -140,6 +140,26 @@ class S {
     );
   }
 
+  /// `Public`
+  String get commonPublicGoal {
+    return Intl.message(
+      'Public',
+      name: 'commonPublicGoal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Private`
+  String get commonPrivateGoal {
+    return Intl.message(
+      'Private',
+      name: 'commonPrivateGoal',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Sign In`
   String get screenLoginTitle {
     return Intl.message(
@@ -265,6 +285,86 @@ class S {
     return Intl.message(
       'My goals',
       name: 'screenMyGoalsTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit the goal`
+  String get screenEditGoalTitle {
+    return Intl.message(
+      'Edit the goal',
+      name: 'screenEditGoalTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create a goal`
+  String get screenEditGoalNewTitle {
+    return Intl.message(
+      'Create a goal',
+      name: 'screenEditGoalNewTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Title`
+  String get screenEditGoalTitleLabel {
+    return Intl.message(
+      'Title',
+      name: 'screenEditGoalTitleLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get screenEditGoalDescriptionLabel {
+    return Intl.message(
+      'Description',
+      name: 'screenEditGoalDescriptionLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Goal type:`
+  String get screenEditGoalTypeLabel {
+    return Intl.message(
+      'Goal type:',
+      name: 'screenEditGoalTypeLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Receive push-notifications`
+  String get screenEditGoalNotificationsEnabledLabel {
+    return Intl.message(
+      'Receive push-notifications',
+      name: 'screenEditGoalNotificationsEnabledLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notifications time`
+  String get screenEditGoalNotificationsTimeLabel {
+    return Intl.message(
+      'Notifications time',
+      name: 'screenEditGoalNotificationsTimeLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get screenEditGoalSaveButton {
+    return Intl.message(
+      'Save',
+      name: 'screenEditGoalSaveButton',
       desc: '',
       args: [],
     );

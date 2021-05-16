@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:goals_diary/src/view/components/goals.dart';
+import 'package:goals_diary/src/view/screens.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../../common/resources/styles.dart';
@@ -37,7 +38,11 @@ class MyGoalsScreen extends StatelessWidget {
               itemBuilder: (_, i) => MyGoalsListItem(
                 goal: goals[i],
                 onTap: () {
-                  // TODO: show goal detail page
+                  Navigator.pushNamed(
+                    context,
+                    EditGoalScreen.id,
+                    arguments: EditGoalScreenArgs(goal: goals[i]),
+                  );
                 },
               ),
             ),
