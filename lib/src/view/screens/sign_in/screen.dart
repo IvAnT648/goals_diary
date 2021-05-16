@@ -30,6 +30,7 @@ class SignInScreen extends StatelessWidget {
                 child: Text(
                   S.of(context).screenLoginTitle,
                   style: TextStyles.h1,
+                  textAlign: TextAlign.center,
                 ),
               ),
               Column(

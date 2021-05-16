@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 ///
 /// (Default flutter font family is Roboto)
 class TextStyles {
-
   /// Headers text styles
   static TextStyle h1 = TextStyle(
     fontSize: 32,

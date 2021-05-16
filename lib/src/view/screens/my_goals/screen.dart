@@ -1,9 +1,11 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:goals_diary/src/view/components/goals.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../../common/resources/styles.dart';
 import '../../components.dart';
+import 'bloc.dart';
 
 class MyGoalsScreen extends StatelessWidget {
   static const String id = '/goals';
@@ -19,8 +21,28 @@ class MyGoalsScreen extends StatelessWidget {
       // TODO: fix drawer
       drawer: Container(width: 300, color: AppColors.primary),
       floatingActionButton: _FloatingAddButton(),
-      body: Container(
-        padding: EdgeInsets.all(35),
+      body: BlocBuilder<MyGoalsScreenBloc, MyGoalsScreenState>(
+        builder: (context, state) => state.when(
+          loading: () => Center(
+            child: CircularProgressIndicator(),
+          ),
+          success: (goals) => Container(
+            padding: EdgeInsets.symmetric(
+              vertical: 35,
+              horizontal: 43,
+            ),
+            child: ListView.separated(
+              itemCount: goals.length,
+              itemBuilder: (_, i) => MyGoalsListItem(
+                goal: goals[i],
+                onTap: () {
+                  // TODO: show goal detail page
+                },
+              ),
+              separatorBuilder: (_, __) => GoalsListDivider(),
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -46,5 +68,3 @@ class _FloatingAddButton extends StatelessWidget {
     );
   }
 }
-
-

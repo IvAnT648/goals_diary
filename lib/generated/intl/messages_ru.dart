@@ -22,6 +22,15 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appName": MessageLookupByLibrary.simpleMessage("Дневник целей"),
+        "commonDailyPeriodicity":
+            MessageLookupByLibrary.simpleMessage("ежедневно"),
+        "commonFridayShort": MessageLookupByLibrary.simpleMessage("пт"),
+        "commonMondayShort": MessageLookupByLibrary.simpleMessage("пн"),
+        "commonSaturdayShort": MessageLookupByLibrary.simpleMessage("сб"),
+        "commonSundayShort": MessageLookupByLibrary.simpleMessage("вс"),
+        "commonThursdayShort": MessageLookupByLibrary.simpleMessage("чт"),
+        "commonTuesdayShort": MessageLookupByLibrary.simpleMessage("вт"),
+        "commonWednesdayShort": MessageLookupByLibrary.simpleMessage("ср"),
         "screenLoginNicknameLabel":
             MessageLookupByLibrary.simpleMessage("Логин"),
         "screenLoginPasswordLabel":
@@ -31,7 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenLoginSignUpButton":
             MessageLookupByLibrary.simpleMessage("Создать новый аккаунт"),
         "screenLoginTitle":
-            MessageLookupByLibrary.simpleMessage("Вход в систему"),
+            MessageLookupByLibrary.simpleMessage("Вход в аккаунт"),
         "screenMyGoalsTitle": MessageLookupByLibrary.simpleMessage("Мои цели"),
         "screenSignUpNameLabel": MessageLookupByLibrary.simpleMessage("Имя"),
         "screenSignUpNicknameLabel":

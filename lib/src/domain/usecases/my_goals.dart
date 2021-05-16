@@ -1,5 +1,5 @@
 
-import 'package:goals_diary/src/domain/models.dart';
+import '../models.dart';
 import 'package:injectable/injectable.dart';
 
 abstract class GetMyGoalsUseCase {
@@ -18,7 +18,7 @@ class GetMyGoalsUseCaseTest implements GetMyGoalsUseCase {
       notificationsTime: NotificationTime(
         hour: 8,
         minute: 0,
-        weekDays: [
+        weekDays: {
           WeekDays.monday,
           WeekDays.tuesday,
           WeekDays.wednesday,
@@ -26,7 +26,7 @@ class GetMyGoalsUseCaseTest implements GetMyGoalsUseCase {
           WeekDays.friday,
           WeekDays.saturday,
           WeekDays.sunday,
-        ],
+        },
       ),
     ),
     GoalDto(
@@ -45,11 +45,11 @@ class GetMyGoalsUseCaseTest implements GetMyGoalsUseCase {
       notificationsTime: NotificationTime(
         hour: 7,
         minute: 30,
-        weekDays: [
+        weekDays: {
           WeekDays.monday,
           WeekDays.wednesday,
           WeekDays.friday,
-        ],
+        },
       ),
     ),
     GoalDto(
@@ -61,9 +61,9 @@ class GetMyGoalsUseCaseTest implements GetMyGoalsUseCase {
       notificationsTime: NotificationTime(
         hour: 7,
         minute: 0,
-        weekDays: [
+        weekDays: {
           WeekDays.saturday,
-        ],
+        },
       ),
     ),
   ];

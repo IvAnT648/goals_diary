@@ -36,6 +36,7 @@ class SignUpScreen extends StatelessWidget {
                 child: Text(
                   S.of(context).screenSignUpTitle,
                   style: TextStyles.h1,
+                  textAlign: TextAlign.center,
                 ),
               ),
               Column(

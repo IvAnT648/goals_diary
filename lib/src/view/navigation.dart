@@ -17,6 +17,9 @@ class ScreenNavigationProvider {
 
     SignUpScreen.id: (_) => SignUpScreen(),
 
-    MyGoalsScreen.id: (_) => MyGoalsScreen(),
+    MyGoalsScreen.id: (_) => BlocProvider<MyGoalsScreenBloc>(
+      create: (_) => MyGoalsScreenBloc(),
+      child: MyGoalsScreen(),
+    ),
   };
 }
