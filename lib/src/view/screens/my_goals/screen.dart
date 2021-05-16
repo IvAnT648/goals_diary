@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:goals_diary/src/view/components/goals.dart';
-import 'package:goals_diary/src/view/screens.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../../common/resources/styles.dart';
 import '../../components.dart';
+import '../../screens.dart';
 import 'bloc.dart';
 
 class MyGoalsScreen extends StatelessWidget {
