@@ -60,6 +60,86 @@ class S {
     );
   }
 
+  /// `daily`
+  String get commonDailyPeriodicity {
+    return Intl.message(
+      'daily',
+      name: 'commonDailyPeriodicity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `mon`
+  String get commonMondayShort {
+    return Intl.message(
+      'mon',
+      name: 'commonMondayShort',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `tue`
+  String get commonTuesdayShort {
+    return Intl.message(
+      'tue',
+      name: 'commonTuesdayShort',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `wed`
+  String get commonWednesdayShort {
+    return Intl.message(
+      'wed',
+      name: 'commonWednesdayShort',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `thu`
+  String get commonThursdayShort {
+    return Intl.message(
+      'thu',
+      name: 'commonThursdayShort',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `fri`
+  String get commonFridayShort {
+    return Intl.message(
+      'fri',
+      name: 'commonFridayShort',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `sat`
+  String get commonSaturdayShort {
+    return Intl.message(
+      'sat',
+      name: 'commonSaturdayShort',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `sun`
+  String get commonSundayShort {
+    return Intl.message(
+      'sun',
+      name: 'commonSundayShort',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Sign In`
   String get screenLoginTitle {
     return Intl.message(

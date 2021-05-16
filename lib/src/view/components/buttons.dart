@@ -6,14 +6,14 @@ import '../constants.dart';
 /// Interactive touchable area
 class TouchableArea extends StatelessWidget {
   final Widget child;
-  final VoidCallback? onTap;
+  final VoidCallback onTap;
   final bool hasSplashEffect;
 
   const TouchableArea({
     Key? key,
     required this.child,
+    required this.onTap,
     this.hasSplashEffect = false,
-    this.onTap,
   }) : super(key: key);
 
   @override

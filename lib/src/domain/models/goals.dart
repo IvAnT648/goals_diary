@@ -1,4 +1,3 @@
-
 import 'date_time.dart';
 
 enum GoalType { private, public }
@@ -10,7 +9,11 @@ class GoalDto {
   final GoalType type;
   final bool sendNotifications;
   final NotificationTime? notificationsTime;
-  
+
+  bool get isPrivate => type == GoalType.private;
+
+  bool get isPublic => type == GoalType.public;
+
   GoalDto({
     this.id,
     required this.title,
@@ -18,7 +21,7 @@ class GoalDto {
     required this.type,
     this.sendNotifications = false,
     this.notificationsTime,
-  });
+  }) : assert(!sendNotifications || notificationsTime != null);
 
   GoalDto copyWith({
     int? id,
@@ -73,23 +76,23 @@ class GoalDto {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
+
     return other is GoalDto &&
-      other.id == id &&
-      other.title == title &&
-      other.description == description &&
-      other.type == type &&
-      other.sendNotifications == sendNotifications &&
-      other.notificationsTime == notificationsTime;
+        other.id == id &&
+        other.title == title &&
+        other.description == description &&
+        other.type == type &&
+        other.sendNotifications == sendNotifications &&
+        other.notificationsTime == notificationsTime;
   }
 
   @override
   int get hashCode {
     return title.hashCode ^
-      description.hashCode ^
-      id.hashCode ^
-      type.hashCode ^
-      sendNotifications.hashCode ^
-      notificationsTime.hashCode;
+        description.hashCode ^
+        id.hashCode ^
+        type.hashCode ^
+        sendNotifications.hashCode ^
+        notificationsTime.hashCode;
   }
 }

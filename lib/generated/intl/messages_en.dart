@@ -22,6 +22,14 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appName": MessageLookupByLibrary.simpleMessage("Goals Diary"),
+        "commonDailyPeriodicity": MessageLookupByLibrary.simpleMessage("daily"),
+        "commonFridayShort": MessageLookupByLibrary.simpleMessage("fri"),
+        "commonMondayShort": MessageLookupByLibrary.simpleMessage("mon"),
+        "commonSaturdayShort": MessageLookupByLibrary.simpleMessage("sat"),
+        "commonSundayShort": MessageLookupByLibrary.simpleMessage("sun"),
+        "commonThursdayShort": MessageLookupByLibrary.simpleMessage("thu"),
+        "commonTuesdayShort": MessageLookupByLibrary.simpleMessage("tue"),
+        "commonWednesdayShort": MessageLookupByLibrary.simpleMessage("wed"),
         "screenLoginNicknameLabel":
             MessageLookupByLibrary.simpleMessage("Nickname"),
         "screenLoginPasswordLabel":

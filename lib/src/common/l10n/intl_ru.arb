@@ -1,7 +1,16 @@
 {
   "appName": "Дневник целей",
 
-  "screenLoginTitle": "Вход в систему",
+  "commonDailyPeriodicity": "ежедневно",
+  "commonMondayShort": "пн",
+  "commonTuesdayShort": "вт",
+  "commonWednesdayShort": "ср",
+  "commonThursdayShort": "чт",
+  "commonFridayShort": "пт",
+  "commonSaturdayShort": "сб",
+  "commonSundayShort": "вс",
+
+  "screenLoginTitle": "Вход в аккаунт",
   "screenLoginNicknameLabel": "Логин",
   "screenLoginPasswordLabel": "Пароль",
   "screenLoginSignInButton": "Войти",

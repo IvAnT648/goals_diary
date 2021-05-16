@@ -1,6 +1,15 @@
 {
   "appName": "Goals Diary",
 
+  "commonDailyPeriodicity": "daily",
+  "commonMondayShort": "mon",
+  "commonTuesdayShort": "tue",
+  "commonWednesdayShort": "wed",
+  "commonThursdayShort": "thu",
+  "commonFridayShort": "fri",
+  "commonSaturdayShort": "sat",
+  "commonSundayShort": "sun",
+
   "screenLoginTitle": "Sign In",
   "screenLoginNicknameLabel": "Nickname",
   "screenLoginPasswordLabel": "Password",

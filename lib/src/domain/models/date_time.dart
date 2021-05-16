@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../generated/l10n.dart';
+import '../utils.dart';
+
 enum WeekDays {
   monday,
   tuesday,
@@ -10,20 +13,17 @@ enum WeekDays {
   sunday,
 }
 
-class NotificationTime extends TimeOfDay {
-  final List<WeekDays> weekDays;
-  @override
-  final int hour;
-  @override
-  final int minute;
-
+class NotificationTime extends TimeOfDay with WeekDaysPeriodicity {
   NotificationTime({
-    required this.hour,
-    required this.minute,
-    required this.weekDays,
+    required int hour,
+    required int minute,
+    required Set<WeekDays> weekDays,
   }) : assert(hour >= 0 && hour <= 23),
         assert(minute >= 0 && minute <= 59),
-        super(hour: hour, minute: minute);
+        super(hour: hour, minute: minute)
+  {
+    this.weekDays = weekDays;
+  }
 
   String _addLeadingZeroIfNeeded(int value) {
     if (value < 10)
@@ -37,5 +37,35 @@ class NotificationTime extends TimeOfDay {
     final String minuteLabel = _addLeadingZeroIfNeeded(minute);
 
     return '$NotificationTime($hourLabel:$minuteLabel, $weekDays)';
+  }
+
+  String toText() {
+    if (weekDays.length == WeekDays.values.length) {
+      return S.current.commonDailyPeriodicity;
+    }
+    return joinWeekDaysShort();
+  }
+}
+
+mixin WeekDaysPeriodicity {
+  late final Set<WeekDays> weekDays;
+  final String weekDaysJoinSeparator = ',';
+
+  String joinWeekDaysShort() {
+    var result = '';
+    var count = weekDays.length;
+    WeekDays.values.forEach((element) {
+      if (weekDays.contains(element)) {
+        result += element.toShortLocaleStr();
+        if (--count != 0) {
+          result += _getWeekDaysJoinSeparator();
+        }
+      }
+    });
+    return result;
+  }
+
+  String _getWeekDaysJoinSeparator() {
+    return '$weekDaysJoinSeparator ';
   }
 }
