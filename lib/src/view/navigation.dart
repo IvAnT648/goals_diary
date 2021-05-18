@@ -16,7 +16,7 @@ abstract class Navigation {
   /// Navigation method shortcut
   static final to = seafarer.navigate;
 
-  /// Executed before app launching
+  /// WARNING: Execute before app launch
   static void createRoutes() {
     seafarer.addRoutes(_routes);
   }
