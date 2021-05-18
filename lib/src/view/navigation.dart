@@ -1,47 +1,72 @@
-import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:seafarer/seafarer.dart';
 
-import 'screens.dart';
+import '../domain/models.dart';
 import 'screens/blocs.dart';
+import 'screens.dart';
 
-class ScreenNavigationProvider {
-  static String initialRoute = StartupScreen.id;
+abstract class Navigation {
+  /// Initial route
+  static const String initialRoute = StartupScreen.id;
 
-  static Map<String, WidgetBuilder> routes = {
-    StartupScreen.id: (_) => BlocProvider<StartupScreenBloc>(
-      create: (_) => StartupScreenBloc(),
-      child: StartupScreen(),
-    ),
-    SignInScreen.id: (_) => SignInScreen(),
-    SignUpScreen.id: (_) => SignUpScreen(),
-    MyGoalsScreen.id: (_) => BlocProvider<MyGoalsScreenBloc>(
-      create: (_) => MyGoalsScreenBloc(),
-      child: MyGoalsScreen(),
-    ),
-  };
+  /// Navigation instance
+  static final Seafarer seafarer = Seafarer();
 
-  static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
-    if (settings.name == '/') {
-      return null;
-    }
+  /// Navigation method shortcut
+  static final to = seafarer.navigate;
 
-    WidgetBuilder? screenBuilder;
-
-    if (settings.name == EditGoalScreen.id) {
-      final args = settings.arguments as EditGoalScreenArgs;
-      screenBuilder = (_) => EditGoalScreen(goal: args.goal);
-
-    } else {
-      screenBuilder = routes[settings.name];
-      if (screenBuilder == null) {
-        assert(false, 'Need to implement ${settings.name}');
-        return null;
-      }
-    }
-
-    return MaterialPageRoute(
-      settings: settings,
-      builder: screenBuilder,
-    );
+  /// Executed before app launching
+  static void createRoutes() {
+    seafarer.addRoutes(_routes);
   }
+
+  /// List of routes
+  static final List<SeafarerRoute> _routes = [
+    SeafarerRoute(
+      name: StartupScreen.id,
+      builder: (context, args, params) {
+        return BlocProvider(
+          create: (_) => StartupScreenBloc(),
+          child: StartupScreen(),
+        );
+      },
+    ),
+
+    SeafarerRoute(
+      name: SignInScreen.id,
+      builder: (_, __, ___) => SignInScreen(),
+    ),
+
+    SeafarerRoute(
+      name: SignUpScreen.id,
+      builder: (_, __, ___) => SignUpScreen(),
+    ),
+
+    SeafarerRoute(
+      name: MyGoalsScreen.id,
+      builder: (_, __, ___) => BlocProvider<MyGoalsScreenBloc>(
+        create: (_) => MyGoalsScreenBloc(),
+        child: MyGoalsScreen(),
+      ),
+    ),
+
+    SeafarerRoute(
+      name: EditGoalScreen.id,
+      params: [
+        SeafarerParam<GoalDto>(
+          name: 'goal',
+          defaultValue: null,
+        ),
+      ],
+      builder: (_, __, params) {
+        final goal = params.param<GoalDto>('goal');
+        return BlocProvider<EditGoalBloc>(
+          create: (_) => EditGoalBloc(),
+          child: EditGoalScreen(goal: goal),
+        );
+      },
+    ),
+
+  ];
 }

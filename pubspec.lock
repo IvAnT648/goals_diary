@@ -513,6 +513,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  seafarer:
+    dependency: "direct main"
+    description:
+      name: seafarer
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0"
   shelf:
     dependency: transitive
     description:

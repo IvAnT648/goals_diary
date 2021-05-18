@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../generated/l10n.dart';
 import '../../../common/resources/styles.dart';
 import '../../components.dart';
+import '../../navigation.dart';
 import '../../screens.dart';
 import 'bloc.dart';
 
@@ -20,7 +21,11 @@ class MyGoalsScreen extends StatelessWidget {
       ),
       // TODO: fix drawer
       drawer: Container(width: 300, color: AppColors.primary),
-      floatingActionButton: _FloatingAddButton(),
+      floatingActionButton: _FloatingAddButton(
+        onTap: () {
+          Navigation.to(EditGoalScreen.id);
+        },
+      ),
       body: BlocBuilder<MyGoalsScreenBloc, MyGoalsScreenState>(
         builder: (context, state) => state.when(
           loading: () => Center(
@@ -37,11 +42,9 @@ class MyGoalsScreen extends StatelessWidget {
               itemBuilder: (_, i) => MyGoalsListItem(
                 goal: goals[i],
                 onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    EditGoalScreen.id,
-                    arguments: EditGoalScreenArgs(goal: goals[i]),
-                  );
+                  Navigation.to(EditGoalScreen.id, params: {
+                    'goal': goals[i],
+                  });
                 },
               ),
             ),
@@ -53,15 +56,18 @@ class MyGoalsScreen extends StatelessWidget {
 }
 
 class _FloatingAddButton extends StatelessWidget {
-  const _FloatingAddButton({Key? key}) : super(key: key);
+  final VoidCallback onTap;
+
+  const _FloatingAddButton({
+    Key? key,
+    required this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return FloatingActionButton(
-      onPressed: () {
-        // TODO: to add a new goal screen
-      },
+      onPressed: onTap,
       child: Text(
         '+',
         style: TextStyle(

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'common/resources/styles.dart';
 import '../generated/l10n.dart';
+import 'common/resources/styles.dart';
 import 'view/navigation.dart';
 
 class Application extends StatelessWidget {
@@ -59,9 +59,9 @@ class Application extends StatelessWidget {
           GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: S.delegate.supportedLocales,
-        initialRoute: ScreenNavigationProvider.initialRoute,
-        routes: ScreenNavigationProvider.routes,
-        onGenerateRoute: ScreenNavigationProvider.onGenerateRoute,
+        initialRoute: Navigation.initialRoute,
+        navigatorKey: Navigation.seafarer.navigatorKey,
+        onGenerateRoute: Navigation.seafarer.generator(),
       ),
     );
   }

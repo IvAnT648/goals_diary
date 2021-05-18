@@ -6,7 +6,7 @@ import '../sign_in/screen.dart';
 import 'bloc.dart';
 
 class StartupScreen extends StatelessWidget {
-  static const String id = '/startup';
+  static const String id = '/';
 
   const StartupScreen({Key? key}) : super(key: key);
 

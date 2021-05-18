@@ -5,9 +5,9 @@ import '../../../domain/models/goals.dart';
 import '../../components.dart';
 
 class EditGoalScreenArgs {
-  final GoalDto goal;
+  final GoalDto? goal;
 
-  EditGoalScreenArgs({required this.goal});
+  EditGoalScreenArgs({this.goal});
 }
 
 class EditGoalScreen extends StatelessWidget {
@@ -17,16 +17,18 @@ class EditGoalScreen extends StatelessWidget {
     horizontal: 58,
   );
 
-  final GoalDto goal;
+  final GoalDto? goal;
   final TextEditingController _titleField = TextEditingController();
   final TextEditingController _descriptionField = TextEditingController();
 
   EditGoalScreen({
     Key? key,
-    required this.goal,
+    this.goal,
   }) : super(key: key) {
-    _titleField.text = goal.title;
-    _descriptionField.text = goal.description;
+    if (goal != null) {
+      _titleField.text = goal!.title;
+      _descriptionField.text = goal!.description;
+    }
   }
 
   @override
