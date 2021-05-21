@@ -9,5 +9,8 @@ part 'events.freezed.dart';
 class EditGoalEvent with _$EditGoalEvent {
   const factory EditGoalEvent.submit(GoalDto goal) =
     SubmitEditGoalEvent;
+
+  const factory EditGoalEvent.changeType(GoalType newType) =
+    ChangeTypeEditGoalEvent;
 }
 

@@ -49,21 +49,93 @@ class RoundedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 236,
-      child: ElevatedButton(
-        onPressed: onTap,
-        style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(ButtonBorderRadius)),
-          ),
-          padding: EdgeInsets.symmetric(
-            vertical: 18,
-          ),
+    return ElevatedButton(
+      onPressed: onTap,
+      style: ElevatedButton.styleFrom(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(ButtonBorderRadius)),
         ),
+        padding: EdgeInsets.symmetric(
+          vertical: 18,
+          horizontal: 25,
+        ),
+        //primary: AppColors.onPrimary,
+      ),
+      child: Text(
+        text.toUpperCase(),
+        style: TextStyles.h4,
+      ),
+    );
+  }
+}
+
+class OutlineRoundedButton extends StatelessWidget {
+  static const _defaultPadding = EdgeInsets.symmetric(
+    vertical: 10,
+  );
+
+  final VoidCallback onTap;
+  final String text;
+  final bool isSelected;
+  final bool upperText;
+  final EdgeInsets? padding;
+
+  const OutlineRoundedButton({
+    Key? key,
+    required this.onTap,
+    required this.text,
+    this.isSelected = true,
+    this.upperText = false,
+    this.padding = _defaultPadding,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return OutlinedButton(
+      onPressed: onTap,
+      style: OutlinedButton.styleFrom(
+        side: BorderSide(
+          color: AppColors.primary,
+          width: 1,
+        ),
+        shape: StadiumBorder(),
+        primary: AppColors.hintText,
+        onSurface: AppColors.primary,
+        shadowColor: AppColors.primary,
+        padding: padding,
+      ),
+      child: Text(
+        upperText ? text.toUpperCase() : text,
+        style: TextStyles.h4,
+      ),
+    );
+  }
+}
+
+class NonClickableRoundedButton extends StatelessWidget {
+  static const _padding = EdgeInsets.symmetric(
+    vertical: 10,
+  );
+
+  final String text;
+
+  const NonClickableRoundedButton({
+    Key? key,
+    required this.text,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: _padding,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(ButtonBorderRadius)),
+        color: AppColors.primary,
+      ),
+      child: Center(
         child: Text(
-          text.toUpperCase(),
-          style: TextStyles.h4,
+          text,
+          style: TextStyles.h4.copyWith(color: AppColors.onPrimary),
         ),
       ),
     );

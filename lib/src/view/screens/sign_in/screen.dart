@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import '../../../common/resources/styles.dart';
 import '../../../../generated/l10n.dart';
 import '../../components.dart';
+import '../../navigation.dart';
 import '../../screens.dart';
 
 class SignInScreen extends StatelessWidget {
   static const double _inputFieldsPadding = 35;
+  static const double _submitButtonWidth = 236;
   static String id = '/sign-in';
 
   @override
@@ -36,20 +38,23 @@ class SignInScreen extends StatelessWidget {
               Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  AppTextField(
+                  DefaultTextField(
                     label: S.of(context).screenLoginNicknameLabel,
                   ),
                   const SizedBox(height: _inputFieldsPadding),
-                  AppTextField(
+                  DefaultTextField(
                     label: S.of(context).screenLoginPasswordLabel,
                   ),
                   const SizedBox(height: 60),
-                  RoundedButton(
-                    onTap: () {
-                      // TODO: correct login
-                      Navigator.pushReplacementNamed(context, MyGoalsScreen.id);
-                    },
-                    text: S.of(context).screenLoginSignInButton,
+                  SizedBox(
+                    width: _submitButtonWidth,
+                    child: RoundedButton(
+                      onTap: () {
+                        // TODO: correct login
+                        Navigation.to(MyGoalsScreen.id);
+                      },
+                      text: S.of(context).screenLoginSignInButton,
+                    ),
                   ),
                 ],
               ),
@@ -58,7 +63,7 @@ class SignInScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 40),
                 child: HyperLinkButton(
                   onTap: () {
-                    Navigator.pushNamed(context, SignUpScreen.id);
+                    Navigation.to(SignUpScreen.id);
                   },
                   text: S.of(context).screenLoginSignUpButton,
                 ),

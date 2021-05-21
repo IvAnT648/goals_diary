@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../navigation.dart';
 import '../sign_in/screen.dart';
 import 'bloc.dart';
 
@@ -17,9 +18,11 @@ class StartupScreen extends StatelessWidget {
         listener: (context, state) {
           if (state is AuthorizedStartupScreenState) {
             // TODO: go main screen
+            return;
           }
           if (state is NotAuthorizedStartupScreenState) {
-            Navigator.pushReplacementNamed(context, SignInScreen.id);
+            Navigation.to(SignInScreen.id);
+            return;
           }
         },
         builder: (context, state) {

@@ -8,13 +8,16 @@ import 'screens.dart';
 
 abstract class Navigation {
   /// Initial route
-  static const String initialRoute = StartupScreen.id;
+  static const String initialRoute = '/';
 
   /// Navigation instance
   static final Seafarer seafarer = Seafarer();
 
   /// Navigation method shortcut
   static final to = seafarer.navigate;
+
+  /// Navigation pop method shortcut
+  static final pop = seafarer.pop;
 
   /// WARNING: Execute before app launch
   static void createRoutes() {
@@ -24,7 +27,7 @@ abstract class Navigation {
   /// List of routes
   static final List<SeafarerRoute> _routes = [
     SeafarerRoute(
-      name: StartupScreen.id,
+      name: initialRoute,
       builder: (context, args, params) {
         return BlocProvider(
           create: (_) => StartupScreenBloc(),

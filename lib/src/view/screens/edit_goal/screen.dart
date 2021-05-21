@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../generated/l10n.dart';
+import '../../../common/resources.dart';
 import '../../../domain/models/goals.dart';
 import '../../components.dart';
-
-class EditGoalScreenArgs {
-  final GoalDto? goal;
-
-  EditGoalScreenArgs({this.goal});
-}
+import 'bloc.dart';
 
 class EditGoalScreen extends StatelessWidget {
   static const String id = '/goals/edit';
@@ -34,18 +30,43 @@ class EditGoalScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MenuTopBar(),
+      appBar: ReturnableTopBar(
+        title: S.of(context).screenEditGoalTitle,
+      ),
       body: Padding(
         padding: _padding,
         child: Column(
           children: [
-            AppTextField(
+            DefaultTextField(
               label: S.of(context).screenEditGoalTitleLabel,
               controller: _titleField,
             ),
-            AppTextField(
+            const SizedBox(height: 30),
+            BigTextField(
               label: S.of(context).screenEditGoalDescriptionLabel,
               controller: _descriptionField,
+            ),
+            const SizedBox(height: 30),
+            BlocBuilder<EditGoalBloc, EditGoalState>(
+              buildWhen: (prev, curr) =>
+                  curr is InitialEditGoalState ||
+                  curr is TypeChangedEditGoalState,
+              builder: (context, state) {
+                GoalType? type;
+                if (state is InitialEditGoalState) {
+                  type = state.type;
+                }
+                if (state is TypeChangedEditGoalState) {
+                  type = state.type;
+                }
+                return GoalTypeSelector(
+                  selected: type,
+                  onChange: (newType) {
+                    context.read<EditGoalBloc>()
+                        .add(EditGoalEvent.changeType(newType));
+                  },
+                );
+              },
             ),
           ],
         ),
