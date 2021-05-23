@@ -119,6 +119,7 @@ class GoalTypeSelector extends StatelessWidget {
         children: [
           Text(
             S.of(context).screenEditGoalTypeLabel,
+            style: TextStyles.normal.copyWith(color: AppColors.hintText),
           ),
           const SizedBox(height: 13),
           Row(

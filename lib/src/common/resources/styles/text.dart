@@ -32,7 +32,7 @@ class TextStyles {
     fontSize: 14,
   );
   static TextStyle small = TextStyle(
-    fontSize: 14,
+    fontSize: 11,
   );
   static TextStyle italicNormal = TextStyle(
     fontSize: 14,
