@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../common/resources/styles.dart';
 import '../../domain/models/goals.dart';
 import '../components.dart';
+import 'utils.dart';
 
 class MyGoalsListItem extends StatelessWidget {
   static const _padding = EdgeInsets.symmetric(
@@ -59,7 +60,7 @@ class MyGoalsListItem extends StatelessWidget {
                 if (goal.notificationsTime != null) ...[
                   const SizedBox(height: 5),
                   Text(
-                    goal.notificationsTime!.toText(),
+                    goal.notificationsTime!.getWeekDaysLine(),
                     style: TextStyles.h5.copyWith(color: AppColors.hintText),
                   ),
                 ],

@@ -35,5 +35,7 @@
   "screenEditGoalTypeLabel": "Goal type:",
   "screenEditGoalNotificationsEnabledLabel": "Receive push-notifications",
   "screenEditGoalNotificationsTimeLabel": "Notifications time",
+  "screenEditGoalNotificationsDaysLabel": "Week days",
+  "screenEditGoalSelectNotificationsDaysLabel": "Select week days",
   "screenEditGoalSaveButton": "Save"
 }

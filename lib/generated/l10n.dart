@@ -360,6 +360,26 @@ class S {
     );
   }
 
+  /// `Week days`
+  String get screenEditGoalNotificationsDaysLabel {
+    return Intl.message(
+      'Week days',
+      name: 'screenEditGoalNotificationsDaysLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select week days`
+  String get screenEditGoalSelectNotificationsDaysLabel {
+    return Intl.message(
+      'Select week days',
+      name: 'screenEditGoalSelectNotificationsDaysLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Save`
   String get screenEditGoalSaveButton {
     return Intl.message(

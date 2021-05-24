@@ -1,6 +1,5 @@
 
-import 'package:goals_diary/generated/l10n.dart';
-
+import '../../generated/l10n.dart';
 import 'models.dart';
 
 extension WeekDaysEnumExt on WeekDays {

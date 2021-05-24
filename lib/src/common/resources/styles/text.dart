@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:goals_diary/src/common/resources.dart';
 
 /// App font family is Roboto
 ///
@@ -31,8 +32,16 @@ class TextStyles {
   static TextStyle normal = TextStyle(
     fontSize: 14,
   );
+  static TextStyle normalHint = TextStyle(
+    fontSize: 14,
+    color: AppColors.hintText,
+  );
   static TextStyle small = TextStyle(
     fontSize: 11,
+  );
+  static TextStyle smallHint = TextStyle(
+    fontSize: 11,
+    color: AppColors.hintText,
   );
   static TextStyle italicNormal = TextStyle(
     fontSize: 14,

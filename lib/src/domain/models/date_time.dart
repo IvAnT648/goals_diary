@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../generated/l10n.dart';
 import '../utils.dart';
 
 enum WeekDays {
@@ -31,20 +30,27 @@ class NotificationTime extends TimeOfDay with WeekDaysPeriodicity {
     return value.toString();
   }
 
-  @override
-  String toString() {
+  String toDefaultTimeFormat() {
     final String hourLabel = _addLeadingZeroIfNeeded(hour);
     final String minuteLabel = _addLeadingZeroIfNeeded(minute);
 
-    return '$NotificationTime($hourLabel:$minuteLabel, $weekDays)';
+    return '$hourLabel:$minuteLabel';
   }
 
-  String toText() {
-    if (weekDays.length == WeekDays.values.length) {
-      return S.current.commonDailyPeriodicity;
-    }
-    return joinWeekDaysShort();
+  NotificationTime copyWith({
+    int? hour,
+    int? minute,
+    Set<WeekDays>? weekDays,
+  }) {
+    return NotificationTime(
+      hour: hour ?? this.hour,
+      minute: minute ?? this.minute,
+      weekDays: weekDays ?? this.weekDays,
+    );
   }
+
+  @override
+  String toString() => '$NotificationTime(${toDefaultTimeFormat()}, $weekDays)';
 }
 
 mixin WeekDaysPeriodicity {

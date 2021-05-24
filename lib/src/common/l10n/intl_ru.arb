@@ -35,5 +35,7 @@
   "screenEditGoalTypeLabel": "Тип цели:",
   "screenEditGoalNotificationsEnabledLabel": "Получать push-уведомления",
   "screenEditGoalNotificationsTimeLabel": "Время уведомлений",
+  "screenEditGoalNotificationsDaysLabel": "Дни недели",
+  "screenEditGoalSelectNotificationsDaysLabel": "Выберите дни недели",
   "screenEditGoalSaveButton": "Сохранить"
 }

@@ -16,16 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$EditGoalStateTearOff {
   const _$EditGoalStateTearOff();
 
-  InitialEditGoalState initial(GoalType type) {
-    return InitialEditGoalState(
-      type,
-    );
-  }
-
-  TypeChangedEditGoalState typeChanged(GoalType type) {
-    return TypeChangedEditGoalState(
-      type,
-    );
+  InitialEditGoalState initial() {
+    return const InitialEditGoalState();
   }
 }
 
@@ -34,37 +26,27 @@ const $EditGoalState = _$EditGoalStateTearOff();
 
 /// @nodoc
 mixin _$EditGoalState {
-  GoalType get type => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GoalType type) initial,
-    required TResult Function(GoalType type) typeChanged,
+    required TResult Function() initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GoalType type)? initial,
-    TResult Function(GoalType type)? typeChanged,
+    TResult Function()? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(InitialEditGoalState value) initial,
-    required TResult Function(TypeChangedEditGoalState value) typeChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitialEditGoalState value)? initial,
-    TResult Function(TypeChangedEditGoalState value)? typeChanged,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $EditGoalStateCopyWith<EditGoalState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -73,7 +55,6 @@ abstract class $EditGoalStateCopyWith<$Res> {
   factory $EditGoalStateCopyWith(
           EditGoalState value, $Res Function(EditGoalState) then) =
       _$EditGoalStateCopyWithImpl<$Res>;
-  $Res call({GoalType type});
 }
 
 /// @nodoc
@@ -84,28 +65,13 @@ class _$EditGoalStateCopyWithImpl<$Res>
   final EditGoalState _value;
   // ignore: unused_field
   final $Res Function(EditGoalState) _then;
-
-  @override
-  $Res call({
-    Object? type = freezed,
-  }) {
-    return _then(_value.copyWith(
-      type: type == freezed
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as GoalType,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class $InitialEditGoalStateCopyWith<$Res>
-    implements $EditGoalStateCopyWith<$Res> {
+abstract class $InitialEditGoalStateCopyWith<$Res> {
   factory $InitialEditGoalStateCopyWith(InitialEditGoalState value,
           $Res Function(InitialEditGoalState) then) =
       _$InitialEditGoalStateCopyWithImpl<$Res>;
-  @override
-  $Res call({GoalType type});
 }
 
 /// @nodoc
@@ -118,69 +84,42 @@ class _$InitialEditGoalStateCopyWithImpl<$Res>
 
   @override
   InitialEditGoalState get _value => super._value as InitialEditGoalState;
-
-  @override
-  $Res call({
-    Object? type = freezed,
-  }) {
-    return _then(InitialEditGoalState(
-      type == freezed
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as GoalType,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$InitialEditGoalState implements InitialEditGoalState {
-  const _$InitialEditGoalState(this.type);
-
-  @override
-  final GoalType type;
+  const _$InitialEditGoalState();
 
   @override
   String toString() {
-    return 'EditGoalState.initial(type: $type)';
+    return 'EditGoalState.initial()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is InitialEditGoalState &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)));
+    return identical(this, other) || (other is InitialEditGoalState);
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(type);
-
-  @JsonKey(ignore: true)
-  @override
-  $InitialEditGoalStateCopyWith<InitialEditGoalState> get copyWith =>
-      _$InitialEditGoalStateCopyWithImpl<InitialEditGoalState>(
-          this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GoalType type) initial,
-    required TResult Function(GoalType type) typeChanged,
+    required TResult Function() initial,
   }) {
-    return initial(type);
+    return initial();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GoalType type)? initial,
-    TResult Function(GoalType type)? typeChanged,
+    TResult Function()? initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(type);
+      return initial();
     }
     return orElse();
   }
@@ -189,7 +128,6 @@ class _$InitialEditGoalState implements InitialEditGoalState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(InitialEditGoalState value) initial,
-    required TResult Function(TypeChangedEditGoalState value) typeChanged,
   }) {
     return initial(this);
   }
@@ -198,7 +136,6 @@ class _$InitialEditGoalState implements InitialEditGoalState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitialEditGoalState value)? initial,
-    TResult Function(TypeChangedEditGoalState value)? typeChanged,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -209,135 +146,5 @@ class _$InitialEditGoalState implements InitialEditGoalState {
 }
 
 abstract class InitialEditGoalState implements EditGoalState {
-  const factory InitialEditGoalState(GoalType type) = _$InitialEditGoalState;
-
-  @override
-  GoalType get type => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  $InitialEditGoalStateCopyWith<InitialEditGoalState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $TypeChangedEditGoalStateCopyWith<$Res>
-    implements $EditGoalStateCopyWith<$Res> {
-  factory $TypeChangedEditGoalStateCopyWith(TypeChangedEditGoalState value,
-          $Res Function(TypeChangedEditGoalState) then) =
-      _$TypeChangedEditGoalStateCopyWithImpl<$Res>;
-  @override
-  $Res call({GoalType type});
-}
-
-/// @nodoc
-class _$TypeChangedEditGoalStateCopyWithImpl<$Res>
-    extends _$EditGoalStateCopyWithImpl<$Res>
-    implements $TypeChangedEditGoalStateCopyWith<$Res> {
-  _$TypeChangedEditGoalStateCopyWithImpl(TypeChangedEditGoalState _value,
-      $Res Function(TypeChangedEditGoalState) _then)
-      : super(_value, (v) => _then(v as TypeChangedEditGoalState));
-
-  @override
-  TypeChangedEditGoalState get _value =>
-      super._value as TypeChangedEditGoalState;
-
-  @override
-  $Res call({
-    Object? type = freezed,
-  }) {
-    return _then(TypeChangedEditGoalState(
-      type == freezed
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as GoalType,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$TypeChangedEditGoalState implements TypeChangedEditGoalState {
-  const _$TypeChangedEditGoalState(this.type);
-
-  @override
-  final GoalType type;
-
-  @override
-  String toString() {
-    return 'EditGoalState.typeChanged(type: $type)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is TypeChangedEditGoalState &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(type);
-
-  @JsonKey(ignore: true)
-  @override
-  $TypeChangedEditGoalStateCopyWith<TypeChangedEditGoalState> get copyWith =>
-      _$TypeChangedEditGoalStateCopyWithImpl<TypeChangedEditGoalState>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(GoalType type) initial,
-    required TResult Function(GoalType type) typeChanged,
-  }) {
-    return typeChanged(type);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GoalType type)? initial,
-    TResult Function(GoalType type)? typeChanged,
-    required TResult orElse(),
-  }) {
-    if (typeChanged != null) {
-      return typeChanged(type);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(InitialEditGoalState value) initial,
-    required TResult Function(TypeChangedEditGoalState value) typeChanged,
-  }) {
-    return typeChanged(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitialEditGoalState value)? initial,
-    TResult Function(TypeChangedEditGoalState value)? typeChanged,
-    required TResult orElse(),
-  }) {
-    if (typeChanged != null) {
-      return typeChanged(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class TypeChangedEditGoalState implements EditGoalState {
-  const factory TypeChangedEditGoalState(GoalType type) =
-      _$TypeChangedEditGoalState;
-
-  @override
-  GoalType get type => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  $TypeChangedEditGoalStateCopyWith<TypeChangedEditGoalState> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory InitialEditGoalState() = _$InitialEditGoalState;
 }
