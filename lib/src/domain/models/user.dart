@@ -7,7 +7,7 @@ class UserInfoDto {
   final String? motto;
   final String? avatarUrl;
 
-  UserInfoDto({
+  const UserInfoDto({
     required this.nickname,
     required this.name,
     this.surname,
