@@ -47,6 +47,10 @@ class TextStyles {
     fontSize: 14,
     fontStyle: FontStyle.italic
   );
+  static TextStyle normalLight = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w300,
+  );
 
   /// Additional text styles
   static TextStyle input = TextStyle(
