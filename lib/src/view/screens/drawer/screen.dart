@@ -71,8 +71,8 @@ class AppDrawer extends StatelessWidget {
                             // TODO: Handle this case.
                             break;
                           case DrawerMenuItemType.profile:
-                            // TODO: Handle this case.
-                            break;
+                            Navigation.to(ProfileScreen.id);
+                            return;
                           case DrawerMenuItemType.settings:
                             // TODO: Handle this case.
                             break;

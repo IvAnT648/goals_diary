@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:seafarer/seafarer.dart';
 
 import '../domain/models.dart';
+import '../domain/usecases.dart';
 import 'screens/blocs.dart';
 import 'screens.dart';
 
@@ -95,6 +96,16 @@ abstract class Navigation {
           child: EditGoalScreen(goal: goal),
         );
       },
+    ),
+
+    SeafarerRoute(
+      name: ProfileScreen.id,
+      builder: (_, __, ___) => BlocProvider<ProfileScreenCubit>(
+        create: (_) => ProfileScreenCubit(
+          GetOwnProfileInfoUseCaseImpl(),
+        ),
+        child: ProfileScreen(),
+      ),
     ),
 
   ];
