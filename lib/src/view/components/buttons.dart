@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 import '../../common/resources/styles.dart';
 import '../constants.dart';
 
+enum ButtonType {
+  filled,
+  outlined,
+}
+
 /// Interactive touchable area
 class TouchableArea extends StatelessWidget {
   final Widget child;
@@ -37,6 +42,51 @@ class TouchableArea extends StatelessWidget {
   }
 }
 
+class RoundedButtonWrap extends StatelessWidget {
+  final ButtonType type;
+  final VoidCallback onTap;
+  final String text;
+  final EdgeInsets? padding;
+  final TextStyle? textStyle;
+  final Color? primaryColor;
+  final Color? onPrimaryColor;
+  final bool isUpperText;
+
+  const RoundedButtonWrap({
+    Key? key,
+    required this.type,
+    required this.onTap,
+    required this.text,
+    this.padding,
+    this.textStyle,
+    this.primaryColor,
+    this.onPrimaryColor,
+    this.isUpperText = true,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    if (type == ButtonType.filled) {
+      return RoundedButton(
+        text: text,
+        onTap: onTap,
+        padding: padding,
+        textStyle: textStyle,
+        primary: primaryColor,
+        onPrimary: onPrimaryColor,
+        isUpperText: isUpperText,
+      );
+    }
+    return OutlineRoundedButton(
+      text: text,
+      onTap: onTap,
+      padding: padding,
+      color: primaryColor,
+      upperText: isUpperText,
+    );
+  }
+}
+
 class RoundedButton extends StatelessWidget {
   static const _defaultPadding = EdgeInsets.symmetric(
     vertical: 18,
@@ -46,7 +96,7 @@ class RoundedButton extends StatelessWidget {
 
   final VoidCallback onTap;
   final String text;
-  final EdgeInsets padding;
+  final EdgeInsets? padding;
   final TextStyle? textStyle;
   final Color? primary;
   final Color? onPrimary;
@@ -56,7 +106,7 @@ class RoundedButton extends StatelessWidget {
     Key? key,
     required this.onTap,
     required this.text,
-    this.padding = _defaultPadding,
+    this.padding,
     this.textStyle,
     this.primary,
     this.onPrimary,
@@ -71,7 +121,7 @@ class RoundedButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(ButtonBorderRadius)),
         ),
-        padding: padding,
+        padding: padding ?? _defaultPadding,
         primary: primary,
         onPrimary: onPrimary,
       ),
@@ -90,17 +140,19 @@ class OutlineRoundedButton extends StatelessWidget {
 
   final VoidCallback onTap;
   final String text;
-  final bool isSelected;
+  final TextStyle? textStyle;
   final bool upperText;
   final EdgeInsets? padding;
+  final Color? color;
 
   const OutlineRoundedButton({
     Key? key,
     required this.onTap,
     required this.text,
-    this.isSelected = true,
-    this.upperText = false,
+    this.upperText = true,
     this.padding = _defaultPadding,
+    this.color,
+    this.textStyle,
   }) : super(key: key);
 
   @override
@@ -109,18 +161,16 @@ class OutlineRoundedButton extends StatelessWidget {
       onPressed: onTap,
       style: OutlinedButton.styleFrom(
         side: BorderSide(
-          color: AppColors.primary,
+          color: color ?? AppColors.primary,
           width: 1,
         ),
         shape: StadiumBorder(),
         primary: AppColors.hintText,
-        onSurface: AppColors.primary,
-        shadowColor: AppColors.primary,
         padding: padding,
       ),
       child: Text(
         upperText ? text.toUpperCase() : text,
-        style: TextStyles.h4,
+        style: textStyle ?? TextStyles.h4,
       ),
     );
   }
