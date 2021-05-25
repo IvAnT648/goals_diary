@@ -86,8 +86,6 @@ class AppDrawer extends StatelessWidget {
 }
 
 class _AuthorizedHeader extends StatelessWidget {
-  static const double _avatarSize = 25;
-
   final UserInfoDto userInfo;
 
   const _AuthorizedHeader(this.userInfo, {Key? key}) : super(key: key);
@@ -102,7 +100,7 @@ class _AuthorizedHeader extends StatelessWidget {
       ),
       child: Row(
         children: [
-          _buildAvatar(),
+          UserAvatar(userInfo: userInfo),
           const SizedBox(width: 20),
           Expanded(
             child: Column(
@@ -121,24 +119,6 @@ class _AuthorizedHeader extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildAvatar() {
-    if (userInfo.avatarUrl != null) {
-      return CircleAvatar(
-        radius: _avatarSize,
-        backgroundColor: AppColors.onPrimary[-10],
-        backgroundImage: NetworkImage(userInfo.avatarUrl!),
-      );
-    }
-    return CircleAvatar(
-      radius: _avatarSize,
-      backgroundColor: AppColors.onPrimary,
-      child: Text(
-        userInfo.nameAbbreviation,
-        style: TextStyles.h3.copyWith(color: AppColors.accent),
       ),
     );
   }
