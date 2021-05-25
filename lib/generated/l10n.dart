@@ -160,6 +160,106 @@ class S {
     );
   }
 
+  /// `Feed`
+  String get drawerFeedMenuItem {
+    return Intl.message(
+      'Feed',
+      name: 'drawerFeedMenuItem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My goals`
+  String get drawerGoalsMenuItem {
+    return Intl.message(
+      'My goals',
+      name: 'drawerGoalsMenuItem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My activity`
+  String get drawerActivityMenuItem {
+    return Intl.message(
+      'My activity',
+      name: 'drawerActivityMenuItem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My subscriptions`
+  String get drawerSubscriptionsMenuItem {
+    return Intl.message(
+      'My subscriptions',
+      name: 'drawerSubscriptionsMenuItem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tracked goals`
+  String get drawerTrackedGoalsMenuItem {
+    return Intl.message(
+      'Tracked goals',
+      name: 'drawerTrackedGoalsMenuItem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile`
+  String get drawerProfileMenuItem {
+    return Intl.message(
+      'Profile',
+      name: 'drawerProfileMenuItem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get drawerSettingsMenuItem {
+    return Intl.message(
+      'Settings',
+      name: 'drawerSettingsMenuItem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You didn't log in`
+  String get drawerUnauthorizedHeader {
+    return Intl.message(
+      'You didn\'t log in',
+      name: 'drawerUnauthorizedHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign in`
+  String get drawerSignInButton {
+    return Intl.message(
+      'Sign in',
+      name: 'drawerSignInButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log out`
+  String get drawerLogOutButton {
+    return Intl.message(
+      'Log out',
+      name: 'drawerLogOutButton',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Sign In`
   String get screenLoginTitle {
     return Intl.message(

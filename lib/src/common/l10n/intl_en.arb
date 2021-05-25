@@ -13,6 +13,17 @@
   "commonPublicGoal": "Public",
   "commonPrivateGoal": "Private",
 
+  "drawerFeedMenuItem": "Feed",
+  "drawerGoalsMenuItem": "My goals",
+  "drawerActivityMenuItem": "My activity",
+  "drawerSubscriptionsMenuItem": "My subscriptions",
+  "drawerTrackedGoalsMenuItem": "Tracked goals",
+  "drawerProfileMenuItem": "Profile",
+  "drawerSettingsMenuItem": "Settings",
+  "drawerUnauthorizedHeader": "You didn't log in",
+  "drawerSignInButton": "Sign in",
+  "drawerLogOutButton": "Log out",
+
   "screenLoginTitle": "Sign In",
   "screenLoginNicknameLabel": "Nickname",
   "screenLoginPasswordLabel": "Password",

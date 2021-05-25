@@ -32,6 +32,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "commonThursdayShort": MessageLookupByLibrary.simpleMessage("thu"),
         "commonTuesdayShort": MessageLookupByLibrary.simpleMessage("tue"),
         "commonWednesdayShort": MessageLookupByLibrary.simpleMessage("wed"),
+        "drawerActivityMenuItem":
+            MessageLookupByLibrary.simpleMessage("My activity"),
+        "drawerFeedMenuItem": MessageLookupByLibrary.simpleMessage("Feed"),
+        "drawerGoalsMenuItem": MessageLookupByLibrary.simpleMessage("My goals"),
+        "drawerLogOutButton": MessageLookupByLibrary.simpleMessage("Log out"),
+        "drawerProfileMenuItem":
+            MessageLookupByLibrary.simpleMessage("Profile"),
+        "drawerSettingsMenuItem":
+            MessageLookupByLibrary.simpleMessage("Settings"),
+        "drawerSignInButton": MessageLookupByLibrary.simpleMessage("Sign in"),
+        "drawerSubscriptionsMenuItem":
+            MessageLookupByLibrary.simpleMessage("My subscriptions"),
+        "drawerTrackedGoalsMenuItem":
+            MessageLookupByLibrary.simpleMessage("Tracked goals"),
+        "drawerUnauthorizedHeader":
+            MessageLookupByLibrary.simpleMessage("You didn\'t log in"),
         "screenEditGoalDescriptionLabel":
             MessageLookupByLibrary.simpleMessage("Description"),
         "screenEditGoalNewTitle":

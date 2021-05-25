@@ -13,6 +13,17 @@
   "commonPublicGoal": "Публичная",
   "commonPrivateGoal": "Приватная",
 
+  "drawerFeedMenuItem": "Лента новостей",
+  "drawerGoalsMenuItem": "Мои цели",
+  "drawerActivityMenuItem": "Моя активность",
+  "drawerSubscriptionsMenuItem": "Мои подписки",
+  "drawerTrackedGoalsMenuItem": "Отслеживаемые цели",
+  "drawerProfileMenuItem": "Профиль",
+  "drawerSettingsMenuItem": "Настройки",
+  "drawerUnauthorizedHeader": "Вы не вошли в систему",
+  "drawerSignInButton": "Войти",
+  "drawerLogOutButton": "Выйти из аккаунта",
+
   "screenLoginTitle": "Вход в аккаунт",
   "screenLoginNicknameLabel": "Логин",
   "screenLoginPasswordLabel": "Пароль",

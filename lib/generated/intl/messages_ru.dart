@@ -33,6 +33,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "commonThursdayShort": MessageLookupByLibrary.simpleMessage("чт"),
         "commonTuesdayShort": MessageLookupByLibrary.simpleMessage("вт"),
         "commonWednesdayShort": MessageLookupByLibrary.simpleMessage("ср"),
+        "drawerActivityMenuItem":
+            MessageLookupByLibrary.simpleMessage("Моя активность"),
+        "drawerFeedMenuItem":
+            MessageLookupByLibrary.simpleMessage("Лента новостей"),
+        "drawerGoalsMenuItem": MessageLookupByLibrary.simpleMessage("Мои цели"),
+        "drawerLogOutButton":
+            MessageLookupByLibrary.simpleMessage("Выйти из аккаунта"),
+        "drawerProfileMenuItem":
+            MessageLookupByLibrary.simpleMessage("Профиль"),
+        "drawerSettingsMenuItem":
+            MessageLookupByLibrary.simpleMessage("Настройки"),
+        "drawerSignInButton": MessageLookupByLibrary.simpleMessage("Войти"),
+        "drawerSubscriptionsMenuItem":
+            MessageLookupByLibrary.simpleMessage("Мои подписки"),
+        "drawerTrackedGoalsMenuItem":
+            MessageLookupByLibrary.simpleMessage("Отслеживаемые цели"),
+        "drawerUnauthorizedHeader":
+            MessageLookupByLibrary.simpleMessage("Вы не вошли в систему"),
         "screenEditGoalDescriptionLabel":
             MessageLookupByLibrary.simpleMessage("Описание цели"),
         "screenEditGoalNewTitle":
