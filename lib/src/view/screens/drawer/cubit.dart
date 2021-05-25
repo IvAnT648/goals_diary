@@ -1,24 +1,19 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../domain/models/user.dart';
+import '../../../domain/usecases.dart';
 
 import 'bloc/states.dart';
 
 export 'bloc/states.dart';
 
 class AppDrawerCubit extends Cubit<AppDrawerState> {
-  static final UserInfoDto _sampleUserInfo = UserInfoDto(
-    name: 'Alexander',
-    surname: 'Ivanov',
-    nickname: 'alexander442',
-    info: 'Программист 80 lvl',
-    motto: 'Не всякий кодер - программист',
-    avatarUrl: 'https://databytenitt.github.io/img/male.png',
-  );
+  final IsLoggedInUseCase _isLoggedIn;
+  final GetOwnProfileInfoUseCase _getOwnProfileInfo;
 
-  AppDrawerCubit() : super(true
-      ? AppDrawerState.authorized(_sampleUserInfo)
-      : AppDrawerState.unauthorized()
-  );
+  AppDrawerCubit(
+    this._isLoggedIn,
+    this._getOwnProfileInfo,
+  ) : super(_isLoggedIn()
+            ? AppDrawerState.authorized(_getOwnProfileInfo())
+            : AppDrawerState.unauthorized());
 }

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../common/resources.dart';
 import '../../../domain/models/user.dart';
+import '../../../domain/usecases.dart';
 import '../../components.dart';
 import '../../navigation.dart';
 import '../../screens.dart';
@@ -29,7 +30,11 @@ class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<AppDrawerCubit>(
-      create: (_) => AppDrawerCubit(),
+      // TODO: add DI
+      create: (_) => AppDrawerCubit(
+        IsLoggedInUseCaseImpl(),
+        GetOwnProfileInfoUseCaseImpl(),
+      ),
       child: Drawer(
         child: Container(
           color: AppColors.primary,
