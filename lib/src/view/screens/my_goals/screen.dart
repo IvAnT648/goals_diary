@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../generated/l10n.dart';
-import '../../../common/resources/styles.dart';
 import '../../components.dart';
 import '../../navigation.dart';
 import '../../screens.dart';
+import '../drawer/screen.dart';
 import 'bloc.dart';
 
 class MyGoalsScreen extends StatelessWidget {
@@ -19,8 +19,9 @@ class MyGoalsScreen extends StatelessWidget {
       appBar: MenuTopBar(
         title: S.of(context).screenMyGoalsTitle,
       ),
-      // TODO: fix drawer
-      drawer: Container(width: 300, color: AppColors.primary),
+      drawer: AppDrawer(
+        selected: DrawerMenuItemType.goals,
+      ),
       floatingActionButton: _FloatingAddButton(
         onTap: () {
           Navigation.to(EditGoalScreen.id);
