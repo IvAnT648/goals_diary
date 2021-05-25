@@ -1,4 +1,5 @@
 
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:seafarer/seafarer.dart';
 
@@ -18,6 +19,31 @@ abstract class Navigation {
 
   /// Navigation pop method shortcut
   static final pop = seafarer.pop;
+
+  static Future<T> replaceTo<T>(
+      String name, {
+        BaseArguments? args,
+        dynamic result,
+        bool Function(Route<dynamic> route)? removeUntilPredicate,
+        List<SeafarerTransition>? transitions,
+        Duration? transitionDuration,
+        Curve? transitionCurve,
+        Map<String, dynamic>? params,
+        CustomSeafarerTransition? customTransition,
+      }) {
+    return seafarer.navigate(
+      name,
+      args: args,
+      navigationType: NavigationType.pushReplace,
+      result: result,
+      removeUntilPredicate: removeUntilPredicate,
+      transitions: transitions,
+      transitionDuration: transitionDuration,
+      transitionCurve: transitionCurve,
+      params: params,
+      customTransition: customTransition,
+    );
+  }
 
   /// WARNING: Execute before app launch
   static void createRoutes() {
