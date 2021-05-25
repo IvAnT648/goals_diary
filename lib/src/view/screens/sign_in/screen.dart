@@ -7,7 +7,7 @@ import '../../navigation.dart';
 import '../../screens.dart';
 
 class SignInScreen extends StatelessWidget {
-  static const double _inputFieldsPadding = 35;
+  static const double _inputFieldsPadding = 30;
   static const double _submitButtonWidth = 236;
   static String id = '/sign-in';
 
