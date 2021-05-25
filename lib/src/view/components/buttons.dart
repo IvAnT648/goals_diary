@@ -38,13 +38,29 @@ class TouchableArea extends StatelessWidget {
 }
 
 class RoundedButton extends StatelessWidget {
+  static const _defaultPadding = EdgeInsets.symmetric(
+    vertical: 18,
+    horizontal: 25,
+  );
+  static TextStyle _defaultTextStyle = TextStyles.h4;
+
   final VoidCallback onTap;
   final String text;
+  final EdgeInsets padding;
+  final TextStyle? textStyle;
+  final Color? primary;
+  final Color? onPrimary;
+  final bool isUpperText;
 
   const RoundedButton({
     Key? key,
     required this.onTap,
     required this.text,
+    this.padding = _defaultPadding,
+    this.textStyle,
+    this.primary,
+    this.onPrimary,
+    this.isUpperText = true,
   }) : super(key: key);
 
   @override
@@ -55,15 +71,13 @@ class RoundedButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(ButtonBorderRadius)),
         ),
-        padding: EdgeInsets.symmetric(
-          vertical: 18,
-          horizontal: 25,
-        ),
-        //primary: AppColors.onPrimary,
+        padding: padding,
+        primary: primary,
+        onPrimary: onPrimary,
       ),
       child: Text(
-        text.toUpperCase(),
-        style: TextStyles.h4,
+        isUpperText ? text.toUpperCase() : text,
+        style: textStyle ?? _defaultTextStyle,
       ),
     );
   }
