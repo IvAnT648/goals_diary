@@ -39,6 +39,7 @@
   "screenSignUpToSignInButton": "Sign in",
   
   "screenMyGoalsTitle": "My goals",
+
   "screenEditGoalTitle": "Edit the goal",
   "screenEditGoalNewTitle": "Create a goal",
   "screenEditGoalTitleLabel": "Title",
@@ -48,5 +49,15 @@
   "screenEditGoalNotificationsTimeLabel": "Notifications time",
   "screenEditGoalNotificationsDaysLabel": "Week days",
   "screenEditGoalSelectNotificationsDaysLabel": "Select week days",
-  "screenEditGoalSaveButton": "Save"
+  "screenEditGoalSaveButton": "Save",
+
+  "screenProfileTitle": "Profile",
+  "screenMyProfileTitle": "My profile",
+  "screenProfileNameField": "Name",
+  "screenProfileSurnameField": "Surname",
+  "screenProfileMottoField": "Motto",
+  "screenProfileAboutMe": "About me",
+  "screenProfileSaveButton": "Save",
+  "screenProfileSubscribeButton": "Subscribe",
+  "screenProfileUnsubscribeButton": "Unsubscribe"
 }

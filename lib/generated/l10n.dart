@@ -489,6 +489,96 @@ class S {
       args: [],
     );
   }
+
+  /// `Profile`
+  String get screenProfileTitle {
+    return Intl.message(
+      'Profile',
+      name: 'screenProfileTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My profile`
+  String get screenMyProfileTitle {
+    return Intl.message(
+      'My profile',
+      name: 'screenMyProfileTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get screenProfileNameField {
+    return Intl.message(
+      'Name',
+      name: 'screenProfileNameField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Surname`
+  String get screenProfileSurnameField {
+    return Intl.message(
+      'Surname',
+      name: 'screenProfileSurnameField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Motto`
+  String get screenProfileMottoField {
+    return Intl.message(
+      'Motto',
+      name: 'screenProfileMottoField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `About me`
+  String get screenProfileAboutMe {
+    return Intl.message(
+      'About me',
+      name: 'screenProfileAboutMe',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get screenProfileSaveButton {
+    return Intl.message(
+      'Save',
+      name: 'screenProfileSaveButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Subscribe`
+  String get screenProfileSubscribeButton {
+    return Intl.message(
+      'Subscribe',
+      name: 'screenProfileSubscribeButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unsubscribe`
+  String get screenProfileUnsubscribeButton {
+    return Intl.message(
+      'Unsubscribe',
+      name: 'screenProfileUnsubscribeButton',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

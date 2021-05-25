@@ -39,6 +39,7 @@
   "screenSignUpToSignInButton": "Войти в существующий аккаунт",
 
   "screenMyGoalsTitle": "Мои цели",
+
   "screenEditGoalTitle": "Редактировать цель",
   "screenEditGoalNewTitle": "Создать цель",
   "screenEditGoalTitleLabel": "Название цели",
@@ -48,5 +49,15 @@
   "screenEditGoalNotificationsTimeLabel": "Время уведомлений",
   "screenEditGoalNotificationsDaysLabel": "Дни недели",
   "screenEditGoalSelectNotificationsDaysLabel": "Выберите дни недели",
-  "screenEditGoalSaveButton": "Сохранить"
+  "screenEditGoalSaveButton": "Сохранить",
+
+  "screenProfileTitle": "Профиль",
+  "screenMyProfileTitle": "Мой профиль",
+  "screenProfileNameField": "Имя",
+  "screenProfileSurnameField": "Фамилия",
+  "screenProfileMottoField": "Девиз",
+  "screenProfileAboutMe": "О себе",
+  "screenProfileSaveButton": "Сохранить",
+  "screenProfileSubscribeButton": "Подписаться",
+  "screenProfileUnsubscribeButton": "Отписаться"
 }

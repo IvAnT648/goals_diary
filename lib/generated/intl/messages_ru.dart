@@ -82,6 +82,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenLoginTitle":
             MessageLookupByLibrary.simpleMessage("Вход в аккаунт"),
         "screenMyGoalsTitle": MessageLookupByLibrary.simpleMessage("Мои цели"),
+        "screenMyProfileTitle":
+            MessageLookupByLibrary.simpleMessage("Мой профиль"),
+        "screenProfileAboutMe": MessageLookupByLibrary.simpleMessage("О себе"),
+        "screenProfileMottoField":
+            MessageLookupByLibrary.simpleMessage("Девиз"),
+        "screenProfileNameField": MessageLookupByLibrary.simpleMessage("Имя"),
+        "screenProfileSaveButton":
+            MessageLookupByLibrary.simpleMessage("Сохранить"),
+        "screenProfileSubscribeButton":
+            MessageLookupByLibrary.simpleMessage("Подписаться"),
+        "screenProfileSurnameField":
+            MessageLookupByLibrary.simpleMessage("Фамилия"),
+        "screenProfileTitle": MessageLookupByLibrary.simpleMessage("Профиль"),
+        "screenProfileUnsubscribeButton":
+            MessageLookupByLibrary.simpleMessage("Отписаться"),
         "screenSignUpNameLabel": MessageLookupByLibrary.simpleMessage("Имя"),
         "screenSignUpNicknameLabel":
             MessageLookupByLibrary.simpleMessage("Логин"),
