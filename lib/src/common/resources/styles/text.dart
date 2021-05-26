@@ -36,20 +36,20 @@ class TextStyles {
     fontSize: 14,
     color: AppColors.hintText,
   );
+  static TextStyle italicNormal = TextStyle(
+      fontSize: 14,
+      fontStyle: FontStyle.italic
+  );
+  static TextStyle normalLight = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w300,
+  );
   static TextStyle small = TextStyle(
     fontSize: 11,
   );
   static TextStyle smallHint = TextStyle(
     fontSize: 11,
     color: AppColors.hintText,
-  );
-  static TextStyle italicNormal = TextStyle(
-    fontSize: 14,
-    fontStyle: FontStyle.italic
-  );
-  static TextStyle normalLight = TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.w300,
   );
 
   /// Additional text styles
