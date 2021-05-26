@@ -4,3 +4,13 @@ class SingleValue<T> {
 
   T value;
 }
+
+extension FirstWhereOrNullExt<E> on Iterable<E> {
+  E? firstWhereOrNull(bool test(E element), {E orElse()?}) {
+    for (E element in this) {
+      if (test(element)) return element;
+    }
+    if (orElse != null) return orElse();
+    return null;
+  }
+}
