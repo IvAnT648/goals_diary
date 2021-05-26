@@ -51,6 +51,22 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Отслеживаемые цели"),
         "drawerUnauthorizedHeader":
             MessageLookupByLibrary.simpleMessage("Вы не вошли в систему"),
+        "screenActivityCancelGoalButton":
+            MessageLookupByLibrary.simpleMessage("Отменить"),
+        "screenActivityCompleteGoalButton":
+            MessageLookupByLibrary.simpleMessage("Выполнить"),
+        "screenActivityGoalAchieved":
+            MessageLookupByLibrary.simpleMessage("Цель на сегодня выполнена!"),
+        "screenActivityGoalNotAchieved":
+            MessageLookupByLibrary.simpleMessage("Цель сегодня не достигнута!"),
+        "screenActivityHaveNoGoalsMsg": MessageLookupByLibrary.simpleMessage(
+            "Вы пока не создали ни одной цели"),
+        "screenActivityOnShortPressSnackBarText":
+            MessageLookupByLibrary.simpleMessage("Используйте долгое нажатие"),
+        "screenActivityTitle":
+            MessageLookupByLibrary.simpleMessage("Задачи на сегодня"),
+        "screenActivityToGoalsCreatingButton":
+            MessageLookupByLibrary.simpleMessage("Создать"),
         "screenEditGoalDescriptionLabel":
             MessageLookupByLibrary.simpleMessage("Описание цели"),
         "screenEditGoalNewTitle":

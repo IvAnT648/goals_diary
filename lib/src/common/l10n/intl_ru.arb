@@ -59,5 +59,14 @@
   "screenProfileAboutMe": "О себе",
   "screenProfileSaveButton": "Сохранить",
   "screenProfileSubscribeButton": "Подписаться",
-  "screenProfileUnsubscribeButton": "Отписаться"
+  "screenProfileUnsubscribeButton": "Отписаться",
+
+  "screenActivityTitle": "Задачи на сегодня",
+  "screenActivityGoalNotAchieved": "Цель сегодня не достигнута!",
+  "screenActivityGoalAchieved": "Цель на сегодня выполнена!",
+  "screenActivityCompleteGoalButton": "Выполнить",
+  "screenActivityCancelGoalButton": "Отменить",
+  "screenActivityHaveNoGoalsMsg": "Вы пока не создали ни одной цели",
+  "screenActivityToGoalsCreatingButton": "Создать",
+  "screenActivityOnShortPressSnackBarText": "Используйте долгое нажатие"
 }

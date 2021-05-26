@@ -48,6 +48,22 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Tracked goals"),
         "drawerUnauthorizedHeader":
             MessageLookupByLibrary.simpleMessage("You didn\'t log in"),
+        "screenActivityCancelGoalButton":
+            MessageLookupByLibrary.simpleMessage("Cancel"),
+        "screenActivityCompleteGoalButton":
+            MessageLookupByLibrary.simpleMessage("Done"),
+        "screenActivityGoalAchieved": MessageLookupByLibrary.simpleMessage(
+            "The goal for today is completed!"),
+        "screenActivityGoalNotAchieved": MessageLookupByLibrary.simpleMessage(
+            "The goal is not achieved today!"),
+        "screenActivityHaveNoGoalsMsg": MessageLookupByLibrary.simpleMessage(
+            "You haven\'t created any goals yet"),
+        "screenActivityOnShortPressSnackBarText":
+            MessageLookupByLibrary.simpleMessage("Use a long press"),
+        "screenActivityTitle":
+            MessageLookupByLibrary.simpleMessage("Tasks for today"),
+        "screenActivityToGoalsCreatingButton":
+            MessageLookupByLibrary.simpleMessage("Create now"),
         "screenEditGoalDescriptionLabel":
             MessageLookupByLibrary.simpleMessage("Description"),
         "screenEditGoalNewTitle":

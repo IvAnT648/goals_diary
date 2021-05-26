@@ -59,5 +59,14 @@
   "screenProfileAboutMe": "About me",
   "screenProfileSaveButton": "Save",
   "screenProfileSubscribeButton": "Subscribe",
-  "screenProfileUnsubscribeButton": "Unsubscribe"
+  "screenProfileUnsubscribeButton": "Unsubscribe",
+
+  "screenActivityTitle": "Tasks for today",
+  "screenActivityGoalNotAchieved": "The goal is not achieved today!",
+  "screenActivityGoalAchieved": "The goal for today is completed!",
+  "screenActivityCompleteGoalButton": "Done",
+  "screenActivityCancelGoalButton": "Cancel",
+  "screenActivityHaveNoGoalsMsg": "You haven't created any goals yet",
+  "screenActivityToGoalsCreatingButton": "Create now",
+  "screenActivityOnShortPressSnackBarText": "Use a long press"
 }

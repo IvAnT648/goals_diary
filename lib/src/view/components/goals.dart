@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../common/resources/styles.dart';
-import '../../domain/models/goals.dart';
+import '../../common/resources.dart';
+import '../../domain/models.dart';
 import '../components.dart';
 import 'utils.dart';
 
@@ -86,3 +86,125 @@ class GoalsListDivider extends StatelessWidget {
   }
 }
 
+/// Button acts by long press
+class ActivityCard extends StatefulWidget {
+  final GoalActivityDto entity;
+  final bool Function() onCompleteButtonTap;
+  final bool Function() onCancelButtonTap;
+  final VoidCallback? onShortTap;
+
+  const ActivityCard({
+    Key? key,
+    required this.entity,
+    required this.onCompleteButtonTap,
+    required this.onCancelButtonTap,
+    this.onShortTap,
+  }) : super(key: key);
+
+  @override
+  _ActivityCardState createState() => _ActivityCardState();
+}
+
+class _ActivityCardState extends State<ActivityCard> {
+  static const double _borderRadius = 15;
+  static const double _iconSize = 35;
+
+  late bool _isDone = widget.entity.isDone;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = S.of(context);
+    late final Color color;
+    late final Color onColor;
+    late final Color buttonColor;
+    late final String hintText;
+    late final String buttonText;
+    late final bool Function() onTap;
+
+    if (_isDone) {
+      color = AppColors.primary;
+      onColor = AppColors.onPrimary;
+      hintText = l10n.screenActivityGoalAchieved;
+      buttonText = l10n.screenActivityCancelGoalButton;
+      buttonColor = AppColors.primary[10];
+      onTap = widget.onCancelButtonTap;
+    } else {
+      color = AppColors.secondary;
+      onColor = AppColors.onSecondary;
+      hintText = l10n.screenActivityGoalNotAchieved;
+      buttonText = l10n.screenActivityCompleteGoalButton;
+      buttonColor = AppColors.accent;
+      onTap = widget.onCompleteButtonTap;
+    }
+
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(_borderRadius),
+        color: color,
+      ),
+      padding: const EdgeInsets.only(
+        left: 16,
+        right: 11,
+        top: 18,
+        bottom: 10,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            height: _iconSize,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    widget.entity.goal.title,
+                    style: TextStyles.h2.copyWith(color: onColor),
+                  ),
+                ),
+                if (_isDone)
+                  Icon(
+                    Icons.check_circle_outline_outlined,
+                    color: AppColors.positive[10],
+                    size: _iconSize,
+                  ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 45),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Text(
+                  hintText,
+                  style: TextStyles.normal.copyWith(color: onColor),
+                ),
+              ),
+              const SizedBox(width: 5),
+              RoundedButton(
+                text: buttonText,
+                isUpperText: false,
+                elevation: 0,
+                padding: const EdgeInsets.symmetric(
+                  vertical: 10,
+                  horizontal: 20,
+                ),
+                primary: buttonColor,
+                textStyle: TextStyles.small,
+                onTap: widget.onShortTap,
+                onLongPress: () {
+                  if (onTap()) {
+                    setState(() {
+                      _isDone = !_isDone;
+                    });
+                  }
+                },
+              )
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}

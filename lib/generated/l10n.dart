@@ -579,6 +579,86 @@ class S {
       args: [],
     );
   }
+
+  /// `Tasks for today`
+  String get screenActivityTitle {
+    return Intl.message(
+      'Tasks for today',
+      name: 'screenActivityTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The goal is not achieved today!`
+  String get screenActivityGoalNotAchieved {
+    return Intl.message(
+      'The goal is not achieved today!',
+      name: 'screenActivityGoalNotAchieved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The goal for today is completed!`
+  String get screenActivityGoalAchieved {
+    return Intl.message(
+      'The goal for today is completed!',
+      name: 'screenActivityGoalAchieved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Done`
+  String get screenActivityCompleteGoalButton {
+    return Intl.message(
+      'Done',
+      name: 'screenActivityCompleteGoalButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get screenActivityCancelGoalButton {
+    return Intl.message(
+      'Cancel',
+      name: 'screenActivityCancelGoalButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You haven't created any goals yet`
+  String get screenActivityHaveNoGoalsMsg {
+    return Intl.message(
+      'You haven\'t created any goals yet',
+      name: 'screenActivityHaveNoGoalsMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create now`
+  String get screenActivityToGoalsCreatingButton {
+    return Intl.message(
+      'Create now',
+      name: 'screenActivityToGoalsCreatingButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Use a long press`
+  String get screenActivityOnShortPressSnackBarText {
+    return Intl.message(
+      'Use a long press',
+      name: 'screenActivityOnShortPressSnackBarText',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
