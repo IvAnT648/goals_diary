@@ -165,6 +165,7 @@ class _GoalTypeSelectorState extends State<GoalTypeSelector> {
   Widget _buildActiveButton(GoalType option) {
     return OutlineRoundedButton(
       text: option.toText(),
+      upperText: false,
       onTap: () {
         setState(() {
           _selected = option;
@@ -174,7 +175,10 @@ class _GoalTypeSelectorState extends State<GoalTypeSelector> {
   }
 
   Widget _buildInactiveButton(GoalType option) {
-    return NonClickableRoundedButton(text: option.toText());
+    return NonClickableRoundedButton(
+      text: option.toText(),
+      upperText: false,
+    );
   }
 }
 
