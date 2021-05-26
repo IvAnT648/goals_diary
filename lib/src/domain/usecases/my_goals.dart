@@ -1,12 +1,12 @@
 
 import '../models.dart';
-import 'package:injectable/injectable.dart';
+//import 'package:injectable/injectable.dart';
 
 abstract class GetMyGoalsUseCase {
   List<GoalDto> call();
 }
 
-@Injectable(as: GetMyGoalsUseCase)
+//@Injectable(as: GetMyGoalsUseCase)
 class GetMyGoalsUseCaseTest implements GetMyGoalsUseCase {
   final List<GoalDto> _goals = [
     GoalDto(
