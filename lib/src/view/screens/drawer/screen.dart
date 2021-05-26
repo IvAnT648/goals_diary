@@ -62,8 +62,7 @@ class AppDrawer extends StatelessWidget {
                             Navigation.replaceTo(MyGoalsScreen.id);
                             return;
                           case DrawerMenuItemType.activity:
-                            // TODO: Handle this case.
-                            Navigation.pop();
+                            Navigation.replaceTo(ActivityScreen.id);
                             return;
                           case DrawerMenuItemType.subscriptions:
                             // TODO: Handle this case.

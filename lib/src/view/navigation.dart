@@ -68,6 +68,15 @@ abstract class Navigation {
         child: ProfileScreen(),
       ),
     ),
+    SeafarerRoute(
+      name: ActivityScreen.id,
+      builder: (_, __, ___) => BlocProvider<ActivityScreenCubit>(
+        create: (_) => ActivityScreenCubit(
+          GetMyGoalsUseCaseTest(),
+        ),
+        child: ActivityScreen(),
+      ),
+    ),
   ];
 
   /// WARNING: Execute before app launch
