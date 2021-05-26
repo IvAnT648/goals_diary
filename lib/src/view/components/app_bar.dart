@@ -61,7 +61,7 @@ class ReturnableTopBar extends StatelessWidget with DefaultPreferredSizeAppBar {
         icon: Icon(
           Icons.arrow_back_ios_rounded,
         ),
-        onPressed: () => Navigation.pop(),
+        onPressed: () async => await Navigation.popSafe(),
       ),
     );
   }

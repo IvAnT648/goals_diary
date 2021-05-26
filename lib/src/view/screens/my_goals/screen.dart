@@ -44,7 +44,7 @@ class MyGoalsScreen extends StatelessWidget {
                 goal: goals[i],
                 onTap: () {
                   Navigation.to(EditGoalScreen.id, params: {
-                    'goal': goals[i],
+                    EditGoalScreen.goalArg: goals[i],
                   });
                 },
               ),

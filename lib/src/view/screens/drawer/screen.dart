@@ -53,29 +53,33 @@ class AppDrawer extends StatelessWidget {
                     _DrawerMenuItems(
                       selected: selected,
                       onTap: (type) {
-                        Navigation.pop();
                         switch(type) {
                           case DrawerMenuItemType.feed:
                             // TODO: Handle this case.
-                            break;
+                            Navigation.pop();
+                            return;
                           case DrawerMenuItemType.goals:
-                            // TODO: Handle this case.
-                            break;
+                            Navigation.replaceTo(MyGoalsScreen.id);
+                            return;
                           case DrawerMenuItemType.activity:
                             // TODO: Handle this case.
-                            break;
+                            Navigation.pop();
+                            return;
                           case DrawerMenuItemType.subscriptions:
                             // TODO: Handle this case.
-                            break;
+                            Navigation.pop();
+                            return;
                           case DrawerMenuItemType.tracked_goals:
                             // TODO: Handle this case.
-                            break;
+                            Navigation.pop();
+                            return;
                           case DrawerMenuItemType.profile:
-                            Navigation.to(ProfileScreen.id);
+                            Navigation.replaceTo(ProfileScreen.id);
                             return;
                           case DrawerMenuItemType.settings:
                             // TODO: Handle this case.
-                            break;
+                            Navigation.pop();
+                            return;
                         }
                       },
                     ),

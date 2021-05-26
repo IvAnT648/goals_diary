@@ -8,7 +8,8 @@ import '../../components.dart';
 import 'bloc.dart';
 
 class EditGoalScreen extends StatelessWidget {
-  static const String id = '/goals/edit';
+  static const String id = '/goals/form';
+  static const String goalArg = 'goal';
   static const EdgeInsets _padding = EdgeInsets.symmetric(
     vertical: 38,
     horizontal: 58,

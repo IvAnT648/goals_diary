@@ -65,7 +65,7 @@ class SignUpScreen extends StatelessWidget {
                     child: RoundedButton(
                       onTap: () {
                         // TODO: correct login
-                        Navigation.to(MyGoalsScreen.id);
+                        Navigation.replaceTo(Navigation.home);
                       },
                       text: S.of(context).screenSignUpSubmitButton,
                     ),
@@ -77,7 +77,7 @@ class SignUpScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 40),
                 child: HyperLinkButton(
                   onTap: () {
-                    Navigation.pop();
+                    Navigation.replaceTo(SignInScreen.id);
                   },
                   text: S.of(context).screenSignUpToSignInButton,
                 ),

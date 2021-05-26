@@ -21,7 +21,7 @@ class StartupScreen extends StatelessWidget {
             return;
           }
           if (state is NotAuthorizedStartupScreenState) {
-            Navigation.to(SignInScreen.id);
+            Navigation.replaceTo(SignInScreen.id);
             return;
           }
         },

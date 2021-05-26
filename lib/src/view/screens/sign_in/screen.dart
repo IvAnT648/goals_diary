@@ -50,8 +50,8 @@ class SignInScreen extends StatelessWidget {
                     width: _submitButtonWidth,
                     child: RoundedButton(
                       onTap: () {
-                        // TODO: correct login
-                        Navigation.to(MyGoalsScreen.id);
+                        // TODO: login
+                        Navigation.replaceTo(Navigation.home);
                       },
                       text: S.of(context).screenLoginSignInButton,
                     ),
@@ -63,7 +63,7 @@ class SignInScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 40),
                 child: HyperLinkButton(
                   onTap: () {
-                    Navigation.to(SignUpScreen.id);
+                    Navigation.replaceTo(SignUpScreen.id);
                   },
                   text: S.of(context).screenLoginSignUpButton,
                 ),
