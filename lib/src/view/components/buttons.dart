@@ -94,36 +94,43 @@ class RoundedButton extends StatelessWidget {
   );
   static TextStyle _defaultTextStyle = TextStyles.h4;
 
-  final VoidCallback onTap;
   final String text;
+  final VoidCallback? onTap;
+  final VoidCallback? onLongPress;
   final EdgeInsets? padding;
   final TextStyle? textStyle;
   final Color? primary;
   final Color? onPrimary;
   final bool isUpperText;
+  final double? elevation;
 
   const RoundedButton({
     Key? key,
-    required this.onTap,
     required this.text,
+    this.onTap,
+    this.onLongPress,
     this.padding,
     this.textStyle,
     this.primary,
     this.onPrimary,
     this.isUpperText = true,
-  }) : super(key: key);
+    this.elevation,
+  }) : assert(onTap != null || onLongPress != null), super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onTap,
+      onLongPress: onLongPress,
       style: ElevatedButton.styleFrom(
+        elevation: elevation,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(ButtonBorderRadius)),
         ),
         padding: padding ?? _defaultPadding,
         primary: primary,
         onPrimary: onPrimary,
+
       ),
       child: Text(
         isUpperText ? text.toUpperCase() : text,
