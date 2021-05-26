@@ -182,10 +182,12 @@ class NonClickableRoundedButton extends StatelessWidget {
   );
 
   final String text;
+  final bool upperText;
 
   const NonClickableRoundedButton({
     Key? key,
     required this.text,
+    this.upperText = true,
   }) : super(key: key);
 
   @override
@@ -198,7 +200,7 @@ class NonClickableRoundedButton extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-          text,
+          upperText ? text.toUpperCase() : text,
           style: TextStyles.h4.copyWith(color: AppColors.onPrimary),
         ),
       ),
