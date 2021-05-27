@@ -141,6 +141,13 @@ class _ActivityCardState extends State<ActivityCard> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(_borderRadius),
         color: color,
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.gray,
+            offset: const Offset(0, 3),
+            blurRadius: 3,
+          ),
+        ],
       ),
       padding: const EdgeInsets.only(
         left: 16,
