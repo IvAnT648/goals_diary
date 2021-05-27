@@ -47,22 +47,28 @@ class EditGoalScreen extends StatelessWidget {
       body: Padding(
         padding: _padding,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            DefaultTextField(
-              label: S.of(context).screenEditGoalTitleLabel,
-              controller: _titleField,
-            ),
-            const SizedBox(height: 30),
-            BigTextField(
-              label: S.of(context).screenEditGoalDescriptionLabel,
-              controller: _descriptionField,
-            ),
-            const SizedBox(height: 30),
-            GoalTypeSelector(
-              selected: _goalType,
-              onChanged: (newType) {
-                _goalTypeField.value = newType;
-              },
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                DefaultTextField(
+                  label: S.of(context).screenEditGoalTitleLabel,
+                  controller: _titleField,
+                ),
+                const SizedBox(height: 30),
+                BigTextField(
+                  label: S.of(context).screenEditGoalDescriptionLabel,
+                  controller: _descriptionField,
+                ),
+                const SizedBox(height: 30),
+                GoalTypeSelector(
+                  selected: _goalType,
+                  onChanged: (newType) {
+                    _goalTypeField.value = newType;
+                  },
+                ),
+              ],
             ),
             // TODO: notifications
             // const SizedBox(height: 30),
@@ -75,6 +81,18 @@ class EditGoalScreen extends StatelessWidget {
             // ),
             // const SizedBox(height: 20),
             // SetNotificationsTime(time: goal?.notificationsTime),
+            RoundedButtonWrap(
+              text: S.of(context).screenEditGoalSaveButton,
+              type: ButtonType.filled,
+              primaryColor: AppColors.positive,
+              padding: const EdgeInsets.symmetric(
+                vertical: 15,
+                horizontal: 60,
+              ),
+              onTap: () {
+                // TODO: save goal
+              },
+            )
           ],
         ),
       ),
