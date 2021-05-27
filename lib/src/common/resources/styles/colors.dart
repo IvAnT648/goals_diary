@@ -9,6 +9,7 @@ class AppColors {
     10: Color(0xFF6DA8E3),
     0: Color(0xFF428AE0),
     -10: Color(0xFF3377D8),
+    -20: Color(0xFF2C65B8),
   });
 
   static AppColorSwatch onPrimary = AppColorSwatch.withDefaultIndex({
@@ -52,6 +53,7 @@ class AppColors {
   static AppColorSwatch gray = AppColorSwatch.withDefaultIndex({
     20: Color(0xFFF2F2F2),
     10: Color(0xFFDCDCDC),
+    5: Color(0xFFC4C4C4),
     0: Color(0xFFA6A6A6),
     -10: Color(0xFF686867),
     -20: Color(0xFF000000),
