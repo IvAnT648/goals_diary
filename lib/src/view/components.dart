@@ -4,3 +4,5 @@ export 'components/app_bar.dart';
 export 'components/goals.dart';
 export 'components/layout.dart';
 export 'components/avatar.dart';
+export 'components/feed.dart';
+export 'components/lines.dart';
