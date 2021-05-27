@@ -2,32 +2,32 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:goals_diary/src/domain/models/user.dart';
+import 'package:goals_diary/src/domain/models.dart';
 
 class PostCommentDto {
   final int id;
   final DateTime date;
   final String text;
-  final UserInfoDto userInfo;
+  final UserInfoDto author;
   
   PostCommentDto({
     this.id = 0,
     required this.date,
     required this.text,
-    required this.userInfo,
+    required this.author,
   });
 
   PostCommentDto copyWith({
     int? id,
     DateTime? date,
     String? text,
-    UserInfoDto? userInfo,
+    UserInfoDto? author,
   }) {
     return PostCommentDto(
       id: id ?? this.id,
       date: date ?? this.date,
       text: text ?? this.text,
-      userInfo: userInfo ?? this.userInfo,
+      author: author ?? this.author,
     );
   }
 
@@ -36,7 +36,7 @@ class PostCommentDto {
       'id': id,
       'date': date.millisecondsSinceEpoch,
       'text': text,
-      'userInfo': userInfo.toMap(),
+      'author': author.toMap(),
     };
   }
 
@@ -45,7 +45,7 @@ class PostCommentDto {
       id: map['id'],
       date: DateTime.fromMillisecondsSinceEpoch(map['date']),
       text: map['text'],
-      userInfo: UserInfoDto.fromMap(map['userInfo']),
+      author: UserInfoDto.fromMap(map['author']),
     );
   }
 
@@ -59,7 +59,7 @@ class PostCommentDto {
     return 'PostCommentDto(id: $id'
         ', date: $date'
         ', text: $text'
-        ', userInfo: $userInfo'
+        ', author: $author'
         ')';
   }
 
@@ -71,7 +71,7 @@ class PostCommentDto {
       other.id == id &&
       other.date == date &&
       other.text == text &&
-      other.userInfo == userInfo;
+      other.author == author;
   }
 
   @override
@@ -79,12 +79,14 @@ class PostCommentDto {
     return id.hashCode ^
       date.hashCode ^
       text.hashCode ^
-      userInfo.hashCode;
+      author.hashCode;
   }
 }
 
 class PostDto {
   final int id;
+  final UserInfoDto author;
+  final GoalDto goal;
   final DateTime date;
   final String? text;
   final int likeQty;
@@ -93,6 +95,8 @@ class PostDto {
   PostDto({
     this.id = 0,
     required this.date,
+    required this.author,
+    required this.goal,
     this.text,
     this.likeQty = 0,
     this.comments = const [],
@@ -100,6 +104,8 @@ class PostDto {
 
   PostDto copyWith({
     int? id,
+    UserInfoDto? author,
+    GoalDto? goal,
     DateTime? date,
     String? comment,
     int? likeQty,
@@ -107,6 +113,8 @@ class PostDto {
   }) {
     return PostDto(
       id: id ?? this.id,
+      author: author ?? this.author,
+      goal: goal ?? this.goal,
       date: date ?? this.date,
       text: comment ?? this.text,
       likeQty: likeQty ?? this.likeQty,
@@ -117,6 +125,8 @@ class PostDto {
   Map<String, dynamic> toMap() {
     return {
       'id': id,
+      'author': author.toMap(),
+      'goal': goal.toMap(),
       'date': date.millisecondsSinceEpoch,
       'comment': text,
       'likeQty': likeQty,
@@ -127,6 +137,8 @@ class PostDto {
   factory PostDto.fromMap(Map<String, dynamic> map) {
     return PostDto(
       id: map['id'],
+      author: UserInfoDto.fromMap(map['author']),
+      goal: GoalDto.fromMap(map['goal']),
       date: DateTime.fromMillisecondsSinceEpoch(map['date']),
       text: map['comment'],
       likeQty: map['likeQty'],
@@ -144,6 +156,8 @@ class PostDto {
   @override
   String toString() {
     return 'PostDto(id: $id'
+        ', author: $author'
+        ', goal: $goal'
         ', date: $date'
         ', comment: $text'
         ', likeQty: $likeQty'
@@ -157,6 +171,8 @@ class PostDto {
   
     return other is PostDto &&
       other.id == id &&
+      other.author == author &&
+      other.goal == goal &&
       other.date == date &&
       other.text == text &&
       other.likeQty == likeQty &&
@@ -166,6 +182,8 @@ class PostDto {
   @override
   int get hashCode {
     return id.hashCode ^
+      author.hashCode ^
+      goal.hashCode ^
       date.hashCode ^
       text.hashCode ^
       likeQty.hashCode ^
