@@ -84,6 +84,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Title"),
         "screenEditGoalTypeLabel":
             MessageLookupByLibrary.simpleMessage("Goal type:"),
+        "screenFeedAtTime": MessageLookupByLibrary.simpleMessage("at"),
+        "screenFeedGoalProgressText":
+            MessageLookupByLibrary.simpleMessage("goal progress"),
+        "screenFeedNoComments":
+            MessageLookupByLibrary.simpleMessage("No comments yet..."),
+        "screenFeedTitle": MessageLookupByLibrary.simpleMessage("Feed"),
         "screenLoginNicknameLabel":
             MessageLookupByLibrary.simpleMessage("Nickname"),
         "screenLoginPasswordLabel":

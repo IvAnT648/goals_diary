@@ -659,6 +659,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Feed`
+  String get screenFeedTitle {
+    return Intl.message(
+      'Feed',
+      name: 'screenFeedTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `goal progress`
+  String get screenFeedGoalProgressText {
+    return Intl.message(
+      'goal progress',
+      name: 'screenFeedGoalProgressText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `at`
+  String get screenFeedAtTime {
+    return Intl.message(
+      'at',
+      name: 'screenFeedAtTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No comments yet...`
+  String get screenFeedNoComments {
+    return Intl.message(
+      'No comments yet...',
+      name: 'screenFeedNoComments',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

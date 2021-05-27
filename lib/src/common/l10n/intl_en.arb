@@ -68,5 +68,10 @@
   "screenActivityCancelGoalButton": "Cancel",
   "screenActivityHaveNoGoalsMsg": "You haven't created any goals yet",
   "screenActivityToGoalsCreatingButton": "Create now",
-  "screenActivityOnShortPressSnackBarText": "Use a long press"
+  "screenActivityOnShortPressSnackBarText": "Use a long press",
+
+  "screenFeedTitle": "Feed",
+  "screenFeedGoalProgressText": "goal progress",
+  "screenFeedAtTime": "at",
+  "screenFeedNoComments": "No comments yet..."
 }

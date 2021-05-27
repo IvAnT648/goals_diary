@@ -87,6 +87,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Название цели"),
         "screenEditGoalTypeLabel":
             MessageLookupByLibrary.simpleMessage("Тип цели:"),
+        "screenFeedAtTime": MessageLookupByLibrary.simpleMessage("в"),
+        "screenFeedGoalProgressText":
+            MessageLookupByLibrary.simpleMessage("Прогресс по цели"),
+        "screenFeedNoComments":
+            MessageLookupByLibrary.simpleMessage("Комментариев пока нет..."),
+        "screenFeedTitle":
+            MessageLookupByLibrary.simpleMessage("Лента новостей"),
         "screenLoginNicknameLabel":
             MessageLookupByLibrary.simpleMessage("Логин"),
         "screenLoginPasswordLabel":

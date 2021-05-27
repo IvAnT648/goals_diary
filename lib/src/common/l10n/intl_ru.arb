@@ -68,5 +68,10 @@
   "screenActivityCancelGoalButton": "Отменить",
   "screenActivityHaveNoGoalsMsg": "Вы пока не создали ни одной цели",
   "screenActivityToGoalsCreatingButton": "Создать",
-  "screenActivityOnShortPressSnackBarText": "Используйте долгое нажатие"
+  "screenActivityOnShortPressSnackBarText": "Используйте долгое нажатие",
+
+  "screenFeedTitle": "Лента новостей",
+  "screenFeedGoalProgressText": "Прогресс по цели",
+  "screenFeedAtTime": "в",
+  "screenFeedNoComments": "Комментариев пока нет..."
 }
