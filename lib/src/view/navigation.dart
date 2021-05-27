@@ -77,6 +77,13 @@ abstract class Navigation {
         child: ActivityScreen(),
       ),
     ),
+    SeafarerRoute(
+      name: FeedScreen.id,
+      builder: (_, __, ___) => BlocProvider<FeedScreenCubit>(
+        create: (_) => FeedScreenCubit(GetPostsUseCaseMock()),
+        child: FeedScreen(),
+      ),
+    ),
   ];
 
   /// WARNING: Execute before app launch

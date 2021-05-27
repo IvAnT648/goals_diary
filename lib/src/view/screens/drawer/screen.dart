@@ -55,8 +55,7 @@ class AppDrawer extends StatelessWidget {
                       onTap: (type) {
                         switch(type) {
                           case DrawerMenuItemType.feed:
-                            // TODO: Handle this case.
-                            Navigation.pop();
+                            Navigation.replaceTo(FeedScreen.id);
                             return;
                           case DrawerMenuItemType.goals:
                             Navigation.replaceTo(MyGoalsScreen.id);
