@@ -33,6 +33,7 @@ dependencies:
   freezed_annotation: ^0.14.1
   seafarer: ^0.1.0
   weekday_selector: ^1.0.0
+  timeago: ^3.0.2
 
 dev_dependencies:
   flutter_test:
