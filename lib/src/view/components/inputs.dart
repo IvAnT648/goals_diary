@@ -104,6 +104,52 @@ class BigTextField extends StatelessWidget {
   }
 }
 
+class OutlinedTextField extends StatelessWidget {
+  static const int _maxLines = 5;
+
+  final TextEditingController? controller;
+  final bool obscureText;
+  final Function(String)? onChanged;
+  final double fontSize;
+
+  OutlinedTextField({
+    Key? key,
+    this.controller,
+    this.obscureText = false,
+    this.onChanged,
+    this.fontSize = 14,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final border = OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8),
+      borderSide: BorderSide(color: AppColors.gray[5]),
+    );
+
+    return TextField(
+      controller: controller,
+      onChanged: onChanged,
+      obscureText: obscureText,
+      cursorColor: AppColors.regularText,
+      cursorWidth: 1,
+      style: TextStyle(
+        fontSize: fontSize,
+      ),
+      maxLines: _maxLines,
+      minLines: 1,
+      decoration: InputDecoration(
+        enabledBorder: border,
+        focusedBorder: border,
+        filled: true,
+        fillColor: AppColors.onPrimary,
+        isDense: true,
+        contentPadding: const EdgeInsets.all(10),
+      ),
+    );
+  }
+}
+
 class GoalTypeSelector extends StatefulWidget {
   final GoalType? selected;
   final void Function(GoalType newType) onChanged;
