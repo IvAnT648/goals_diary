@@ -1,5 +1,6 @@
 
 class UserInfoDto {
+  final int id;
   final String nickname;
   final String name;
   final String? surname;
@@ -8,6 +9,7 @@ class UserInfoDto {
   final String? avatarUrl;
 
   const UserInfoDto({
+    required this.id,
     required this.nickname,
     required this.name,
     this.surname,
@@ -31,6 +33,7 @@ class UserInfoDto {
   }
 
   UserInfoDto copyWith({
+    int? id,
     String? name,
     String? nickname,
     String? info,
@@ -38,6 +41,7 @@ class UserInfoDto {
     String? avatarUrl,
   }) {
     return UserInfoDto(
+      id: id ?? this.id,
       name: name ?? this.name,
       nickname: nickname ?? this.nickname,
       info: info ?? this.info,
@@ -48,6 +52,7 @@ class UserInfoDto {
 
   Map<String, dynamic> toMap() {
     return {
+      'id': id,
       'name': name,
       'nickname': nickname,
       'info': info,
@@ -58,6 +63,7 @@ class UserInfoDto {
 
   factory UserInfoDto.fromMap(Map<String, dynamic> map) {
     return UserInfoDto(
+      id: map['id'],
       name: map['name'],
       nickname: map['nickname'],
       info: map['info'],
@@ -68,7 +74,8 @@ class UserInfoDto {
 
   @override
   String toString() {
-    return 'UserDto(name: $name'
+    return 'UserDto(id: $id'
+        ', name: $name'
         ', nickname: $nickname'
         ', info: $info'
         ', motto: $motto'
@@ -81,6 +88,7 @@ class UserInfoDto {
     if (identical(this, other)) return true;
 
     return other is UserInfoDto &&
+        other.id == id &&
         other.name == name &&
         other.nickname == nickname &&
         other.info == info &&
@@ -90,7 +98,8 @@ class UserInfoDto {
 
   @override
   int get hashCode {
-    return name.hashCode ^
+    return id.hashCode ^
+        name.hashCode ^
         nickname.hashCode ^
         info.hashCode ^
         motto.hashCode ^
