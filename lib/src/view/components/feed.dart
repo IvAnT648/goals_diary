@@ -292,7 +292,6 @@ class _FeedPostState extends State<FeedPost>
       child: RawScrollbar(
         thumbColor: AppColors.gray[5],
         thickness: 4,
-        isAlwaysShown: true,
         child: SingleChildScrollView(
           child: Column(
             children: post.comments.expand((comment) => <Widget>[
