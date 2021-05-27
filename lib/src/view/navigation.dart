@@ -84,6 +84,13 @@ abstract class Navigation {
         child: FeedScreen(),
       ),
     ),
+    SeafarerRoute(
+      name: SubscriptionsScreen.id,
+      builder: (_, __, ___) => BlocProvider<SubscriptionsScreenCubit>(
+        create: (_) => SubscriptionsScreenCubit(GetSubscriptionsUseCaseMock()),
+        child: SubscriptionsScreen(),
+      ),
+    ),
   ];
 
   /// WARNING: Execute before app launch

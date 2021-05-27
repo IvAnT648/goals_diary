@@ -64,8 +64,7 @@ class AppDrawer extends StatelessWidget {
                             Navigation.replaceTo(ActivityScreen.id);
                             return;
                           case DrawerMenuItemType.subscriptions:
-                            // TODO: Handle this case.
-                            Navigation.pop();
+                            Navigation.replaceTo(SubscriptionsScreen.id);
                             return;
                           case DrawerMenuItemType.tracked_goals:
                             // TODO: Handle this case.
