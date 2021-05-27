@@ -1,6 +1,8 @@
+
 import 'package:flutter/material.dart';
 
 import '../../common/resources/styles.dart';
+import '../../domain/models.dart';
 import '../constants.dart';
 
 enum ButtonType {
@@ -11,13 +13,13 @@ enum ButtonType {
 /// Interactive touchable area
 class TouchableArea extends StatelessWidget {
   final Widget child;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final bool hasSplashEffect;
 
   const TouchableArea({
     Key? key,
     required this.child,
-    required this.onTap,
+    this.onTap,
     this.hasSplashEffect = false,
   }) : super(key: key);
 
@@ -115,7 +117,8 @@ class RoundedButton extends StatelessWidget {
     this.onPrimary,
     this.isUpperText = true,
     this.elevation,
-  }) : assert(onTap != null || onLongPress != null), super(key: key);
+  })  : assert(onTap != null || onLongPress != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +133,6 @@ class RoundedButton extends StatelessWidget {
         padding: padding ?? _defaultPadding,
         primary: primary,
         onPrimary: onPrimary,
-
       ),
       child: Text(
         isUpperText ? text.toUpperCase() : text,
@@ -237,6 +239,108 @@ class HyperLinkButton extends StatelessWidget {
             color: AppColors.gray[-10],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class LikeButton extends StatefulWidget {
+  final int qty;
+  final bool isActive;
+  final void Function(bool) onTap;
+  final double size;
+
+  const LikeButton({
+    Key? key,
+    required this.qty,
+    required this.isActive,
+    required this.onTap,
+    this.size = 24,
+  }) : super(key: key);
+
+  @override
+  _LikeButtonState createState() => _LikeButtonState();
+}
+
+class _LikeButtonState extends State<LikeButton> {
+  late bool _isActive = widget.isActive;
+
+  @override
+  Widget build(BuildContext context) {
+    return TouchableArea(
+      onTap: () {
+        setState(() {
+          _isActive = !_isActive;
+        });
+        widget.onTap(_isActive);
+      },
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            _isActive ? Icons.favorite : Icons.favorite_outline,
+            color: _isActive ? AppColors.secondary : AppColors.gray[-10],
+            size: widget.size,
+          ),
+          if (widget.qty != 0) ...[
+            const SizedBox(width: 4),
+            Text(
+              widget.qty.toString(),
+              style: TextStyles.normalHint,
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class CommentButton extends StatefulWidget {
+  final List<PostCommentDto> comments;
+  final void Function(bool) onTap;
+  final bool isActive;
+  final double size;
+
+  const CommentButton({
+    Key? key,
+    required this.comments,
+    required this.onTap,
+    required this.isActive,
+    this.size = 24,
+  }) : super(key: key);
+
+  @override
+  _CommentButtonState createState() => _CommentButtonState();
+}
+
+class _CommentButtonState extends State<CommentButton> {
+  late bool _isActive = widget.isActive;
+
+  @override
+  Widget build(BuildContext context) {
+    return TouchableArea(
+      onTap: () {
+        setState(() {
+          _isActive = !_isActive;
+        });
+        widget.onTap(_isActive);
+      },
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            _isActive ? Icons.chat_bubble : Icons.chat_bubble_outline,
+            color: _isActive ? AppColors.primary : AppColors.gray[-10],
+            size: widget.size,
+          ),
+          if (widget.comments.length != 0) ...[
+            const SizedBox(width: 4),
+            Text(
+              widget.comments.length.toString(),
+              style: TextStyles.normalHint,
+            ),
+          ],
+        ],
       ),
     );
   }
