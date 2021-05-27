@@ -126,6 +126,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Sign up"),
         "screenSignUpTitle": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "screenSignUpToSignInButton":
-            MessageLookupByLibrary.simpleMessage("Sign in")
+            MessageLookupByLibrary.simpleMessage("Sign in"),
+        "screenSubscriptionsHaveNoSubs": MessageLookupByLibrary.simpleMessage(
+            "You don\'t have any subscriptions yet"),
+        "screenSubscriptionsTitle":
+            MessageLookupByLibrary.simpleMessage("My subscriptions")
       };
 }

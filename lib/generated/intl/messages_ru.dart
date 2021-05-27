@@ -131,7 +131,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Зарегистрироваться"),
         "screenSignUpTitle":
             MessageLookupByLibrary.simpleMessage("Регистрация"),
-        "screenSignUpToSignInButton":
-            MessageLookupByLibrary.simpleMessage("Войти в существующий аккаунт")
+        "screenSignUpToSignInButton": MessageLookupByLibrary.simpleMessage(
+            "Войти в существующий аккаунт"),
+        "screenSubscriptionsHaveNoSubs":
+            MessageLookupByLibrary.simpleMessage("У вас ещё нет подписок"),
+        "screenSubscriptionsTitle":
+            MessageLookupByLibrary.simpleMessage("Мои подписки")
       };
 }

@@ -73,5 +73,8 @@
   "screenFeedTitle": "Feed",
   "screenFeedGoalProgressText": "goal progress",
   "screenFeedAtTime": "at",
-  "screenFeedNoComments": "No comments yet..."
+  "screenFeedNoComments": "No comments yet...",
+
+  "screenSubscriptionsTitle": "My subscriptions",
+  "screenSubscriptionsHaveNoSubs": "You don't have any subscriptions yet"
 }

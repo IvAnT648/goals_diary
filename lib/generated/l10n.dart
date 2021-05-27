@@ -699,6 +699,26 @@ class S {
       args: [],
     );
   }
+
+  /// `My subscriptions`
+  String get screenSubscriptionsTitle {
+    return Intl.message(
+      'My subscriptions',
+      name: 'screenSubscriptionsTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You don't have any subscriptions yet`
+  String get screenSubscriptionsHaveNoSubs {
+    return Intl.message(
+      'You don\'t have any subscriptions yet',
+      name: 'screenSubscriptionsHaveNoSubs',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

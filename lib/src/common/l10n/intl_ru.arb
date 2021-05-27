@@ -73,5 +73,8 @@
   "screenFeedTitle": "Лента новостей",
   "screenFeedGoalProgressText": "Прогресс по цели",
   "screenFeedAtTime": "в",
-  "screenFeedNoComments": "Комментариев пока нет..."
+  "screenFeedNoComments": "Комментариев пока нет...",
+
+  "screenSubscriptionsTitle": "Мои подписки",
+  "screenSubscriptionsHaveNoSubs": "У вас ещё нет подписок"
 }
