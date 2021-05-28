@@ -9,6 +9,10 @@ abstract class IsLoggedInUseCase {
   bool call();
 }
 
+abstract class LogoutUseCase {
+  void call();
+}
+
 abstract class SignUpUseCase {
   Future<SignUpResult> call(String email, String password);
 }
@@ -24,6 +28,18 @@ class IsLoggedInUseCaseImpl implements IsLoggedInUseCase {
   @override
   bool call() {
     return _repository.isLoggedIn();
+  }
+}
+
+@Injectable(as: LogoutUseCase)
+class LogoutUseCaseImpl implements LogoutUseCase {
+  final EmailAuthRepository _repository;
+
+  LogoutUseCaseImpl(this._repository);
+
+  @override
+  void call() {
+    _repository.signOut();
   }
 }
 

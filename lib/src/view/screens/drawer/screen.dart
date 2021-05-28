@@ -18,6 +18,7 @@ enum DrawerMenuItemType {
   tracked_goals,
   profile,
   settings,
+  logOut,
 }
 
 typedef DrawerMenuItemCallback = void Function(DrawerMenuItemType type);
@@ -29,13 +30,14 @@ class AppDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = getIt<AppDrawerCubit>();
     return Drawer(
       child: Container(
         color: AppColors.primary,
         padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
         child: SingleChildScrollView(
           child: BlocBuilder<AppDrawerCubit, AppDrawerState>(
-            bloc: getIt<AppDrawerCubit>(),
+            bloc: cubit,
             builder: (context, state) {
               return Column(
                 mainAxisSize: MainAxisSize.min,
@@ -46,6 +48,7 @@ class AppDrawer extends StatelessWidget {
                   ),
                   _Divider(),
                   _DrawerMenuItems(
+                    showLogoutButton: state is AuthorizedAppDrawerState,
                     selected: selected,
                     onTap: (type) {
                       switch(type) {
@@ -70,6 +73,10 @@ class AppDrawer extends StatelessWidget {
                           return;
                         case DrawerMenuItemType.settings:
                           // TODO: Handle this case.
+                          Navigation.pop();
+                          return;
+                        case DrawerMenuItemType.logOut:
+                          cubit.logout();
                           Navigation.pop();
                           return;
                       }
@@ -179,11 +186,13 @@ class _Divider extends StatelessWidget {
 class _DrawerMenuItems extends StatelessWidget {
   final DrawerMenuItemType? selected;
   final DrawerMenuItemCallback onTap;
+  final bool showLogoutButton;
 
   const _DrawerMenuItems({
     Key? key,
     this.selected,
     required this.onTap,
+    required this.showLogoutButton,
   }) : super(key: key);
 
   @override
@@ -191,8 +200,16 @@ class _DrawerMenuItems extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: DrawerMenuItemType.values
-          .map((el) =>
-              _DrawerMenuItem(type: el, onTap: onTap, isActive: selected == el))
+          .map((el) {
+            if (el == DrawerMenuItemType.logOut && !showLogoutButton) {
+              return Container();
+            }
+            return _DrawerMenuItem(
+              type: el,
+              onTap: onTap,
+              isActive: selected == el,
+            );
+          })
           .toList(),
     );
   }

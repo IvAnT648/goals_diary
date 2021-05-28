@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../common/resources.dart';
-
 import 'screen.dart';
 
 extension DrawerMenuItemTypeViewExt on DrawerMenuItemType {
@@ -23,6 +22,8 @@ extension DrawerMenuItemTypeViewExt on DrawerMenuItemType {
         return S.current.drawerProfileMenuItem;
       case DrawerMenuItemType.settings:
         return S.current.drawerSettingsMenuItem;
+      case DrawerMenuItemType.logOut:
+        return S.current.drawerLogOutButton;
     }
   }
 
@@ -42,6 +43,8 @@ extension DrawerMenuItemTypeViewExt on DrawerMenuItemType {
         return Icons.account_circle;
       case DrawerMenuItemType.settings:
         return Icons.settings;
+      case DrawerMenuItemType.logOut:
+        return Icons.logout;
     }
   }
 }

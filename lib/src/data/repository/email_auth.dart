@@ -33,6 +33,8 @@ class EmailAuthRepositoryFirebase implements EmailAuthRepository {
       if (e.code == 'invalid-email') {
         return SignInResult.invalidEmail();
       }
+    } on Exception catch (e) {
+      print(e);
     }
     return SignInResult.internalError();
   }
@@ -57,6 +59,8 @@ class EmailAuthRepositoryFirebase implements EmailAuthRepository {
       if (e.code == 'invalid-email') {
         return SignUpResult.invalidEmail();
       }
+    } on Exception catch (e) {
+      print(e);
     }
     return SignUpResult.internalError();
   }

@@ -11,11 +11,15 @@ export 'cubit/states.dart';
 class AppDrawerCubit extends Cubit<AppDrawerState> {
   final IsLoggedInUseCase _isLoggedIn;
   final GetOwnProfileInfoUseCase _getOwnProfileInfo;
+  final LogoutUseCase _logout;
 
   AppDrawerCubit(
     this._isLoggedIn,
     this._getOwnProfileInfo,
+    this._logout,
   ) : super(_isLoggedIn()
             ? AppDrawerState.authorized(_getOwnProfileInfo())
             : AppDrawerState.unauthorized());
+
+  void logout() => _logout();
 }
