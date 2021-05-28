@@ -53,6 +53,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i16.ProfileScreenCubit>(
       () => _i16.ProfileScreenCubit(get<_i4.GetOwnProfileInfoUseCase>()));
   gh.factory<_i17.SaveGoalUseCase>(() => _i17.SaveGoalUseCaseImpl());
+  gh.factory<_i14.SignUpUseCase>(
+      () => _i14.SignUpUseCaseImpl(get<_i8.EmailAuthRepository>()));
   gh.factory<_i18.StartupScreenBloc>(
       () => _i18.StartupScreenBloc(get<_i14.IsLoggedInUseCase>()));
   gh.factory<_i19.SubscriptionsScreenCubit>(
