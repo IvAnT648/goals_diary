@@ -120,19 +120,36 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenProfileTitle": MessageLookupByLibrary.simpleMessage("Профиль"),
         "screenProfileUnsubscribeButton":
             MessageLookupByLibrary.simpleMessage("Отписаться"),
+        "screenSignUpAlreadyExistsFail": MessageLookupByLibrary.simpleMessage(
+            "Аккаунт с таким e-mail уже существует"),
+        "screenSignUpEmailLabel":
+            MessageLookupByLibrary.simpleMessage("E-mail"),
+        "screenSignUpFieldsMustBeNotEmpty":
+            MessageLookupByLibrary.simpleMessage(
+                "Поля e-mail, имя, пароль обязательны для заполнения"),
+        "screenSignUpInternalError":
+            MessageLookupByLibrary.simpleMessage("Внутренняя ошибка"),
+        "screenSignUpInvalidEmailFail":
+            MessageLookupByLibrary.simpleMessage("Некорректный e-mail"),
+        "screenSignUpInvalidPassword":
+            MessageLookupByLibrary.simpleMessage("Пароль введён некорректно!"),
         "screenSignUpNameLabel": MessageLookupByLibrary.simpleMessage("Имя"),
         "screenSignUpNicknameLabel":
-            MessageLookupByLibrary.simpleMessage("Логин"),
+            MessageLookupByLibrary.simpleMessage("Никнейм"),
         "screenSignUpPasswordConfirmLabel":
             MessageLookupByLibrary.simpleMessage("Пароль ещё раз"),
         "screenSignUpPasswordLabel":
             MessageLookupByLibrary.simpleMessage("Пароль"),
         "screenSignUpSubmitButton":
             MessageLookupByLibrary.simpleMessage("Зарегистрироваться"),
+        "screenSignUpSurnameLabel":
+            MessageLookupByLibrary.simpleMessage("Фамилия"),
         "screenSignUpTitle":
             MessageLookupByLibrary.simpleMessage("Регистрация"),
         "screenSignUpToSignInButton": MessageLookupByLibrary.simpleMessage(
             "Войти в существующий аккаунт"),
+        "screenSignUpWeakPasswordFail": MessageLookupByLibrary.simpleMessage(
+            "Пароль не достаточно безопасный. Минимальная длина - 6 символов"),
         "screenSubscriptionsHaveNoSubs":
             MessageLookupByLibrary.simpleMessage("У вас ещё нет подписок"),
         "screenSubscriptionsTitle":

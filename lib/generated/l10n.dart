@@ -330,11 +330,31 @@ class S {
     );
   }
 
+  /// `Surname`
+  String get screenSignUpSurnameLabel {
+    return Intl.message(
+      'Surname',
+      name: 'screenSignUpSurnameLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Nickname`
   String get screenSignUpNicknameLabel {
     return Intl.message(
       'Nickname',
       name: 'screenSignUpNicknameLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `E-mail`
+  String get screenSignUpEmailLabel {
+    return Intl.message(
+      'E-mail',
+      name: 'screenSignUpEmailLabel',
       desc: '',
       args: [],
     );
@@ -375,6 +395,66 @@ class S {
     return Intl.message(
       'Sign in',
       name: 'screenSignUpToSignInButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid password!`
+  String get screenSignUpInvalidPassword {
+    return Intl.message(
+      'Invalid password!',
+      name: 'screenSignUpInvalidPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `E-mail, name and passwords fields are required`
+  String get screenSignUpFieldsMustBeNotEmpty {
+    return Intl.message(
+      'E-mail, name and passwords fields are required',
+      name: 'screenSignUpFieldsMustBeNotEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An account with the given email address already exists`
+  String get screenSignUpAlreadyExistsFail {
+    return Intl.message(
+      'An account with the given email address already exists',
+      name: 'screenSignUpAlreadyExistsFail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The email address is not valid`
+  String get screenSignUpInvalidEmailFail {
+    return Intl.message(
+      'The email address is not valid',
+      name: 'screenSignUpInvalidEmailFail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The password is not strong enough. Password must be at least 6 characters`
+  String get screenSignUpWeakPasswordFail {
+    return Intl.message(
+      'The password is not strong enough. Password must be at least 6 characters',
+      name: 'screenSignUpWeakPasswordFail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong`
+  String get screenSignUpInternalError {
+    return Intl.message(
+      'Something went wrong',
+      name: 'screenSignUpInternalError',
       desc: '',
       args: [],
     );

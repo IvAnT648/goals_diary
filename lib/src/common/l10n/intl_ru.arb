@@ -32,11 +32,19 @@
 
   "screenSignUpTitle": "Регистрация",
   "screenSignUpNameLabel": "Имя",
-  "screenSignUpNicknameLabel": "Логин",
+  "screenSignUpSurnameLabel": "Фамилия",
+  "screenSignUpNicknameLabel": "Никнейм",
+  "screenSignUpEmailLabel": "E-mail",
   "screenSignUpPasswordLabel": "Пароль",
   "screenSignUpPasswordConfirmLabel": "Пароль ещё раз",
   "screenSignUpSubmitButton": "Зарегистрироваться",
   "screenSignUpToSignInButton": "Войти в существующий аккаунт",
+  "screenSignUpInvalidPassword": "Пароль введён некорректно!",
+  "screenSignUpFieldsMustBeNotEmpty": "Поля e-mail, имя, пароль обязательны для заполнения",
+  "screenSignUpAlreadyExistsFail": "Аккаунт с таким e-mail уже существует",
+  "screenSignUpInvalidEmailFail": "Некорректный e-mail",
+  "screenSignUpWeakPasswordFail": "Пароль не достаточно безопасный. Минимальная длина - 6 символов",
+  "screenSignUpInternalError": "Внутренняя ошибка",
 
   "screenMyGoalsTitle": "Мои цели",
 

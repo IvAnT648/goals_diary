@@ -115,6 +115,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenProfileTitle": MessageLookupByLibrary.simpleMessage("Profile"),
         "screenProfileUnsubscribeButton":
             MessageLookupByLibrary.simpleMessage("Unsubscribe"),
+        "screenSignUpAlreadyExistsFail": MessageLookupByLibrary.simpleMessage(
+            "An account with the given email address already exists"),
+        "screenSignUpEmailLabel":
+            MessageLookupByLibrary.simpleMessage("E-mail"),
+        "screenSignUpFieldsMustBeNotEmpty":
+            MessageLookupByLibrary.simpleMessage(
+                "E-mail, name and passwords fields are required"),
+        "screenSignUpInternalError":
+            MessageLookupByLibrary.simpleMessage("Something went wrong"),
+        "screenSignUpInvalidEmailFail": MessageLookupByLibrary.simpleMessage(
+            "The email address is not valid"),
+        "screenSignUpInvalidPassword":
+            MessageLookupByLibrary.simpleMessage("Invalid password!"),
         "screenSignUpNameLabel": MessageLookupByLibrary.simpleMessage("Name"),
         "screenSignUpNicknameLabel":
             MessageLookupByLibrary.simpleMessage("Nickname"),
@@ -124,9 +137,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Password"),
         "screenSignUpSubmitButton":
             MessageLookupByLibrary.simpleMessage("Sign up"),
+        "screenSignUpSurnameLabel":
+            MessageLookupByLibrary.simpleMessage("Surname"),
         "screenSignUpTitle": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "screenSignUpToSignInButton":
             MessageLookupByLibrary.simpleMessage("Sign in"),
+        "screenSignUpWeakPasswordFail": MessageLookupByLibrary.simpleMessage(
+            "The password is not strong enough. Password must be at least 6 characters"),
         "screenSubscriptionsHaveNoSubs": MessageLookupByLibrary.simpleMessage(
             "You don\'t have any subscriptions yet"),
         "screenSubscriptionsTitle":
