@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "517261575537",
+    "project_id": "goals-diary",
+    "storage_bucket": "goals-diary.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:517261575537:android:b13603089f543a1dbe62d0",
+        "android_client_info": {
+          "package_name": "com.indigoline.goals_diary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "517261575537-h2patku85qlkjtd1fsbd20v896v12ikh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAccPaiVZlkvXNhy6-jD9Xe1YAeCXtzZiI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "517261575537-h2patku85qlkjtd1fsbd20v896v12ikh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
