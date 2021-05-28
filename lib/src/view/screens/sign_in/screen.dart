@@ -1,15 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../common/resources/styles.dart';
-import '../../../../generated/l10n.dart';
+import '../../../common/resources.dart';
 import '../../components.dart';
 import '../../navigation.dart';
 import '../../screens.dart';
+import 'cubit.dart';
 
 class SignInScreen extends StatelessWidget {
   static const double _inputFieldsPadding = 30;
   static const double _submitButtonWidth = 236;
   static String id = '/sign-in';
+
+  final _emailField = TextEditingController();
+  final _passwordField = TextEditingController();
+
+  void _submit(BuildContext context) async {
+    final l10n = S.of(context);
+    if (_emailField.text.isEmpty || _passwordField.text.isEmpty) {
+      return showErrorSnackBar(l10n.screenLoginFieldsMustNotBeEmpty, context);
+    }
+    final result = await context.read<SignInCubit>().signIn(
+      email: _emailField.text,
+      password: _passwordField.text,
+    );
+    result.when(
+      success: () {
+        Navigation.replaceTo(Navigation.home);
+      },
+      userNotFound: () {
+        showErrorSnackBar(l10n.screenLoginUserNotFound, context);
+      },
+      wrongPassword: () {
+        showErrorSnackBar(l10n.screenLoginWrongPassword, context);
+      },
+      invalidEmail: () {
+        showErrorSnackBar(l10n.screenLoginInvalidEmail, context);
+      },
+      internalError: () {
+        showErrorSnackBar(l10n.commonInternalErrorText, context);
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,19 +72,18 @@ class SignInScreen extends StatelessWidget {
                 children: [
                   DefaultTextField(
                     label: S.of(context).screenLoginNicknameLabel,
+                    controller: _emailField,
                   ),
                   const SizedBox(height: _inputFieldsPadding),
                   DefaultTextField(
                     label: S.of(context).screenLoginPasswordLabel,
+                    controller: _passwordField,
                   ),
                   const SizedBox(height: 60),
                   SizedBox(
                     width: _submitButtonWidth,
                     child: RoundedButton(
-                      onTap: () {
-                        // TODO: login
-                        Navigation.replaceTo(Navigation.home);
-                      },
+                      onTap: () => _submit(context),
                       text: S.of(context).screenLoginSignInButton,
                     ),
                   ),
@@ -60,12 +91,12 @@ class SignInScreen extends StatelessWidget {
               ),
               const SizedBox(height: 1),
               Padding(
-                padding: const EdgeInsets.only(bottom: 40),
+                padding: const EdgeInsets.only(bottom: 50),
                 child: HyperLinkButton(
+                  text: S.of(context).screenLoginSignUpButton,
                   onTap: () {
                     Navigation.replaceTo(SignUpScreen.id);
                   },
-                  text: S.of(context).screenLoginSignUpButton,
                 ),
               ),
             ],

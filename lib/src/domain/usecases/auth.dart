@@ -17,6 +17,10 @@ abstract class SignUpUseCase {
   Future<SignUpResult> call(String email, String password);
 }
 
+abstract class SignInUseCase {
+  Future<SignInResult> call(String email, String password);
+}
+
 /// ----------------------------------------------------------------------------
 
 @Injectable(as: IsLoggedInUseCase)
@@ -52,5 +56,17 @@ class SignUpUseCaseImpl implements SignUpUseCase {
   @override
   Future<SignUpResult> call(String email, String password) {
     return _repository.signUp(email, password);
+  }
+}
+
+@Injectable(as: SignInUseCase)
+class SignInUseCaseImpl implements SignInUseCase {
+  final EmailAuthRepository _repository;
+
+  SignInUseCaseImpl(this._repository);
+
+  @override
+  Future<SignInResult> call(String email, String password) {
+    return _repository.signIn(email, password);
   }
 }

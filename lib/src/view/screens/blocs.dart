@@ -6,3 +6,4 @@ export 'activity/cubit.dart';
 export 'feed/cubit.dart';
 export 'subscriptions/cubit.dart';
 export 'sign_up/cubit.dart';
+export 'sign_in/cubit.dart';

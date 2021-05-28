@@ -1,19 +1,20 @@
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../domain/models/results.dart';
 import '../../../domain/usecases/auth.dart';
 
-class SignUpScreenState {}
+class SignInScreenState {}
 
 @injectable
-class SignUpCubit extends Cubit<SignUpScreenState> {
-  final SignUpUseCase _signUp;
+class SignInCubit extends Cubit<SignInScreenState> {
+  final SignInUseCase _signIn;
 
-  SignUpCubit(this._signUp) : super(SignUpScreenState());
+  SignInCubit(this._signIn) : super(SignInScreenState());
 
-  Future<SignUpResult> signUp({
+  Future<SignInResult> signIn({
     required String email,
     required String password,
-  }) async => await _signUp(email, password);
+  }) async => await _signIn(email, password);
 }

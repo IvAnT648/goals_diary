@@ -22,7 +22,8 @@ import '../../view/screens/edit_goal/cubit.dart' as _i7;
 import '../../view/screens/feed/cubit.dart' as _i9;
 import '../../view/screens/my_goals/cubit.dart' as _i15;
 import '../../view/screens/profile/cubit.dart' as _i16;
-import '../../view/screens/sign_up/cubit.dart' as _i20;
+import '../../view/screens/sign_in/cubit.dart' as _i20;
+import '../../view/screens/sign_up/cubit.dart' as _i21;
 import '../../view/screens/startup/bloc.dart' as _i18;
 import '../../view/screens/subscriptions/cubit.dart'
     as _i19; // ignore_for_file: unnecessary_lambdas
@@ -58,13 +59,17 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i16.ProfileScreenCubit>(
       () => _i16.ProfileScreenCubit(get<_i4.GetOwnProfileInfoUseCase>()));
   gh.factory<_i17.SaveGoalUseCase>(() => _i17.SaveGoalUseCaseImpl());
+  gh.factory<_i14.SignInUseCase>(
+      () => _i14.SignInUseCaseImpl(get<_i8.EmailAuthRepository>()));
   gh.factory<_i14.SignUpUseCase>(
       () => _i14.SignUpUseCaseImpl(get<_i8.EmailAuthRepository>()));
   gh.factory<_i18.StartupScreenBloc>(
       () => _i18.StartupScreenBloc(get<_i14.IsLoggedInUseCase>()));
   gh.factory<_i19.SubscriptionsScreenCubit>(
       () => _i19.SubscriptionsScreenCubit(get<_i4.GetSubscriptionsUseCase>()));
-  gh.factory<_i20.SignUpCubit>(
-      () => _i20.SignUpCubit(get<_i14.SignUpUseCase>()));
+  gh.factory<_i20.SignInCubit>(
+      () => _i20.SignInCubit(get<_i14.SignInUseCase>()));
+  gh.factory<_i21.SignUpCubit>(
+      () => _i21.SignUpCubit(get<_i14.SignUpUseCase>()));
   return get;
 }

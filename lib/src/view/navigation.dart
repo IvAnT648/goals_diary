@@ -30,7 +30,10 @@ abstract class Navigation {
     ),
     SeafarerRoute(
       name: SignInScreen.id,
-      builder: (_, __, ___) => SignInScreen(),
+      builder: (_, __, ___) => BlocProvider<SignInCubit>(
+        create: (_) => getIt<SignInCubit>(),
+        child: SignInScreen(),
+      ),
     ),
     SeafarerRoute(
       name: SignUpScreen.id,
