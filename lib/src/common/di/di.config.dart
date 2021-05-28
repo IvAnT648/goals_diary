@@ -46,7 +46,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i12.GetPostsUseCase>(() => _i12.GetPostsUseCaseMock());
   gh.factory<_i13.GetSubscriptionsUseCase>(
       () => _i13.GetSubscriptionsUseCaseMock());
-  gh.factory<_i14.IsLoggedInUseCase>(() => _i14.IsLoggedInUseCaseImpl());
+  gh.factory<_i14.IsLoggedInUseCase>(
+      () => _i14.IsLoggedInUseCaseImpl(get<_i6.AuthRepository>()));
   gh.factory<_i15.MyGoalsScreenCubit>(
       () => _i15.MyGoalsScreenCubit(get<_i4.GetMyGoalsUseCase>()));
   gh.factory<_i16.ProfileScreenCubit>(
