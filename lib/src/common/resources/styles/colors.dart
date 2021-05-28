@@ -43,7 +43,9 @@ class AppColors {
   });
 
   static AppColorSwatch negative = AppColorSwatch.withDefaultIndex({
+    5: Color(0xFFD72D30),
     0: Color(0xFFC82B2E),
+    -10: Color(0xFFB42528),
   });
 
   static AppColorSwatch warning = AppColorSwatch.withDefaultIndex({
