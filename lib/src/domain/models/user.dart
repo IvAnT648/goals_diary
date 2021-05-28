@@ -1,6 +1,6 @@
 
 class UserInfoDto {
-  final int id;
+  final String? id;
   final String nickname;
   final String name;
   final String? surname;
@@ -9,7 +9,7 @@ class UserInfoDto {
   final String? avatarUrl;
 
   const UserInfoDto({
-    required this.id,
+    this.id,
     required this.nickname,
     required this.name,
     this.surname,
@@ -33,7 +33,7 @@ class UserInfoDto {
   }
 
   UserInfoDto copyWith({
-    int? id,
+    String? id,
     String? name,
     String? nickname,
     String? info,

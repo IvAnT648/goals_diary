@@ -16,7 +16,7 @@ class GetOwnProfileInfoUseCaseImpl implements GetOwnProfileInfoUseCase {
 }
 
 final UserInfoDto _sampleUserInfo = UserInfoDto(
-  id: 1,
+  id: '1',
   name: 'Alexander',
   surname: 'Ivanov',
   nickname: 'alexander442',
@@ -26,7 +26,7 @@ final UserInfoDto _sampleUserInfo = UserInfoDto(
 );
 
 final UserInfoDto _sampleUserInfoWithoutAvatar = UserInfoDto(
-  id: 2,
+  id: '2',
   name: 'Вероника',
   surname: 'Аксенова',
   nickname: 'veronaksenova',
