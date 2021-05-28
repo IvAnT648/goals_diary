@@ -160,6 +160,16 @@ class S {
     );
   }
 
+  /// `Something went wrong`
+  String get commonInternalErrorText {
+    return Intl.message(
+      'Something went wrong',
+      name: 'commonInternalErrorText',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Feed`
   String get drawerFeedMenuItem {
     return Intl.message(
@@ -310,6 +320,46 @@ class S {
     );
   }
 
+  /// `User not found`
+  String get screenLoginUserNotFound {
+    return Intl.message(
+      'User not found',
+      name: 'screenLoginUserNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid email`
+  String get screenLoginInvalidEmail {
+    return Intl.message(
+      'Invalid email',
+      name: 'screenLoginInvalidEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Wrong password`
+  String get screenLoginWrongPassword {
+    return Intl.message(
+      'Wrong password',
+      name: 'screenLoginWrongPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `E-mail and password can't be empty`
+  String get screenLoginFieldsMustNotBeEmpty {
+    return Intl.message(
+      'E-mail and password can\'t be empty',
+      name: 'screenLoginFieldsMustNotBeEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Sign Up`
   String get screenSignUpTitle {
     return Intl.message(
@@ -445,16 +495,6 @@ class S {
     return Intl.message(
       'The password is not strong enough. Password must be at least 6 characters',
       name: 'screenSignUpWeakPasswordFail',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Something went wrong`
-  String get screenSignUpInternalError {
-    return Intl.message(
-      'Something went wrong',
-      name: 'screenSignUpInternalError',
       desc: '',
       args: [],
     );

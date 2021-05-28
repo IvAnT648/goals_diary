@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "appName": MessageLookupByLibrary.simpleMessage("Goals Diary"),
         "commonDailyPeriodicity": MessageLookupByLibrary.simpleMessage("daily"),
         "commonFridayShort": MessageLookupByLibrary.simpleMessage("fri"),
+        "commonInternalErrorText":
+            MessageLookupByLibrary.simpleMessage("Something went wrong"),
         "commonMondayShort": MessageLookupByLibrary.simpleMessage("mon"),
         "commonPrivateGoal": MessageLookupByLibrary.simpleMessage("Private"),
         "commonPublicGoal": MessageLookupByLibrary.simpleMessage("Public"),
@@ -90,6 +92,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenFeedNoComments":
             MessageLookupByLibrary.simpleMessage("No comments yet..."),
         "screenFeedTitle": MessageLookupByLibrary.simpleMessage("Feed"),
+        "screenLoginFieldsMustNotBeEmpty": MessageLookupByLibrary.simpleMessage(
+            "E-mail and password can\'t be empty"),
+        "screenLoginInvalidEmail":
+            MessageLookupByLibrary.simpleMessage("Invalid email"),
         "screenLoginNicknameLabel":
             MessageLookupByLibrary.simpleMessage("Nickname"),
         "screenLoginPasswordLabel":
@@ -99,6 +105,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenLoginSignUpButton":
             MessageLookupByLibrary.simpleMessage("Create a new account"),
         "screenLoginTitle": MessageLookupByLibrary.simpleMessage("Sign In"),
+        "screenLoginUserNotFound":
+            MessageLookupByLibrary.simpleMessage("User not found"),
+        "screenLoginWrongPassword":
+            MessageLookupByLibrary.simpleMessage("Wrong password"),
         "screenMyGoalsTitle": MessageLookupByLibrary.simpleMessage("My goals"),
         "screenMyProfileTitle":
             MessageLookupByLibrary.simpleMessage("My profile"),
@@ -122,8 +132,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenSignUpFieldsMustBeNotEmpty":
             MessageLookupByLibrary.simpleMessage(
                 "E-mail, name and passwords fields are required"),
-        "screenSignUpInternalError":
-            MessageLookupByLibrary.simpleMessage("Something went wrong"),
         "screenSignUpInvalidEmailFail": MessageLookupByLibrary.simpleMessage(
             "The email address is not valid"),
         "screenSignUpInvalidPassword":

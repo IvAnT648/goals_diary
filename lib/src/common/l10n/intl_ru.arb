@@ -12,6 +12,7 @@
 
   "commonPublicGoal": "Публичная",
   "commonPrivateGoal": "Приватная",
+  "commonInternalErrorText": "Внутренняя ошибка",
 
   "drawerFeedMenuItem": "Лента новостей",
   "drawerGoalsMenuItem": "Мои цели",
@@ -29,6 +30,10 @@
   "screenLoginPasswordLabel": "Пароль",
   "screenLoginSignInButton": "Войти",
   "screenLoginSignUpButton": "Создать новый аккаунт",
+  "screenLoginUserNotFound": "Пользователь не найден",
+  "screenLoginInvalidEmail": "Некорректный e-mail",
+  "screenLoginWrongPassword": "Неверный пароль",
+  "screenLoginFieldsMustNotBeEmpty": "E-mail и пароль не могут быть пустыми",
 
   "screenSignUpTitle": "Регистрация",
   "screenSignUpNameLabel": "Имя",
@@ -44,7 +49,6 @@
   "screenSignUpAlreadyExistsFail": "Аккаунт с таким e-mail уже существует",
   "screenSignUpInvalidEmailFail": "Некорректный e-mail",
   "screenSignUpWeakPasswordFail": "Пароль не достаточно безопасный. Минимальная длина - 6 символов",
-  "screenSignUpInternalError": "Внутренняя ошибка",
 
   "screenMyGoalsTitle": "Мои цели",
 

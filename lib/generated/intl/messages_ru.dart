@@ -25,6 +25,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "commonDailyPeriodicity":
             MessageLookupByLibrary.simpleMessage("ежедневно"),
         "commonFridayShort": MessageLookupByLibrary.simpleMessage("пт"),
+        "commonInternalErrorText":
+            MessageLookupByLibrary.simpleMessage("Внутренняя ошибка"),
         "commonMondayShort": MessageLookupByLibrary.simpleMessage("пн"),
         "commonPrivateGoal": MessageLookupByLibrary.simpleMessage("Приватная"),
         "commonPublicGoal": MessageLookupByLibrary.simpleMessage("Публичная"),
@@ -94,6 +96,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Комментариев пока нет..."),
         "screenFeedTitle":
             MessageLookupByLibrary.simpleMessage("Лента новостей"),
+        "screenLoginFieldsMustNotBeEmpty": MessageLookupByLibrary.simpleMessage(
+            "E-mail и пароль не могут быть пустыми"),
+        "screenLoginInvalidEmail":
+            MessageLookupByLibrary.simpleMessage("Некорректный e-mail"),
         "screenLoginNicknameLabel":
             MessageLookupByLibrary.simpleMessage("Логин"),
         "screenLoginPasswordLabel":
@@ -104,6 +110,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Создать новый аккаунт"),
         "screenLoginTitle":
             MessageLookupByLibrary.simpleMessage("Вход в аккаунт"),
+        "screenLoginUserNotFound":
+            MessageLookupByLibrary.simpleMessage("Пользователь не найден"),
+        "screenLoginWrongPassword":
+            MessageLookupByLibrary.simpleMessage("Неверный пароль"),
         "screenMyGoalsTitle": MessageLookupByLibrary.simpleMessage("Мои цели"),
         "screenMyProfileTitle":
             MessageLookupByLibrary.simpleMessage("Мой профиль"),
@@ -127,8 +137,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenSignUpFieldsMustBeNotEmpty":
             MessageLookupByLibrary.simpleMessage(
                 "Поля e-mail, имя, пароль обязательны для заполнения"),
-        "screenSignUpInternalError":
-            MessageLookupByLibrary.simpleMessage("Внутренняя ошибка"),
         "screenSignUpInvalidEmailFail":
             MessageLookupByLibrary.simpleMessage("Некорректный e-mail"),
         "screenSignUpInvalidPassword":
