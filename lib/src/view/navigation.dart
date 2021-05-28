@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:seafarer/seafarer.dart';
 
+import '../common/di/di.dart';
 import '../domain/models.dart';
-import '../domain/usecases.dart';
 import 'screens/blocs.dart';
 import 'screens.dart';
 
@@ -20,10 +20,10 @@ abstract class Navigation {
   /// List of routes
   static final List<SeafarerRoute> _routes = [
     SeafarerRoute(
-      name: initialRoute,
+      name: StartupScreen.id,
       builder: (context, args, params) {
-        return BlocProvider(
-          create: (_) => StartupScreenBloc(),
+        return BlocProvider<StartupScreenBloc>(
+          create: (_) => getIt<StartupScreenBloc>(),
           child: StartupScreen(),
         );
       },
@@ -38,8 +38,8 @@ abstract class Navigation {
     ),
     SeafarerRoute(
       name: MyGoalsScreen.id,
-      builder: (_, __, ___) => BlocProvider<MyGoalsScreenBloc>(
-        create: (_) => MyGoalsScreenBloc(),
+      builder: (_, __, ___) => BlocProvider<MyGoalsScreenCubit>(
+        create: (_) => getIt<MyGoalsScreenCubit>(),
         child: MyGoalsScreen(),
       ),
     ),
@@ -53,8 +53,8 @@ abstract class Navigation {
       ],
       builder: (_, __, params) {
         final goal = params.param<GoalDto>(EditGoalScreen.goalArg);
-        return BlocProvider<EditGoalBloc>(
-          create: (_) => EditGoalBloc(),
+        return BlocProvider<EditGoalCubit>(
+          create: (_) => getIt<EditGoalCubit>(),
           child: EditGoalScreen(goal: goal),
         );
       },
@@ -62,32 +62,28 @@ abstract class Navigation {
     SeafarerRoute(
       name: ProfileScreen.id,
       builder: (_, __, ___) => BlocProvider<ProfileScreenCubit>(
-        create: (_) => ProfileScreenCubit(
-          GetOwnProfileInfoUseCaseImpl(),
-        ),
+        create: (_) => getIt<ProfileScreenCubit>(),
         child: ProfileScreen(),
       ),
     ),
     SeafarerRoute(
       name: ActivityScreen.id,
       builder: (_, __, ___) => BlocProvider<ActivityScreenCubit>(
-        create: (_) => ActivityScreenCubit(
-          GetMyGoalsUseCaseTest(),
-        ),
+        create: (_) => getIt<ActivityScreenCubit>(),
         child: ActivityScreen(),
       ),
     ),
     SeafarerRoute(
       name: FeedScreen.id,
       builder: (_, __, ___) => BlocProvider<FeedScreenCubit>(
-        create: (_) => FeedScreenCubit(GetPostsUseCaseMock()),
+        create: (_) => getIt<FeedScreenCubit>(),
         child: FeedScreen(),
       ),
     ),
     SeafarerRoute(
       name: SubscriptionsScreen.id,
       builder: (_, __, ___) => BlocProvider<SubscriptionsScreenCubit>(
-        create: (_) => SubscriptionsScreenCubit(GetSubscriptionsUseCaseMock()),
+        create: (_) => getIt<SubscriptionsScreenCubit>(),
         child: SubscriptionsScreen(),
       ),
     ),

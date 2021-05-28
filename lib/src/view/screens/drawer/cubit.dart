@@ -1,11 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../domain/usecases.dart';
 
-import 'bloc/states.dart';
+import 'cubit/states.dart';
 
-export 'bloc/states.dart';
+export 'cubit/states.dart';
 
+@injectable
 class AppDrawerCubit extends Cubit<AppDrawerState> {
   final IsLoggedInUseCase _isLoggedIn;
   final GetOwnProfileInfoUseCase _getOwnProfileInfo;

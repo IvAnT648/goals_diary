@@ -1,11 +1,13 @@
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../domain/usecases.dart';
-import 'bloc/states.dart';
+import 'cubit/states.dart';
 
-export 'bloc/states.dart';
+export 'cubit/states.dart';
 
+@injectable
 class FeedScreenCubit extends Cubit<FeedScreenState> {
   final GetPostsUseCase _getPosts;
 

@@ -1,10 +1,13 @@
 
+import 'package:injectable/injectable.dart';
+
 import '../models.dart';
 
 abstract class GetPostsUseCase {
   List<PostDto> call();
 }
 
+@Injectable(as: GetPostsUseCase)
 class GetPostsUseCaseMock implements GetPostsUseCase {
   @override
   List<PostDto> call() {

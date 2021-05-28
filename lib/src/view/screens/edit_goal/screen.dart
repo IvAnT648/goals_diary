@@ -5,7 +5,7 @@ import '../../../common/utils.dart';
 import '../../../common/resources.dart';
 import '../../../domain/models/goals.dart';
 import '../../components.dart';
-import 'bloc.dart';
+import 'cubit.dart';
 
 class EditGoalScreen extends StatelessWidget {
   static const String id = '/goals/form';
@@ -90,7 +90,8 @@ class EditGoalScreen extends StatelessWidget {
                 horizontal: 60,
               ),
               onTap: () {
-                // TODO: save goal
+                // TODO: save
+                context.read<EditGoalCubit>().save();
               },
             )
           ],

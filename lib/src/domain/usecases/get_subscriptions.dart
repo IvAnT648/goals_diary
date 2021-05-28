@@ -1,10 +1,13 @@
 
+import 'package:injectable/injectable.dart';
+
 import '../models/user.dart';
 
 abstract class GetSubscriptionsUseCase {
   List<UserInfoDto> call();
 }
 
+@Injectable(as: GetSubscriptionsUseCase)
 class GetSubscriptionsUseCaseMock implements GetSubscriptionsUseCase {
   final users = <UserInfoDto>[
     UserInfoDto(

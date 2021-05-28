@@ -6,7 +6,7 @@ import '../../components.dart';
 import '../../navigation.dart';
 import '../../screens.dart';
 import '../drawer/screen.dart';
-import 'bloc.dart';
+import 'cubit.dart';
 
 class MyGoalsScreen extends StatelessWidget {
   static const String id = '/goals';
@@ -22,12 +22,8 @@ class MyGoalsScreen extends StatelessWidget {
       drawer: AppDrawer(
         selected: DrawerMenuItemType.goals,
       ),
-      floatingActionButton: _FloatingAddButton(
-        onTap: () {
-          Navigation.to(EditGoalScreen.id);
-        },
-      ),
-      body: BlocBuilder<MyGoalsScreenBloc, MyGoalsScreenState>(
+      floatingActionButton: _FloatingNewGoalButton(),
+      body: BlocBuilder<MyGoalsScreenCubit, MyGoalsScreenState>(
         builder: (context, state) => state.when(
           loading: () => Center(
             child: CircularProgressIndicator(),
@@ -56,19 +52,16 @@ class MyGoalsScreen extends StatelessWidget {
   }
 }
 
-class _FloatingAddButton extends StatelessWidget {
-  final VoidCallback onTap;
-
-  const _FloatingAddButton({
-    Key? key,
-    required this.onTap,
-  }) : super(key: key);
+class _FloatingNewGoalButton extends StatelessWidget {
+  const _FloatingNewGoalButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return FloatingActionButton(
-      onPressed: onTap,
+      onPressed: () {
+        Navigation.to(EditGoalScreen.id);
+      },
       child: Text(
         '+',
         style: TextStyle(

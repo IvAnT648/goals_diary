@@ -1,11 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:goals_diary/src/domain/models.dart';
+import 'package:injectable/injectable.dart';
 
+import '../../../domain/models.dart';
 import '../../../domain/usecases.dart';
-import 'bloc/states.dart';
+import 'cubit/states.dart';
 
-export 'bloc/states.dart';
+export 'cubit/states.dart';
 
+@injectable
 class ActivityScreenCubit extends Cubit<ActivityScreenState> {
   final GetMyGoalsUseCase _getMyGoals;
   late final List<GoalActivityDto> list;

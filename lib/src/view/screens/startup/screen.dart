@@ -7,7 +7,7 @@ import '../sign_in/screen.dart';
 import 'bloc.dart';
 
 class StartupScreen extends StatelessWidget {
-  static const String id = '/';
+  static const String id = Navigation.initialRoute;
 
   const StartupScreen({Key? key}) : super(key: key);
 
@@ -17,7 +17,7 @@ class StartupScreen extends StatelessWidget {
       body: BlocConsumer<StartupScreenBloc, StartupScreenState>(
         listener: (context, state) {
           if (state is AuthorizedStartupScreenState) {
-            // TODO: go main screen
+            Navigation.replaceTo(Navigation.home);
             return;
           }
           if (state is NotAuthorizedStartupScreenState) {
@@ -25,10 +25,9 @@ class StartupScreen extends StatelessWidget {
             return;
           }
         },
+        buildWhen: (previous, current) => current is InitialStartupScreenState,
         builder: (context, state) {
-          if (state is InitialStartupScreenState) {
-            context.read<StartupScreenBloc>().add(StartupScreenEvent.init());
-          }
+          context.read<StartupScreenBloc>().add(StartupScreenEvent.init());
           return Center(
             child: CircularProgressIndicator(),
           );

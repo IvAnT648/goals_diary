@@ -1,5 +1,19 @@
 
-import 'package:goals_diary/src/domain/models.dart';
+import 'package:injectable/injectable.dart';
+
+import '../models.dart';
+
+abstract class GetOwnProfileInfoUseCase {
+  UserInfoDto call();
+}
+
+@Injectable(as: GetOwnProfileInfoUseCase)
+class GetOwnProfileInfoUseCaseImpl implements GetOwnProfileInfoUseCase {
+  @override
+  UserInfoDto call() {
+    return _sampleUserInfo;
+  }
+}
 
 final UserInfoDto _sampleUserInfo = UserInfoDto(
   id: 1,
@@ -19,15 +33,3 @@ final UserInfoDto _sampleUserInfoWithoutAvatar = UserInfoDto(
   info: 'Дизайнер, 24 года',
   motto: 'Если что-то делать - что-то будет.',
 );
-
-abstract class GetOwnProfileInfoUseCase {
-  UserInfoDto call();
-}
-
-class GetOwnProfileInfoUseCaseImpl implements GetOwnProfileInfoUseCase {
-  @override
-  UserInfoDto call() {
-    return _sampleUserInfo;
-  }
-}
-
