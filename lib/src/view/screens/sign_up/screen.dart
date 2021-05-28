@@ -31,13 +31,13 @@ class SignUpScreen extends StatelessWidget {
         || _passwordField.text.isEmpty
         || _password2Field.text.isEmpty
     ) {
-      return _showErrorSnackBar(
+      return showErrorSnackBar(
           l10n.screenSignUpFieldsMustBeNotEmpty,
           context
       );
     }
     if (_passwordField.text != _password2Field.text) {
-      return _showErrorSnackBar(
+      return showErrorSnackBar(
           l10n.screenSignUpInvalidPassword,
           context
       );
@@ -53,32 +53,17 @@ class SignUpScreen extends StatelessWidget {
         Navigation.replaceTo(Navigation.home);
       },
       alreadyExists: () {
-        _showErrorSnackBar(l10n.screenSignUpAlreadyExistsFail, context);
+        showErrorSnackBar(l10n.screenSignUpAlreadyExistsFail, context);
       },
       invalidEmail: () {
-        _showErrorSnackBar(l10n.screenSignUpInvalidEmailFail, context);
+        showErrorSnackBar(l10n.screenSignUpInvalidEmailFail, context);
       },
       weakPassword: () {
-        _showErrorSnackBar(l10n.screenSignUpWeakPasswordFail, context);
+        showErrorSnackBar(l10n.screenSignUpWeakPasswordFail, context);
       },
       internalError: () {
-        _showErrorSnackBar(l10n.screenSignUpInternalError, context);
+        showErrorSnackBar(l10n.commonInternalErrorText, context);
       },
-    );
-  }
-
-  void _showErrorSnackBar(String text, BuildContext context) {
-    final messenger = ScaffoldMessenger.of(context);
-    messenger.hideCurrentSnackBar();
-    messenger.showSnackBar(
-        SnackBar(
-          content: Text(
-            text,
-            textAlign: TextAlign.center,
-            style: TextStyles.onErrorText,
-          ),
-          backgroundColor: AppColors.negative[-10],
-        )
     );
   }
 

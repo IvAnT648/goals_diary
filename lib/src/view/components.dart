@@ -7,3 +7,4 @@ export 'components/avatar.dart';
 export 'components/feed.dart';
 export 'components/lines.dart';
 export 'components/user.dart';
+export 'components/snack_bar.dart';
