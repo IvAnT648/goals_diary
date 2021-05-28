@@ -59,4 +59,16 @@ class TextStyles {
   static TextStyle inputLabel = TextStyle(
     fontSize: 16,
   );
+
+  static TextStyle errorText = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+    color: AppColors.negative,
+  );
+
+  static TextStyle onErrorText = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+    color: AppColors.onPrimary,
+  );
 }
