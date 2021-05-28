@@ -9,10 +9,11 @@ import 'package:injectable/injectable.dart' as _i2;
 
 import '../../domain/usecases.dart' as _i4;
 import '../../domain/usecases/auth.dart' as _i12;
+import '../../domain/usecases/get_my_goals.dart' as _i8;
 import '../../domain/usecases/get_posts.dart' as _i10;
 import '../../domain/usecases/get_subscriptions.dart' as _i11;
-import '../../domain/usecases/my_goals.dart' as _i8;
 import '../../domain/usecases/profile.dart' as _i9;
+import '../../domain/usecases/save_goal.dart' as _i15;
 import '../../view/screens/activity/cubit.dart' as _i3;
 import '../../view/screens/drawer/cubit.dart' as _i5;
 import '../../view/screens/edit_goal/cubit.dart' as _i6;
@@ -20,7 +21,7 @@ import '../../view/screens/feed/cubit.dart' as _i7;
 import '../../view/screens/my_goals/cubit.dart' as _i13;
 import '../../view/screens/profile/cubit.dart' as _i14;
 import '../../view/screens/startup/bloc.dart'
-    as _i15; // ignore_for_file: unnecessary_lambdas
+    as _i16; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -45,7 +46,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i13.MyGoalsScreenCubit(get<_i4.GetMyGoalsUseCase>()));
   gh.factory<_i14.ProfileScreenCubit>(
       () => _i14.ProfileScreenCubit(get<_i4.GetOwnProfileInfoUseCase>()));
-  gh.factory<_i15.StartupScreenBloc>(
-      () => _i15.StartupScreenBloc(get<_i12.IsLoggedInUseCase>()));
+  gh.factory<_i15.SaveGoalUseCase>(() => _i15.SaveGoalUseCaseImpl());
+  gh.factory<_i16.StartupScreenBloc>(
+      () => _i16.StartupScreenBloc(get<_i12.IsLoggedInUseCase>()));
   return get;
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../common/di/di.dart';
 import '../../../common/resources.dart';
 import '../../../domain/models/user.dart';
-import '../../../domain/usecases.dart';
 import '../../components.dart';
 import '../../navigation.dart';
 import '../../screens.dart';
@@ -29,61 +29,55 @@ class AppDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<AppDrawerCubit>(
-      // TODO: add DI
-      create: (_) => AppDrawerCubit(
-        IsLoggedInUseCaseImpl(),
-        GetOwnProfileInfoUseCaseImpl(),
-      ),
-      child: Drawer(
-        child: Container(
-          color: AppColors.primary,
-          padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-          child: SingleChildScrollView(
-            child: BlocBuilder<AppDrawerCubit, AppDrawerState>(
-              builder: (context, state) {
-                return Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    state.when(
-                      unauthorized: () => _UnauthorizedHeader(),
-                      authorized: (user) => _AuthorizedHeader(user),
-                    ),
-                    _Divider(),
-                    _DrawerMenuItems(
-                      selected: selected,
-                      onTap: (type) {
-                        switch(type) {
-                          case DrawerMenuItemType.feed:
-                            Navigation.replaceTo(FeedScreen.id);
-                            return;
-                          case DrawerMenuItemType.goals:
-                            Navigation.replaceTo(MyGoalsScreen.id);
-                            return;
-                          case DrawerMenuItemType.activity:
-                            Navigation.replaceTo(ActivityScreen.id);
-                            return;
-                          case DrawerMenuItemType.subscriptions:
-                            Navigation.replaceTo(SubscriptionsScreen.id);
-                            return;
-                          case DrawerMenuItemType.tracked_goals:
-                            // TODO: Handle this case.
-                            Navigation.pop();
-                            return;
-                          case DrawerMenuItemType.profile:
-                            Navigation.replaceTo(ProfileScreen.id);
-                            return;
-                          case DrawerMenuItemType.settings:
-                            // TODO: Handle this case.
-                            Navigation.pop();
-                            return;
-                        }
-                      },
-                    ),
-                  ],
-                );
-              },
-            ),
+    return Drawer(
+      child: Container(
+        color: AppColors.primary,
+        padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+        child: SingleChildScrollView(
+          child: BlocBuilder<AppDrawerCubit, AppDrawerState>(
+            bloc: getIt<AppDrawerCubit>(),
+            builder: (context, state) {
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  state.when(
+                    unauthorized: () => _UnauthorizedHeader(),
+                    authorized: (user) => _AuthorizedHeader(user),
+                  ),
+                  _Divider(),
+                  _DrawerMenuItems(
+                    selected: selected,
+                    onTap: (type) {
+                      switch(type) {
+                        case DrawerMenuItemType.feed:
+                          Navigation.replaceTo(FeedScreen.id);
+                          return;
+                        case DrawerMenuItemType.goals:
+                          Navigation.replaceTo(MyGoalsScreen.id);
+                          return;
+                        case DrawerMenuItemType.activity:
+                          Navigation.replaceTo(ActivityScreen.id);
+                          return;
+                        case DrawerMenuItemType.subscriptions:
+                          Navigation.replaceTo(SubscriptionsScreen.id);
+                          return;
+                        case DrawerMenuItemType.tracked_goals:
+                          // TODO: Handle this case.
+                          Navigation.pop();
+                          return;
+                        case DrawerMenuItemType.profile:
+                          Navigation.replaceTo(ProfileScreen.id);
+                          return;
+                        case DrawerMenuItemType.settings:
+                          // TODO: Handle this case.
+                          Navigation.pop();
+                          return;
+                      }
+                    },
+                  ),
+                ],
+              );
+            },
           ),
         ),
       ),
@@ -153,7 +147,7 @@ class _UnauthorizedHeader extends StatelessWidget {
           onPrimary: AppColors.primary,
           isUpperText: false,
           onTap: () {
-            Navigation.replaceTo(SignInScreen.id);
+            Navigation.to(SignInScreen.id);
           },
         ),
       ],
