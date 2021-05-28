@@ -20,8 +20,9 @@ import '../../view/screens/edit_goal/cubit.dart' as _i6;
 import '../../view/screens/feed/cubit.dart' as _i7;
 import '../../view/screens/my_goals/cubit.dart' as _i13;
 import '../../view/screens/profile/cubit.dart' as _i14;
-import '../../view/screens/startup/bloc.dart'
-    as _i16; // ignore_for_file: unnecessary_lambdas
+import '../../view/screens/startup/bloc.dart' as _i16;
+import '../../view/screens/subscriptions/cubit.dart'
+    as _i17; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -49,5 +50,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i15.SaveGoalUseCase>(() => _i15.SaveGoalUseCaseImpl());
   gh.factory<_i16.StartupScreenBloc>(
       () => _i16.StartupScreenBloc(get<_i12.IsLoggedInUseCase>()));
+  gh.factory<_i17.SubscriptionsScreenCubit>(
+      () => _i17.SubscriptionsScreenCubit(get<_i4.GetSubscriptionsUseCase>()));
   return get;
 }
