@@ -34,7 +34,10 @@ abstract class Navigation {
     ),
     SeafarerRoute(
       name: SignUpScreen.id,
-      builder: (_, __, ___) => SignUpScreen(),
+      builder: (_, __, ___) => BlocProvider<SignUpCubit>(
+        create: (_) => getIt<SignUpCubit>(),
+        child: SignUpScreen(),
+      ),
     ),
     SeafarerRoute(
       name: MyGoalsScreen.id,

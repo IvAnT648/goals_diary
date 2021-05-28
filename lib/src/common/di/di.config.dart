@@ -22,6 +22,7 @@ import '../../view/screens/edit_goal/cubit.dart' as _i7;
 import '../../view/screens/feed/cubit.dart' as _i9;
 import '../../view/screens/my_goals/cubit.dart' as _i15;
 import '../../view/screens/profile/cubit.dart' as _i16;
+import '../../view/screens/sign_up/cubit.dart' as _i20;
 import '../../view/screens/startup/bloc.dart' as _i18;
 import '../../view/screens/subscriptions/cubit.dart'
     as _i19; // ignore_for_file: unnecessary_lambdas
@@ -59,5 +60,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i18.StartupScreenBloc(get<_i14.IsLoggedInUseCase>()));
   gh.factory<_i19.SubscriptionsScreenCubit>(
       () => _i19.SubscriptionsScreenCubit(get<_i4.GetSubscriptionsUseCase>()));
+  gh.factory<_i20.SignUpCubit>(
+      () => _i20.SignUpCubit(get<_i14.SignUpUseCase>()));
   return get;
 }

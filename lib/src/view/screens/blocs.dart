@@ -5,3 +5,4 @@ export 'profile/cubit.dart';
 export 'activity/cubit.dart';
 export 'feed/cubit.dart';
 export 'subscriptions/cubit.dart';
+export 'sign_up/cubit.dart';
