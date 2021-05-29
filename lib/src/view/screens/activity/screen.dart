@@ -104,9 +104,6 @@ class _ListState extends StatelessWidget {
                   backgroundColor: AppColors.primary[10],
                   content: Text(
                     S.of(context).screenActivityOnShortPressSnackBarText,
-                    // style: TextStyle(
-                    //   color: Colors.black,
-                    // ),
                   ),
                 ));
               },

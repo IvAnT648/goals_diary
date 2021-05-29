@@ -10,7 +10,7 @@ export 'cubit/states.dart';
 @injectable
 class ActivityScreenCubit extends Cubit<ActivityScreenState> {
   final GetMyGoalsUseCase _getMyGoals;
-  late final List<GoalActivityDto> list;
+  List<GoalActivityDto> list = [];
 
   ActivityScreenCubit(this._getMyGoals) : super(ActivityScreenState.loading()) {
     _getMyGoals().listen((goals) {
