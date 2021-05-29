@@ -27,6 +27,11 @@ class ActivityRepositoryImpl implements ActivityRepository {
   @override
   Stream<List<GoalActivityDto>> get myActivities async* {
     await for (final goals in _goalsRepository.myGoals) {
+      if (goals.isEmpty) {
+        yield [];
+        return;
+      }
+
       final idGoalMap = _getIdGoalMap(goals);
       final todayInMs = getTodayWithoutTime().millisecondsSinceEpoch;
       yield* collection

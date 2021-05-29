@@ -596,8 +596,10 @@ abstract class InternalErrorSignInResult implements SignInResult {
 class _$SignUpResultTearOff {
   const _$SignUpResultTearOff();
 
-  SuccessSignUpResult success() {
-    return const SuccessSignUpResult();
+  SuccessSignUpResult success(String uid) {
+    return SuccessSignUpResult(
+      uid,
+    );
   }
 
   AlreadyExistsSignUpResult alreadyExists() {
@@ -612,6 +614,10 @@ class _$SignUpResultTearOff {
     return const WeakPasswordSignUpResult();
   }
 
+  DuplicatedNicknameSignUpResult duplicatedNickname() {
+    return const DuplicatedNicknameSignUpResult();
+  }
+
   InternalErrorSignUpResult internalError() {
     return const InternalErrorSignUpResult();
   }
@@ -624,19 +630,21 @@ const $SignUpResult = _$SignUpResultTearOff();
 mixin _$SignUpResult {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() success,
+    required TResult Function(String uid) success,
     required TResult Function() alreadyExists,
     required TResult Function() invalidEmail,
     required TResult Function() weakPassword,
+    required TResult Function() duplicatedNickname,
     required TResult Function() internalError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? success,
+    TResult Function(String uid)? success,
     TResult Function()? alreadyExists,
     TResult Function()? invalidEmail,
     TResult Function()? weakPassword,
+    TResult Function()? duplicatedNickname,
     TResult Function()? internalError,
     required TResult orElse(),
   }) =>
@@ -647,6 +655,8 @@ mixin _$SignUpResult {
     required TResult Function(AlreadyExistsSignUpResult value) alreadyExists,
     required TResult Function(InvalidEmailSignUpResult value) invalidEmail,
     required TResult Function(WeakPasswordSignUpResult value) weakPassword,
+    required TResult Function(DuplicatedNicknameSignUpResult value)
+        duplicatedNickname,
     required TResult Function(InternalErrorSignUpResult value) internalError,
   }) =>
       throw _privateConstructorUsedError;
@@ -656,6 +666,7 @@ mixin _$SignUpResult {
     TResult Function(AlreadyExistsSignUpResult value)? alreadyExists,
     TResult Function(InvalidEmailSignUpResult value)? invalidEmail,
     TResult Function(WeakPasswordSignUpResult value)? weakPassword,
+    TResult Function(DuplicatedNicknameSignUpResult value)? duplicatedNickname,
     TResult Function(InternalErrorSignUpResult value)? internalError,
     required TResult orElse(),
   }) =>
@@ -683,6 +694,7 @@ abstract class $SuccessSignUpResultCopyWith<$Res> {
   factory $SuccessSignUpResultCopyWith(
           SuccessSignUpResult value, $Res Function(SuccessSignUpResult) then) =
       _$SuccessSignUpResultCopyWithImpl<$Res>;
+  $Res call({String uid});
 }
 
 /// @nodoc
@@ -695,50 +707,76 @@ class _$SuccessSignUpResultCopyWithImpl<$Res>
 
   @override
   SuccessSignUpResult get _value => super._value as SuccessSignUpResult;
+
+  @override
+  $Res call({
+    Object? uid = freezed,
+  }) {
+    return _then(SuccessSignUpResult(
+      uid == freezed
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$SuccessSignUpResult implements SuccessSignUpResult {
-  const _$SuccessSignUpResult();
+  const _$SuccessSignUpResult(this.uid);
+
+  @override
+  final String uid;
 
   @override
   String toString() {
-    return 'SignUpResult.success()';
+    return 'SignUpResult.success(uid: $uid)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is SuccessSignUpResult);
+    return identical(this, other) ||
+        (other is SuccessSignUpResult &&
+            (identical(other.uid, uid) ||
+                const DeepCollectionEquality().equals(other.uid, uid)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(uid);
+
+  @JsonKey(ignore: true)
+  @override
+  $SuccessSignUpResultCopyWith<SuccessSignUpResult> get copyWith =>
+      _$SuccessSignUpResultCopyWithImpl<SuccessSignUpResult>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() success,
+    required TResult Function(String uid) success,
     required TResult Function() alreadyExists,
     required TResult Function() invalidEmail,
     required TResult Function() weakPassword,
+    required TResult Function() duplicatedNickname,
     required TResult Function() internalError,
   }) {
-    return success();
+    return success(uid);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? success,
+    TResult Function(String uid)? success,
     TResult Function()? alreadyExists,
     TResult Function()? invalidEmail,
     TResult Function()? weakPassword,
+    TResult Function()? duplicatedNickname,
     TResult Function()? internalError,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success();
+      return success(uid);
     }
     return orElse();
   }
@@ -750,6 +788,8 @@ class _$SuccessSignUpResult implements SuccessSignUpResult {
     required TResult Function(AlreadyExistsSignUpResult value) alreadyExists,
     required TResult Function(InvalidEmailSignUpResult value) invalidEmail,
     required TResult Function(WeakPasswordSignUpResult value) weakPassword,
+    required TResult Function(DuplicatedNicknameSignUpResult value)
+        duplicatedNickname,
     required TResult Function(InternalErrorSignUpResult value) internalError,
   }) {
     return success(this);
@@ -762,6 +802,7 @@ class _$SuccessSignUpResult implements SuccessSignUpResult {
     TResult Function(AlreadyExistsSignUpResult value)? alreadyExists,
     TResult Function(InvalidEmailSignUpResult value)? invalidEmail,
     TResult Function(WeakPasswordSignUpResult value)? weakPassword,
+    TResult Function(DuplicatedNicknameSignUpResult value)? duplicatedNickname,
     TResult Function(InternalErrorSignUpResult value)? internalError,
     required TResult orElse(),
   }) {
@@ -773,7 +814,12 @@ class _$SuccessSignUpResult implements SuccessSignUpResult {
 }
 
 abstract class SuccessSignUpResult implements SignUpResult {
-  const factory SuccessSignUpResult() = _$SuccessSignUpResult;
+  const factory SuccessSignUpResult(String uid) = _$SuccessSignUpResult;
+
+  String get uid => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SuccessSignUpResultCopyWith<SuccessSignUpResult> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -817,10 +863,11 @@ class _$AlreadyExistsSignUpResult implements AlreadyExistsSignUpResult {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() success,
+    required TResult Function(String uid) success,
     required TResult Function() alreadyExists,
     required TResult Function() invalidEmail,
     required TResult Function() weakPassword,
+    required TResult Function() duplicatedNickname,
     required TResult Function() internalError,
   }) {
     return alreadyExists();
@@ -829,10 +876,11 @@ class _$AlreadyExistsSignUpResult implements AlreadyExistsSignUpResult {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? success,
+    TResult Function(String uid)? success,
     TResult Function()? alreadyExists,
     TResult Function()? invalidEmail,
     TResult Function()? weakPassword,
+    TResult Function()? duplicatedNickname,
     TResult Function()? internalError,
     required TResult orElse(),
   }) {
@@ -849,6 +897,8 @@ class _$AlreadyExistsSignUpResult implements AlreadyExistsSignUpResult {
     required TResult Function(AlreadyExistsSignUpResult value) alreadyExists,
     required TResult Function(InvalidEmailSignUpResult value) invalidEmail,
     required TResult Function(WeakPasswordSignUpResult value) weakPassword,
+    required TResult Function(DuplicatedNicknameSignUpResult value)
+        duplicatedNickname,
     required TResult Function(InternalErrorSignUpResult value) internalError,
   }) {
     return alreadyExists(this);
@@ -861,6 +911,7 @@ class _$AlreadyExistsSignUpResult implements AlreadyExistsSignUpResult {
     TResult Function(AlreadyExistsSignUpResult value)? alreadyExists,
     TResult Function(InvalidEmailSignUpResult value)? invalidEmail,
     TResult Function(WeakPasswordSignUpResult value)? weakPassword,
+    TResult Function(DuplicatedNicknameSignUpResult value)? duplicatedNickname,
     TResult Function(InternalErrorSignUpResult value)? internalError,
     required TResult orElse(),
   }) {
@@ -916,10 +967,11 @@ class _$InvalidEmailSignUpResult implements InvalidEmailSignUpResult {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() success,
+    required TResult Function(String uid) success,
     required TResult Function() alreadyExists,
     required TResult Function() invalidEmail,
     required TResult Function() weakPassword,
+    required TResult Function() duplicatedNickname,
     required TResult Function() internalError,
   }) {
     return invalidEmail();
@@ -928,10 +980,11 @@ class _$InvalidEmailSignUpResult implements InvalidEmailSignUpResult {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? success,
+    TResult Function(String uid)? success,
     TResult Function()? alreadyExists,
     TResult Function()? invalidEmail,
     TResult Function()? weakPassword,
+    TResult Function()? duplicatedNickname,
     TResult Function()? internalError,
     required TResult orElse(),
   }) {
@@ -948,6 +1001,8 @@ class _$InvalidEmailSignUpResult implements InvalidEmailSignUpResult {
     required TResult Function(AlreadyExistsSignUpResult value) alreadyExists,
     required TResult Function(InvalidEmailSignUpResult value) invalidEmail,
     required TResult Function(WeakPasswordSignUpResult value) weakPassword,
+    required TResult Function(DuplicatedNicknameSignUpResult value)
+        duplicatedNickname,
     required TResult Function(InternalErrorSignUpResult value) internalError,
   }) {
     return invalidEmail(this);
@@ -960,6 +1015,7 @@ class _$InvalidEmailSignUpResult implements InvalidEmailSignUpResult {
     TResult Function(AlreadyExistsSignUpResult value)? alreadyExists,
     TResult Function(InvalidEmailSignUpResult value)? invalidEmail,
     TResult Function(WeakPasswordSignUpResult value)? weakPassword,
+    TResult Function(DuplicatedNicknameSignUpResult value)? duplicatedNickname,
     TResult Function(InternalErrorSignUpResult value)? internalError,
     required TResult orElse(),
   }) {
@@ -1015,10 +1071,11 @@ class _$WeakPasswordSignUpResult implements WeakPasswordSignUpResult {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() success,
+    required TResult Function(String uid) success,
     required TResult Function() alreadyExists,
     required TResult Function() invalidEmail,
     required TResult Function() weakPassword,
+    required TResult Function() duplicatedNickname,
     required TResult Function() internalError,
   }) {
     return weakPassword();
@@ -1027,10 +1084,11 @@ class _$WeakPasswordSignUpResult implements WeakPasswordSignUpResult {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? success,
+    TResult Function(String uid)? success,
     TResult Function()? alreadyExists,
     TResult Function()? invalidEmail,
     TResult Function()? weakPassword,
+    TResult Function()? duplicatedNickname,
     TResult Function()? internalError,
     required TResult orElse(),
   }) {
@@ -1047,6 +1105,8 @@ class _$WeakPasswordSignUpResult implements WeakPasswordSignUpResult {
     required TResult Function(AlreadyExistsSignUpResult value) alreadyExists,
     required TResult Function(InvalidEmailSignUpResult value) invalidEmail,
     required TResult Function(WeakPasswordSignUpResult value) weakPassword,
+    required TResult Function(DuplicatedNicknameSignUpResult value)
+        duplicatedNickname,
     required TResult Function(InternalErrorSignUpResult value) internalError,
   }) {
     return weakPassword(this);
@@ -1059,6 +1119,7 @@ class _$WeakPasswordSignUpResult implements WeakPasswordSignUpResult {
     TResult Function(AlreadyExistsSignUpResult value)? alreadyExists,
     TResult Function(InvalidEmailSignUpResult value)? invalidEmail,
     TResult Function(WeakPasswordSignUpResult value)? weakPassword,
+    TResult Function(DuplicatedNicknameSignUpResult value)? duplicatedNickname,
     TResult Function(InternalErrorSignUpResult value)? internalError,
     required TResult orElse(),
   }) {
@@ -1071,6 +1132,114 @@ class _$WeakPasswordSignUpResult implements WeakPasswordSignUpResult {
 
 abstract class WeakPasswordSignUpResult implements SignUpResult {
   const factory WeakPasswordSignUpResult() = _$WeakPasswordSignUpResult;
+}
+
+/// @nodoc
+abstract class $DuplicatedNicknameSignUpResultCopyWith<$Res> {
+  factory $DuplicatedNicknameSignUpResultCopyWith(
+          DuplicatedNicknameSignUpResult value,
+          $Res Function(DuplicatedNicknameSignUpResult) then) =
+      _$DuplicatedNicknameSignUpResultCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$DuplicatedNicknameSignUpResultCopyWithImpl<$Res>
+    extends _$SignUpResultCopyWithImpl<$Res>
+    implements $DuplicatedNicknameSignUpResultCopyWith<$Res> {
+  _$DuplicatedNicknameSignUpResultCopyWithImpl(
+      DuplicatedNicknameSignUpResult _value,
+      $Res Function(DuplicatedNicknameSignUpResult) _then)
+      : super(_value, (v) => _then(v as DuplicatedNicknameSignUpResult));
+
+  @override
+  DuplicatedNicknameSignUpResult get _value =>
+      super._value as DuplicatedNicknameSignUpResult;
+}
+
+/// @nodoc
+
+class _$DuplicatedNicknameSignUpResult
+    implements DuplicatedNicknameSignUpResult {
+  const _$DuplicatedNicknameSignUpResult();
+
+  @override
+  String toString() {
+    return 'SignUpResult.duplicatedNickname()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is DuplicatedNicknameSignUpResult);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String uid) success,
+    required TResult Function() alreadyExists,
+    required TResult Function() invalidEmail,
+    required TResult Function() weakPassword,
+    required TResult Function() duplicatedNickname,
+    required TResult Function() internalError,
+  }) {
+    return duplicatedNickname();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String uid)? success,
+    TResult Function()? alreadyExists,
+    TResult Function()? invalidEmail,
+    TResult Function()? weakPassword,
+    TResult Function()? duplicatedNickname,
+    TResult Function()? internalError,
+    required TResult orElse(),
+  }) {
+    if (duplicatedNickname != null) {
+      return duplicatedNickname();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SuccessSignUpResult value) success,
+    required TResult Function(AlreadyExistsSignUpResult value) alreadyExists,
+    required TResult Function(InvalidEmailSignUpResult value) invalidEmail,
+    required TResult Function(WeakPasswordSignUpResult value) weakPassword,
+    required TResult Function(DuplicatedNicknameSignUpResult value)
+        duplicatedNickname,
+    required TResult Function(InternalErrorSignUpResult value) internalError,
+  }) {
+    return duplicatedNickname(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SuccessSignUpResult value)? success,
+    TResult Function(AlreadyExistsSignUpResult value)? alreadyExists,
+    TResult Function(InvalidEmailSignUpResult value)? invalidEmail,
+    TResult Function(WeakPasswordSignUpResult value)? weakPassword,
+    TResult Function(DuplicatedNicknameSignUpResult value)? duplicatedNickname,
+    TResult Function(InternalErrorSignUpResult value)? internalError,
+    required TResult orElse(),
+  }) {
+    if (duplicatedNickname != null) {
+      return duplicatedNickname(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DuplicatedNicknameSignUpResult implements SignUpResult {
+  const factory DuplicatedNicknameSignUpResult() =
+      _$DuplicatedNicknameSignUpResult;
 }
 
 /// @nodoc
@@ -1114,10 +1283,11 @@ class _$InternalErrorSignUpResult implements InternalErrorSignUpResult {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() success,
+    required TResult Function(String uid) success,
     required TResult Function() alreadyExists,
     required TResult Function() invalidEmail,
     required TResult Function() weakPassword,
+    required TResult Function() duplicatedNickname,
     required TResult Function() internalError,
   }) {
     return internalError();
@@ -1126,10 +1296,11 @@ class _$InternalErrorSignUpResult implements InternalErrorSignUpResult {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? success,
+    TResult Function(String uid)? success,
     TResult Function()? alreadyExists,
     TResult Function()? invalidEmail,
     TResult Function()? weakPassword,
+    TResult Function()? duplicatedNickname,
     TResult Function()? internalError,
     required TResult orElse(),
   }) {
@@ -1146,6 +1317,8 @@ class _$InternalErrorSignUpResult implements InternalErrorSignUpResult {
     required TResult Function(AlreadyExistsSignUpResult value) alreadyExists,
     required TResult Function(InvalidEmailSignUpResult value) invalidEmail,
     required TResult Function(WeakPasswordSignUpResult value) weakPassword,
+    required TResult Function(DuplicatedNicknameSignUpResult value)
+        duplicatedNickname,
     required TResult Function(InternalErrorSignUpResult value) internalError,
   }) {
     return internalError(this);
@@ -1158,6 +1331,7 @@ class _$InternalErrorSignUpResult implements InternalErrorSignUpResult {
     TResult Function(AlreadyExistsSignUpResult value)? alreadyExists,
     TResult Function(InvalidEmailSignUpResult value)? invalidEmail,
     TResult Function(WeakPasswordSignUpResult value)? weakPassword,
+    TResult Function(DuplicatedNicknameSignUpResult value)? duplicatedNickname,
     TResult Function(InternalErrorSignUpResult value)? internalError,
     required TResult orElse(),
   }) {
@@ -1515,4 +1689,346 @@ class _$InternalErrorSaveGoalResult implements InternalErrorSaveGoalResult {
 
 abstract class InternalErrorSaveGoalResult implements SaveGoalResult {
   const factory InternalErrorSaveGoalResult() = _$InternalErrorSaveGoalResult;
+}
+
+/// @nodoc
+class _$SaveProfileResultTearOff {
+  const _$SaveProfileResultTearOff();
+
+  SuccessSaveProfileResult success() {
+    return const SuccessSaveProfileResult();
+  }
+
+  EmptyNameProfileResult emptyName() {
+    return const EmptyNameProfileResult();
+  }
+
+  ErrorSaveProfileResult error() {
+    return const ErrorSaveProfileResult();
+  }
+}
+
+/// @nodoc
+const $SaveProfileResult = _$SaveProfileResultTearOff();
+
+/// @nodoc
+mixin _$SaveProfileResult {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() success,
+    required TResult Function() emptyName,
+    required TResult Function() error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? success,
+    TResult Function()? emptyName,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SuccessSaveProfileResult value) success,
+    required TResult Function(EmptyNameProfileResult value) emptyName,
+    required TResult Function(ErrorSaveProfileResult value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SuccessSaveProfileResult value)? success,
+    TResult Function(EmptyNameProfileResult value)? emptyName,
+    TResult Function(ErrorSaveProfileResult value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SaveProfileResultCopyWith<$Res> {
+  factory $SaveProfileResultCopyWith(
+          SaveProfileResult value, $Res Function(SaveProfileResult) then) =
+      _$SaveProfileResultCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$SaveProfileResultCopyWithImpl<$Res>
+    implements $SaveProfileResultCopyWith<$Res> {
+  _$SaveProfileResultCopyWithImpl(this._value, this._then);
+
+  final SaveProfileResult _value;
+  // ignore: unused_field
+  final $Res Function(SaveProfileResult) _then;
+}
+
+/// @nodoc
+abstract class $SuccessSaveProfileResultCopyWith<$Res> {
+  factory $SuccessSaveProfileResultCopyWith(SuccessSaveProfileResult value,
+          $Res Function(SuccessSaveProfileResult) then) =
+      _$SuccessSaveProfileResultCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$SuccessSaveProfileResultCopyWithImpl<$Res>
+    extends _$SaveProfileResultCopyWithImpl<$Res>
+    implements $SuccessSaveProfileResultCopyWith<$Res> {
+  _$SuccessSaveProfileResultCopyWithImpl(SuccessSaveProfileResult _value,
+      $Res Function(SuccessSaveProfileResult) _then)
+      : super(_value, (v) => _then(v as SuccessSaveProfileResult));
+
+  @override
+  SuccessSaveProfileResult get _value =>
+      super._value as SuccessSaveProfileResult;
+}
+
+/// @nodoc
+
+class _$SuccessSaveProfileResult implements SuccessSaveProfileResult {
+  const _$SuccessSaveProfileResult();
+
+  @override
+  String toString() {
+    return 'SaveProfileResult.success()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is SuccessSaveProfileResult);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() success,
+    required TResult Function() emptyName,
+    required TResult Function() error,
+  }) {
+    return success();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? success,
+    TResult Function()? emptyName,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SuccessSaveProfileResult value) success,
+    required TResult Function(EmptyNameProfileResult value) emptyName,
+    required TResult Function(ErrorSaveProfileResult value) error,
+  }) {
+    return success(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SuccessSaveProfileResult value)? success,
+    TResult Function(EmptyNameProfileResult value)? emptyName,
+    TResult Function(ErrorSaveProfileResult value)? error,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SuccessSaveProfileResult implements SaveProfileResult {
+  const factory SuccessSaveProfileResult() = _$SuccessSaveProfileResult;
+}
+
+/// @nodoc
+abstract class $EmptyNameProfileResultCopyWith<$Res> {
+  factory $EmptyNameProfileResultCopyWith(EmptyNameProfileResult value,
+          $Res Function(EmptyNameProfileResult) then) =
+      _$EmptyNameProfileResultCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$EmptyNameProfileResultCopyWithImpl<$Res>
+    extends _$SaveProfileResultCopyWithImpl<$Res>
+    implements $EmptyNameProfileResultCopyWith<$Res> {
+  _$EmptyNameProfileResultCopyWithImpl(EmptyNameProfileResult _value,
+      $Res Function(EmptyNameProfileResult) _then)
+      : super(_value, (v) => _then(v as EmptyNameProfileResult));
+
+  @override
+  EmptyNameProfileResult get _value => super._value as EmptyNameProfileResult;
+}
+
+/// @nodoc
+
+class _$EmptyNameProfileResult implements EmptyNameProfileResult {
+  const _$EmptyNameProfileResult();
+
+  @override
+  String toString() {
+    return 'SaveProfileResult.emptyName()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is EmptyNameProfileResult);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() success,
+    required TResult Function() emptyName,
+    required TResult Function() error,
+  }) {
+    return emptyName();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? success,
+    TResult Function()? emptyName,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) {
+    if (emptyName != null) {
+      return emptyName();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SuccessSaveProfileResult value) success,
+    required TResult Function(EmptyNameProfileResult value) emptyName,
+    required TResult Function(ErrorSaveProfileResult value) error,
+  }) {
+    return emptyName(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SuccessSaveProfileResult value)? success,
+    TResult Function(EmptyNameProfileResult value)? emptyName,
+    TResult Function(ErrorSaveProfileResult value)? error,
+    required TResult orElse(),
+  }) {
+    if (emptyName != null) {
+      return emptyName(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EmptyNameProfileResult implements SaveProfileResult {
+  const factory EmptyNameProfileResult() = _$EmptyNameProfileResult;
+}
+
+/// @nodoc
+abstract class $ErrorSaveProfileResultCopyWith<$Res> {
+  factory $ErrorSaveProfileResultCopyWith(ErrorSaveProfileResult value,
+          $Res Function(ErrorSaveProfileResult) then) =
+      _$ErrorSaveProfileResultCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$ErrorSaveProfileResultCopyWithImpl<$Res>
+    extends _$SaveProfileResultCopyWithImpl<$Res>
+    implements $ErrorSaveProfileResultCopyWith<$Res> {
+  _$ErrorSaveProfileResultCopyWithImpl(ErrorSaveProfileResult _value,
+      $Res Function(ErrorSaveProfileResult) _then)
+      : super(_value, (v) => _then(v as ErrorSaveProfileResult));
+
+  @override
+  ErrorSaveProfileResult get _value => super._value as ErrorSaveProfileResult;
+}
+
+/// @nodoc
+
+class _$ErrorSaveProfileResult implements ErrorSaveProfileResult {
+  const _$ErrorSaveProfileResult();
+
+  @override
+  String toString() {
+    return 'SaveProfileResult.error()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is ErrorSaveProfileResult);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() success,
+    required TResult Function() emptyName,
+    required TResult Function() error,
+  }) {
+    return error();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? success,
+    TResult Function()? emptyName,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SuccessSaveProfileResult value) success,
+    required TResult Function(EmptyNameProfileResult value) emptyName,
+    required TResult Function(ErrorSaveProfileResult value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SuccessSaveProfileResult value)? success,
+    TResult Function(EmptyNameProfileResult value)? emptyName,
+    TResult Function(ErrorSaveProfileResult value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ErrorSaveProfileResult implements SaveProfileResult {
+  const factory ErrorSaveProfileResult() = _$ErrorSaveProfileResult;
 }

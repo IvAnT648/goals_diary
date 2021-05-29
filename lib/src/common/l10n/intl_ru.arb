@@ -47,10 +47,11 @@
   "screenSignUpSubmitButton": "Зарегистрироваться",
   "screenSignUpToSignInButton": "Войти в существующий аккаунт",
   "screenSignUpInvalidPassword": "Пароль введён некорректно!",
-  "screenSignUpFieldsMustBeNotEmpty": "Поля e-mail, имя, пароль обязательны для заполнения",
+  "screenSignUpFieldsMustBeNotEmpty": "Поля e-mail, имя, никнейм и пароль обязательны для заполнения",
   "screenSignUpAlreadyExistsFail": "Аккаунт с таким e-mail уже существует",
   "screenSignUpInvalidEmailFail": "Некорректный e-mail",
   "screenSignUpWeakPasswordFail": "Пароль не достаточно безопасный. Минимальная длина - 6 символов",
+  "screenSignUpDuplicatedNicknameFail": "Этот никнейм уже занят",
 
   "screenMyGoalsTitle": "Мои цели",
 
@@ -78,6 +79,8 @@
   "screenProfileSaveButton": "Сохранить",
   "screenProfileSubscribeButton": "Подписаться",
   "screenProfileUnsubscribeButton": "Отписаться",
+  "screenProfileEmptyNameFail": "Имя не может быть пустым",
+  "screenProfileSuccessSave": "Успешно сохранено",
 
   "screenActivityTitle": "Задачи на сегодня",
   "screenActivityGoalNotAchieved": "Цель сегодня не достигнута!",

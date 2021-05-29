@@ -1,35 +1,36 @@
 
+import 'dart:async';
+
 import 'package:injectable/injectable.dart';
 
+import '../../data/repository/profile.dart';
 import '../models.dart';
 
-abstract class GetOwnProfileInfoUseCase {
-  UserDto call();
+abstract class ProfileUseCase {
+  Stream<UserDto?> get own;
+  void save(UserDto user);
+  Future<void> saveOwn(UserDto user);
+  Future<bool> isAvailableNickname(String nickname);
 }
 
-@Injectable(as: GetOwnProfileInfoUseCase)
-class GetOwnProfileInfoUseCaseImpl implements GetOwnProfileInfoUseCase {
+@Injectable(as: ProfileUseCase)
+class ProfileUseCaseImpl implements ProfileUseCase {
+  final ProfileRepository _repository;
+
+  ProfileUseCaseImpl(this._repository);
+
   @override
-  UserDto call() {
-    return _sampleUserInfo;
+  Stream<UserDto?> get own async* {
+    yield* _repository.me;
+  }
+
+  @override
+  void save(UserDto user) async => await _repository.save(user);
+
+  Future<void> saveOwn(UserDto user) => _repository.saveOwn(user);
+
+  @override
+  Future<bool> isAvailableNickname(String nickname) async {
+    return await _repository.isAvailableNickname(nickname);
   }
 }
-
-final UserDto _sampleUserInfo = UserDto(
-  id: '1',
-  name: 'Alexander',
-  surname: 'Ivanov',
-  nickname: 'alexander442',
-  about: 'Программист 80 lvl',
-  motto: 'Не всякий кодер - программист',
-  avatarUrl: 'https://databytenitt.github.io/img/male.png',
-);
-
-final UserDto _sampleUserInfoWithoutAvatar = UserDto(
-  id: '2',
-  name: 'Вероника',
-  surname: 'Аксенова',
-  nickname: 'veronaksenova',
-  about: 'Дизайнер, 24 года',
-  motto: 'Если что-то делать - что-то будет.',
-);

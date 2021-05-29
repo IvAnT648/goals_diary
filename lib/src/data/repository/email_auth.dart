@@ -47,7 +47,7 @@ class EmailAuthRepositoryFirebase implements EmailAuthRepository {
         password: password,
       );
       if (result.user != null) {
-        return SignUpResult.success();
+        return SignUpResult.success(result.user!.uid);
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {

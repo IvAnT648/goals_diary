@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../common/resources/styles.dart';
+import '../../../common/utils.dart';
 import '../../../../generated/l10n.dart';
 import '../../components.dart';
 import '../../navigation.dart';
@@ -28,6 +29,7 @@ class SignUpScreen extends StatelessWidget {
 
     if (_emailField.text.isEmpty
         || _nameField.text.isEmpty
+        || _nicknameField.text.isEmpty
         || _passwordField.text.isEmpty
         || _password2Field.text.isEmpty
     ) {
@@ -46,10 +48,13 @@ class SignUpScreen extends StatelessWidget {
     var result = await context.read<SignUpCubit>().signUp(
       email: _emailField.text,
       password: _passwordField.text,
+      name: _nameField.text,
+      surname: _surnameField.text.toNullable(),
+      nickname: _nicknameField.text.toNullable(),
     );
 
     result.when(
-      success: () {
+      success: (_) {
         Navigation.replaceTo(Navigation.home);
       },
       alreadyExists: () {
@@ -64,6 +69,9 @@ class SignUpScreen extends StatelessWidget {
       internalError: () {
         showErrorSnackBar(l10n.commonInternalErrorText, context);
       },
+      duplicatedNickname: () {
+        showErrorSnackBar(l10n.screenSignUpDuplicatedNicknameFail, context);
+      }
     );
   }
 

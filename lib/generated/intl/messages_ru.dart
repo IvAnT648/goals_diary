@@ -131,6 +131,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenMyProfileTitle":
             MessageLookupByLibrary.simpleMessage("Мой профиль"),
         "screenProfileAboutMe": MessageLookupByLibrary.simpleMessage("О себе"),
+        "screenProfileEmptyNameFail":
+            MessageLookupByLibrary.simpleMessage("Имя не может быть пустым"),
         "screenProfileMottoField":
             MessageLookupByLibrary.simpleMessage("Девиз"),
         "screenProfileNameField": MessageLookupByLibrary.simpleMessage("Имя"),
@@ -138,6 +140,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Сохранить"),
         "screenProfileSubscribeButton":
             MessageLookupByLibrary.simpleMessage("Подписаться"),
+        "screenProfileSuccessSave":
+            MessageLookupByLibrary.simpleMessage("Успешно сохранено"),
         "screenProfileSurnameField":
             MessageLookupByLibrary.simpleMessage("Фамилия"),
         "screenProfileTitle": MessageLookupByLibrary.simpleMessage("Профиль"),
@@ -145,11 +149,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Отписаться"),
         "screenSignUpAlreadyExistsFail": MessageLookupByLibrary.simpleMessage(
             "Аккаунт с таким e-mail уже существует"),
+        "screenSignUpDuplicatedNicknameFail":
+            MessageLookupByLibrary.simpleMessage("Этот никнейм уже занят"),
         "screenSignUpEmailLabel":
             MessageLookupByLibrary.simpleMessage("E-mail"),
-        "screenSignUpFieldsMustBeNotEmpty":
-            MessageLookupByLibrary.simpleMessage(
-                "Поля e-mail, имя, пароль обязательны для заполнения"),
+        "screenSignUpFieldsMustBeNotEmpty": MessageLookupByLibrary.simpleMessage(
+            "Поля e-mail, имя, никнейм и пароль обязательны для заполнения"),
         "screenSignUpInvalidEmailFail":
             MessageLookupByLibrary.simpleMessage("Некорректный e-mail"),
         "screenSignUpInvalidPassword":

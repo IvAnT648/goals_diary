@@ -34,7 +34,7 @@ class AppDrawer extends StatelessWidget {
     return Drawer(
       child: Container(
         color: AppColors.primary,
-        padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+        padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top + 10),
         child: SingleChildScrollView(
           child: BlocBuilder<AppDrawerCubit, AppDrawerState>(
             bloc: cubit,

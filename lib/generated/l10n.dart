@@ -480,10 +480,10 @@ class S {
     );
   }
 
-  /// `E-mail, name and passwords fields are required`
+  /// `E-mail, name, nickname and passwords fields are required`
   String get screenSignUpFieldsMustBeNotEmpty {
     return Intl.message(
-      'E-mail, name and passwords fields are required',
+      'E-mail, name, nickname and passwords fields are required',
       name: 'screenSignUpFieldsMustBeNotEmpty',
       desc: '',
       args: [],
@@ -515,6 +515,16 @@ class S {
     return Intl.message(
       'The password is not strong enough. Password must be at least 6 characters',
       name: 'screenSignUpWeakPasswordFail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The nickname already exists`
+  String get screenSignUpDuplicatedNicknameFail {
+    return Intl.message(
+      'The nickname already exists',
+      name: 'screenSignUpDuplicatedNicknameFail',
       desc: '',
       args: [],
     );
@@ -755,6 +765,26 @@ class S {
     return Intl.message(
       'Unsubscribe',
       name: 'screenProfileUnsubscribeButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name can't be empty`
+  String get screenProfileEmptyNameFail {
+    return Intl.message(
+      'Name can\'t be empty',
+      name: 'screenProfileEmptyNameFail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Saved successfully`
+  String get screenProfileSuccessSave {
+    return Intl.message(
+      'Saved successfully',
+      name: 'screenProfileSuccessSave',
       desc: '',
       args: [],
     );

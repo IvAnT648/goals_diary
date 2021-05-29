@@ -14,6 +14,11 @@ class ActivityScreenCubit extends Cubit<ActivityScreenState> {
   ActivityScreenCubit(this._activity)
       : super(ActivityScreenState.loading()) {
     _activity.todayList.listen((activities) {
+      if (activities.isEmpty) {
+        emit(ActivityScreenState.empty());
+        return;
+      }
+
       emit(ActivityScreenState.list(activities));
     });
   }

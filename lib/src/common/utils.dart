@@ -19,3 +19,9 @@ DateTime getTodayWithoutTime() {
   final now = DateTime.now();
   return DateTime(now.year, now.month, now.day);
 }
+
+extension StringToNullableExt on String {
+  String? toNullable() {
+    return isEmpty ? null : this;
+  }
+}

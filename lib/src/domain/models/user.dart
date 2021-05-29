@@ -1,6 +1,6 @@
 
 class UserDto {
-  final String? id;
+  final String id;
   final String name;
   final String? nickname;
   final String? surname;
@@ -9,7 +9,7 @@ class UserDto {
   final String? avatarUrl;
 
   const UserDto({
-    this.id,
+    required this.id,
     required this.name,
     this.nickname,
     this.surname,
@@ -63,12 +63,12 @@ class UserDto {
 
   factory UserDto.fromMap(Map<String, dynamic> map) {
     return UserDto(
-      id: map['id'],
-      name: map['name'],
-      nickname: map['nickname'],
-      about: map['about'],
-      motto: map['motto'],
-      avatarUrl: map['avatarUrl'],
+      id: map['id'] as String,
+      name: map['name'] as String,
+      nickname: map['nickname'] as String?,
+      about: map['about'] as String?,
+      motto: map['motto'] as String?,
+      avatarUrl: map['avatarUrl'] as String?,
     );
   }
 

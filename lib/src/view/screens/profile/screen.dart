@@ -32,6 +32,7 @@ class ProfileScreen extends StatelessWidget {
               : null,
           body: SingleChildScrollView(
             child: state.when(
+              loading: () => Center(child: CircularProgressIndicator()),
               own: (info) => _OwnProfile(info),
               subscribed: (info) => _OtherProfile(
                 info: info,
@@ -113,17 +114,31 @@ class _OwnProfile extends StatelessWidget {
             text: S.of(context).screenProfileSaveButton,
             primary: AppColors.positive,
             padding: buttonsPadding,
-            onTap: () {
-              context.read<ProfileScreenCubit>().save(
-                    name: _nameFieldController.text,
-                    surname: _surnameFieldController.text,
-                    motto: _mottoFieldController.text,
-                    about: _aboutFieldController.text,
-                  );
-            },
+            onTap: () => _submit(context),
           ),
         ],
       ),
+    );
+  }
+
+  void _submit(BuildContext context) async {
+    final result = await context.read<ProfileScreenCubit>().save(
+      name: _nameFieldController.text,
+      surname: _surnameFieldController.text,
+      motto: _mottoFieldController.text,
+      about: _aboutFieldController.text,
+    );
+    final l10n = S.of(context);
+    result.when(
+      success: () {
+        showSuccessSnackBar(l10n.screenProfileSuccessSave, context);
+      },
+      emptyName: () {
+        showErrorSnackBar(l10n.screenProfileEmptyNameFail, context);
+      },
+      error: () {
+        showErrorSnackBar(l10n.commonInternalErrorText, context);
+      },
     );
   }
 }

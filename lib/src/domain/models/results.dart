@@ -14,10 +14,12 @@ class SignInResult with _$SignInResult {
 
 @freezed
 class SignUpResult with _$SignUpResult {
-  const factory SignUpResult.success() = SuccessSignUpResult;
+  const factory SignUpResult.success(String uid) = SuccessSignUpResult;
   const factory SignUpResult.alreadyExists() = AlreadyExistsSignUpResult;
   const factory SignUpResult.invalidEmail() = InvalidEmailSignUpResult;
   const factory SignUpResult.weakPassword() = WeakPasswordSignUpResult;
+  const factory SignUpResult.duplicatedNickname() =
+    DuplicatedNicknameSignUpResult;
   const factory SignUpResult.internalError() = InternalErrorSignUpResult;
 }
 
@@ -27,4 +29,11 @@ class SaveGoalResult with _$SaveGoalResult {
   const factory SaveGoalResult.incorrectName() =
     IncorrectNameSaveGoalResult;
   const factory SaveGoalResult.internalError() = InternalErrorSaveGoalResult;
+}
+
+@freezed
+class SaveProfileResult with _$SaveProfileResult {
+  const factory SaveProfileResult.success() = SuccessSaveProfileResult;
+  const factory SaveProfileResult.emptyName() = EmptyNameProfileResult;
+  const factory SaveProfileResult.error() = ErrorSaveProfileResult;
 }

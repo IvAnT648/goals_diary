@@ -5,16 +5,6 @@ import '../../domain/models.dart';
 import '../../common/utils.dart';
 import '../models.dart';
 
-extension UserModelToDomain on firebase_auth.User {
-  UserDto toDomain() {
-    return UserDto(
-      id: uid,
-      name: displayName ?? '',
-      avatarUrl: photoURL,
-    );
-  }
-}
-
 extension GoalDtoToData on GoalDto {
   GoalData toData({required String authorId}) {
     return GoalData(
@@ -56,6 +46,34 @@ extension GoalActivityDataToDomain on GoalActivityData {
     return GoalActivityDto(
       isDone: true,
       goal: goal,
+    );
+  }
+}
+
+extension UserDtoToData on UserDto {
+  ProfileData toData() {
+    return ProfileData(
+      name: name,
+      surname: surname,
+      motto: motto,
+      about: about,
+    );
+  }
+}
+
+extension ProfileDataToDomain on ProfileData {
+  UserDto toDomain({
+    required String id,
+    String? photoUrl,
+  }) {
+    return UserDto(
+      id: id,
+      name: name,
+      surname: surname,
+      nickname: nickname,
+      motto: motto,
+      about: about,
+      avatarUrl: photoUrl,
     );
   }
 }

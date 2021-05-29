@@ -9,17 +9,20 @@ export 'cubit/states.dart';
 
 @injectable
 class AppDrawerCubit extends Cubit<AppDrawerState> {
-  final IsLoggedInUseCase _isLoggedIn;
-  final GetOwnProfileInfoUseCase _getOwnProfileInfo;
+  final ProfileUseCase _profile;
   final LogoutUseCase _logout;
 
   AppDrawerCubit(
-    this._isLoggedIn,
-    this._getOwnProfileInfo,
+    this._profile,
     this._logout,
-  ) : super(_isLoggedIn()
-            ? AppDrawerState.authorized(_getOwnProfileInfo())
-            : AppDrawerState.unauthorized());
+  ) : super(AppDrawerState.unauthorized()) {
+    _profile.own.listen((user) {
+      if (user == null) {
+        return emit(AppDrawerState.unauthorized());
+      }
+      emit(AppDrawerState.authorized(user));
+    });
+  }
 
   void logout() => _logout();
 }

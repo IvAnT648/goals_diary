@@ -4,6 +4,7 @@ import 'package:seafarer/seafarer.dart';
 
 import '../common/di/di.dart';
 import '../domain/models.dart';
+import '../domain/usecases.dart';
 import 'screens/blocs.dart';
 import 'screens.dart';
 
@@ -68,7 +69,10 @@ abstract class Navigation {
     SeafarerRoute(
       name: ProfileScreen.id,
       builder: (_, __, ___) => BlocProvider<ProfileScreenCubit>(
-        create: (_) => getIt<ProfileScreenCubit>(),
+        create: (_) => ProfileScreenCubit(
+          getIt<ProfileUseCase>(),
+          type: ProfileScreenType.own,
+        ),
         child: ProfileScreen(),
       ),
     ),

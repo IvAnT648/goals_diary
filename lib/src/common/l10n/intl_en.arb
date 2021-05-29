@@ -47,10 +47,11 @@
   "screenSignUpSubmitButton": "Sign up",
   "screenSignUpToSignInButton": "Sign in",
   "screenSignUpInvalidPassword": "Invalid password!",
-  "screenSignUpFieldsMustBeNotEmpty": "E-mail, name and passwords fields are required",
+  "screenSignUpFieldsMustBeNotEmpty": "E-mail, name, nickname and passwords fields are required",
   "screenSignUpAlreadyExistsFail": "An account with the given email address already exists",
   "screenSignUpInvalidEmailFail": "The email address is not valid",
   "screenSignUpWeakPasswordFail": "The password is not strong enough. Password must be at least 6 characters",
+  "screenSignUpDuplicatedNicknameFail": "The nickname already exists",
 
   "screenMyGoalsTitle": "My goals",
 
@@ -78,6 +79,8 @@
   "screenProfileSaveButton": "Save",
   "screenProfileSubscribeButton": "Subscribe",
   "screenProfileUnsubscribeButton": "Unsubscribe",
+  "screenProfileEmptyNameFail": "Name can't be empty",
+  "screenProfileSuccessSave": "Saved successfully",
 
   "screenActivityTitle": "Tasks for today",
   "screenActivityGoalNotAchieved": "The goal is not achieved today!",

@@ -15,4 +15,6 @@ class ProfileScreenState with _$ProfileScreenState {
 
   const factory ProfileScreenState.unsubscribed(UserDto info) =
     UnsubscribedProfileScreenState;
+
+  const factory ProfileScreenState.loading() = LoadingProfileScreenState;
 }

@@ -2,16 +2,18 @@
 import 'dart:convert';
 
 class ProfileData {
+  static const String nicknameKey = 'nickname';
+
   final String name;
   final String? surname;
-  final int? age;
+  final String? nickname;
   final String? motto;
   final String? about;
   
   ProfileData({
     required this.name,
     this.surname,
-    this.age,
+    this.nickname,
     this.motto,
     this.about,
   });
@@ -19,14 +21,14 @@ class ProfileData {
   ProfileData copyWith({
     String? name,
     String? surname,
-    int? age,
+    String? nickname,
     String? motto,
     String? about,
   }) {
     return ProfileData(
       name: name ?? this.name,
       surname: surname ?? this.surname,
-      age: age ?? this.age,
+      nickname: nickname ?? this.nickname,
       motto: motto ?? this.motto,
       about: about ?? this.about,
     );
@@ -36,7 +38,7 @@ class ProfileData {
     return {
       'name': name,
       'surname': surname,
-      'age': age,
+      'nickname': nickname,
       'motto': motto,
       'about': about,
     };
@@ -44,11 +46,11 @@ class ProfileData {
 
   factory ProfileData.fromMap(Map<String, dynamic> map) {
     return ProfileData(
-      name: map['name'],
-      surname: map['surname'],
-      age: map['age'],
-      motto: map['motto'],
-      about: map['about'],
+      name: map['name'] as String,
+      surname: map['surname'] as String?,
+      nickname: map['nickname'] as String?,
+      motto: map['motto'] as String?,
+      about: map['about'] as String?,
     );
   }
 
@@ -62,7 +64,7 @@ class ProfileData {
     return 'ProfileData('
         'name: $name'
         ', surname: $surname'
-        ', age: $age'
+        ', nickname: $nickname'
         ', motto: $motto'
         ', about: $about'
         ')';
@@ -75,7 +77,7 @@ class ProfileData {
     return other is ProfileData &&
       other.name == name &&
       other.surname == surname &&
-      other.age == age &&
+      other.nickname == nickname &&
       other.motto == motto &&
       other.about == about;
   }
@@ -84,7 +86,7 @@ class ProfileData {
   int get hashCode {
     return name.hashCode ^
       surname.hashCode ^
-      age.hashCode ^
+      nickname.hashCode ^
       motto.hashCode ^
       about.hashCode;
   }

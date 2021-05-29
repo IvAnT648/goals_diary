@@ -26,11 +26,11 @@ class GoalsRepositoryImpl implements GoalsRepository {
 
   @override
   Future<SaveGoalResult> saveGoal(GoalDto goal) async {
-    if (_auth.currentUser?.id == null) {
+    if (_auth.currentUser == null) {
       return SaveGoalResult.internalError();
     }
     try {
-      final data = goal.toData(authorId: _auth.currentUser!.id!).toMap();
+      final data = goal.toData(authorId: _auth.currentUser!.uid).toMap();
       await collection.doc(goal.id).set(data);
       return SaveGoalResult.success();
     } catch (e) {
@@ -42,7 +42,7 @@ class GoalsRepositoryImpl implements GoalsRepository {
   @override
   Stream<List<GoalDto>> get myGoals async* {
     final user = _auth.currentUser;
-    if (user?.id == null) {
+    if (user == null) {
       yield [];
       return;
     }
@@ -52,7 +52,7 @@ class GoalsRepositoryImpl implements GoalsRepository {
             fromFirestore: (snapshot, _) =>
                 GoalData.fromFirestore(snapshot.data() ?? {}),
             toFirestore: (goal, _) => goal.toMap())
-        .where(GoalData.authorIdKey, isEqualTo: user!.id!)
+        .where(GoalData.authorIdKey, isEqualTo: user.uid)
         .snapshots()
         .map((snapshot) => snapshot.docs
             .map((doc) => doc.data().toDomain(id: doc.id))

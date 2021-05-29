@@ -125,12 +125,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("My profile"),
         "screenProfileAboutMe":
             MessageLookupByLibrary.simpleMessage("About me"),
+        "screenProfileEmptyNameFail":
+            MessageLookupByLibrary.simpleMessage("Name can\'t be empty"),
         "screenProfileMottoField":
             MessageLookupByLibrary.simpleMessage("Motto"),
         "screenProfileNameField": MessageLookupByLibrary.simpleMessage("Name"),
         "screenProfileSaveButton": MessageLookupByLibrary.simpleMessage("Save"),
         "screenProfileSubscribeButton":
             MessageLookupByLibrary.simpleMessage("Subscribe"),
+        "screenProfileSuccessSave":
+            MessageLookupByLibrary.simpleMessage("Saved successfully"),
         "screenProfileSurnameField":
             MessageLookupByLibrary.simpleMessage("Surname"),
         "screenProfileTitle": MessageLookupByLibrary.simpleMessage("Profile"),
@@ -138,11 +142,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Unsubscribe"),
         "screenSignUpAlreadyExistsFail": MessageLookupByLibrary.simpleMessage(
             "An account with the given email address already exists"),
+        "screenSignUpDuplicatedNicknameFail":
+            MessageLookupByLibrary.simpleMessage("The nickname already exists"),
         "screenSignUpEmailLabel":
             MessageLookupByLibrary.simpleMessage("E-mail"),
         "screenSignUpFieldsMustBeNotEmpty":
             MessageLookupByLibrary.simpleMessage(
-                "E-mail, name and passwords fields are required"),
+                "E-mail, name, nickname and passwords fields are required"),
         "screenSignUpInvalidEmailFail": MessageLookupByLibrary.simpleMessage(
             "The email address is not valid"),
         "screenSignUpInvalidPassword":

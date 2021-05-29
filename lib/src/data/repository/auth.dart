@@ -2,13 +2,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../domain/models.dart';
-import 'utils.dart';
-
 abstract class AuthRepository {
   bool isLoggedIn();
-  Stream<UserDto?> get currentUserStream;
-  UserDto? get currentUser;
+  Stream<User?> get currentUserStream;
+  User? get currentUser;
 }
 
 @Injectable(as: AuthRepository)
@@ -21,10 +18,10 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Stream<UserDto?> get currentUserStream {
-    return _auth.authStateChanges().map((user) => user?.toDomain());
+  Stream<User?> get currentUserStream {
+    return _auth.authStateChanges();
   }
 
   @override
-  UserDto? get currentUser => _auth.currentUser?.toDomain();
+  User? get currentUser => _auth.currentUser;
 }
