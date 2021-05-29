@@ -9,6 +9,8 @@ import 'utils.dart';
 
 abstract class ActivityRepository {
   Stream<List<GoalActivityDto>> get myActivities;
+
+  Future<void> toggle(String goalId, bool value);
 }
 
 @Injectable(as: ActivityRepository)
@@ -39,15 +41,16 @@ class ActivityRepositoryImpl implements ActivityRepository {
                 final raw = doc.data();
                 // Null check because we used 'where'
                 return raw.toDomain(idGoalMap[raw.goalId]!);
-              }).toList()).map((activities) {
-                // Add not completed activities
-                for (final goal in goals) {
-                  if (activities.any((el) => el.goal == goal)) {
-                    continue;
-                  }
-                  activities.add(GoalActivityDto(goal: goal, isDone: false));
-                }
-                return activities;
+              }).toList())
+          .map((activities) {
+        // Add not completed activities
+        for (final goal in goals) {
+          if (activities.any((el) => el.goal == goal)) {
+            continue;
+          }
+          activities.add(GoalActivityDto(goal: goal, isDone: false));
+        }
+        return activities;
       });
     }
   }
@@ -60,5 +63,26 @@ class ActivityRepositoryImpl implements ActivityRepository {
       }
     }
     return map;
+  }
+
+  @override
+  Future<void> toggle(String goalId, bool value) async {
+    final date = getTodayWithoutTime();
+    if (value) {
+      final data = GoalActivityData(
+        goalId: goalId,
+        createdAt: date,
+      );
+      await collection.doc().set(data.toMap());
+      return;
+    }
+
+    final res = await collection
+        .where(GoalActivityData.dateKey, isEqualTo: date.millisecondsSinceEpoch)
+        .where(GoalActivityData.goalIdKey, isEqualTo: goalId)
+        .get();
+    res.docs.forEach((el) async {
+      await collection.doc(el.id).delete();
+    });
   }
 }

@@ -91,11 +91,8 @@ class _ListState extends StatelessWidget {
           children: activities.expand((activity) => [
             ActivityCard(
               entity: activity,
-              onCompleteButtonTap: () {
-                return context.read<ActivityScreenCubit>().complete(activity);
-              },
-              onCancelButtonTap: () {
-                return context.read<ActivityScreenCubit>().cancel(activity);
+              onLongTap: () {
+                context.read<ActivityScreenCubit>().toggle(activity);
               },
               onShortTap: () {
                 final messenger = ScaffoldMessenger.of(context);

@@ -9,36 +9,16 @@ export 'cubit/states.dart';
 
 @injectable
 class ActivityScreenCubit extends Cubit<ActivityScreenState> {
-  final GetMyGoalsUseCase _getMyGoals;
-  List<GoalActivityDto> list = [];
+  final ActivityUseCase _activity;
 
-  ActivityScreenCubit(this._getMyGoals) : super(ActivityScreenState.loading()) {
-    _getMyGoals().listen((goals) {
-      list = goals.map((el) =>
-          GoalActivityDto(goal: el, isDone: false)
-      ).toList();
-      if (list.isEmpty) {
-        return emit(ActivityScreenState.empty());
-      }
-      emit(ActivityScreenState.list(list));
+  ActivityScreenCubit(this._activity)
+      : super(ActivityScreenState.loading()) {
+    _activity.todayList.listen((activities) {
+      emit(ActivityScreenState.list(activities));
     });
   }
 
-  void _setActivityValue(GoalActivityDto activity, bool value) {
-    // TODO: fix mocks
-    for (var i = 0; i < list.length; i++) {
-      if (list[i] != activity) continue;
-      list[i] = list[i].copyWith(isDone: value);
-    }
-  }
-
-  bool complete(GoalActivityDto activity) {
-    _setActivityValue(activity, true);
-    return true;
-  }
-
-  bool cancel(GoalActivityDto activity) {
-    _setActivityValue(activity, false);
-    return true;
+  void toggle(GoalActivityDto activity) {
+    _activity.toggle(activity);
   }
 }

@@ -87,29 +87,20 @@ class GoalsListDivider extends StatelessWidget {
 }
 
 /// Button acts by long press
-class ActivityCard extends StatefulWidget {
-  final GoalActivityDto entity;
-  final bool Function() onCompleteButtonTap;
-  final bool Function() onCancelButtonTap;
-  final VoidCallback? onShortTap;
-
-  const ActivityCard({
-    Key? key,
-    required this.entity,
-    required this.onCompleteButtonTap,
-    required this.onCancelButtonTap,
-    this.onShortTap,
-  }) : super(key: key);
-
-  @override
-  _ActivityCardState createState() => _ActivityCardState();
-}
-
-class _ActivityCardState extends State<ActivityCard> {
+class ActivityCard extends StatelessWidget {
   static const double _borderRadius = 15;
   static const double _iconSize = 35;
 
-  late bool _isDone = widget.entity.isDone;
+  final GoalActivityDto entity;
+  final VoidCallback? onLongTap;
+  final VoidCallback? onShortTap;
+
+  ActivityCard({
+    Key? key,
+    required this.entity,
+    this.onLongTap,
+    this.onShortTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -119,22 +110,19 @@ class _ActivityCardState extends State<ActivityCard> {
     late final Color buttonColor;
     late final String hintText;
     late final String buttonText;
-    late final bool Function() onTap;
 
-    if (_isDone) {
+    if (entity.isDone) {
       color = AppColors.primary;
       onColor = AppColors.onPrimary;
       hintText = l10n.screenActivityGoalAchieved;
       buttonText = l10n.screenActivityCancelGoalButton;
       buttonColor = AppColors.primary[10];
-      onTap = widget.onCancelButtonTap;
     } else {
       color = AppColors.secondary;
       onColor = AppColors.onSecondary;
       hintText = l10n.screenActivityGoalNotAchieved;
       buttonText = l10n.screenActivityCompleteGoalButton;
       buttonColor = AppColors.accent;
-      onTap = widget.onCompleteButtonTap;
     }
 
     return Container(
@@ -165,11 +153,11 @@ class _ActivityCardState extends State<ActivityCard> {
               children: [
                 Expanded(
                   child: Text(
-                    widget.entity.goal.title,
+                    entity.goal.title,
                     style: TextStyles.h2.copyWith(color: onColor),
                   ),
                 ),
-                if (_isDone)
+                if (entity.isDone)
                   Icon(
                     Icons.check_circle_outline_outlined,
                     color: AppColors.positive[10],
@@ -199,14 +187,8 @@ class _ActivityCardState extends State<ActivityCard> {
                 ),
                 primary: buttonColor,
                 textStyle: TextStyles.small,
-                onTap: widget.onShortTap,
-                onLongPress: () {
-                  if (onTap()) {
-                    setState(() {
-                      _isDone = !_isDone;
-                    });
-                  }
-                },
+                onTap: onShortTap,
+                onLongPress: onLongTap,
               )
             ],
           ),
