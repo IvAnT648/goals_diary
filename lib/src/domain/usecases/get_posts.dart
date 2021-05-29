@@ -19,7 +19,7 @@ class GetPostsUseCaseMock implements GetPostsUseCase {
       id: 5,
       date: DateTime(2021, 05, 26, 10, 48),
       goal: GoalDto(
-        id: 5,
+        id: '5',
         title: 'Пробежка',
         description: 'Утренняя пробежка в 07:30',
         type: GoalType.public,
@@ -42,7 +42,7 @@ class GetPostsUseCaseMock implements GetPostsUseCase {
       id: 4,
       date: DateTime(2021, 05, 24, 07, 48),
       goal: GoalDto(
-        id: 6,
+        id: '6',
         title: 'Чтение книг',
         description: 'Цель - 4 книги в месяц',
         type: GoalType.public,
@@ -93,7 +93,7 @@ class GetPostsUseCaseMock implements GetPostsUseCase {
       id: 4,
       date: DateTime(2021, 05, 24, 07, 48),
       goal: GoalDto(
-        id: 6,
+        id: '6',
         title: 'Чтение книг',
         description: 'Цель - 4 книги в месяц',
         type: GoalType.public,

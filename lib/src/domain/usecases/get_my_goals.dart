@@ -10,7 +10,7 @@ abstract class GetMyGoalsUseCase {
 class GetMyGoalsUseCaseTest implements GetMyGoalsUseCase {
   final List<GoalDto> _goals = [
     GoalDto(
-      id: 1,
+      id: '1',
       title: 'Зарядка',
       description: 'Каждое утро в 8:30 делать зарядку, длительностю не меннее 30 мин. Подтягивания, упражнения на пресс, отжимания.',
       type: GoalType.public,
@@ -30,14 +30,14 @@ class GetMyGoalsUseCaseTest implements GetMyGoalsUseCase {
       ),
     ),
     GoalDto(
-      id: 2,
+      id: '2',
       title: 'Чтение книг',
       description: 'Цель - 4 книги в месяц',
       type: GoalType.private,
       sendNotifications: false,
     ),
     GoalDto(
-      id: 3,
+      id: '3',
       title: 'Пробежка',
       description: 'Утренняя пробежка в 07:30',
       type: GoalType.public,
@@ -53,7 +53,7 @@ class GetMyGoalsUseCaseTest implements GetMyGoalsUseCase {
       ),
     ),
     GoalDto(
-      id: 4,
+      id: '4',
       title: 'Бассейн',
       description: 'Еженедельный абонемент по субботам в 08:00',
       type: GoalType.public,

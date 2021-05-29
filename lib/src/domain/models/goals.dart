@@ -3,7 +3,7 @@ import 'date_time.dart';
 enum GoalType { private, public }
 
 class GoalDto {
-  final int? id;
+  final String? id;
   final String title;
   final String description;
   final GoalType type;
@@ -24,7 +24,7 @@ class GoalDto {
   }) : assert(!sendNotifications || notificationsTime != null);
 
   GoalDto copyWith({
-    int? id,
+    String? id,
     String? title,
     String? description,
     GoalType? type,
