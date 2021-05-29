@@ -85,7 +85,7 @@ class _ListState extends StatelessWidget {
         alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(
           vertical: 43,
-          horizontal: 37,
+          horizontal: 30,
         ),
         child: Column(
           children: activities.expand((activity) => [
@@ -101,8 +101,12 @@ class _ListState extends StatelessWidget {
                 final messenger = ScaffoldMessenger.of(context);
                 messenger.hideCurrentSnackBar();
                 messenger.showSnackBar(SnackBar(
+                  backgroundColor: AppColors.primary[10],
                   content: Text(
                     S.of(context).screenActivityOnShortPressSnackBarText,
+                    // style: TextStyle(
+                    //   color: Colors.black,
+                    // ),
                   ),
                 ));
               },
