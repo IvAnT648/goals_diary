@@ -4,7 +4,7 @@ class UserInfoDto {
   final String name;
   final String? nickname;
   final String? surname;
-  final String? info;
+  final String? about;
   final String? motto;
   final String? avatarUrl;
 
@@ -13,7 +13,7 @@ class UserInfoDto {
     required this.name,
     this.nickname,
     this.surname,
-    this.info,
+    this.about,
     this.motto,
     this.avatarUrl,
   });
@@ -36,7 +36,7 @@ class UserInfoDto {
     String? id,
     String? name,
     String? nickname,
-    String? info,
+    String? about,
     String? motto,
     String? avatarUrl,
   }) {
@@ -44,7 +44,7 @@ class UserInfoDto {
       id: id ?? this.id,
       name: name ?? this.name,
       nickname: nickname ?? this.nickname,
-      info: info ?? this.info,
+      about: about ?? this.about,
       motto: motto ?? this.motto,
       avatarUrl: avatarUrl ?? this.avatarUrl,
     );
@@ -55,7 +55,7 @@ class UserInfoDto {
       'id': id,
       'name': name,
       'nickname': nickname,
-      'info': info,
+      'about': about,
       'motto': motto,
       'avatarUrl': avatarUrl,
     };
@@ -66,7 +66,7 @@ class UserInfoDto {
       id: map['id'],
       name: map['name'],
       nickname: map['nickname'],
-      info: map['info'],
+      about: map['about'],
       motto: map['motto'],
       avatarUrl: map['avatarUrl'],
     );
@@ -77,7 +77,7 @@ class UserInfoDto {
     return 'UserDto(id: $id'
         ', name: $name'
         ', nickname: $nickname'
-        ', info: $info'
+        ', about: $about'
         ', motto: $motto'
         ', avatarUrl: $avatarUrl'
         ')';
@@ -91,7 +91,7 @@ class UserInfoDto {
         other.id == id &&
         other.name == name &&
         other.nickname == nickname &&
-        other.info == info &&
+        other.about == about &&
         other.motto == motto &&
         other.avatarUrl == avatarUrl;
   }
@@ -101,7 +101,7 @@ class UserInfoDto {
     return id.hashCode ^
         name.hashCode ^
         nickname.hashCode ^
-        info.hashCode ^
+        about.hashCode ^
         motto.hashCode ^
         avatarUrl.hashCode;
   }

@@ -63,7 +63,7 @@ class _OwnProfile extends StatelessWidget {
     _nameFieldController.text = info.name;
     _surnameFieldController.text = info.surname ?? '';
     _mottoFieldController.text = info.motto ?? '';
-    _aboutFieldController.text = info.info ?? '';
+    _aboutFieldController.text = info.about ?? '';
   }
 
   @override
@@ -167,10 +167,10 @@ class _OtherProfile extends StatelessWidget {
             info.fullName,
             style: TextStyles.h2,
           ),
-          if (info.info != null) ...[
+          if (info.about != null) ...[
             const SizedBox(height: 12),
             Text(
-              info.info!,
+              info.about!,
               style: TextStyles.normalHint,
             ),
           ],

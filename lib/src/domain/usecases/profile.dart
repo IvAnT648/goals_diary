@@ -20,7 +20,7 @@ final UserInfoDto _sampleUserInfo = UserInfoDto(
   name: 'Alexander',
   surname: 'Ivanov',
   nickname: 'alexander442',
-  info: 'Программист 80 lvl',
+  about: 'Программист 80 lvl',
   motto: 'Не всякий кодер - программист',
   avatarUrl: 'https://databytenitt.github.io/img/male.png',
 );
@@ -30,6 +30,6 @@ final UserInfoDto _sampleUserInfoWithoutAvatar = UserInfoDto(
   name: 'Вероника',
   surname: 'Аксенова',
   nickname: 'veronaksenova',
-  info: 'Дизайнер, 24 года',
+  about: 'Дизайнер, 24 года',
   motto: 'Если что-то делать - что-то будет.',
 );
