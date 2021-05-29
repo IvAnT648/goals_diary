@@ -17,9 +17,7 @@ class NotificationTime extends TimeOfDay with WeekDaysPeriodicity {
     required int hour,
     required int minute,
     required Set<WeekDays> weekDays,
-  }) : assert(hour >= 0 && hour <= 23),
-        assert(minute >= 0 && minute <= 59),
-        super(hour: hour, minute: minute)
+  }) : super(hour: hour, minute: minute)
   {
     this.weekDays = weekDays;
   }
