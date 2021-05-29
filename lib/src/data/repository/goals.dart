@@ -15,10 +15,10 @@ abstract class GoalsRepository {
 
 @Injectable(as: GoalsRepository)
 class GoalsRepositoryImpl implements GoalsRepository {
-  static const String collectionName = 'goals';
+  static const String _goalsCollectionName = 'goals';
 
   final CollectionReference collection =
-      FirebaseFirestore.instance.collection(collectionName);
+      FirebaseFirestore.instance.collection(_goalsCollectionName);
 
   final AuthRepository _auth;
 
@@ -44,6 +44,7 @@ class GoalsRepositoryImpl implements GoalsRepository {
     final user = _auth.currentUser;
     if (user?.id == null) {
       yield [];
+      return;
     }
 
     yield* collection
@@ -55,8 +56,7 @@ class GoalsRepositoryImpl implements GoalsRepository {
         .snapshots()
         .map((snapshot) => snapshot.docs
             .map((doc) => doc.data().toDomain(id: doc.id))
-            .toList()
-    );
+            .toList());
   }
 
   @override

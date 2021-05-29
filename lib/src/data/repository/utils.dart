@@ -2,9 +2,10 @@
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 
 import '../../domain/models.dart';
+import '../../common/utils.dart';
 import '../models.dart';
 
-extension ToDomainUserModel on firebase_auth.User {
+extension UserModelToDomain on firebase_auth.User {
   UserInfoDto toDomain() {
     return UserInfoDto(
       id: uid,
@@ -14,7 +15,7 @@ extension ToDomainUserModel on firebase_auth.User {
   }
 }
 
-extension ToDataGoalModel on GoalDto {
+extension GoalDtoToData on GoalDto {
   GoalData toData({required String authorId}) {
     return GoalData(
       title: title,
@@ -34,6 +35,27 @@ extension GoalDataToDomain on GoalData {
       description: description,
       type: isPublic ? GoalType.public : GoalType.private,
       sendNotifications: isNotifying,
+    );
+  }
+}
+
+extension GoalActivityDtoToData on GoalActivityDto {
+  GoalActivityData? toData() {
+    if (goal.id == null) {
+      return null;
+    }
+    return GoalActivityData(
+      goalId: goal.id!,
+      createdAt: getTodayWithoutTime(),
+    );
+  }
+}
+
+extension GoalActivityDataToDomain on GoalActivityData {
+  GoalActivityDto toDomain(GoalDto goal) {
+    return GoalActivityDto(
+      isDone: true,
+      goal: goal,
     );
   }
 }

@@ -14,3 +14,8 @@ extension FirstWhereOrNullExt<E> on Iterable<E> {
     return null;
   }
 }
+
+DateTime getTodayWithoutTime() {
+  final now = DateTime.now();
+  return DateTime(now.year, now.month, now.day);
+}
