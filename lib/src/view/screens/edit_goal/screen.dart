@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../common/utils.dart';
 import '../../../common/resources.dart';
-import '../../../domain/models/goals.dart';
+import '../../../domain/models/goal.dart';
 import '../../components.dart';
 import 'cubit.dart';
 

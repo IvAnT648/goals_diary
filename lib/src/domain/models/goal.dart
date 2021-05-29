@@ -11,7 +11,6 @@ class GoalDto {
   final NotificationTime? notificationsTime;
 
   bool get isPrivate => type == GoalType.private;
-
   bool get isPublic => type == GoalType.public;
 
   GoalDto({
@@ -87,12 +86,10 @@ class GoalDto {
   }
 
   @override
-  int get hashCode {
-    return title.hashCode ^
+  int get hashCode => title.hashCode ^
         description.hashCode ^
         id.hashCode ^
         type.hashCode ^
         sendNotifications.hashCode ^
         notificationsTime.hashCode;
-  }
 }

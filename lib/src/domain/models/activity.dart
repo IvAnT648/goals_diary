@@ -1,5 +1,5 @@
 
-import 'goals.dart';
+import 'goal.dart';
 
 class GoalActivityDto {
   final GoalDto goal;
