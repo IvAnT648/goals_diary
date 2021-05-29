@@ -45,7 +45,7 @@ class _FeedPostState extends State<FeedPost>
   final _commentTextController = TextEditingController();
 
   PostDto get post => widget.post;
-  UserInfoDto get author => post.author;
+  UserDto get author => post.author;
 
   @override
   void initState() {

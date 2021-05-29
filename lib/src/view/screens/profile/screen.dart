@@ -57,7 +57,7 @@ class _OwnProfile extends StatelessWidget {
   final _mottoFieldController = TextEditingController();
   final _aboutFieldController = TextEditingController();
 
-  final UserInfoDto info;
+  final UserDto info;
 
   _OwnProfile(this.info, {Key? key}) : super(key: key) {
     _nameFieldController.text = info.name;
@@ -129,7 +129,7 @@ class _OwnProfile extends StatelessWidget {
 }
 
 class _OtherProfile extends StatelessWidget {
-  final UserInfoDto info;
+  final UserDto info;
   final bool isSubscribed;
 
   const _OtherProfile({

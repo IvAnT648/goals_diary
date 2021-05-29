@@ -25,7 +25,7 @@ class GetPostsUseCaseMock implements GetPostsUseCase {
         type: GoalType.public,
         sendNotifications: false,
       ),
-      author: UserInfoDto(
+      author: UserDto(
         id: '3',
         name: 'Лиза',
         surname: 'Иванова',
@@ -48,7 +48,7 @@ class GetPostsUseCaseMock implements GetPostsUseCase {
         type: GoalType.public,
         sendNotifications: false,
       ),
-      author: UserInfoDto(
+      author: UserDto(
         id: '4',
         name: 'Константин',
         surname: 'Красильников',
@@ -64,7 +64,7 @@ class GetPostsUseCaseMock implements GetPostsUseCase {
           id: '1',
           date: DateTime(2021, 05, 26, 08, 11),
           text: 'Поздравляю, рада за тебя!',
-          author: UserInfoDto(
+          author: UserDto(
             id: '2',
             name: 'Вероника',
             surname: 'Аксенова',
@@ -77,7 +77,7 @@ class GetPostsUseCaseMock implements GetPostsUseCase {
           id: '2',
           date: DateTime(2021, 05, 26, 12, 30),
           text: 'Классно. Я ещё не закончил.',
-          author: UserInfoDto(
+          author: UserDto(
             id: '1',
             name: 'Alexander',
             surname: 'Ivanov',
@@ -99,7 +99,7 @@ class GetPostsUseCaseMock implements GetPostsUseCase {
         type: GoalType.public,
         sendNotifications: false,
       ),
-      author: UserInfoDto(
+      author: UserDto(
         id: '4',
         name: 'Константин',
         surname: 'Красильников',
@@ -115,7 +115,7 @@ class GetPostsUseCaseMock implements GetPostsUseCase {
           id: '1',
           date: DateTime(2021, 05, 26, 08, 11),
           text: 'Поздравляю, рада за тебя!',
-          author: UserInfoDto(
+          author: UserDto(
             id: '2',
             name: 'Вероника',
             surname: 'Аксенова',
@@ -128,7 +128,7 @@ class GetPostsUseCaseMock implements GetPostsUseCase {
           id: '2',
           date: DateTime(2021, 05, 26, 12, 30),
           text: 'Классно. Я ещё не закончил.',
-          author: UserInfoDto(
+          author: UserDto(
             id: '1',
             name: 'Alexander',
             surname: 'Ivanov',
@@ -142,7 +142,7 @@ class GetPostsUseCaseMock implements GetPostsUseCase {
           id: '2',
           date: DateTime(2021, 05, 26, 12, 30),
           text: 'Классно. Я ещё не закончил.',
-          author: UserInfoDto(
+          author: UserDto(
             id: '1',
             name: 'Alexander',
             surname: 'Ivanov',
@@ -156,7 +156,7 @@ class GetPostsUseCaseMock implements GetPostsUseCase {
           id: '2',
           date: DateTime(2021, 05, 26, 12, 30),
           text: 'Классно. Я ещё не закончил.',
-          author: UserInfoDto(
+          author: UserDto(
             id: '1',
             name: 'Alexander',
             surname: 'Ivanov',
@@ -170,7 +170,7 @@ class GetPostsUseCaseMock implements GetPostsUseCase {
           id: '2',
           date: DateTime(2021, 05, 26, 12, 30),
           text: 'Классно. Я ещё не закончил.',
-          author: UserInfoDto(
+          author: UserDto(
             id: '1',
             name: 'Alexander',
             surname: 'Ivanov',

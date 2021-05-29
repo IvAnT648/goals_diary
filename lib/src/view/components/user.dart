@@ -6,7 +6,7 @@ import '../components/buttons.dart';
 import 'avatar.dart';
 
 class SubscriptionListItem extends StatelessWidget {
-  final UserInfoDto user;
+  final UserDto user;
   final VoidCallback onTap;
 
   const SubscriptionListItem({

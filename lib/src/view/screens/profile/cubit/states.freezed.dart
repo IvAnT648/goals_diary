@@ -16,19 +16,19 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$ProfileScreenStateTearOff {
   const _$ProfileScreenStateTearOff();
 
-  OwnProfileScreenState own(UserInfoDto info) {
+  OwnProfileScreenState own(UserDto info) {
     return OwnProfileScreenState(
       info,
     );
   }
 
-  SubscribedProfileScreenState subscribed(UserInfoDto info) {
+  SubscribedProfileScreenState subscribed(UserDto info) {
     return SubscribedProfileScreenState(
       info,
     );
   }
 
-  UnsubscribedProfileScreenState unsubscribed(UserInfoDto info) {
+  UnsubscribedProfileScreenState unsubscribed(UserDto info) {
     return UnsubscribedProfileScreenState(
       info,
     );
@@ -40,20 +40,20 @@ const $ProfileScreenState = _$ProfileScreenStateTearOff();
 
 /// @nodoc
 mixin _$ProfileScreenState {
-  UserInfoDto get info => throw _privateConstructorUsedError;
+  UserDto get info => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(UserInfoDto info) own,
-    required TResult Function(UserInfoDto info) subscribed,
-    required TResult Function(UserInfoDto info) unsubscribed,
+    required TResult Function(UserDto info) own,
+    required TResult Function(UserDto info) subscribed,
+    required TResult Function(UserDto info) unsubscribed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UserInfoDto info)? own,
-    TResult Function(UserInfoDto info)? subscribed,
-    TResult Function(UserInfoDto info)? unsubscribed,
+    TResult Function(UserDto info)? own,
+    TResult Function(UserDto info)? subscribed,
+    TResult Function(UserDto info)? unsubscribed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -84,7 +84,7 @@ abstract class $ProfileScreenStateCopyWith<$Res> {
   factory $ProfileScreenStateCopyWith(
           ProfileScreenState value, $Res Function(ProfileScreenState) then) =
       _$ProfileScreenStateCopyWithImpl<$Res>;
-  $Res call({UserInfoDto info});
+  $Res call({UserDto info});
 }
 
 /// @nodoc
@@ -104,7 +104,7 @@ class _$ProfileScreenStateCopyWithImpl<$Res>
       info: info == freezed
           ? _value.info
           : info // ignore: cast_nullable_to_non_nullable
-              as UserInfoDto,
+              as UserDto,
     ));
   }
 }
@@ -116,7 +116,7 @@ abstract class $OwnProfileScreenStateCopyWith<$Res>
           $Res Function(OwnProfileScreenState) then) =
       _$OwnProfileScreenStateCopyWithImpl<$Res>;
   @override
-  $Res call({UserInfoDto info});
+  $Res call({UserDto info});
 }
 
 /// @nodoc
@@ -138,7 +138,7 @@ class _$OwnProfileScreenStateCopyWithImpl<$Res>
       info == freezed
           ? _value.info
           : info // ignore: cast_nullable_to_non_nullable
-              as UserInfoDto,
+              as UserDto,
     ));
   }
 }
@@ -149,7 +149,7 @@ class _$OwnProfileScreenState implements OwnProfileScreenState {
   const _$OwnProfileScreenState(this.info);
 
   @override
-  final UserInfoDto info;
+  final UserDto info;
 
   @override
   String toString() {
@@ -177,9 +177,9 @@ class _$OwnProfileScreenState implements OwnProfileScreenState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(UserInfoDto info) own,
-    required TResult Function(UserInfoDto info) subscribed,
-    required TResult Function(UserInfoDto info) unsubscribed,
+    required TResult Function(UserDto info) own,
+    required TResult Function(UserDto info) subscribed,
+    required TResult Function(UserDto info) unsubscribed,
   }) {
     return own(info);
   }
@@ -187,9 +187,9 @@ class _$OwnProfileScreenState implements OwnProfileScreenState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UserInfoDto info)? own,
-    TResult Function(UserInfoDto info)? subscribed,
-    TResult Function(UserInfoDto info)? unsubscribed,
+    TResult Function(UserDto info)? own,
+    TResult Function(UserDto info)? subscribed,
+    TResult Function(UserDto info)? unsubscribed,
     required TResult orElse(),
   }) {
     if (own != null) {
@@ -225,11 +225,10 @@ class _$OwnProfileScreenState implements OwnProfileScreenState {
 }
 
 abstract class OwnProfileScreenState implements ProfileScreenState {
-  const factory OwnProfileScreenState(UserInfoDto info) =
-      _$OwnProfileScreenState;
+  const factory OwnProfileScreenState(UserDto info) = _$OwnProfileScreenState;
 
   @override
-  UserInfoDto get info => throw _privateConstructorUsedError;
+  UserDto get info => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   $OwnProfileScreenStateCopyWith<OwnProfileScreenState> get copyWith =>
@@ -244,7 +243,7 @@ abstract class $SubscribedProfileScreenStateCopyWith<$Res>
           $Res Function(SubscribedProfileScreenState) then) =
       _$SubscribedProfileScreenStateCopyWithImpl<$Res>;
   @override
-  $Res call({UserInfoDto info});
+  $Res call({UserDto info});
 }
 
 /// @nodoc
@@ -268,7 +267,7 @@ class _$SubscribedProfileScreenStateCopyWithImpl<$Res>
       info == freezed
           ? _value.info
           : info // ignore: cast_nullable_to_non_nullable
-              as UserInfoDto,
+              as UserDto,
     ));
   }
 }
@@ -279,7 +278,7 @@ class _$SubscribedProfileScreenState implements SubscribedProfileScreenState {
   const _$SubscribedProfileScreenState(this.info);
 
   @override
-  final UserInfoDto info;
+  final UserDto info;
 
   @override
   String toString() {
@@ -307,9 +306,9 @@ class _$SubscribedProfileScreenState implements SubscribedProfileScreenState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(UserInfoDto info) own,
-    required TResult Function(UserInfoDto info) subscribed,
-    required TResult Function(UserInfoDto info) unsubscribed,
+    required TResult Function(UserDto info) own,
+    required TResult Function(UserDto info) subscribed,
+    required TResult Function(UserDto info) unsubscribed,
   }) {
     return subscribed(info);
   }
@@ -317,9 +316,9 @@ class _$SubscribedProfileScreenState implements SubscribedProfileScreenState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UserInfoDto info)? own,
-    TResult Function(UserInfoDto info)? subscribed,
-    TResult Function(UserInfoDto info)? unsubscribed,
+    TResult Function(UserDto info)? own,
+    TResult Function(UserDto info)? subscribed,
+    TResult Function(UserDto info)? unsubscribed,
     required TResult orElse(),
   }) {
     if (subscribed != null) {
@@ -355,11 +354,11 @@ class _$SubscribedProfileScreenState implements SubscribedProfileScreenState {
 }
 
 abstract class SubscribedProfileScreenState implements ProfileScreenState {
-  const factory SubscribedProfileScreenState(UserInfoDto info) =
+  const factory SubscribedProfileScreenState(UserDto info) =
       _$SubscribedProfileScreenState;
 
   @override
-  UserInfoDto get info => throw _privateConstructorUsedError;
+  UserDto get info => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   $SubscribedProfileScreenStateCopyWith<SubscribedProfileScreenState>
@@ -374,7 +373,7 @@ abstract class $UnsubscribedProfileScreenStateCopyWith<$Res>
           $Res Function(UnsubscribedProfileScreenState) then) =
       _$UnsubscribedProfileScreenStateCopyWithImpl<$Res>;
   @override
-  $Res call({UserInfoDto info});
+  $Res call({UserDto info});
 }
 
 /// @nodoc
@@ -398,7 +397,7 @@ class _$UnsubscribedProfileScreenStateCopyWithImpl<$Res>
       info == freezed
           ? _value.info
           : info // ignore: cast_nullable_to_non_nullable
-              as UserInfoDto,
+              as UserDto,
     ));
   }
 }
@@ -410,7 +409,7 @@ class _$UnsubscribedProfileScreenState
   const _$UnsubscribedProfileScreenState(this.info);
 
   @override
-  final UserInfoDto info;
+  final UserDto info;
 
   @override
   String toString() {
@@ -438,9 +437,9 @@ class _$UnsubscribedProfileScreenState
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(UserInfoDto info) own,
-    required TResult Function(UserInfoDto info) subscribed,
-    required TResult Function(UserInfoDto info) unsubscribed,
+    required TResult Function(UserDto info) own,
+    required TResult Function(UserDto info) subscribed,
+    required TResult Function(UserDto info) unsubscribed,
   }) {
     return unsubscribed(info);
   }
@@ -448,9 +447,9 @@ class _$UnsubscribedProfileScreenState
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UserInfoDto info)? own,
-    TResult Function(UserInfoDto info)? subscribed,
-    TResult Function(UserInfoDto info)? unsubscribed,
+    TResult Function(UserDto info)? own,
+    TResult Function(UserDto info)? subscribed,
+    TResult Function(UserDto info)? unsubscribed,
     required TResult orElse(),
   }) {
     if (unsubscribed != null) {
@@ -486,11 +485,11 @@ class _$UnsubscribedProfileScreenState
 }
 
 abstract class UnsubscribedProfileScreenState implements ProfileScreenState {
-  const factory UnsubscribedProfileScreenState(UserInfoDto info) =
+  const factory UnsubscribedProfileScreenState(UserDto info) =
       _$UnsubscribedProfileScreenState;
 
   @override
-  UserInfoDto get info => throw _privateConstructorUsedError;
+  UserDto get info => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   $UnsubscribedProfileScreenStateCopyWith<UnsubscribedProfileScreenState>

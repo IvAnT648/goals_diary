@@ -54,7 +54,7 @@ class _EmptyState extends StatelessWidget {
 class _LoadedState extends StatelessWidget {
   static const double _listItemPadding = 20;
 
-  final List<UserInfoDto> users;
+  final List<UserDto> users;
 
   const _LoadedState(this.users, {Key? key}) : super(key: key);
 

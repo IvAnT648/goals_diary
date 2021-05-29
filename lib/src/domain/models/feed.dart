@@ -8,7 +8,7 @@ class PostCommentDto {
   final String? id;
   final DateTime date;
   final String text;
-  final UserInfoDto author;
+  final UserDto author;
   
   PostCommentDto({
     this.id,
@@ -21,7 +21,7 @@ class PostCommentDto {
     String? id,
     DateTime? date,
     String? text,
-    UserInfoDto? author,
+    UserDto? author,
   }) {
     return PostCommentDto(
       id: id ?? this.id,
@@ -45,7 +45,7 @@ class PostCommentDto {
       id: map['id'],
       date: DateTime.fromMillisecondsSinceEpoch(map['date']),
       text: map['text'],
-      author: UserInfoDto.fromMap(map['author']),
+      author: UserDto.fromMap(map['author']),
     );
   }
 
@@ -85,7 +85,7 @@ class PostCommentDto {
 
 class PostDto {
   final String? id;
-  final UserInfoDto author;
+  final UserDto author;
   final GoalDto? goal;
   final DateTime date;
   final String? text;
@@ -104,7 +104,7 @@ class PostDto {
 
   PostDto copyWith({
     String? id,
-    UserInfoDto? author,
+    UserDto? author,
     GoalDto? goal,
     DateTime? date,
     String? comment,
@@ -137,7 +137,7 @@ class PostDto {
   factory PostDto.fromMap(Map<String, dynamic> map) {
     return PostDto(
       id: map['id'],
-      author: UserInfoDto.fromMap(map['author']),
+      author: UserDto.fromMap(map['author']),
       goal: GoalDto.fromMap(map['goal']),
       date: DateTime.fromMillisecondsSinceEpoch(map['date']),
       text: map['comment'],

@@ -92,7 +92,7 @@ class AppDrawer extends StatelessWidget {
 }
 
 class _AuthorizedHeader extends StatelessWidget {
-  final UserInfoDto userInfo;
+  final UserDto userInfo;
 
   const _AuthorizedHeader(this.userInfo, {Key? key}) : super(key: key);
 

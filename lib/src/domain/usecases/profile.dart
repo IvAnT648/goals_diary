@@ -4,18 +4,18 @@ import 'package:injectable/injectable.dart';
 import '../models.dart';
 
 abstract class GetOwnProfileInfoUseCase {
-  UserInfoDto call();
+  UserDto call();
 }
 
 @Injectable(as: GetOwnProfileInfoUseCase)
 class GetOwnProfileInfoUseCaseImpl implements GetOwnProfileInfoUseCase {
   @override
-  UserInfoDto call() {
+  UserDto call() {
     return _sampleUserInfo;
   }
 }
 
-final UserInfoDto _sampleUserInfo = UserInfoDto(
+final UserDto _sampleUserInfo = UserDto(
   id: '1',
   name: 'Alexander',
   surname: 'Ivanov',
@@ -25,7 +25,7 @@ final UserInfoDto _sampleUserInfo = UserInfoDto(
   avatarUrl: 'https://databytenitt.github.io/img/male.png',
 );
 
-final UserInfoDto _sampleUserInfoWithoutAvatar = UserInfoDto(
+final UserDto _sampleUserInfoWithoutAvatar = UserDto(
   id: '2',
   name: 'Вероника',
   surname: 'Аксенова',

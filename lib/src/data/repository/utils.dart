@@ -6,8 +6,8 @@ import '../../common/utils.dart';
 import '../models.dart';
 
 extension UserModelToDomain on firebase_auth.User {
-  UserInfoDto toDomain() {
-    return UserInfoDto(
+  UserDto toDomain() {
+    return UserDto(
       id: uid,
       name: displayName ?? '',
       avatarUrl: photoURL,

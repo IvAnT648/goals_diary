@@ -4,7 +4,7 @@ import '../../common/resources.dart';
 import '../../domain/models/user.dart';
 
 class UserAvatar extends StatelessWidget {
-  final UserInfoDto userInfo;
+  final UserDto userInfo;
   final double radius;
   final Color? abbrColor;
   final Color? abbrBackgroundColor;

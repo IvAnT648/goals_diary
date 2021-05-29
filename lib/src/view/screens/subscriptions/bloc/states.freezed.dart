@@ -20,7 +20,7 @@ class _$SubscriptionsScreenStateTearOff {
     return const LoadingSubscriptionsScreenState();
   }
 
-  LoadedSubscriptionsScreenState loaded(List<UserInfoDto> users) {
+  LoadedSubscriptionsScreenState loaded(List<UserDto> users) {
     return LoadedSubscriptionsScreenState(
       users,
     );
@@ -39,14 +39,14 @@ mixin _$SubscriptionsScreenState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<UserInfoDto> users) loaded,
+    required TResult Function(List<UserDto> users) loaded,
     required TResult Function() empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<UserInfoDto> users)? loaded,
+    TResult Function(List<UserDto> users)? loaded,
     TResult Function()? empty,
     required TResult orElse(),
   }) =>
@@ -130,7 +130,7 @@ class _$LoadingSubscriptionsScreenState
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<UserInfoDto> users) loaded,
+    required TResult Function(List<UserDto> users) loaded,
     required TResult Function() empty,
   }) {
     return loading();
@@ -140,7 +140,7 @@ class _$LoadingSubscriptionsScreenState
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<UserInfoDto> users)? loaded,
+    TResult Function(List<UserDto> users)? loaded,
     TResult Function()? empty,
     required TResult orElse(),
   }) {
@@ -187,7 +187,7 @@ abstract class $LoadedSubscriptionsScreenStateCopyWith<$Res> {
           LoadedSubscriptionsScreenState value,
           $Res Function(LoadedSubscriptionsScreenState) then) =
       _$LoadedSubscriptionsScreenStateCopyWithImpl<$Res>;
-  $Res call({List<UserInfoDto> users});
+  $Res call({List<UserDto> users});
 }
 
 /// @nodoc
@@ -211,7 +211,7 @@ class _$LoadedSubscriptionsScreenStateCopyWithImpl<$Res>
       users == freezed
           ? _value.users
           : users // ignore: cast_nullable_to_non_nullable
-              as List<UserInfoDto>,
+              as List<UserDto>,
     ));
   }
 }
@@ -223,7 +223,7 @@ class _$LoadedSubscriptionsScreenState
   const _$LoadedSubscriptionsScreenState(this.users);
 
   @override
-  final List<UserInfoDto> users;
+  final List<UserDto> users;
 
   @override
   String toString() {
@@ -252,7 +252,7 @@ class _$LoadedSubscriptionsScreenState
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<UserInfoDto> users) loaded,
+    required TResult Function(List<UserDto> users) loaded,
     required TResult Function() empty,
   }) {
     return loaded(users);
@@ -262,7 +262,7 @@ class _$LoadedSubscriptionsScreenState
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<UserInfoDto> users)? loaded,
+    TResult Function(List<UserDto> users)? loaded,
     TResult Function()? empty,
     required TResult orElse(),
   }) {
@@ -299,10 +299,10 @@ class _$LoadedSubscriptionsScreenState
 
 abstract class LoadedSubscriptionsScreenState
     implements SubscriptionsScreenState {
-  const factory LoadedSubscriptionsScreenState(List<UserInfoDto> users) =
+  const factory LoadedSubscriptionsScreenState(List<UserDto> users) =
       _$LoadedSubscriptionsScreenState;
 
-  List<UserInfoDto> get users => throw _privateConstructorUsedError;
+  List<UserDto> get users => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $LoadedSubscriptionsScreenStateCopyWith<LoadedSubscriptionsScreenState>
       get copyWith => throw _privateConstructorUsedError;
@@ -352,7 +352,7 @@ class _$EmptySubscriptionsScreenState implements EmptySubscriptionsScreenState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<UserInfoDto> users) loaded,
+    required TResult Function(List<UserDto> users) loaded,
     required TResult Function() empty,
   }) {
     return empty();
@@ -362,7 +362,7 @@ class _$EmptySubscriptionsScreenState implements EmptySubscriptionsScreenState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<UserInfoDto> users)? loaded,
+    TResult Function(List<UserDto> users)? loaded,
     TResult Function()? empty,
     required TResult orElse(),
   }) {

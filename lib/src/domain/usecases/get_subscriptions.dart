@@ -4,31 +4,31 @@ import 'package:injectable/injectable.dart';
 import '../models/user.dart';
 
 abstract class GetSubscriptionsUseCase {
-  List<UserInfoDto> call();
+  List<UserDto> call();
 }
 
 @Injectable(as: GetSubscriptionsUseCase)
 class GetSubscriptionsUseCaseMock implements GetSubscriptionsUseCase {
-  final users = <UserInfoDto>[
-    UserInfoDto(
+  final users = <UserDto>[
+    UserDto(
       id: '0',
       name: 'Bot',
       nickname: 'bot1',
     ),
-    UserInfoDto(
+    UserDto(
       id: '0',
       name: 'Bot',
       surname: 'Ivanovich',
       nickname: 'bot2',
       avatarUrl: 'https://databytenitt.github.io/img/male.png',
     ),
-    UserInfoDto(
+    UserDto(
       id: '0',
       name: 'Саша',
       surname: 'Петрова',
       nickname: 'sacsha_p',
     ),
-    UserInfoDto(
+    UserDto(
       id: '3',
       name: 'Лиза',
       surname: 'Иванова',
@@ -37,7 +37,7 @@ class GetSubscriptionsUseCaseMock implements GetSubscriptionsUseCase {
       motto: 'Не всякий кодер - программист',
       avatarUrl: 'https://databytenitt.github.io/img/female.png',
     ),
-    UserInfoDto(
+    UserDto(
       id: '4',
       name: 'Константин',
       surname: 'Красильников',
@@ -46,7 +46,7 @@ class GetSubscriptionsUseCaseMock implements GetSubscriptionsUseCase {
       motto: 'Будь собой!',
       avatarUrl: 'https://databytenitt.github.io/img/male.png',
     ),
-    UserInfoDto(
+    UserDto(
       id: '1',
       name: 'Alexander',
       surname: 'Ivanov',
@@ -58,7 +58,7 @@ class GetSubscriptionsUseCaseMock implements GetSubscriptionsUseCase {
   ];
 
   @override
-  List<UserInfoDto> call() {
+  List<UserDto> call() {
     return users;
   }
 }

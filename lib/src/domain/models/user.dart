@@ -1,5 +1,5 @@
 
-class UserInfoDto {
+class UserDto {
   final String? id;
   final String name;
   final String? nickname;
@@ -8,7 +8,7 @@ class UserInfoDto {
   final String? motto;
   final String? avatarUrl;
 
-  const UserInfoDto({
+  const UserDto({
     this.id,
     required this.name,
     this.nickname,
@@ -32,7 +32,7 @@ class UserInfoDto {
         + (surname != null ? surname![0].toUpperCase() : '');
   }
 
-  UserInfoDto copyWith({
+  UserDto copyWith({
     String? id,
     String? name,
     String? nickname,
@@ -40,7 +40,7 @@ class UserInfoDto {
     String? motto,
     String? avatarUrl,
   }) {
-    return UserInfoDto(
+    return UserDto(
       id: id ?? this.id,
       name: name ?? this.name,
       nickname: nickname ?? this.nickname,
@@ -61,8 +61,8 @@ class UserInfoDto {
     };
   }
 
-  factory UserInfoDto.fromMap(Map<String, dynamic> map) {
-    return UserInfoDto(
+  factory UserDto.fromMap(Map<String, dynamic> map) {
+    return UserDto(
       id: map['id'],
       name: map['name'],
       nickname: map['nickname'],
@@ -87,7 +87,7 @@ class UserInfoDto {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is UserInfoDto &&
+    return other is UserDto &&
         other.id == id &&
         other.name == name &&
         other.nickname == nickname &&

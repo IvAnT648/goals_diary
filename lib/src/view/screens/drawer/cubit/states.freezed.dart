@@ -20,7 +20,7 @@ class _$AppDrawerStateTearOff {
     return const UnauthorizedAppDrawerState();
   }
 
-  AuthorizedAppDrawerState authorized(UserInfoDto info) {
+  AuthorizedAppDrawerState authorized(UserDto info) {
     return AuthorizedAppDrawerState(
       info,
     );
@@ -35,13 +35,13 @@ mixin _$AppDrawerState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unauthorized,
-    required TResult Function(UserInfoDto info) authorized,
+    required TResult Function(UserDto info) authorized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unauthorized,
-    TResult Function(UserInfoDto info)? authorized,
+    TResult Function(UserDto info)? authorized,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -119,7 +119,7 @@ class _$UnauthorizedAppDrawerState implements UnauthorizedAppDrawerState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unauthorized,
-    required TResult Function(UserInfoDto info) authorized,
+    required TResult Function(UserDto info) authorized,
   }) {
     return unauthorized();
   }
@@ -128,7 +128,7 @@ class _$UnauthorizedAppDrawerState implements UnauthorizedAppDrawerState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unauthorized,
-    TResult Function(UserInfoDto info)? authorized,
+    TResult Function(UserDto info)? authorized,
     required TResult orElse(),
   }) {
     if (unauthorized != null) {
@@ -169,7 +169,7 @@ abstract class $AuthorizedAppDrawerStateCopyWith<$Res> {
   factory $AuthorizedAppDrawerStateCopyWith(AuthorizedAppDrawerState value,
           $Res Function(AuthorizedAppDrawerState) then) =
       _$AuthorizedAppDrawerStateCopyWithImpl<$Res>;
-  $Res call({UserInfoDto info});
+  $Res call({UserDto info});
 }
 
 /// @nodoc
@@ -192,7 +192,7 @@ class _$AuthorizedAppDrawerStateCopyWithImpl<$Res>
       info == freezed
           ? _value.info
           : info // ignore: cast_nullable_to_non_nullable
-              as UserInfoDto,
+              as UserDto,
     ));
   }
 }
@@ -203,7 +203,7 @@ class _$AuthorizedAppDrawerState implements AuthorizedAppDrawerState {
   const _$AuthorizedAppDrawerState(this.info);
 
   @override
-  final UserInfoDto info;
+  final UserDto info;
 
   @override
   String toString() {
@@ -232,7 +232,7 @@ class _$AuthorizedAppDrawerState implements AuthorizedAppDrawerState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unauthorized,
-    required TResult Function(UserInfoDto info) authorized,
+    required TResult Function(UserDto info) authorized,
   }) {
     return authorized(info);
   }
@@ -241,7 +241,7 @@ class _$AuthorizedAppDrawerState implements AuthorizedAppDrawerState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unauthorized,
-    TResult Function(UserInfoDto info)? authorized,
+    TResult Function(UserDto info)? authorized,
     required TResult orElse(),
   }) {
     if (authorized != null) {
@@ -274,10 +274,10 @@ class _$AuthorizedAppDrawerState implements AuthorizedAppDrawerState {
 }
 
 abstract class AuthorizedAppDrawerState implements AppDrawerState {
-  const factory AuthorizedAppDrawerState(UserInfoDto info) =
+  const factory AuthorizedAppDrawerState(UserDto info) =
       _$AuthorizedAppDrawerState;
 
-  UserInfoDto get info => throw _privateConstructorUsedError;
+  UserDto get info => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $AuthorizedAppDrawerStateCopyWith<AuthorizedAppDrawerState> get copyWith =>
       throw _privateConstructorUsedError;

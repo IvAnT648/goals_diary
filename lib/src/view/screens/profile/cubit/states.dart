@@ -7,12 +7,12 @@ part 'states.freezed.dart';
 
 @freezed
 class ProfileScreenState with _$ProfileScreenState {
-  const factory ProfileScreenState.own(UserInfoDto info) =
+  const factory ProfileScreenState.own(UserDto info) =
     OwnProfileScreenState;
 
-  const factory ProfileScreenState.subscribed(UserInfoDto info) =
+  const factory ProfileScreenState.subscribed(UserDto info) =
     SubscribedProfileScreenState;
 
-  const factory ProfileScreenState.unsubscribed(UserInfoDto info) =
+  const factory ProfileScreenState.unsubscribed(UserDto info) =
     UnsubscribedProfileScreenState;
 }
