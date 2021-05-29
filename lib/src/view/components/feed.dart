@@ -120,22 +120,25 @@ class _FeedPostState extends State<FeedPost>
               ),
             ),
             const SizedBox(height: 18),
-            RichText(
-              text: TextSpan(
-                text: S.of(context).screenFeedGoalProgressText + ' ',
-                style: TextStyles.normal.copyWith(
-                  color: AppColors.regularText,
-                ),
-                children: [
-                  TextSpan(
-                    text: post.goal.title.toUpperCase(),
-                    style: TextStyles.h4.copyWith(color: AppColors.primary),
-                    recognizer: _tapGestureRecognizer
-                      ..onTap = widget.onGoalTitleTap,
+
+            if (post.goal != null)
+              RichText(
+                text: TextSpan(
+                  text: S.of(context).screenFeedGoalProgressText + ' ',
+                  style: TextStyles.normal.copyWith(
+                    color: AppColors.regularText,
                   ),
-                ],
+                  children: [
+                    TextSpan(
+                      text: post.goal!.title.toUpperCase(),
+                      style: TextStyles.h4.copyWith(color: AppColors.primary),
+                      recognizer: _tapGestureRecognizer
+                        ..onTap = widget.onGoalTitleTap,
+                    ),
+                  ],
+                ),
               ),
-            ),
+
             if (post.text != null) ...[
               const SizedBox(height: 12),
               ConstrainedBox(

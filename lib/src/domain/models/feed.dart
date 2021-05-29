@@ -2,23 +2,23 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:goals_diary/src/domain/models.dart';
+import '../models.dart';
 
 class PostCommentDto {
-  final int id;
+  final String? id;
   final DateTime date;
   final String text;
   final UserInfoDto author;
   
   PostCommentDto({
-    this.id = 0,
+    this.id,
     required this.date,
     required this.text,
     required this.author,
   });
 
   PostCommentDto copyWith({
-    int? id,
+    String? id,
     DateTime? date,
     String? text,
     UserInfoDto? author,
@@ -84,16 +84,16 @@ class PostCommentDto {
 }
 
 class PostDto {
-  final int id;
+  final String? id;
   final UserInfoDto author;
-  final GoalDto goal;
+  final GoalDto? goal;
   final DateTime date;
   final String? text;
   final int likeQty;
   final List<PostCommentDto> comments;
 
   PostDto({
-    this.id = 0,
+    this.id,
     required this.date,
     required this.author,
     required this.goal,
@@ -103,7 +103,7 @@ class PostDto {
   });
 
   PostDto copyWith({
-    int? id,
+    String? id,
     UserInfoDto? author,
     GoalDto? goal,
     DateTime? date,
@@ -126,7 +126,7 @@ class PostDto {
     return {
       'id': id,
       'author': author.toMap(),
-      'goal': goal.toMap(),
+      'goal': goal?.toMap(),
       'date': date.millisecondsSinceEpoch,
       'comment': text,
       'likeQty': likeQty,

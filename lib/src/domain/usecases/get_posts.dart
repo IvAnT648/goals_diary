@@ -16,7 +16,7 @@ class GetPostsUseCaseMock implements GetPostsUseCase {
 
   static final List<PostDto> posts = [
     PostDto(
-      id: 5,
+      id: '5',
       date: DateTime(2021, 05, 26, 10, 48),
       goal: GoalDto(
         id: '5',
@@ -39,7 +39,7 @@ class GetPostsUseCaseMock implements GetPostsUseCase {
       comments: [],
     ),
     PostDto(
-      id: 4,
+      id: '4',
       date: DateTime(2021, 05, 24, 07, 48),
       goal: GoalDto(
         id: '6',
@@ -61,7 +61,7 @@ class GetPostsUseCaseMock implements GetPostsUseCase {
       likeQty: 5,
       comments: [
         PostCommentDto(
-          id: 1,
+          id: '1',
           date: DateTime(2021, 05, 26, 08, 11),
           text: 'Поздравляю, рада за тебя!',
           author: UserInfoDto(
@@ -74,7 +74,7 @@ class GetPostsUseCaseMock implements GetPostsUseCase {
           ),
         ),
         PostCommentDto(
-          id: 2,
+          id: '2',
           date: DateTime(2021, 05, 26, 12, 30),
           text: 'Классно. Я ещё не закончил.',
           author: UserInfoDto(
@@ -90,7 +90,7 @@ class GetPostsUseCaseMock implements GetPostsUseCase {
       ],
     ),
     PostDto(
-      id: 4,
+      id: '4',
       date: DateTime(2021, 05, 24, 07, 48),
       goal: GoalDto(
         id: '6',
@@ -112,7 +112,7 @@ class GetPostsUseCaseMock implements GetPostsUseCase {
       likeQty: 5,
       comments: [
         PostCommentDto(
-          id: 1,
+          id: '1',
           date: DateTime(2021, 05, 26, 08, 11),
           text: 'Поздравляю, рада за тебя!',
           author: UserInfoDto(
@@ -125,7 +125,7 @@ class GetPostsUseCaseMock implements GetPostsUseCase {
           ),
         ),
         PostCommentDto(
-          id: 2,
+          id: '2',
           date: DateTime(2021, 05, 26, 12, 30),
           text: 'Классно. Я ещё не закончил.',
           author: UserInfoDto(
@@ -139,7 +139,7 @@ class GetPostsUseCaseMock implements GetPostsUseCase {
           ),
         ),
         PostCommentDto(
-          id: 2,
+          id: '2',
           date: DateTime(2021, 05, 26, 12, 30),
           text: 'Классно. Я ещё не закончил.',
           author: UserInfoDto(
@@ -153,7 +153,7 @@ class GetPostsUseCaseMock implements GetPostsUseCase {
           ),
         ),
         PostCommentDto(
-          id: 2,
+          id: '2',
           date: DateTime(2021, 05, 26, 12, 30),
           text: 'Классно. Я ещё не закончил.',
           author: UserInfoDto(
@@ -167,7 +167,7 @@ class GetPostsUseCaseMock implements GetPostsUseCase {
           ),
         ),
         PostCommentDto(
-          id: 2,
+          id: '2',
           date: DateTime(2021, 05, 26, 12, 30),
           text: 'Классно. Я ещё не закончил.',
           author: UserInfoDto(
