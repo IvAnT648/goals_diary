@@ -1,6 +1,8 @@
 
 import 'package:injectable/injectable.dart';
 
+import '../../data/repository/goals.dart';
+
 import '../models.dart';
 
 abstract class SaveGoalUseCase {
@@ -9,8 +11,12 @@ abstract class SaveGoalUseCase {
 
 @Injectable(as: SaveGoalUseCase)
 class SaveGoalUseCaseImpl implements SaveGoalUseCase {
+  final GoalsRepository _repository;
+
+  SaveGoalUseCaseImpl(this._repository);
+
   @override
   Future<SaveGoalResult> call(GoalDto goal) async {
-    return SaveGoalResult.success();
+    return _repository.saveGoal(goal);
   }
 }

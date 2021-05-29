@@ -20,6 +20,10 @@ class _$MyGoalsScreenStateTearOff {
     return const LoadingMyGoalsScreenState();
   }
 
+  EmptyMyGoalsScreenState empty() {
+    return const EmptyMyGoalsScreenState();
+  }
+
   SuccessMyGoalsScreenState success(List<GoalDto> goals) {
     return SuccessMyGoalsScreenState(
       goals,
@@ -35,12 +39,14 @@ mixin _$MyGoalsScreenState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
+    required TResult Function() empty,
     required TResult Function(List<GoalDto> goals) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
+    TResult Function()? empty,
     TResult Function(List<GoalDto> goals)? success,
     required TResult orElse(),
   }) =>
@@ -48,12 +54,14 @@ mixin _$MyGoalsScreenState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadingMyGoalsScreenState value) loading,
+    required TResult Function(EmptyMyGoalsScreenState value) empty,
     required TResult Function(SuccessMyGoalsScreenState value) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadingMyGoalsScreenState value)? loading,
+    TResult Function(EmptyMyGoalsScreenState value)? empty,
     TResult Function(SuccessMyGoalsScreenState value)? success,
     required TResult orElse(),
   }) =>
@@ -119,6 +127,7 @@ class _$LoadingMyGoalsScreenState implements LoadingMyGoalsScreenState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
+    required TResult Function() empty,
     required TResult Function(List<GoalDto> goals) success,
   }) {
     return loading();
@@ -128,6 +137,7 @@ class _$LoadingMyGoalsScreenState implements LoadingMyGoalsScreenState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
+    TResult Function()? empty,
     TResult Function(List<GoalDto> goals)? success,
     required TResult orElse(),
   }) {
@@ -141,6 +151,7 @@ class _$LoadingMyGoalsScreenState implements LoadingMyGoalsScreenState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadingMyGoalsScreenState value) loading,
+    required TResult Function(EmptyMyGoalsScreenState value) empty,
     required TResult Function(SuccessMyGoalsScreenState value) success,
   }) {
     return loading(this);
@@ -150,6 +161,7 @@ class _$LoadingMyGoalsScreenState implements LoadingMyGoalsScreenState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadingMyGoalsScreenState value)? loading,
+    TResult Function(EmptyMyGoalsScreenState value)? empty,
     TResult Function(SuccessMyGoalsScreenState value)? success,
     required TResult orElse(),
   }) {
@@ -162,6 +174,96 @@ class _$LoadingMyGoalsScreenState implements LoadingMyGoalsScreenState {
 
 abstract class LoadingMyGoalsScreenState implements MyGoalsScreenState {
   const factory LoadingMyGoalsScreenState() = _$LoadingMyGoalsScreenState;
+}
+
+/// @nodoc
+abstract class $EmptyMyGoalsScreenStateCopyWith<$Res> {
+  factory $EmptyMyGoalsScreenStateCopyWith(EmptyMyGoalsScreenState value,
+          $Res Function(EmptyMyGoalsScreenState) then) =
+      _$EmptyMyGoalsScreenStateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$EmptyMyGoalsScreenStateCopyWithImpl<$Res>
+    extends _$MyGoalsScreenStateCopyWithImpl<$Res>
+    implements $EmptyMyGoalsScreenStateCopyWith<$Res> {
+  _$EmptyMyGoalsScreenStateCopyWithImpl(EmptyMyGoalsScreenState _value,
+      $Res Function(EmptyMyGoalsScreenState) _then)
+      : super(_value, (v) => _then(v as EmptyMyGoalsScreenState));
+
+  @override
+  EmptyMyGoalsScreenState get _value => super._value as EmptyMyGoalsScreenState;
+}
+
+/// @nodoc
+
+class _$EmptyMyGoalsScreenState implements EmptyMyGoalsScreenState {
+  const _$EmptyMyGoalsScreenState();
+
+  @override
+  String toString() {
+    return 'MyGoalsScreenState.empty()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is EmptyMyGoalsScreenState);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function() empty,
+    required TResult Function(List<GoalDto> goals) success,
+  }) {
+    return empty();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function()? empty,
+    TResult Function(List<GoalDto> goals)? success,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadingMyGoalsScreenState value) loading,
+    required TResult Function(EmptyMyGoalsScreenState value) empty,
+    required TResult Function(SuccessMyGoalsScreenState value) success,
+  }) {
+    return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadingMyGoalsScreenState value)? loading,
+    TResult Function(EmptyMyGoalsScreenState value)? empty,
+    TResult Function(SuccessMyGoalsScreenState value)? success,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EmptyMyGoalsScreenState implements MyGoalsScreenState {
+  const factory EmptyMyGoalsScreenState() = _$EmptyMyGoalsScreenState;
 }
 
 /// @nodoc
@@ -232,6 +334,7 @@ class _$SuccessMyGoalsScreenState implements SuccessMyGoalsScreenState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
+    required TResult Function() empty,
     required TResult Function(List<GoalDto> goals) success,
   }) {
     return success(goals);
@@ -241,6 +344,7 @@ class _$SuccessMyGoalsScreenState implements SuccessMyGoalsScreenState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
+    TResult Function()? empty,
     TResult Function(List<GoalDto> goals)? success,
     required TResult orElse(),
   }) {
@@ -254,6 +358,7 @@ class _$SuccessMyGoalsScreenState implements SuccessMyGoalsScreenState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadingMyGoalsScreenState value) loading,
+    required TResult Function(EmptyMyGoalsScreenState value) empty,
     required TResult Function(SuccessMyGoalsScreenState value) success,
   }) {
     return success(this);
@@ -263,6 +368,7 @@ class _$SuccessMyGoalsScreenState implements SuccessMyGoalsScreenState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadingMyGoalsScreenState value)? loading,
+    TResult Function(EmptyMyGoalsScreenState value)? empty,
     TResult Function(SuccessMyGoalsScreenState value)? success,
     required TResult orElse(),
   }) {

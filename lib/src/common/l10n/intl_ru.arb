@@ -13,6 +13,8 @@
   "commonPublicGoal": "Публичная",
   "commonPrivateGoal": "Приватная",
   "commonInternalErrorText": "Внутренняя ошибка",
+  "commonAlertDialogYesButton": "Да",
+  "commonAlertDialogNoButton": "Нет",
 
   "drawerFeedMenuItem": "Лента новостей",
   "drawerGoalsMenuItem": "Мои цели",
@@ -62,6 +64,10 @@
   "screenEditGoalNotificationsDaysLabel": "Дни недели",
   "screenEditGoalSelectNotificationsDaysLabel": "Выберите дни недели",
   "screenEditGoalSaveButton": "Сохранить",
+  "screenEditGoalEmptyTitleSnackBar": "Название цели не может быть пустым",
+  "screenEditGoalSuccessSaveSnackBar": "Цель успешно сохранена",
+  "screenEditGoalHaveNoGoals": "Вы пока не создали ни одной цели",
+  "screenEditGoalDeleteGoalAlert": "Вы хотите удалить эту цель?",
 
   "screenProfileTitle": "Профиль",
   "screenMyProfileTitle": "Мой профиль",

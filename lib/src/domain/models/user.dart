@@ -1,8 +1,8 @@
 
 class UserInfoDto {
   final String? id;
-  final String nickname;
   final String name;
+  final String? nickname;
   final String? surname;
   final String? info;
   final String? motto;
@@ -10,15 +10,15 @@ class UserInfoDto {
 
   const UserInfoDto({
     this.id,
-    required this.nickname,
     required this.name,
+    this.nickname,
     this.surname,
     this.info,
     this.motto,
     this.avatarUrl,
   });
 
-  String get nicknameWithAt => '@$nickname';
+  String get nicknameWithAt => nickname != null ? '@$nickname' : '';
 
   String get fullName {
     if (surname == null || surname!.isEmpty) {

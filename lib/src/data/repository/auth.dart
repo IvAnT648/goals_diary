@@ -7,7 +7,8 @@ import 'utils.dart';
 
 abstract class AuthRepository {
   bool isLoggedIn();
-  Stream<UserInfoDto?> currentUser();
+  Stream<UserInfoDto?> get currentUserStream;
+  UserInfoDto? get currentUser;
 }
 
 @Injectable(as: AuthRepository)
@@ -20,7 +21,10 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Stream<UserInfoDto?> currentUser() {
+  Stream<UserInfoDto?> get currentUserStream {
     return _auth.authStateChanges().map((user) => user?.toDomain());
   }
+
+  @override
+  UserInfoDto? get currentUser => _auth.currentUser?.toDomain();
 }

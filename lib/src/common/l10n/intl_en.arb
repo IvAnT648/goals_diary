@@ -13,6 +13,8 @@
   "commonPublicGoal": "Public",
   "commonPrivateGoal": "Private",
   "commonInternalErrorText": "Something went wrong",
+  "commonAlertDialogYesButton": "Yes",
+  "commonAlertDialogNoButton": "No",
 
   "drawerFeedMenuItem": "Feed",
   "drawerGoalsMenuItem": "My goals",
@@ -62,6 +64,10 @@
   "screenEditGoalNotificationsDaysLabel": "Week days",
   "screenEditGoalSelectNotificationsDaysLabel": "Select week days",
   "screenEditGoalSaveButton": "Save",
+  "screenEditGoalEmptyTitleSnackBar": "Goal title can't be empty",
+  "screenEditGoalSuccessSaveSnackBar": "Goal saved successfully",
+  "screenEditGoalHaveNoGoals": "You haven't created any goals yet",
+  "screenEditGoalDeleteGoalAlert": "Do you want to delete this goal?",
 
   "screenProfileTitle": "Profile",
   "screenMyProfileTitle": "My profile",

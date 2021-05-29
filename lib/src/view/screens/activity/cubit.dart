@@ -13,11 +13,15 @@ class ActivityScreenCubit extends Cubit<ActivityScreenState> {
   late final List<GoalActivityDto> list;
 
   ActivityScreenCubit(this._getMyGoals) : super(ActivityScreenState.loading()) {
-    // TODO: fix mocks
-    list = _getMyGoals()
-        .map((e) => GoalActivityDto(goal: e, isDone: false))
-        .toList();
-    emit(ActivityScreenState.list(list));
+    _getMyGoals().listen((goals) {
+      list = goals.map((el) =>
+          GoalActivityDto(goal: el, isDone: false)
+      ).toList();
+      if (list.isEmpty) {
+        return emit(ActivityScreenState.empty());
+      }
+      emit(ActivityScreenState.list(list));
+    });
   }
 
   void _setActivityValue(GoalActivityDto activity, bool value) {

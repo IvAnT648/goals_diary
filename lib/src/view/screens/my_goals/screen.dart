@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:goals_diary/src/domain/models.dart';
 
-import '../../../../generated/l10n.dart';
+import '../../../common/resources.dart';
 import '../../components.dart';
 import '../../navigation.dart';
 import '../../screens.dart';
@@ -25,32 +26,69 @@ class MyGoalsScreen extends StatelessWidget {
       floatingActionButton: _FloatingNewGoalButton(),
       body: BlocBuilder<MyGoalsScreenCubit, MyGoalsScreenState>(
         builder: (context, state) => state.when(
-          loading: () => Center(
-            child: CircularProgressIndicator(),
-          ),
-          success: (goals) => Container(
-            padding: EdgeInsets.symmetric(
-              vertical: 35,
-              horizontal: 43,
-            ),
-            child: ListView.separated(
-              itemCount: goals.length,
-              separatorBuilder: (_, __) => GoalsListDivider(),
-              itemBuilder: (_, i) => MyGoalsListItem(
-                goal: goals[i],
-                onTap: () {
-                  Navigation.to(EditGoalScreen.id, params: {
-                    EditGoalScreen.goalArg: goals[i],
-                  });
-                },
-              ),
-            ),
-          ),
+          empty: () => const _EmptyState(),
+          loading: () => const _LoadingState(),
+          success: (goals) => _SuccessState(goals),
         ),
       ),
     );
   }
 }
+
+class _EmptyState extends StatelessWidget {
+  const _EmptyState();
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(
+        S.of(context).screenEditGoalHaveNoGoals,
+        style: TextStyle(
+          fontSize: 16,
+          color: AppColors.hintText,
+        ),
+      ),
+    );
+  }
+}
+
+class _LoadingState extends StatelessWidget {
+  const _LoadingState();
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(child: CircularProgressIndicator());
+  }
+}
+
+class _SuccessState extends StatelessWidget {
+  final List<GoalDto> goals;
+
+  const _SuccessState(this.goals, {Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(
+        vertical: 35,
+        horizontal: 43,
+      ),
+      child: ListView.separated(
+        itemCount: goals.length,
+        separatorBuilder: (_, __) => GoalsListDivider(),
+        itemBuilder: (_, i) => MyGoalsListItem(
+          goal: goals[i],
+          onTap: () {
+            Navigation.to(EditGoalScreen.id, params: {
+              EditGoalScreen.goalArg: goals[i],
+            });
+          },
+        ),
+      ),
+    );
+  }
+}
+
 
 class _FloatingNewGoalButton extends StatelessWidget {
   const _FloatingNewGoalButton({Key? key}) : super(key: key);

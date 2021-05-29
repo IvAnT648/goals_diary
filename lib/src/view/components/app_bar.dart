@@ -41,10 +41,12 @@ class MenuTopBar extends StatelessWidget with DefaultPreferredSizeAppBar {
 
 class ReturnableTopBar extends StatelessWidget with DefaultPreferredSizeAppBar {
   final String? title;
+  final List<Widget>? actions;
 
   const ReturnableTopBar({
     Key? key,
     this.title,
+    this.actions,
   }) : super(key: key);
 
   @override
@@ -63,6 +65,7 @@ class ReturnableTopBar extends StatelessWidget with DefaultPreferredSizeAppBar {
         ),
         onPressed: () async => await Navigation.popSafe(),
       ),
+      actions: actions,
     );
   }
 }

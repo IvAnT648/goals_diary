@@ -22,6 +22,10 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appName": MessageLookupByLibrary.simpleMessage("Дневник целей"),
+        "commonAlertDialogNoButton":
+            MessageLookupByLibrary.simpleMessage("Нет"),
+        "commonAlertDialogYesButton":
+            MessageLookupByLibrary.simpleMessage("Да"),
         "commonDailyPeriodicity":
             MessageLookupByLibrary.simpleMessage("ежедневно"),
         "commonFridayShort": MessageLookupByLibrary.simpleMessage("пт"),
@@ -69,8 +73,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Задачи на сегодня"),
         "screenActivityToGoalsCreatingButton":
             MessageLookupByLibrary.simpleMessage("Создать"),
+        "screenEditGoalDeleteGoalAlert":
+            MessageLookupByLibrary.simpleMessage("Вы хотите удалить эту цель?"),
         "screenEditGoalDescriptionLabel":
             MessageLookupByLibrary.simpleMessage("Описание цели"),
+        "screenEditGoalEmptyTitleSnackBar":
+            MessageLookupByLibrary.simpleMessage(
+                "Название цели не может быть пустым"),
+        "screenEditGoalHaveNoGoals": MessageLookupByLibrary.simpleMessage(
+            "Вы пока не создали ни одной цели"),
         "screenEditGoalNewTitle":
             MessageLookupByLibrary.simpleMessage("Создать цель"),
         "screenEditGoalNotificationsDaysLabel":
@@ -83,6 +94,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Сохранить"),
         "screenEditGoalSelectNotificationsDaysLabel":
             MessageLookupByLibrary.simpleMessage("Выберите дни недели"),
+        "screenEditGoalSuccessSaveSnackBar":
+            MessageLookupByLibrary.simpleMessage("Цель успешно сохранена"),
         "screenEditGoalTitle":
             MessageLookupByLibrary.simpleMessage("Редактировать цель"),
         "screenEditGoalTitleLabel":

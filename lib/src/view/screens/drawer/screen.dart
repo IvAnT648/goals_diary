@@ -77,8 +77,7 @@ class AppDrawer extends StatelessWidget {
                           return;
                         case DrawerMenuItemType.logOut:
                           cubit.logout();
-                          Navigation.pop();
-                          return;
+                          return Navigation.clearAndPush(SignInScreen.id);
                       }
                     },
                   ),

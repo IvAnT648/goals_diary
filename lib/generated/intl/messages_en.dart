@@ -22,6 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appName": MessageLookupByLibrary.simpleMessage("Goals Diary"),
+        "commonAlertDialogNoButton": MessageLookupByLibrary.simpleMessage("No"),
+        "commonAlertDialogYesButton":
+            MessageLookupByLibrary.simpleMessage("Yes"),
         "commonDailyPeriodicity": MessageLookupByLibrary.simpleMessage("daily"),
         "commonFridayShort": MessageLookupByLibrary.simpleMessage("fri"),
         "commonInternalErrorText":
@@ -66,8 +69,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Tasks for today"),
         "screenActivityToGoalsCreatingButton":
             MessageLookupByLibrary.simpleMessage("Create now"),
+        "screenEditGoalDeleteGoalAlert": MessageLookupByLibrary.simpleMessage(
+            "Do you want to delete this goal?"),
         "screenEditGoalDescriptionLabel":
             MessageLookupByLibrary.simpleMessage("Description"),
+        "screenEditGoalEmptyTitleSnackBar":
+            MessageLookupByLibrary.simpleMessage("Goal title can\'t be empty"),
+        "screenEditGoalHaveNoGoals": MessageLookupByLibrary.simpleMessage(
+            "You haven\'t created any goals yet"),
         "screenEditGoalNewTitle":
             MessageLookupByLibrary.simpleMessage("Create a goal"),
         "screenEditGoalNotificationsDaysLabel":
@@ -80,6 +89,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Save"),
         "screenEditGoalSelectNotificationsDaysLabel":
             MessageLookupByLibrary.simpleMessage("Select week days"),
+        "screenEditGoalSuccessSaveSnackBar":
+            MessageLookupByLibrary.simpleMessage("Goal saved successfully"),
         "screenEditGoalTitle":
             MessageLookupByLibrary.simpleMessage("Edit the goal"),
         "screenEditGoalTitleLabel":

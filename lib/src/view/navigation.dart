@@ -120,12 +120,22 @@ abstract class Navigation {
         .popUntil(ModalRoute.withName(home));
   }
 
-  static void pushAndRemoveUntilHome<T extends Object?>(
+  static void pushAndRemoveUntil<T extends Object?>(
+      String newRouteName, RoutePredicate predicate, [Object? arguments]
+  ) {
+    seafarer.navigatorKey!.currentState!.pushNamedAndRemoveUntil(
+      newRouteName,
+      predicate,
+      arguments: arguments,
+    );
+  }
+
+  static void clearAndPush<T extends Object?>(
       String newRouteName, [Object? arguments]
   ) {
     seafarer.navigatorKey!.currentState!.pushNamedAndRemoveUntil(
       newRouteName,
-      ModalRoute.withName(home),
+      (_) => false,
       arguments: arguments,
     );
   }

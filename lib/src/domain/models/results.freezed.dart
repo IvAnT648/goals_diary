@@ -1180,8 +1180,8 @@ class _$SaveGoalResultTearOff {
     return const SuccessSaveGoalResult();
   }
 
-  IncorrectNameFailSaveGoalResult incorrectNameFail() {
-    return const IncorrectNameFailSaveGoalResult();
+  IncorrectNameSaveGoalResult incorrectName() {
+    return const IncorrectNameSaveGoalResult();
   }
 
   InternalErrorSaveGoalResult internalError() {
@@ -1197,14 +1197,14 @@ mixin _$SaveGoalResult {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() success,
-    required TResult Function() incorrectNameFail,
+    required TResult Function() incorrectName,
     required TResult Function() internalError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? success,
-    TResult Function()? incorrectNameFail,
+    TResult Function()? incorrectName,
     TResult Function()? internalError,
     required TResult orElse(),
   }) =>
@@ -1212,15 +1212,14 @@ mixin _$SaveGoalResult {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SuccessSaveGoalResult value) success,
-    required TResult Function(IncorrectNameFailSaveGoalResult value)
-        incorrectNameFail,
+    required TResult Function(IncorrectNameSaveGoalResult value) incorrectName,
     required TResult Function(InternalErrorSaveGoalResult value) internalError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SuccessSaveGoalResult value)? success,
-    TResult Function(IncorrectNameFailSaveGoalResult value)? incorrectNameFail,
+    TResult Function(IncorrectNameSaveGoalResult value)? incorrectName,
     TResult Function(InternalErrorSaveGoalResult value)? internalError,
     required TResult orElse(),
   }) =>
@@ -1285,7 +1284,7 @@ class _$SuccessSaveGoalResult implements SuccessSaveGoalResult {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() success,
-    required TResult Function() incorrectNameFail,
+    required TResult Function() incorrectName,
     required TResult Function() internalError,
   }) {
     return success();
@@ -1295,7 +1294,7 @@ class _$SuccessSaveGoalResult implements SuccessSaveGoalResult {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? success,
-    TResult Function()? incorrectNameFail,
+    TResult Function()? incorrectName,
     TResult Function()? internalError,
     required TResult orElse(),
   }) {
@@ -1309,8 +1308,7 @@ class _$SuccessSaveGoalResult implements SuccessSaveGoalResult {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SuccessSaveGoalResult value) success,
-    required TResult Function(IncorrectNameFailSaveGoalResult value)
-        incorrectNameFail,
+    required TResult Function(IncorrectNameSaveGoalResult value) incorrectName,
     required TResult Function(InternalErrorSaveGoalResult value) internalError,
   }) {
     return success(this);
@@ -1320,7 +1318,7 @@ class _$SuccessSaveGoalResult implements SuccessSaveGoalResult {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SuccessSaveGoalResult value)? success,
-    TResult Function(IncorrectNameFailSaveGoalResult value)? incorrectNameFail,
+    TResult Function(IncorrectNameSaveGoalResult value)? incorrectName,
     TResult Function(InternalErrorSaveGoalResult value)? internalError,
     required TResult orElse(),
   }) {
@@ -1336,41 +1334,39 @@ abstract class SuccessSaveGoalResult implements SaveGoalResult {
 }
 
 /// @nodoc
-abstract class $IncorrectNameFailSaveGoalResultCopyWith<$Res> {
-  factory $IncorrectNameFailSaveGoalResultCopyWith(
-          IncorrectNameFailSaveGoalResult value,
-          $Res Function(IncorrectNameFailSaveGoalResult) then) =
-      _$IncorrectNameFailSaveGoalResultCopyWithImpl<$Res>;
+abstract class $IncorrectNameSaveGoalResultCopyWith<$Res> {
+  factory $IncorrectNameSaveGoalResultCopyWith(
+          IncorrectNameSaveGoalResult value,
+          $Res Function(IncorrectNameSaveGoalResult) then) =
+      _$IncorrectNameSaveGoalResultCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$IncorrectNameFailSaveGoalResultCopyWithImpl<$Res>
+class _$IncorrectNameSaveGoalResultCopyWithImpl<$Res>
     extends _$SaveGoalResultCopyWithImpl<$Res>
-    implements $IncorrectNameFailSaveGoalResultCopyWith<$Res> {
-  _$IncorrectNameFailSaveGoalResultCopyWithImpl(
-      IncorrectNameFailSaveGoalResult _value,
-      $Res Function(IncorrectNameFailSaveGoalResult) _then)
-      : super(_value, (v) => _then(v as IncorrectNameFailSaveGoalResult));
+    implements $IncorrectNameSaveGoalResultCopyWith<$Res> {
+  _$IncorrectNameSaveGoalResultCopyWithImpl(IncorrectNameSaveGoalResult _value,
+      $Res Function(IncorrectNameSaveGoalResult) _then)
+      : super(_value, (v) => _then(v as IncorrectNameSaveGoalResult));
 
   @override
-  IncorrectNameFailSaveGoalResult get _value =>
-      super._value as IncorrectNameFailSaveGoalResult;
+  IncorrectNameSaveGoalResult get _value =>
+      super._value as IncorrectNameSaveGoalResult;
 }
 
 /// @nodoc
 
-class _$IncorrectNameFailSaveGoalResult
-    implements IncorrectNameFailSaveGoalResult {
-  const _$IncorrectNameFailSaveGoalResult();
+class _$IncorrectNameSaveGoalResult implements IncorrectNameSaveGoalResult {
+  const _$IncorrectNameSaveGoalResult();
 
   @override
   String toString() {
-    return 'SaveGoalResult.incorrectNameFail()';
+    return 'SaveGoalResult.incorrectName()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is IncorrectNameFailSaveGoalResult);
+    return identical(this, other) || (other is IncorrectNameSaveGoalResult);
   }
 
   @override
@@ -1380,22 +1376,22 @@ class _$IncorrectNameFailSaveGoalResult
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() success,
-    required TResult Function() incorrectNameFail,
+    required TResult Function() incorrectName,
     required TResult Function() internalError,
   }) {
-    return incorrectNameFail();
+    return incorrectName();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? success,
-    TResult Function()? incorrectNameFail,
+    TResult Function()? incorrectName,
     TResult Function()? internalError,
     required TResult orElse(),
   }) {
-    if (incorrectNameFail != null) {
-      return incorrectNameFail();
+    if (incorrectName != null) {
+      return incorrectName();
     }
     return orElse();
   }
@@ -1404,31 +1400,29 @@ class _$IncorrectNameFailSaveGoalResult
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SuccessSaveGoalResult value) success,
-    required TResult Function(IncorrectNameFailSaveGoalResult value)
-        incorrectNameFail,
+    required TResult Function(IncorrectNameSaveGoalResult value) incorrectName,
     required TResult Function(InternalErrorSaveGoalResult value) internalError,
   }) {
-    return incorrectNameFail(this);
+    return incorrectName(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SuccessSaveGoalResult value)? success,
-    TResult Function(IncorrectNameFailSaveGoalResult value)? incorrectNameFail,
+    TResult Function(IncorrectNameSaveGoalResult value)? incorrectName,
     TResult Function(InternalErrorSaveGoalResult value)? internalError,
     required TResult orElse(),
   }) {
-    if (incorrectNameFail != null) {
-      return incorrectNameFail(this);
+    if (incorrectName != null) {
+      return incorrectName(this);
     }
     return orElse();
   }
 }
 
-abstract class IncorrectNameFailSaveGoalResult implements SaveGoalResult {
-  const factory IncorrectNameFailSaveGoalResult() =
-      _$IncorrectNameFailSaveGoalResult;
+abstract class IncorrectNameSaveGoalResult implements SaveGoalResult {
+  const factory IncorrectNameSaveGoalResult() = _$IncorrectNameSaveGoalResult;
 }
 
 /// @nodoc
@@ -1474,7 +1468,7 @@ class _$InternalErrorSaveGoalResult implements InternalErrorSaveGoalResult {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() success,
-    required TResult Function() incorrectNameFail,
+    required TResult Function() incorrectName,
     required TResult Function() internalError,
   }) {
     return internalError();
@@ -1484,7 +1478,7 @@ class _$InternalErrorSaveGoalResult implements InternalErrorSaveGoalResult {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? success,
-    TResult Function()? incorrectNameFail,
+    TResult Function()? incorrectName,
     TResult Function()? internalError,
     required TResult orElse(),
   }) {
@@ -1498,8 +1492,7 @@ class _$InternalErrorSaveGoalResult implements InternalErrorSaveGoalResult {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SuccessSaveGoalResult value) success,
-    required TResult Function(IncorrectNameFailSaveGoalResult value)
-        incorrectNameFail,
+    required TResult Function(IncorrectNameSaveGoalResult value) incorrectName,
     required TResult Function(InternalErrorSaveGoalResult value) internalError,
   }) {
     return internalError(this);
@@ -1509,7 +1502,7 @@ class _$InternalErrorSaveGoalResult implements InternalErrorSaveGoalResult {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SuccessSaveGoalResult value)? success,
-    TResult Function(IncorrectNameFailSaveGoalResult value)? incorrectNameFail,
+    TResult Function(IncorrectNameSaveGoalResult value)? incorrectName,
     TResult Function(InternalErrorSaveGoalResult value)? internalError,
     required TResult orElse(),
   }) {

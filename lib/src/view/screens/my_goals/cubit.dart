@@ -11,6 +11,12 @@ export 'cubit/states.dart';
 class MyGoalsScreenCubit extends Cubit<MyGoalsScreenState> {
   final GetMyGoalsUseCase _getMyGoals;
 
-  MyGoalsScreenCubit(this._getMyGoals)
-      : super(MyGoalsScreenState.success(_getMyGoals()));
+  MyGoalsScreenCubit(this._getMyGoals) : super(MyGoalsScreenState.loading()) {
+    _getMyGoals().listen((goals) {
+      if (goals.isEmpty) {
+        return emit(MyGoalsScreenState.empty());
+      }
+      emit(MyGoalsScreenState.success(goals));
+    });
+  }
 }

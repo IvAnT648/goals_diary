@@ -24,7 +24,7 @@ class SignUpResult with _$SignUpResult {
 @freezed
 class SaveGoalResult with _$SaveGoalResult {
   const factory SaveGoalResult.success() = SuccessSaveGoalResult;
-  const factory SaveGoalResult.incorrectNameFail() =
-    IncorrectNameFailSaveGoalResult;
+  const factory SaveGoalResult.incorrectName() =
+    IncorrectNameSaveGoalResult;
   const factory SaveGoalResult.internalError() = InternalErrorSaveGoalResult;
 }

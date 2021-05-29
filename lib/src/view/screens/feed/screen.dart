@@ -28,6 +28,7 @@ class FeedScreen extends StatelessWidget {
         builder: (context, state) => state.maybeWhen(
           loading: () => _LoadingState(),
           loaded: (posts) => _LoadedState(posts),
+          // TODO: empty state
           empty: () => Container(),
           orElse: () => Container(),
         ),

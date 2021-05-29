@@ -5,7 +5,7 @@ enum GoalType { private, public }
 class GoalDto {
   final String? id;
   final String title;
-  final String description;
+  final String? description;
   final GoalType type;
   final bool sendNotifications;
   final NotificationTime? notificationsTime;
@@ -16,8 +16,8 @@ class GoalDto {
   GoalDto({
     this.id,
     required this.title,
-    required this.description,
     required this.type,
+    this.description,
     this.sendNotifications = false,
     this.notificationsTime,
   }) : assert(!sendNotifications || notificationsTime != null);

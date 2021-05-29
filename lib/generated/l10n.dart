@@ -170,6 +170,26 @@ class S {
     );
   }
 
+  /// `Yes`
+  String get commonAlertDialogYesButton {
+    return Intl.message(
+      'Yes',
+      name: 'commonAlertDialogYesButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No`
+  String get commonAlertDialogNoButton {
+    return Intl.message(
+      'No',
+      name: 'commonAlertDialogNoButton',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Feed`
   String get drawerFeedMenuItem {
     return Intl.message(
@@ -605,6 +625,46 @@ class S {
     return Intl.message(
       'Save',
       name: 'screenEditGoalSaveButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Goal title can't be empty`
+  String get screenEditGoalEmptyTitleSnackBar {
+    return Intl.message(
+      'Goal title can\'t be empty',
+      name: 'screenEditGoalEmptyTitleSnackBar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Goal saved successfully`
+  String get screenEditGoalSuccessSaveSnackBar {
+    return Intl.message(
+      'Goal saved successfully',
+      name: 'screenEditGoalSuccessSaveSnackBar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You haven't created any goals yet`
+  String get screenEditGoalHaveNoGoals {
+    return Intl.message(
+      'You haven\'t created any goals yet',
+      name: 'screenEditGoalHaveNoGoals',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you want to delete this goal?`
+  String get screenEditGoalDeleteGoalAlert {
+    return Intl.message(
+      'Do you want to delete this goal?',
+      name: 'screenEditGoalDeleteGoalAlert',
       desc: '',
       args: [],
     );
