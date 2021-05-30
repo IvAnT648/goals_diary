@@ -11,5 +11,13 @@ class SubscriptionsScreenCubit extends Cubit<SubscriptionsScreenState> {
   final GetSubscriptionsUseCase _getSubscriptions;
 
   SubscriptionsScreenCubit(this._getSubscriptions)
-      : super(SubscriptionsScreenState.loaded(_getSubscriptions()));
+      : super(SubscriptionsScreenState.loading()) {
+    _getSubscriptions()
+        .listen((e) {
+          if (e.subscriptions.isEmpty) {
+            return emit(SubscriptionsScreenState.empty());
+          }
+          emit(SubscriptionsScreenState.loaded(e.subscriptions));
+        });
+  }
 }

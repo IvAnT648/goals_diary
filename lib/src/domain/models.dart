@@ -4,3 +4,4 @@ export 'models/user.dart';
 export 'models/activity.dart';
 export 'models/feed.dart';
 export 'models/results.dart';
+export 'models/subscription.dart';

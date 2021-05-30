@@ -1,4 +1,6 @@
 
+import 'dart:async';
+
 class SingleValue<T> {
   SingleValue(this.value);
 
@@ -23,5 +25,20 @@ DateTime getTodayWithoutTime() {
 extension StringToNullableExt on String {
   String? toNullable() {
     return isEmpty ? null : this;
+  }
+}
+
+extension StreamMapNotNullExt<T> on Stream<T> {
+  Stream<R> mapNotNull<R>(R Function(T) mapper) {
+    return transform(
+        StreamTransformer<T, R>.fromHandlers(
+            handleData: (value, sink) {
+              final mappedValue = mapper(value);
+              if (mappedValue != null) {
+                sink.add(mappedValue);
+              }
+            }
+        )
+    );
   }
 }

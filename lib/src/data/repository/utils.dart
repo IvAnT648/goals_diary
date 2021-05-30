@@ -1,6 +1,4 @@
 
-import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
-
 import '../../domain/models.dart';
 import '../../common/utils.dart';
 import '../models.dart';
@@ -74,6 +72,25 @@ extension ProfileDataToDomain on ProfileData {
       motto: motto,
       about: about,
       avatarUrl: photoUrl,
+    );
+  }
+}
+
+extension SubscriptionDtoToDataExt on SubscriptionsDto {
+  SubscriptionsData toData() =>
+      SubscriptionsData(
+          subscriptions: subscriptions.map((e) => e.id).toList()
+      );
+}
+
+extension SubscriptionDataToDomainExt on SubscriptionsData {
+  SubscriptionsDto toDomain({
+    required String userId,
+    required List<UserDto> subs,
+  }) {
+    return SubscriptionsDto(
+        uid: userId,
+        subscriptions: subs,
     );
   }
 }

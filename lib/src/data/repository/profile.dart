@@ -11,6 +11,8 @@ abstract class ProfileRepository {
 
   Stream<UserDto?> get(String id);
 
+  Future<UserDto?> getSingle(String id);
+
   Future<void> save(UserDto user);
 
   Future<void> saveOwn(UserDto user);
@@ -91,5 +93,12 @@ class ProfileRepositoryImpl implements ProfileRepository {
           .doc(_authRepository.currentUser!.uid)
           .update(data.toMap());
     }
+  }
+
+  @override
+  Future<UserDto?> getSingle(String id) async {
+    if (id.isEmpty) return null;
+    final doc = await collectionWithConverter.doc(id).get();
+    return doc.data()?.toDomain(id: id);
   }
 }
