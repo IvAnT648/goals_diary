@@ -136,6 +136,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenProfileMottoField":
             MessageLookupByLibrary.simpleMessage("Девиз"),
         "screenProfileNameField": MessageLookupByLibrary.simpleMessage("Имя"),
+        "screenProfileNotFound":
+            MessageLookupByLibrary.simpleMessage("Пользователь не найден"),
         "screenProfileSaveButton":
             MessageLookupByLibrary.simpleMessage("Сохранить"),
         "screenProfileSubscribeButton":

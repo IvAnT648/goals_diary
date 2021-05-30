@@ -130,6 +130,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenProfileMottoField":
             MessageLookupByLibrary.simpleMessage("Motto"),
         "screenProfileNameField": MessageLookupByLibrary.simpleMessage("Name"),
+        "screenProfileNotFound":
+            MessageLookupByLibrary.simpleMessage("The user not found"),
         "screenProfileSaveButton": MessageLookupByLibrary.simpleMessage("Save"),
         "screenProfileSubscribeButton":
             MessageLookupByLibrary.simpleMessage("Subscribe"),

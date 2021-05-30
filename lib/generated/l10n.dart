@@ -790,6 +790,16 @@ class S {
     );
   }
 
+  /// `The user not found`
+  String get screenProfileNotFound {
+    return Intl.message(
+      'The user not found',
+      name: 'screenProfileNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Tasks for today`
   String get screenActivityTitle {
     return Intl.message(

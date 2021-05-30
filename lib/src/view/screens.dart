@@ -7,3 +7,4 @@ export 'screens/profile/screen.dart';
 export 'screens/activity/screen.dart';
 export 'screens/feed/screen.dart';
 export 'screens/subscriptions/screen.dart';
+export 'screens/drawer/screen.dart';

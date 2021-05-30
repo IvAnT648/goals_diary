@@ -10,23 +10,45 @@ enum ProfileScreenType { own, other }
 
 class ProfileScreenCubit extends Cubit<ProfileScreenState> {
   final ProfileUseCase _profile;
+  final SubscribingUseCase _subscription;
   final ProfileScreenType type;
+  final UserDto? user;
 
-  ProfileScreenCubit(this._profile, {required this.type})
-      : super(ProfileScreenState.loading()
-  ) {
-    switch (type) {
-      case ProfileScreenType.own:
-        _profile.own.listen((user) {
-          if (user != null) {
-            emit(ProfileScreenState.own(user));
-          }
-        });
-        break;
-      case ProfileScreenType.other:
-        // TODO: implement profile page for other users
-        break;
+  ProfileScreenCubit(
+    this._profile,
+    this._subscription, {
+    required this.type,
+    this.user,
+  }) : super(ProfileScreenState.loading()) {
+    _init();
+  }
+
+  void _init() async {
+    if (type == ProfileScreenType.own) {
+      _profile.own.listen((profile) {
+        if (profile != null) {
+          emit(ProfileScreenState.own(profile));
+        }
+      });
+      return;
     }
+
+    if (user == null) {
+      emit(ProfileScreenState.userNotFound());
+      return;
+    }
+
+    _subscription.own.listen((e) {
+      // Check whether the user in subscriptions
+      final isSubscribed =
+          e.subscriptions.indexWhere((sub) => sub == user) != -1;
+
+      if (isSubscribed) {
+        emit(ProfileScreenState.subscribed(user!));
+      } else {
+        emit(ProfileScreenState.unsubscribed(user!));
+      }
+    });
   }
 
   Future<SaveProfileResult> save({
@@ -50,11 +72,11 @@ class ProfileScreenCubit extends Cubit<ProfileScreenState> {
     return SaveProfileResult.success();
   }
 
-  void subscribe() {
-    //emit(ProfileScreenState.subscribed(_getOwnProfile()));
+  void subscribe(UserDto user) {
+    _subscription.subscribeTo(user);
   }
 
-  void unsubscribe() {
-    //emit(ProfileScreenState.unsubscribed(_getOwnProfile()));
+  void unsubscribe(UserDto user) {
+    _subscription.unsubscribeFrom(user);
   }
 }

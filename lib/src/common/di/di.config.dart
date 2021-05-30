@@ -19,15 +19,15 @@ import '../../domain/usecases/auth.dart' as _i11;
 import '../../domain/usecases/delete_goal.dart' as _i22;
 import '../../domain/usecases/get_my_goals.dart' as _i24;
 import '../../domain/usecases/get_posts.dart' as _i9;
-import '../../domain/usecases/get_subscriptions.dart' as _i25;
 import '../../domain/usecases/profile.dart' as _i14;
 import '../../domain/usecases/save_goal.dart' as _i15;
+import '../../domain/usecases/subscribing.dart' as _i26;
 import '../../view/screens/activity/cubit.dart' as _i3;
 import '../../view/screens/drawer/cubit.dart' as _i5;
 import '../../view/screens/edit_goal/cubit.dart' as _i23;
 import '../../view/screens/feed/cubit.dart' as _i8;
 import '../../view/screens/my_goals/cubit.dart' as _i12;
-import '../../view/screens/sign_in/cubit.dart' as _i26;
+import '../../view/screens/sign_in/cubit.dart' as _i25;
 import '../../view/screens/sign_up/cubit.dart' as _i16;
 import '../../view/screens/startup/bloc.dart' as _i17;
 import '../../view/screens/subscriptions/cubit.dart'
@@ -73,7 +73,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       _i18.SubscriptionsRepositoryImpl(
           get<_i6.AuthRepository>(), get<_i13.ProfileRepository>()));
   gh.factory<_i19.SubscriptionsScreenCubit>(
-      () => _i19.SubscriptionsScreenCubit(get<_i4.GetSubscriptionsUseCase>()));
+      () => _i19.SubscriptionsScreenCubit(get<_i4.SubscribingUseCase>()));
   gh.factory<_i20.ActivityRepository>(
       () => _i20.ActivityRepositoryImpl(get<_i10.GoalsRepository>()));
   gh.factory<_i21.ActivityUseCase>(
@@ -84,9 +84,9 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       get<_i15.SaveGoalUseCase>(), get<_i22.DeleteGoalUseCase>()));
   gh.factory<_i24.GetMyGoalsUseCase>(
       () => _i24.GetMyGoalsUseCaseImpl(get<_i10.GoalsRepository>()));
-  gh.factory<_i25.GetSubscriptionsUseCase>(() =>
-      _i25.GetSubscriptionsUseCaseImpl(get<_i18.SubscriptionsRepository>()));
-  gh.factory<_i26.SignInCubit>(
-      () => _i26.SignInCubit(get<_i11.SignInUseCase>()));
+  gh.factory<_i25.SignInCubit>(
+      () => _i25.SignInCubit(get<_i11.SignInUseCase>()));
+  gh.factory<_i26.SubscribingUseCase>(
+      () => _i26.SubscribingUseCaseImpl(get<_i18.SubscriptionsRepository>()));
   return get;
 }

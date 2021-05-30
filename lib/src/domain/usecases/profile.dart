@@ -8,6 +8,7 @@ import '../models.dart';
 
 abstract class ProfileUseCase {
   Stream<UserDto?> get own;
+  Stream<UserDto?> getById(String id);
   void save(UserDto user);
   Future<void> saveOwn(UserDto user);
   Future<bool> isAvailableNickname(String nickname);
@@ -32,5 +33,10 @@ class ProfileUseCaseImpl implements ProfileUseCase {
   @override
   Future<bool> isAvailableNickname(String nickname) async {
     return await _repository.isAvailableNickname(nickname);
+  }
+
+  @override
+  Stream<UserDto?> getById(String id) async* {
+    yield* _repository.get(id);
   }
 }

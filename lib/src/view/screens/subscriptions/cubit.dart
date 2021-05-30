@@ -8,11 +8,11 @@ export 'bloc/states.dart';
 
 @injectable
 class SubscriptionsScreenCubit extends Cubit<SubscriptionsScreenState> {
-  final GetSubscriptionsUseCase _getSubscriptions;
+  final SubscribingUseCase _getSubscriptions;
 
   SubscriptionsScreenCubit(this._getSubscriptions)
       : super(SubscriptionsScreenState.loading()) {
-    _getSubscriptions()
+    _getSubscriptions.own
         .listen((e) {
           if (e.subscriptions.isEmpty) {
             return emit(SubscriptionsScreenState.empty());

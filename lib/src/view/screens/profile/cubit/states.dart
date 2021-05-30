@@ -17,4 +17,7 @@ class ProfileScreenState with _$ProfileScreenState {
     UnsubscribedProfileScreenState;
 
   const factory ProfileScreenState.loading() = LoadingProfileScreenState;
+
+  const factory ProfileScreenState.userNotFound() =
+    UserNotFoundProfileScreenState;
 }

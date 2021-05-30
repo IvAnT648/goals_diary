@@ -37,6 +37,10 @@ class _$ProfileScreenStateTearOff {
   LoadingProfileScreenState loading() {
     return const LoadingProfileScreenState();
   }
+
+  UserNotFoundProfileScreenState userNotFound() {
+    return const UserNotFoundProfileScreenState();
+  }
 }
 
 /// @nodoc
@@ -50,6 +54,7 @@ mixin _$ProfileScreenState {
     required TResult Function(UserDto info) subscribed,
     required TResult Function(UserDto info) unsubscribed,
     required TResult Function() loading,
+    required TResult Function() userNotFound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -58,6 +63,7 @@ mixin _$ProfileScreenState {
     TResult Function(UserDto info)? subscribed,
     TResult Function(UserDto info)? unsubscribed,
     TResult Function()? loading,
+    TResult Function()? userNotFound,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -68,6 +74,8 @@ mixin _$ProfileScreenState {
     required TResult Function(UnsubscribedProfileScreenState value)
         unsubscribed,
     required TResult Function(LoadingProfileScreenState value) loading,
+    required TResult Function(UserNotFoundProfileScreenState value)
+        userNotFound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -76,6 +84,7 @@ mixin _$ProfileScreenState {
     TResult Function(SubscribedProfileScreenState value)? subscribed,
     TResult Function(UnsubscribedProfileScreenState value)? unsubscribed,
     TResult Function(LoadingProfileScreenState value)? loading,
+    TResult Function(UserNotFoundProfileScreenState value)? userNotFound,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -168,6 +177,7 @@ class _$OwnProfileScreenState implements OwnProfileScreenState {
     required TResult Function(UserDto info) subscribed,
     required TResult Function(UserDto info) unsubscribed,
     required TResult Function() loading,
+    required TResult Function() userNotFound,
   }) {
     return own(info);
   }
@@ -179,6 +189,7 @@ class _$OwnProfileScreenState implements OwnProfileScreenState {
     TResult Function(UserDto info)? subscribed,
     TResult Function(UserDto info)? unsubscribed,
     TResult Function()? loading,
+    TResult Function()? userNotFound,
     required TResult orElse(),
   }) {
     if (own != null) {
@@ -195,6 +206,8 @@ class _$OwnProfileScreenState implements OwnProfileScreenState {
     required TResult Function(UnsubscribedProfileScreenState value)
         unsubscribed,
     required TResult Function(LoadingProfileScreenState value) loading,
+    required TResult Function(UserNotFoundProfileScreenState value)
+        userNotFound,
   }) {
     return own(this);
   }
@@ -206,6 +219,7 @@ class _$OwnProfileScreenState implements OwnProfileScreenState {
     TResult Function(SubscribedProfileScreenState value)? subscribed,
     TResult Function(UnsubscribedProfileScreenState value)? unsubscribed,
     TResult Function(LoadingProfileScreenState value)? loading,
+    TResult Function(UserNotFoundProfileScreenState value)? userNotFound,
     required TResult orElse(),
   }) {
     if (own != null) {
@@ -297,6 +311,7 @@ class _$SubscribedProfileScreenState implements SubscribedProfileScreenState {
     required TResult Function(UserDto info) subscribed,
     required TResult Function(UserDto info) unsubscribed,
     required TResult Function() loading,
+    required TResult Function() userNotFound,
   }) {
     return subscribed(info);
   }
@@ -308,6 +323,7 @@ class _$SubscribedProfileScreenState implements SubscribedProfileScreenState {
     TResult Function(UserDto info)? subscribed,
     TResult Function(UserDto info)? unsubscribed,
     TResult Function()? loading,
+    TResult Function()? userNotFound,
     required TResult orElse(),
   }) {
     if (subscribed != null) {
@@ -324,6 +340,8 @@ class _$SubscribedProfileScreenState implements SubscribedProfileScreenState {
     required TResult Function(UnsubscribedProfileScreenState value)
         unsubscribed,
     required TResult Function(LoadingProfileScreenState value) loading,
+    required TResult Function(UserNotFoundProfileScreenState value)
+        userNotFound,
   }) {
     return subscribed(this);
   }
@@ -335,6 +353,7 @@ class _$SubscribedProfileScreenState implements SubscribedProfileScreenState {
     TResult Function(SubscribedProfileScreenState value)? subscribed,
     TResult Function(UnsubscribedProfileScreenState value)? unsubscribed,
     TResult Function(LoadingProfileScreenState value)? loading,
+    TResult Function(UserNotFoundProfileScreenState value)? userNotFound,
     required TResult orElse(),
   }) {
     if (subscribed != null) {
@@ -428,6 +447,7 @@ class _$UnsubscribedProfileScreenState
     required TResult Function(UserDto info) subscribed,
     required TResult Function(UserDto info) unsubscribed,
     required TResult Function() loading,
+    required TResult Function() userNotFound,
   }) {
     return unsubscribed(info);
   }
@@ -439,6 +459,7 @@ class _$UnsubscribedProfileScreenState
     TResult Function(UserDto info)? subscribed,
     TResult Function(UserDto info)? unsubscribed,
     TResult Function()? loading,
+    TResult Function()? userNotFound,
     required TResult orElse(),
   }) {
     if (unsubscribed != null) {
@@ -455,6 +476,8 @@ class _$UnsubscribedProfileScreenState
     required TResult Function(UnsubscribedProfileScreenState value)
         unsubscribed,
     required TResult Function(LoadingProfileScreenState value) loading,
+    required TResult Function(UserNotFoundProfileScreenState value)
+        userNotFound,
   }) {
     return unsubscribed(this);
   }
@@ -466,6 +489,7 @@ class _$UnsubscribedProfileScreenState
     TResult Function(SubscribedProfileScreenState value)? subscribed,
     TResult Function(UnsubscribedProfileScreenState value)? unsubscribed,
     TResult Function(LoadingProfileScreenState value)? loading,
+    TResult Function(UserNotFoundProfileScreenState value)? userNotFound,
     required TResult orElse(),
   }) {
     if (unsubscribed != null) {
@@ -530,6 +554,7 @@ class _$LoadingProfileScreenState implements LoadingProfileScreenState {
     required TResult Function(UserDto info) subscribed,
     required TResult Function(UserDto info) unsubscribed,
     required TResult Function() loading,
+    required TResult Function() userNotFound,
   }) {
     return loading();
   }
@@ -541,6 +566,7 @@ class _$LoadingProfileScreenState implements LoadingProfileScreenState {
     TResult Function(UserDto info)? subscribed,
     TResult Function(UserDto info)? unsubscribed,
     TResult Function()? loading,
+    TResult Function()? userNotFound,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -557,6 +583,8 @@ class _$LoadingProfileScreenState implements LoadingProfileScreenState {
     required TResult Function(UnsubscribedProfileScreenState value)
         unsubscribed,
     required TResult Function(LoadingProfileScreenState value) loading,
+    required TResult Function(UserNotFoundProfileScreenState value)
+        userNotFound,
   }) {
     return loading(this);
   }
@@ -568,6 +596,7 @@ class _$LoadingProfileScreenState implements LoadingProfileScreenState {
     TResult Function(SubscribedProfileScreenState value)? subscribed,
     TResult Function(UnsubscribedProfileScreenState value)? unsubscribed,
     TResult Function(LoadingProfileScreenState value)? loading,
+    TResult Function(UserNotFoundProfileScreenState value)? userNotFound,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -579,4 +608,109 @@ class _$LoadingProfileScreenState implements LoadingProfileScreenState {
 
 abstract class LoadingProfileScreenState implements ProfileScreenState {
   const factory LoadingProfileScreenState() = _$LoadingProfileScreenState;
+}
+
+/// @nodoc
+abstract class $UserNotFoundProfileScreenStateCopyWith<$Res> {
+  factory $UserNotFoundProfileScreenStateCopyWith(
+          UserNotFoundProfileScreenState value,
+          $Res Function(UserNotFoundProfileScreenState) then) =
+      _$UserNotFoundProfileScreenStateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$UserNotFoundProfileScreenStateCopyWithImpl<$Res>
+    extends _$ProfileScreenStateCopyWithImpl<$Res>
+    implements $UserNotFoundProfileScreenStateCopyWith<$Res> {
+  _$UserNotFoundProfileScreenStateCopyWithImpl(
+      UserNotFoundProfileScreenState _value,
+      $Res Function(UserNotFoundProfileScreenState) _then)
+      : super(_value, (v) => _then(v as UserNotFoundProfileScreenState));
+
+  @override
+  UserNotFoundProfileScreenState get _value =>
+      super._value as UserNotFoundProfileScreenState;
+}
+
+/// @nodoc
+
+class _$UserNotFoundProfileScreenState
+    implements UserNotFoundProfileScreenState {
+  const _$UserNotFoundProfileScreenState();
+
+  @override
+  String toString() {
+    return 'ProfileScreenState.userNotFound()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is UserNotFoundProfileScreenState);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(UserDto info) own,
+    required TResult Function(UserDto info) subscribed,
+    required TResult Function(UserDto info) unsubscribed,
+    required TResult Function() loading,
+    required TResult Function() userNotFound,
+  }) {
+    return userNotFound();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(UserDto info)? own,
+    TResult Function(UserDto info)? subscribed,
+    TResult Function(UserDto info)? unsubscribed,
+    TResult Function()? loading,
+    TResult Function()? userNotFound,
+    required TResult orElse(),
+  }) {
+    if (userNotFound != null) {
+      return userNotFound();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(OwnProfileScreenState value) own,
+    required TResult Function(SubscribedProfileScreenState value) subscribed,
+    required TResult Function(UnsubscribedProfileScreenState value)
+        unsubscribed,
+    required TResult Function(LoadingProfileScreenState value) loading,
+    required TResult Function(UserNotFoundProfileScreenState value)
+        userNotFound,
+  }) {
+    return userNotFound(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(OwnProfileScreenState value)? own,
+    TResult Function(SubscribedProfileScreenState value)? subscribed,
+    TResult Function(UnsubscribedProfileScreenState value)? unsubscribed,
+    TResult Function(LoadingProfileScreenState value)? loading,
+    TResult Function(UserNotFoundProfileScreenState value)? userNotFound,
+    required TResult orElse(),
+  }) {
+    if (userNotFound != null) {
+      return userNotFound(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserNotFoundProfileScreenState implements ProfileScreenState {
+  const factory UserNotFoundProfileScreenState() =
+      _$UserNotFoundProfileScreenState;
 }

@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../common/resources.dart';
 import '../../../domain/models.dart';
-import '../drawer/screen.dart';
+import '../../navigation.dart';
+import '../../screens.dart';
 import '../../components.dart';
 import 'cubit.dart';
 
@@ -78,7 +79,12 @@ class _LoadedState extends StatelessWidget {
         child: SubscriptionListItem(
           user: users[index],
           onTap: () {
-            // TODO: open user detail page
+            Navigation.to(
+              ProfileScreen.idOther,
+              params: {
+                ProfileScreen.userArg: users[index],
+              }
+            );
           },
         ),
       ),

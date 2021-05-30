@@ -71,10 +71,32 @@ abstract class Navigation {
       builder: (_, __, ___) => BlocProvider<ProfileScreenCubit>(
         create: (_) => ProfileScreenCubit(
           getIt<ProfileUseCase>(),
+          getIt<SubscribingUseCase>(),
           type: ProfileScreenType.own,
         ),
         child: ProfileScreen(),
       ),
+    ),
+    SeafarerRoute(
+      name: ProfileScreen.idOther,
+      params: [
+        SeafarerParam<UserDto>(
+          name: ProfileScreen.userArg,
+          defaultValue: null,
+        ),
+      ],
+      builder: (_, __, params) {
+        final user = params.param<UserDto>(ProfileScreen.userArg);
+        return BlocProvider<ProfileScreenCubit>(
+          create: (_) => ProfileScreenCubit(
+            getIt<ProfileUseCase>(),
+            getIt<SubscribingUseCase>(),
+            type: ProfileScreenType.other,
+            user: user,
+          ),
+          child: ProfileScreen(),
+        );
+      },
     ),
     SeafarerRoute(
       name: ActivityScreen.id,
