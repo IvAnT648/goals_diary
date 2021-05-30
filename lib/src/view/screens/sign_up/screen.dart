@@ -129,11 +129,13 @@ class SignUpScreen extends StatelessWidget {
                     DefaultTextField(
                       label: S.of(context).screenSignUpPasswordLabel,
                       controller: _passwordField,
+                      obscureText: true,
                     ),
                     const SizedBox(height: _inputFieldsPadding),
                     DefaultTextField(
                       label: S.of(context).screenSignUpPasswordConfirmLabel,
                       controller: _password2Field,
+                      obscureText: true,
                     ),
                     const SizedBox(height: 50),
                     SizedBox(

@@ -78,6 +78,7 @@ class SignInScreen extends StatelessWidget {
                   DefaultTextField(
                     label: S.of(context).screenLoginPasswordLabel,
                     controller: _passwordField,
+                    obscureText: true,
                   ),
                   const SizedBox(height: 60),
                   SizedBox(
