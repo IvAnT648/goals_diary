@@ -151,12 +151,12 @@ class OutlinedTextField extends StatelessWidget {
 }
 
 class GoalTypeSelector extends StatefulWidget {
-  final GoalType? selected;
+  final GoalType selected;
   final void Function(GoalType newType) onChanged;
 
   const GoalTypeSelector({
     Key? key,
-    required this.selected,
+    this.selected = GoalType.private,
     required this.onChanged,
   }) : super(key: key);
 
@@ -168,7 +168,7 @@ class _GoalTypeSelectorState extends State<GoalTypeSelector> {
   static const double _labelPadding = 8;
   static const double _buttonsPadding = 12;
 
-  GoalType? _selected;
+  late GoalType _selected;
 
   @override
   void initState() {
@@ -215,6 +215,7 @@ class _GoalTypeSelectorState extends State<GoalTypeSelector> {
       onTap: () {
         setState(() {
           _selected = option;
+          widget.onChanged(option);
         });
       },
     );
