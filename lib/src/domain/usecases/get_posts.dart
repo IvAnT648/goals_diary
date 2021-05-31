@@ -16,29 +16,6 @@ class GetPostsUseCaseMock implements GetPostsUseCase {
 
   static final List<PostDto> posts = [
     PostDto(
-      id: '5',
-      date: DateTime(2021, 05, 26, 10, 48),
-      goal: GoalDto(
-        id: '5',
-        title: 'Пробежка',
-        description: 'Утренняя пробежка в 07:30',
-        type: GoalType.public,
-        sendNotifications: false,
-      ),
-      author: UserDto(
-        id: '3',
-        name: 'Лиза',
-        surname: 'Иванова',
-        nickname: 'livanova88',
-        about: 'Программист 88 lvl',
-        motto: 'Не всякий кодер - программист',
-        avatarUrl: 'https://databytenitt.github.io/img/female.png',
-      ),
-      text: 'Сегодня уже второй день бегаю. Круто, что есть такое приложение!',
-      likeQty: 0,
-      comments: [],
-    ),
-    PostDto(
       id: '4',
       date: DateTime(2021, 05, 24, 07, 48),
       goal: GoalDto(
@@ -88,6 +65,29 @@ class GetPostsUseCaseMock implements GetPostsUseCase {
           ),
         ),
       ],
+    ),
+    PostDto(
+      id: '5',
+      date: DateTime(2021, 05, 26, 10, 48),
+      goal: GoalDto(
+        id: '5',
+        title: 'Пробежка',
+        description: 'Утренняя пробежка в 07:30',
+        type: GoalType.public,
+        sendNotifications: false,
+      ),
+      author: UserDto(
+        id: '3',
+        name: 'Лиза',
+        surname: 'Иванова',
+        nickname: 'livanova88',
+        about: 'Программист 88 lvl',
+        motto: 'Не всякий кодер - программист',
+        avatarUrl: 'https://databytenitt.github.io/img/female.png',
+      ),
+      text: 'Сегодня уже второй день бегаю. Круто, что есть такое приложение!',
+      likeQty: 0,
+      comments: [],
     ),
     PostDto(
       id: '4',
