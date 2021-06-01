@@ -9,8 +9,6 @@ import 'utils.dart';
 abstract class ProfileRepository {
   Stream<UserDto?> get meStream;
 
-  UserDto? get me;
-
   Stream<UserDto?> get(String id);
 
   Future<UserDto?> getSingle(String id);
@@ -38,14 +36,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
   final AuthRepository _authRepository;
 
-  UserDto? me;
-
-  ProfileRepositoryImpl(this._authRepository) {
-    getSingle(_authRepository.currentUser!.uid)
-        .then((value) {
-          return me = value;
-        });
-  }
+  ProfileRepositoryImpl(this._authRepository);
 
   @override
   Stream<UserDto?> get meStream async* {

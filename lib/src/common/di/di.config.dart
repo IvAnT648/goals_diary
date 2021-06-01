@@ -56,8 +56,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i10.MyGoalsScreenCubit(get<_i4.GetMyGoalsUseCase>()));
   gh.factory<_i11.ProfileRepository>(
       () => _i11.ProfileRepositoryImpl(get<_i6.AuthRepository>()));
-  gh.factory<_i12.ProfileUseCase>(
-      () => _i12.ProfileUseCaseImpl(get<_i11.ProfileRepository>()));
+  gh.factory<_i12.ProfileUseCase>(() => _i12.ProfileUseCaseImpl(
+      get<_i11.ProfileRepository>(), get<_i6.AuthRepository>()));
   gh.factory<_i13.SaveGoalUseCase>(
       () => _i13.SaveGoalUseCaseImpl(get<_i8.GoalsRepository>()));
   gh.factory<_i9.SignInUseCase>(

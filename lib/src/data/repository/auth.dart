@@ -6,6 +6,7 @@ abstract class AuthRepository {
   bool isLoggedIn();
   Stream<User?> get currentUserStream;
   User? get currentUser;
+  String? get currentUserId;
 }
 
 @Injectable(as: AuthRepository)
@@ -24,4 +25,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   User? get currentUser => _auth.currentUser;
+
+  @override
+  String? get currentUserId => _auth.currentUser?.uid;
 }

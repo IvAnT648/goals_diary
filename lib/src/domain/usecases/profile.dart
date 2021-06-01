@@ -1,6 +1,7 @@
 
 import 'dart:async';
 
+import 'package:goals_diary/src/data/repository/auth.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../data/repository/profile.dart';
@@ -8,7 +9,7 @@ import '../models.dart';
 
 abstract class ProfileUseCase {
   Stream<UserDto?> get ownStream;
-  UserDto? get own;
+  String? get ownId;
   Stream<UserDto?> getById(String id);
   void save(UserDto user);
   Future<void> saveOwn(UserDto user);
@@ -17,30 +18,31 @@ abstract class ProfileUseCase {
 
 @Injectable(as: ProfileUseCase)
 class ProfileUseCaseImpl implements ProfileUseCase {
-  final ProfileRepository _repository;
+  final ProfileRepository _profileRepository;
+  final AuthRepository _authRepository;
 
-  ProfileUseCaseImpl(this._repository);
+  ProfileUseCaseImpl(this._profileRepository, this._authRepository);
 
   @override
   Stream<UserDto?> get ownStream async* {
-    yield* _repository.meStream;
+    yield* _profileRepository.meStream;
   }
 
   @override
-  void save(UserDto user) async => await _repository.save(user);
+  void save(UserDto user) async => await _profileRepository.save(user);
 
-  Future<void> saveOwn(UserDto user) => _repository.saveOwn(user);
+  Future<void> saveOwn(UserDto user) => _profileRepository.saveOwn(user);
 
   @override
   Future<bool> isAvailableNickname(String nickname) async {
-    return await _repository.isAvailableNickname(nickname);
+    return await _profileRepository.isAvailableNickname(nickname);
   }
 
   @override
   Stream<UserDto?> getById(String id) async* {
-    yield* _repository.get(id);
+    yield* _profileRepository.get(id);
   }
 
   @override
-  UserDto? get own => _repository.me;
+  String? get ownId => _authRepository.currentUserId;
 }

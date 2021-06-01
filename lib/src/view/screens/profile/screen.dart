@@ -26,7 +26,7 @@ class ProfileScreen extends StatelessWidget {
     return BlocBuilder<ProfileScreenCubit, ProfileScreenState>(
       builder: (context, state) {
         return Scaffold(
-          appBar: state is OwnProfileScreenState
+          appBar: state is OwnProfileScreenState && !state.withReturnableAppBar
               ? MenuTopBar(title: S.of(context).screenMyProfileTitle)
               : ReturnableTopBar(title: S.of(context).screenProfileTitle),
           drawer: state is OwnProfileScreenState
@@ -34,7 +34,7 @@ class ProfileScreen extends StatelessWidget {
               : null,
           body: state.when(
             loading: () => const _LoadingState(),
-            own: (info) => _OwnProfile(info),
+            own: (info, withReturnableAppBar) => _OwnProfile(info),
             subscribed: (info) => _OtherProfile(
               info: info,
               isSubscribed: true,

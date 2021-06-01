@@ -14,6 +14,9 @@ class ProfileScreenCubit extends Cubit<ProfileScreenState> {
   final ProfileScreenType type;
   final UserDto? user;
 
+  bool get _isOwnProfile => type == ProfileScreenType.own
+      || (user != null && _profile.ownId != null && user!.id == _profile.ownId);
+
   ProfileScreenCubit(
     this._profile,
     this._subscription, {
@@ -24,10 +27,10 @@ class ProfileScreenCubit extends Cubit<ProfileScreenState> {
   }
 
   void _init() async {
-    if (type == ProfileScreenType.own) {
+    if (_isOwnProfile) {
       _profile.ownStream.listen((profile) {
         if (profile != null) {
-          emit(ProfileScreenState.own(profile));
+          emit(ProfileScreenState.own(profile, type != ProfileScreenType.own));
         }
       });
       return;

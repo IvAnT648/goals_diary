@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:goals_diary/src/view/screens.dart';
 
 import '../../../domain/models.dart';
 import '../../../common/resources.dart';
 import '../../components.dart';
+import '../../navigation.dart';
 import '../drawer/screen.dart';
 import 'cubit.dart';
 
@@ -83,7 +85,9 @@ class _LoadedState extends StatelessWidget {
                 // TODO: send comment
               },
               onAuthorTap: () {
-                // TODO: open user detail modal screen
+                Navigation.to(ProfileScreen.idOther, params: {
+                  ProfileScreen.userArg: post.author,
+                });
               },
               onGoalTitleTap: () {
                 // TODO: show modal screen with goal detail page
