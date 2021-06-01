@@ -17,9 +17,7 @@ class ActivityUseCaseImpl implements ActivityUseCase {
 
   @override
   void toggle(GoalActivityDto activity) {
-    if (activity.goal.id != null) {
-      _repository.toggle(activity.goal.id!, !activity.isDone);
-    }
+    _repository.setOwn(activity, !activity.isDone);
   }
 
   @override

@@ -28,20 +28,23 @@ extension GoalDataToDomain on GoalData {
 }
 
 extension GoalActivityDtoToData on GoalActivityDto {
-  GoalActivityData? toData() {
-    if (goal.id == null) {
+  GoalActivityData? toData(String authorId) {
+    if (goal.id == null || authorId.isEmpty) {
       return null;
     }
     return GoalActivityData(
       goalId: goal.id!,
+      authorId: authorId,
       createdAt: getTodayWithoutTime(),
+      isPublic: goal.isPublic,
     );
   }
 }
 
 extension GoalActivityDataToDomain on GoalActivityData {
-  GoalActivityDto toDomain(GoalDto goal) {
+  GoalActivityDto toDomain(GoalDto goal, [String? id]) {
     return GoalActivityDto(
+      id: id,
       isDone: true,
       goal: goal,
     );

@@ -16,12 +16,12 @@ extension DrawerMenuItemTypeViewExt on DrawerMenuItemType {
         return S.current.drawerActivityMenuItem;
       case DrawerMenuItemType.subscriptions:
         return S.current.drawerSubscriptionsMenuItem;
-      case DrawerMenuItemType.tracked_goals:
-        return S.current.drawerTrackedGoalsMenuItem;
+      // case DrawerMenuItemType.tracked_goals:
+      //   return S.current.drawerTrackedGoalsMenuItem;
       case DrawerMenuItemType.profile:
         return S.current.drawerProfileMenuItem;
-      case DrawerMenuItemType.settings:
-        return S.current.drawerSettingsMenuItem;
+      // case DrawerMenuItemType.settings:
+      //   return S.current.drawerSettingsMenuItem;
       case DrawerMenuItemType.logOut:
         return S.current.drawerLogOutButton;
     }
@@ -37,12 +37,12 @@ extension DrawerMenuItemTypeViewExt on DrawerMenuItemType {
         return Icons.playlist_add_check;
       case DrawerMenuItemType.subscriptions:
         return Icons.cast;
-      case DrawerMenuItemType.tracked_goals:
-        return Icons.remove_red_eye;
+      // case DrawerMenuItemType.tracked_goals:
+      //   return Icons.remove_red_eye;
       case DrawerMenuItemType.profile:
         return Icons.account_circle;
-      case DrawerMenuItemType.settings:
-        return Icons.settings;
+      // case DrawerMenuItemType.settings:
+      //   return Icons.settings;
       case DrawerMenuItemType.logOut:
         return Icons.logout;
     }

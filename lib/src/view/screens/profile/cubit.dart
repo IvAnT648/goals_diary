@@ -25,7 +25,7 @@ class ProfileScreenCubit extends Cubit<ProfileScreenState> {
 
   void _init() async {
     if (type == ProfileScreenType.own) {
-      _profile.own.listen((profile) {
+      _profile.ownStream.listen((profile) {
         if (profile != null) {
           emit(ProfileScreenState.own(profile));
         }

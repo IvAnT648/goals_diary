@@ -1,17 +1,14 @@
-import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
 import '../models.dart';
 
 class PostCommentDto {
-  final String? id;
   final DateTime date;
   final String text;
   final UserDto author;
   
   PostCommentDto({
-    this.id,
     required this.date,
     required this.text,
     required this.author,
@@ -24,7 +21,6 @@ class PostCommentDto {
     UserDto? author,
   }) {
     return PostCommentDto(
-      id: id ?? this.id,
       date: date ?? this.date,
       text: text ?? this.text,
       author: author ?? this.author,
@@ -33,7 +29,6 @@ class PostCommentDto {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
       'date': date.millisecondsSinceEpoch,
       'text': text,
       'author': author.toMap(),
@@ -42,22 +37,15 @@ class PostCommentDto {
 
   factory PostCommentDto.fromMap(Map<String, dynamic> map) {
     return PostCommentDto(
-      id: map['id'],
       date: DateTime.fromMillisecondsSinceEpoch(map['date']),
       text: map['text'],
       author: UserDto.fromMap(map['author']),
     );
   }
 
-  String toJson() => json.encode(toMap());
-
-  factory PostCommentDto.fromJson(String source) =>
-      PostCommentDto.fromMap(json.decode(source));
-
   @override
   String toString() {
-    return 'PostCommentDto(id: $id'
-        ', date: $date'
+    return 'PostCommentDto(date: $date'
         ', text: $text'
         ', author: $author'
         ')';
@@ -68,7 +56,6 @@ class PostCommentDto {
     if (identical(this, other)) return true;
   
     return other is PostCommentDto &&
-      other.id == id &&
       other.date == date &&
       other.text == text &&
       other.author == author;
@@ -76,8 +63,7 @@ class PostCommentDto {
 
   @override
   int get hashCode {
-    return id.hashCode ^
-      date.hashCode ^
+    return date.hashCode ^
       text.hashCode ^
       author.hashCode;
   }
@@ -90,6 +76,7 @@ class PostDto {
   final DateTime date;
   final String? text;
   final int likeQty;
+  final bool like;
   final List<PostCommentDto> comments;
 
   PostDto({
@@ -99,6 +86,7 @@ class PostDto {
     required this.goal,
     this.text,
     this.likeQty = 0,
+    required this.like,
     this.comments = const [],
   });
 
@@ -109,6 +97,7 @@ class PostDto {
     DateTime? date,
     String? comment,
     int? likeQty,
+    bool? like,
     List<PostCommentDto>? comments,
   }) {
     return PostDto(
@@ -118,6 +107,7 @@ class PostDto {
       date: date ?? this.date,
       text: comment ?? this.text,
       likeQty: likeQty ?? this.likeQty,
+      like: like ?? this.like,
       comments: comments ?? this.comments,
     );
   }
@@ -130,6 +120,7 @@ class PostDto {
       'date': date.millisecondsSinceEpoch,
       'comment': text,
       'likeQty': likeQty,
+      'like': like,
       'comments': comments.map((x) => x.toMap()).toList(),
     };
   }
@@ -142,16 +133,12 @@ class PostDto {
       date: DateTime.fromMillisecondsSinceEpoch(map['date']),
       text: map['comment'],
       likeQty: map['likeQty'],
+      like: map['like'],
       comments: List<PostCommentDto>.from(
           map['comments']?.map((x) => PostCommentDto.fromMap(x))
       ),
     );
   }
-
-  String toJson() => json.encode(toMap());
-
-  factory PostDto.fromJson(String source) =>
-      PostDto.fromMap(json.decode(source));
 
   @override
   String toString() {
@@ -161,6 +148,7 @@ class PostDto {
         ', date: $date'
         ', comment: $text'
         ', likeQty: $likeQty'
+        ', like: $like'
         ', comments: $comments'
         ')';
   }
@@ -176,6 +164,7 @@ class PostDto {
       other.date == date &&
       other.text == text &&
       other.likeQty == likeQty &&
+      other.like == like &&
       listEquals(other.comments, comments);
   }
 
@@ -187,6 +176,7 @@ class PostDto {
       date.hashCode ^
       text.hashCode ^
       likeQty.hashCode ^
+      like.hashCode ^
       comments.hashCode;
   }
 }

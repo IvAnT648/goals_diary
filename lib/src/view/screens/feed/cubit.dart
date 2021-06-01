@@ -12,6 +12,12 @@ class FeedScreenCubit extends Cubit<FeedScreenState> {
   final GetPostsUseCase _getPosts;
 
   FeedScreenCubit(this._getPosts) : super(FeedScreenState.loading()) {
-    emit(FeedScreenState.loaded(_getPosts()));
+    _getPosts().listen((posts) {
+      if (posts.isEmpty) {
+        emit(FeedScreenState.empty());
+        return;
+      }
+      emit(FeedScreenState.loaded(posts));
+    });
   }
 }

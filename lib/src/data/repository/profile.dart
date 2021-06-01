@@ -7,7 +7,9 @@ import 'auth.dart';
 import 'utils.dart';
 
 abstract class ProfileRepository {
-  Stream<UserDto?> get me;
+  Stream<UserDto?> get meStream;
+
+  UserDto? get me;
 
   Stream<UserDto?> get(String id);
 
@@ -36,10 +38,17 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
   final AuthRepository _authRepository;
 
-  ProfileRepositoryImpl(this._authRepository);
+  UserDto? me;
+
+  ProfileRepositoryImpl(this._authRepository) {
+    getSingle(_authRepository.currentUser!.uid)
+        .then((value) {
+          return me = value;
+        });
+  }
 
   @override
-  Stream<UserDto?> get me async* {
+  Stream<UserDto?> get meStream async* {
     if (!_authRepository.isLoggedIn()) {
       yield null;
       return;

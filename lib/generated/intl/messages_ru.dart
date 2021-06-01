@@ -107,6 +107,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Прогресс по цели"),
         "screenFeedNoComments":
             MessageLookupByLibrary.simpleMessage("Комментариев пока нет..."),
+        "screenFeedNoPosts":
+            MessageLookupByLibrary.simpleMessage("Здесь пока пусто..."),
         "screenFeedTitle":
             MessageLookupByLibrary.simpleMessage("Лента новостей"),
         "screenLoginFieldsMustNotBeEmpty": MessageLookupByLibrary.simpleMessage(

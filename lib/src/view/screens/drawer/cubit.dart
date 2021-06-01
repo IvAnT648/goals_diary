@@ -15,8 +15,8 @@ class AppDrawerCubit extends Cubit<AppDrawerState> {
   AppDrawerCubit(
     this._profile,
     this._logout,
-  ) : super(AppDrawerState.unauthorized()) {
-    _profile.own.listen((user) {
+  ) : super(AppDrawerState.loading()) {
+    _profile.ownStream.listen((user) {
       if (user == null) {
         return emit(AppDrawerState.unauthorized());
       }

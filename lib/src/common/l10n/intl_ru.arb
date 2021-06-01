@@ -96,6 +96,7 @@
   "screenFeedGoalProgressText": "Прогресс по цели",
   "screenFeedAtTime": "в",
   "screenFeedNoComments": "Комментариев пока нет...",
+  "screenFeedNoPosts": "Здесь пока пусто...",
 
   "screenSubscriptionsTitle": "Мои подписки",
   "screenSubscriptionsHaveNoSubs": "У вас ещё нет подписок"

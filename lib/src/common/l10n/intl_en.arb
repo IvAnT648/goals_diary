@@ -96,6 +96,7 @@
   "screenFeedGoalProgressText": "goal progress",
   "screenFeedAtTime": "at",
   "screenFeedNoComments": "No comments yet...",
+  "screenFeedNoPosts": "No posts yet...",
 
   "screenSubscriptionsTitle": "My subscriptions",
   "screenSubscriptionsHaveNoSubs": "You don't have any subscriptions yet"

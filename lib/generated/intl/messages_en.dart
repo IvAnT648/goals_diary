@@ -102,6 +102,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("goal progress"),
         "screenFeedNoComments":
             MessageLookupByLibrary.simpleMessage("No comments yet..."),
+        "screenFeedNoPosts":
+            MessageLookupByLibrary.simpleMessage("No posts yet..."),
         "screenFeedTitle": MessageLookupByLibrary.simpleMessage("Feed"),
         "screenLoginFieldsMustNotBeEmpty": MessageLookupByLibrary.simpleMessage(
             "E-mail and password can\'t be empty"),

@@ -10,4 +10,5 @@ class AppDrawerState with _$AppDrawerState {
   const factory AppDrawerState.unauthorized() = UnauthorizedAppDrawerState;
   const factory AppDrawerState.authorized(UserDto info) =
     AuthorizedAppDrawerState;
+  const factory AppDrawerState.loading() = LoadingAppDrawerState;
 }

@@ -28,8 +28,7 @@ class FeedScreen extends StatelessWidget {
         builder: (context, state) => state.maybeWhen(
           loading: () => _LoadingState(),
           loaded: (posts) => _LoadedState(posts),
-          // TODO: empty state
-          empty: () => Container(),
+          empty: () => _EmptyState(),
           orElse: () => Container(),
         ),
       ),
@@ -38,22 +37,22 @@ class FeedScreen extends StatelessWidget {
 }
 
 class _LoadingState extends StatelessWidget {
-  static const double _margin = 30;
-  static const double _indicatorSize = 20;
-
-  const _LoadingState({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: _indicatorSize,
-      margin: const EdgeInsets.only(top: _margin),
-      alignment: Alignment.center,
-      child: SizedBox(
-        height: _indicatorSize,
-        width: _indicatorSize,
-        child: CircularProgressIndicator(
-          strokeWidth: 3,
+    return LinearProgressIndicator();
+  }
+}
+
+class _EmptyState extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(
+        S.of(context).screenFeedNoPosts,
+        style: TextStyle(
+          color: AppColors.onPrimary,
+          fontStyle: FontStyle.italic,
+          fontSize: 16,
         ),
       ),
     );

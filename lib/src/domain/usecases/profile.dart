@@ -7,7 +7,8 @@ import '../../data/repository/profile.dart';
 import '../models.dart';
 
 abstract class ProfileUseCase {
-  Stream<UserDto?> get own;
+  Stream<UserDto?> get ownStream;
+  UserDto? get own;
   Stream<UserDto?> getById(String id);
   void save(UserDto user);
   Future<void> saveOwn(UserDto user);
@@ -21,8 +22,8 @@ class ProfileUseCaseImpl implements ProfileUseCase {
   ProfileUseCaseImpl(this._repository);
 
   @override
-  Stream<UserDto?> get own async* {
-    yield* _repository.me;
+  Stream<UserDto?> get ownStream async* {
+    yield* _repository.meStream;
   }
 
   @override
@@ -39,4 +40,7 @@ class ProfileUseCaseImpl implements ProfileUseCase {
   Stream<UserDto?> getById(String id) async* {
     yield* _repository.get(id);
   }
+
+  @override
+  UserDto? get own => _repository.me;
 }

@@ -9,6 +9,8 @@ import 'profile.dart';
 abstract class SubscriptionsRepository {
   Stream<SubscriptionsDto> getById(String uid);
 
+  Stream<List<String>> getSubsIds(String uid);
+
   Stream<SubscriptionsDto> get own;
 
   Future<void> subscribeTo(String uid);
@@ -45,12 +47,7 @@ class SubscriptionsRepositoryImpl implements SubscriptionsRepository {
   Stream<SubscriptionsDto> getById(String uid) async* {
     if (uid.isEmpty) return;
 
-    final dataStream = collectionWithConverter.doc(uid).snapshots().map((doc) {
-      if (doc.data() == null) return <String>[];
-      return doc.data()!.subscriptions;
-    });
-
-    await for (final userIds in dataStream) {
+    await for (final userIds in getSubsIds(uid)) {
       final subs = <UserDto>[];
       for (final userId in userIds) {
         final user = await _profile.getSingle(userId);
@@ -65,10 +62,16 @@ class SubscriptionsRepositoryImpl implements SubscriptionsRepository {
     }
   }
 
+  Stream<List<String>> getSubsIds(String uid) async* {
+    yield* collectionWithConverter.doc(uid).snapshots().map((doc) {
+      if (doc.data() == null) return <String>[];
+      return doc.data()!.subscriptions;
+    });
+  }
+
   @override
   Future<void> subscribeTo(String uid) async {
-    if (_userId == null) return;
-    if (uid.isEmpty) return;
+    if (_userId == null || uid.isEmpty) return;
     collectionWithConverter.doc(_userId!).update({
       SubscriptionsData.subscriptionsKey: FieldValue.arrayUnion([uid])
     });
@@ -76,8 +79,7 @@ class SubscriptionsRepositoryImpl implements SubscriptionsRepository {
 
   @override
   Future<void> unsubscribeFrom(String uid) async {
-    if (_userId == null) return;
-    if (uid.isEmpty) return;
+    if (_userId == null || uid.isEmpty) return;
     collectionWithConverter.doc(_userId!).update({
       SubscriptionsData.subscriptionsKey: FieldValue.arrayRemove([uid])
     });

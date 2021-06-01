@@ -4,13 +4,17 @@ import 'package:injectable/injectable.dart';
 import '../../common/utils.dart';
 import '../../domain/models.dart';
 import '../models.dart';
+import 'auth.dart';
 import 'goals.dart';
+import 'posts.dart';
 import 'utils.dart';
 
 abstract class ActivityRepository {
   Stream<List<GoalActivityDto>> get myActivities;
 
-  Future<void> toggle(String goalId, bool value);
+  Future<void> set(GoalActivityDto activity, String authorId, bool value);
+
+  Future<void> setOwn(GoalActivityDto activity, bool value);
 }
 
 @Injectable(as: ActivityRepository)
@@ -21,8 +25,14 @@ class ActivityRepositoryImpl implements ActivityRepository {
       FirebaseFirestore.instance.collection(_activityCollectionName);
 
   final GoalsRepository _goalsRepository;
+  final AuthRepository _authRepository;
+  final PostsRepository _postsRepository;
 
-  ActivityRepositoryImpl(this._goalsRepository);
+  ActivityRepositoryImpl(
+      this._goalsRepository,
+      this._authRepository,
+      this._postsRepository,
+  );
 
   @override
   Stream<List<GoalActivityDto>> get myActivities async* {
@@ -71,23 +81,51 @@ class ActivityRepositoryImpl implements ActivityRepository {
   }
 
   @override
-  Future<void> toggle(String goalId, bool value) async {
-    final date = getTodayWithoutTime();
-    if (value) {
-      final data = GoalActivityData(
-        goalId: goalId,
-        createdAt: date,
-      );
-      await collection.doc().set(data.toMap());
+  Future<void> setOwn(GoalActivityDto activity, bool value) async {
+    if (_authRepository.currentUser == null) return;
+    await set(activity, _authRepository.currentUser!.uid, value);
+  }
+
+  @override
+  Future<void> set(
+      GoalActivityDto activity,
+      String authorId,
+      bool value,
+  ) async {
+    if (activity.goal.id == null || authorId.isEmpty) {
       return;
     }
 
-    final res = await collection
+    final date = getTodayWithoutTime();
+
+    if (value) {
+      /// Create activity and it post
+      final data = GoalActivityData(
+        goalId: activity.goal.id!,
+        authorId: authorId,
+        createdAt: date,
+        isPublic: activity.goal.isPublic,
+      );
+      final activityDoc = await collection.add(data.toMap());
+      await _postsRepository.create(
+        authorId: authorId,
+        activityId: activityDoc.id,
+        goalId: activity.goal.id!,
+      );
+      return;
+    }
+
+    /// Delete activity and it post
+    await collection
         .where(GoalActivityData.dateKey, isEqualTo: date.millisecondsSinceEpoch)
-        .where(GoalActivityData.goalIdKey, isEqualTo: goalId)
-        .get();
-    res.docs.forEach((el) async {
-      await collection.doc(el.id).delete();
-    });
+        .where(GoalActivityData.goalIdKey, isEqualTo: activity.goal.id!)
+        .get()
+        .then((data) => data.docs.forEach((el) async {
+              await _postsRepository.delete(
+                authorId: authorId,
+                activityId: el.id,
+              );
+              await collection.doc(el.id).delete();
+            }));
   }
 }

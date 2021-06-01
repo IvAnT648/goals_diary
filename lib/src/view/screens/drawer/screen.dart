@@ -15,9 +15,9 @@ enum DrawerMenuItemType {
   goals,
   activity,
   subscriptions,
-  tracked_goals,
+  //tracked_goals,
   profile,
-  settings,
+  // settings,
   logOut,
 }
 
@@ -45,6 +45,7 @@ class AppDrawer extends StatelessWidget {
                   state.when(
                     unauthorized: () => _UnauthorizedHeader(),
                     authorized: (user) => _AuthorizedHeader(user),
+                    loading: () => _LoadingHeader(),
                   ),
                   _Divider(),
                   _DrawerMenuItems(
@@ -64,17 +65,17 @@ class AppDrawer extends StatelessWidget {
                         case DrawerMenuItemType.subscriptions:
                           Navigation.replaceTo(SubscriptionsScreen.id);
                           return;
-                        case DrawerMenuItemType.tracked_goals:
-                          // TODO: Handle this case.
-                          Navigation.pop();
-                          return;
+                        // case DrawerMenuItemType.tracked_goals:
+                        //   // TODO: Handle this case.
+                        //   Navigation.pop();
+                        //   return;
                         case DrawerMenuItemType.profile:
                           Navigation.replaceTo(ProfileScreen.id);
                           return;
-                        case DrawerMenuItemType.settings:
-                          // TODO: Handle this case.
-                          Navigation.pop();
-                          return;
+                        // case DrawerMenuItemType.settings:
+                        //   // TODO: Handle this case.
+                        //   Navigation.pop();
+                        //   return;
                         case DrawerMenuItemType.logOut:
                           cubit.logout();
                           return Navigation.clearAndPush(SignInScreen.id);
@@ -160,6 +161,32 @@ class _UnauthorizedHeader extends StatelessWidget {
     );
   }
 }
+
+class _LoadingHeader extends StatelessWidget {
+  static const double _indicatorSize = 20;
+
+  const _LoadingHeader({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(
+        top: 10,
+        bottom: 20,
+      ),
+      child: Center(
+        child: SizedBox(
+          height: _indicatorSize,
+          width: _indicatorSize,
+          child: CircularProgressIndicator(
+            strokeWidth: 3,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 
 class _Divider extends StatelessWidget {
   static const double _indent = 20;

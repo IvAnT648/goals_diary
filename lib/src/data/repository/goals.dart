@@ -8,9 +8,12 @@ import 'utils.dart';
 
 abstract class GoalsRepository {
   Future<SaveGoalResult> saveGoal(GoalDto goal);
+
   Future<void> deleteGoal(GoalDto goal);
 
   Stream<List<GoalDto>> get myGoals;
+
+  Future<GoalDto?> get(String id);
 }
 
 @Injectable(as: GoalsRepository)
@@ -19,6 +22,13 @@ class GoalsRepositoryImpl implements GoalsRepository {
 
   final CollectionReference collection =
       FirebaseFirestore.instance.collection(_goalsCollectionName);
+
+  late final convertedCollection = collection.withConverter<GoalData?>(
+    fromFirestore: (snapshot, _) => snapshot.data() != null
+        ? GoalData.fromFirestore(snapshot.data()!)
+        : null,
+    toFirestore: (goal, _) => goal?.toMap() ?? {},
+  );
 
   final AuthRepository _auth;
 
@@ -47,20 +57,32 @@ class GoalsRepositoryImpl implements GoalsRepository {
       return;
     }
 
-    yield* collection
-        .withConverter<GoalData>(
-            fromFirestore: (snapshot, _) =>
-                GoalData.fromFirestore(snapshot.data() ?? {}),
-            toFirestore: (goal, _) => goal.toMap())
+    final goalDocsStream = convertedCollection
         .where(GoalData.authorIdKey, isEqualTo: user.uid)
         .snapshots()
-        .map((snapshot) => snapshot.docs
-            .map((doc) => doc.data().toDomain(id: doc.id))
-            .toList());
+        .map((snapshot) => snapshot.docs);
+
+    await for (var goalDocs in goalDocsStream) {
+      final goals = <GoalDto>[];
+      for (var goalDoc in goalDocs) {
+        if (goalDoc.data() == null) continue;
+        goals.add(goalDoc.data()!.toDomain(id: goalDoc.id));
+      }
+      yield goals;
+    }
   }
 
   @override
   Future<void> deleteGoal(GoalDto goal) {
     return collection.doc(goal.id).delete();
+  }
+
+  @override
+  Future<GoalDto?> get(String id) async {
+    if (id.isEmpty) {
+      return null;
+    }
+    final doc = await convertedCollection.doc(id).get();
+    return doc.data()?.toDomain(id: doc.id);
   }
 }

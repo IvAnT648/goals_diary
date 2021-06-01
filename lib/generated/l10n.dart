@@ -920,6 +920,16 @@ class S {
     );
   }
 
+  /// `No posts yet...`
+  String get screenFeedNoPosts {
+    return Intl.message(
+      'No posts yet...',
+      name: 'screenFeedNoPosts',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `My subscriptions`
   String get screenSubscriptionsTitle {
     return Intl.message(
