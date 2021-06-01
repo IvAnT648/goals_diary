@@ -322,9 +322,7 @@ class _LikeButtonState extends State<LikeButton> {
           height: _loadingIndicatorSize,
           width: _loadingIndicatorSize,
           padding: const EdgeInsets.only(left: 8),
-          child: CupertinoActivityIndicator(
-            radius: _loadingIndicatorSize,
-          ),
+          child: CupertinoActivityIndicator(),
         );
       case _LikeButtonIconState.active:
         icon = Icons.favorite;
