@@ -1,6 +1,8 @@
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:goals_diary/src/view/screens/feed/cubit.dart';
 
 import '../../common/resources.dart';
 import '../../domain/models.dart';
@@ -156,7 +158,7 @@ class _FeedPostState extends State<FeedPost>
                 ),
               ),
             ],
-            const SizedBox(height: 10),
+            const SizedBox(height: 15),
             Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 10,
@@ -166,9 +168,9 @@ class _FeedPostState extends State<FeedPost>
                 children: [
                   LikeButton(
                     qty: post.likeQty,
-                    isActive: false,
-                    onTap: (isActivated) {
-                      // TODO: implement like
+                    isActive: post.like,
+                    onTap: () {
+                      context.read<FeedScreenCubit>().toggleLike(post);
                     },
                   ),
                   CommentButton(

@@ -70,7 +70,7 @@ class PostCommentDto {
 }
 
 class PostDto {
-  final String? id;
+  final String id;
   final UserDto author;
   final GoalDto? goal;
   final DateTime date;
@@ -80,7 +80,7 @@ class PostDto {
   final List<PostCommentDto> comments;
 
   PostDto({
-    this.id,
+    required this.id,
     required this.date,
     required this.author,
     required this.goal,

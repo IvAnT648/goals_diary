@@ -1,4 +1,5 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../common/resources/styles.dart';
@@ -244,10 +245,17 @@ class HyperLinkButton extends StatelessWidget {
   }
 }
 
+
+enum _LikeButtonIconState {
+  active,
+  loading,
+  inactive,
+}
+
 class LikeButton extends StatefulWidget {
   final int qty;
   final bool isActive;
-  final void Function(bool) onTap;
+  final void Function() onTap;
   final double size;
 
   const LikeButton({
@@ -263,26 +271,30 @@ class LikeButton extends StatefulWidget {
 }
 
 class _LikeButtonState extends State<LikeButton> {
-  late bool _isActive = widget.isActive;
+  static const double _loadingIndicatorSize = 10;
+
+  late bool _lastIsActive = widget.isActive;
+  late _LikeButtonIconState _state = _getState(widget.isActive);
+
+  _LikeButtonIconState _getState(bool value) => value
+      ? _LikeButtonIconState.active
+      : _LikeButtonIconState.inactive;
 
   @override
   Widget build(BuildContext context) {
+    if (_state == _LikeButtonIconState.loading
+        && _lastIsActive != widget.isActive
+    ) {
+      _state = _getState(widget.isActive);
+      _lastIsActive = widget.isActive;
+    }
     return TouchableArea(
-      onTap: () {
-        setState(() {
-          _isActive = !_isActive;
-        });
-        widget.onTap(_isActive);
-      },
+      onTap: _onTap,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(
-            _isActive ? Icons.favorite : Icons.favorite_outline,
-            color: _isActive ? AppColors.secondary : AppColors.gray[-10],
-            size: widget.size,
-          ),
-          if (widget.qty != 0) ...[
+          _stateToWidget(),
+          if (widget.qty != 0 && _state != _LikeButtonIconState.loading) ...[
             const SizedBox(width: 4),
             Text(
               widget.qty.toString(),
@@ -291,6 +303,42 @@ class _LikeButtonState extends State<LikeButton> {
           ],
         ],
       ),
+    );
+  }
+
+  void _onTap() {
+    widget.onTap();
+    setState(() {
+      _state = _LikeButtonIconState.loading;
+    });
+  }
+
+  Widget _stateToWidget() {
+    IconData? icon;
+    Color? color;
+    switch (_state) {
+      case _LikeButtonIconState.loading:
+        return Container(
+          height: _loadingIndicatorSize,
+          width: _loadingIndicatorSize,
+          padding: const EdgeInsets.only(left: 8),
+          child: CupertinoActivityIndicator(
+            radius: _loadingIndicatorSize,
+          ),
+        );
+      case _LikeButtonIconState.active:
+        icon = Icons.favorite;
+        color = AppColors.secondary;
+        break;
+      case _LikeButtonIconState.inactive:
+        icon = Icons.favorite_outline;
+        color = AppColors.gray[-10];
+        break;
+    }
+    return Icon(
+      icon,
+      color: color,
+      size: widget.size,
     );
   }
 }

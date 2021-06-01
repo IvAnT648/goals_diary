@@ -79,6 +79,7 @@ class PostRaw {
   static const String authorIdKey = 'authorId';
   static const String activityIdKey = 'activityId';
   static const String dateKey = 'createdAt';
+  static const String likedItKey = 'likedIt';
 
   final String activityId;
   final String authorId;

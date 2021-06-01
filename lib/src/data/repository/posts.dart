@@ -11,6 +11,10 @@ import 'subscriptions.dart';
 abstract class PostsRepository {
   Stream<List<PostDto>> get posts;
 
+  Future<bool> like(PostDto post);
+
+  Future<bool> unlike(PostDto post);
+
   Future<void> create({
     required String activityId,
     required String authorId,
@@ -62,7 +66,6 @@ class PostsRepositoryFirestore implements PostsRepository {
       final postDocsStream = convertedCollection
           .where(PostRaw.authorIdKey, whereIn: [
             ...subIds, _auth.currentUser!.uid])
-          //.orderBy(PostRaw.dateKey)
           .snapshots()
           .map((s) => s.docs);
 
@@ -96,7 +99,9 @@ class PostsRepositoryFirestore implements PostsRepository {
       print('Goal not found by id: ${data.goalId}');
       return null;
     }
-    final like = data.likedIt.contains(author.id);
+    final like = _auth.currentUser != null
+        ? data.likedIt.contains(_auth.currentUser!.uid)
+        : false;
     return PostDto(
       id: id,
       date: data.createdAt,
@@ -145,5 +150,33 @@ class PostsRepositoryFirestore implements PostsRepository {
 
   int _sortComparator(PostDto a, PostDto b) {
     return b.date.compareTo(a.date);
+  }
+
+  @override
+  Future<bool> like(PostDto post) async {
+    if (_auth.currentUser == null) return false;
+    try {
+      await collection.doc(post.id).update({
+        PostRaw.likedItKey: FieldValue.arrayUnion([_auth.currentUser!.uid])
+      });
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
+  @override
+  Future<bool> unlike(PostDto post) async {
+    if (_auth.currentUser == null) return false;
+    try {
+      await collection.doc(post.id).update({
+        PostRaw.likedItKey: FieldValue.arrayRemove([_auth.currentUser!.uid])
+      });
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
   }
 }
