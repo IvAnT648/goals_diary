@@ -72,16 +72,38 @@ class SubscriptionsRepositoryImpl implements SubscriptionsRepository {
   @override
   Future<void> subscribeTo(String uid) async {
     if (_userId == null || uid.isEmpty) return;
-    collectionWithConverter.doc(_userId!).update({
-      SubscriptionsData.subscriptionsKey: FieldValue.arrayUnion([uid])
-    });
+    try {
+      final doc = await collectionWithConverter.doc(_userId!).get();
+      if (doc.exists) {
+        await collectionWithConverter.doc(_userId!).update({
+          SubscriptionsData.subscriptionsKey: FieldValue.arrayUnion([uid])
+        });
+      } else {
+        await collectionWithConverter.doc(_userId!).set(
+          SubscriptionsData(subscriptions: [uid]),
+        );
+      }
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
   Future<void> unsubscribeFrom(String uid) async {
     if (_userId == null || uid.isEmpty) return;
-    collectionWithConverter.doc(_userId!).update({
-      SubscriptionsData.subscriptionsKey: FieldValue.arrayRemove([uid])
-    });
+    try {
+      final doc = await collectionWithConverter.doc(_userId!).get();
+      if (doc.exists) {
+        await collectionWithConverter.doc(_userId!).update({
+          SubscriptionsData.subscriptionsKey: FieldValue.arrayRemove([uid])
+        });
+      } else {
+        await collectionWithConverter.doc(_userId!).set(
+          SubscriptionsData(subscriptions: [uid]),
+        );
+      }
+    } catch (e) {
+      print(e);
+    }
   }
 }

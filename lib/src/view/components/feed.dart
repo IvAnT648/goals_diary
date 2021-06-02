@@ -14,6 +14,7 @@ class FeedPost extends StatefulWidget {
   final void Function(String) onSentComment;
   final VoidCallback? onAuthorTap;
   final VoidCallback? onGoalTitleTap;
+  final bool openComments;
 
   const FeedPost({
     Key? key,
@@ -21,6 +22,7 @@ class FeedPost extends StatefulWidget {
     required this.onSentComment,
     this.onAuthorTap,
     this.onGoalTitleTap,
+    this.openComments = false,
   }) : super(key: key);
 
   @override

@@ -27,11 +27,11 @@ class FeedScreen extends StatelessWidget {
       body: BlocBuilder<FeedScreenCubit, FeedScreenState>(
         buildWhen: (previous, current) =>
             current is! NetworkErrorFeedScreenState,
-        builder: (context, state) => state.maybeWhen(
+        builder: (context, state) => state.when(
           loading: () => _LoadingState(),
           loaded: (posts) => _LoadedState(posts),
           empty: () => _EmptyState(),
-          orElse: () => Container(),
+          networkError: () => Container(),
         ),
       ),
     );
@@ -61,13 +61,18 @@ class _EmptyState extends StatelessWidget {
   }
 }
 
-class _LoadedState extends StatelessWidget {
-  static const double _horizontalPadding = 15;
-  static const double _postsPadding = 15;
-
+class _LoadedState extends StatefulWidget {
   final List<PostDto> posts;
 
   const _LoadedState(this.posts, {Key? key}) : super(key: key);
+
+  @override
+  _LoadedStateState createState() => _LoadedStateState();
+}
+
+class _LoadedStateState extends State<_LoadedState> {
+  static const double _horizontalPadding = 15;
+  static const double _postsPadding = 15;
 
   @override
   Widget build(BuildContext context) {
@@ -78,11 +83,13 @@ class _LoadedState extends StatelessWidget {
       ),
       child: SingleChildScrollView(
         child: Column(
-          children: posts.expand((post) => [
+          children: widget.posts.expand((post) => [
             FeedPost(
+              key: UniqueKey(),
               post: post,
               onSentComment: (comment) {
                 context.read<FeedScreenCubit>().addComment(post, comment);
+                setState(() {});
               },
               onAuthorTap: () {
                 Navigation.to(ProfileScreen.idOther, params: {

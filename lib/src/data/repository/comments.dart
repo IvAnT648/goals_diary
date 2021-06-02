@@ -50,6 +50,7 @@ class CommentsRepositoryImpl implements CommentsRepository {
           if (domain == null) continue;
           list.add(domain);
         }
+        list.sort(_sortComparator);
         yield list;
       }
     } catch (e) {
@@ -92,5 +93,10 @@ class CommentsRepositoryImpl implements CommentsRepository {
       print(e);
       return false;
     }
+  }
+
+  int _sortComparator(PostCommentDto a, PostCommentDto b) {
+    // by desc
+    return a.date.compareTo(b.date);
   }
 }

@@ -46,7 +46,6 @@ class FeedScreenCubit extends Cubit<FeedScreenState> {
         _posts[comment.postId]!.comments.add(comment);
       }
     });
-    // TODO: sort comments
     _emitLoaded();
   }
 
