@@ -36,6 +36,7 @@ dependencies:
   seafarer: ^0.1.0
   weekday_selector: ^1.0.0
   timeago: ^3.0.2
+  rxdart: ^0.27.1
 
 dev_dependencies:
   flutter_test:

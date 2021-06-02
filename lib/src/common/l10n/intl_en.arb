@@ -99,6 +99,9 @@
   "screenFeedNoPosts": "No posts yet...",
   "screenFeedEmptyComment": "Comment can't be empty",
 
+  "screenSearchUserFieldPlaceholder": "Start typing a nickname",
+  "screenSearchUserSearchResult": "Search result:",
+
   "screenSubscriptionsTitle": "My subscriptions",
   "screenSubscriptionsHaveNoSubs": "You don't have any subscriptions yet"
 }

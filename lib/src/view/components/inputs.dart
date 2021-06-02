@@ -15,6 +15,7 @@ class DefaultTextField extends StatelessWidget {
   final TextEditingController? controller;
   final String? label;
   final bool obscureText;
+  final bool autofocus;
   final Function(String)? onChanged;
 
   const DefaultTextField({
@@ -22,6 +23,7 @@ class DefaultTextField extends StatelessWidget {
     this.controller,
     this.label,
     this.onChanged,
+    this.autofocus = false,
     this.obscureText = false,
   }) : super(key: key);
 
@@ -32,6 +34,7 @@ class DefaultTextField extends StatelessWidget {
       onChanged: onChanged,
       obscureText: obscureText,
       cursorColor: AppColors.primary,
+      autofocus: autofocus,
       cursorWidth: 1,
       decoration: InputDecoration(
         alignLabelWithHint: true,

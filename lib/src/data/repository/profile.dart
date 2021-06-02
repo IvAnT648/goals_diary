@@ -21,7 +21,7 @@ abstract class ProfileRepository {
 
   Future<bool> isAvailableNickname(String nickname);
 
-  Stream<List<UserDto>> search(String nickname);
+  Future<List<UserDto>> search(String request);
 }
 
 @Injectable(as: ProfileRepository)
@@ -105,19 +105,22 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Stream<List<UserDto>> search(String nickname) async* {
-    final stream = collectionWithConverter
-        .where(ProfileData.nicknameKey, isGreaterThanOrEqualTo: nickname)
-        .snapshots().map(
-            (s) => s.docs.map((doc) => doc.data()?.toDomain(id: doc.id)).toList());
-
-    await for (var snapshot in stream) {
+  Future<List<UserDto>> search(String request) async {
+    try {
+      final snapshot = await collectionWithConverter
+          .where(ProfileData.nicknameKey, isGreaterThanOrEqualTo: request)
+          .get();
+      final nullableList = snapshot.docs.map((doc) =>
+          doc.data()?.toDomain(id: doc.id)).toList();
       final list = <UserDto>[];
-      for (var el in snapshot) {
+      for (var el in nullableList) {
         if (el == null) continue;
         list.add(el);
       }
-      yield list;
+      return list;
+    } catch (e) {
+      print(e);
+      return [];
     }
   }
 }

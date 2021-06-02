@@ -940,6 +940,26 @@ class S {
     );
   }
 
+  /// `Start typing a nickname`
+  String get screenSearchUserFieldPlaceholder {
+    return Intl.message(
+      'Start typing a nickname',
+      name: 'screenSearchUserFieldPlaceholder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search result:`
+  String get screenSearchUserSearchResult {
+    return Intl.message(
+      'Search result:',
+      name: 'screenSearchUserSearchResult',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `My subscriptions`
   String get screenSubscriptionsTitle {
     return Intl.message(

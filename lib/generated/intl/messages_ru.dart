@@ -153,6 +153,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenProfileTitle": MessageLookupByLibrary.simpleMessage("Профиль"),
         "screenProfileUnsubscribeButton":
             MessageLookupByLibrary.simpleMessage("Отписаться"),
+        "screenSearchUserFieldPlaceholder":
+            MessageLookupByLibrary.simpleMessage("Начните набирать никнейм"),
+        "screenSearchUserSearchResult":
+            MessageLookupByLibrary.simpleMessage("Результаты поиска:"),
         "screenSignUpAlreadyExistsFail": MessageLookupByLibrary.simpleMessage(
             "Аккаунт с таким e-mail уже существует"),
         "screenSignUpDuplicatedNicknameFail":

@@ -1,9 +1,9 @@
 
 import 'dart:async';
 
-import 'package:goals_diary/src/data/repository/auth.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../data/repository/auth.dart';
 import '../../data/repository/profile.dart';
 import '../models.dart';
 
@@ -14,6 +14,7 @@ abstract class ProfileUseCase {
   void save(UserDto user);
   Future<void> saveOwn(UserDto user);
   Future<bool> isAvailableNickname(String nickname);
+  Future<List<UserDto>> search(String request);
 }
 
 @Injectable(as: ProfileUseCase)
@@ -45,4 +46,9 @@ class ProfileUseCaseImpl implements ProfileUseCase {
 
   @override
   String? get ownId => _authRepository.currentUserId;
+
+  @override
+  Future<List<UserDto>> search(String request) {
+    return _profileRepository.search(request);
+  }
 }

@@ -146,6 +146,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenProfileTitle": MessageLookupByLibrary.simpleMessage("Profile"),
         "screenProfileUnsubscribeButton":
             MessageLookupByLibrary.simpleMessage("Unsubscribe"),
+        "screenSearchUserFieldPlaceholder":
+            MessageLookupByLibrary.simpleMessage("Start typing a nickname"),
+        "screenSearchUserSearchResult":
+            MessageLookupByLibrary.simpleMessage("Search result:"),
         "screenSignUpAlreadyExistsFail": MessageLookupByLibrary.simpleMessage(
             "An account with the given email address already exists"),
         "screenSignUpDuplicatedNicknameFail":

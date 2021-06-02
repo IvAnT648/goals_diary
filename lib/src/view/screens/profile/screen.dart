@@ -258,7 +258,7 @@ class _UserNotFound extends StatelessWidget {
         S.of(context).screenProfileNotFound,
         style: TextStyles.italicNormal,
       ),
-    );;
+    );
   }
 }
 

@@ -99,6 +99,9 @@
   "screenFeedNoPosts": "Здесь пока пусто...",
   "screenFeedEmptyComment": "Комментарий не может быть пустым",
 
+  "screenSearchUserFieldPlaceholder": "Начните набирать никнейм",
+  "screenSearchUserSearchResult": "Результаты поиска:",
+
   "screenSubscriptionsTitle": "Мои подписки",
   "screenSubscriptionsHaveNoSubs": "У вас ещё нет подписок"
 }
