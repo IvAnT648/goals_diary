@@ -13,7 +13,7 @@ abstract class Navigation {
   static const String initialRoute = '/';
 
   /// Home screen id
-  static const String home = FeedScreen.id;
+  static const String home = ActivityScreen.id;
 
   /// Navigation instance
   static final Seafarer seafarer = Seafarer();
