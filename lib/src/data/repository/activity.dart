@@ -107,11 +107,13 @@ class ActivityRepositoryImpl implements ActivityRepository {
         isPublic: activity.goal.isPublic,
       );
       final activityDoc = await collection.add(data.toMap());
-      await _postsRepository.create(
-        authorId: authorId,
-        activityId: activityDoc.id,
-        goalId: activity.goal.id!,
-      );
+      if (activity.goal.isPublic) {
+        await _postsRepository.create(
+          authorId: authorId,
+          activityId: activityDoc.id,
+          goalId: activity.goal.id!,
+        );
+      }
       return;
     }
 
