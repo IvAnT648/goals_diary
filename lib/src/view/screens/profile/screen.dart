@@ -28,7 +28,11 @@ class ProfileScreen extends StatelessWidget {
         return Scaffold(
           appBar: state is OwnProfileScreenState && !state.withReturnableAppBar
               ? MenuTopBar(title: S.of(context).screenMyProfileTitle)
-              : ReturnableTopBar(title: S.of(context).screenProfileTitle),
+              : ReturnableTopBar(
+                  title: Text(
+                    S.of(context).screenProfileTitle,
+                    style: TextStyles.h3.copyWith(color: AppColors.regularText),
+                )),
           drawer: state is OwnProfileScreenState
               ? AppDrawer(selected: DrawerMenuItemType.profile)
               : null,

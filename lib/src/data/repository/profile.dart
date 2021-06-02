@@ -20,6 +20,8 @@ abstract class ProfileRepository {
   Future<void> delete(UserDto user);
 
   Future<bool> isAvailableNickname(String nickname);
+
+  Stream<List<UserDto>> search(String nickname);
 }
 
 @Injectable(as: ProfileRepository)
@@ -29,9 +31,9 @@ class ProfileRepositoryImpl implements ProfileRepository {
   final CollectionReference collection =
       FirebaseFirestore.instance.collection(_collectionName);
 
-  late final collectionWithConverter = collection.withConverter<ProfileData>(
+  late final collectionWithConverter = collection.withConverter<ProfileData?>(
     fromFirestore: (snapshot, _) => ProfileData.fromMap(snapshot.data() ?? {}),
-    toFirestore: (profile, _) => profile.toMap(),
+    toFirestore: (profile, _) => profile?.toMap() ?? {},
   );
 
   final AuthRepository _authRepository;
@@ -100,5 +102,22 @@ class ProfileRepositoryImpl implements ProfileRepository {
     if (id.isEmpty) return null;
     final doc = await collectionWithConverter.doc(id).get();
     return doc.data()?.toDomain(id: id);
+  }
+
+  @override
+  Stream<List<UserDto>> search(String nickname) async* {
+    final stream = collectionWithConverter
+        .where(ProfileData.nicknameKey, isGreaterThanOrEqualTo: nickname)
+        .snapshots().map(
+            (s) => s.docs.map((doc) => doc.data()?.toDomain(id: doc.id)).toList());
+
+    await for (var snapshot in stream) {
+      final list = <UserDto>[];
+      for (var el in snapshot) {
+        if (el == null) continue;
+        list.add(el);
+      }
+      yield list;
+    }
   }
 }

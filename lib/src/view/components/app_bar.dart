@@ -11,10 +11,12 @@ mixin DefaultPreferredSizeAppBar implements PreferredSizeWidget {
 
 class MenuTopBar extends StatelessWidget with DefaultPreferredSizeAppBar {
   final String? title;
+  final List<Widget>? actions;
 
   const MenuTopBar({
     Key? key,
     this.title,
+    this.actions,
   }) : super(key: key);
 
   @override
@@ -27,6 +29,7 @@ class MenuTopBar extends StatelessWidget with DefaultPreferredSizeAppBar {
               style: TextStyles.h3.copyWith(color: AppColors.regularText),
             ),
       centerTitle: true,
+      actions: actions,
       backgroundColor: AppColors.gray[20],
       leading: IconButton(
         color: AppColors.regularText,
@@ -40,7 +43,7 @@ class MenuTopBar extends StatelessWidget with DefaultPreferredSizeAppBar {
 }
 
 class ReturnableTopBar extends StatelessWidget with DefaultPreferredSizeAppBar {
-  final String? title;
+  final Widget? title;
   final List<Widget>? actions;
 
   const ReturnableTopBar({
@@ -52,10 +55,7 @@ class ReturnableTopBar extends StatelessWidget with DefaultPreferredSizeAppBar {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: title == null ? null : Text(
-        title!,
-        style: TextStyles.h3.copyWith(color: AppColors.regularText),
-      ),
+      title: title,
       centerTitle: true,
       backgroundColor: AppColors.gray[20],
       leading: IconButton(

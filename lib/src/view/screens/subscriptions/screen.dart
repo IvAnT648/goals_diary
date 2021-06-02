@@ -16,7 +16,20 @@ class SubscriptionsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MenuTopBar(title: S.of(context).screenSubscriptionsTitle),
+      appBar: MenuTopBar(
+        title: S.of(context).screenSubscriptionsTitle,
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.search,
+              color: AppColors.hintText,
+            ),
+            onPressed: () {
+              Navigation.to(SearchUserScreen.id);
+            },
+          ),
+        ],
+      ),
       drawer: AppDrawer(selected: DrawerMenuItemType.subscriptions),
       body: BlocBuilder<SubscriptionsScreenCubit, SubscriptionsScreenState>(
         builder: (context, state) => state.when(

@@ -119,6 +119,13 @@ abstract class Navigation {
         child: SubscriptionsScreen(),
       ),
     ),
+    SeafarerRoute(
+      name: SearchUserScreen.id,
+      builder: (_, __, ___) => BlocProvider<SearchUserBloc>(
+        create: (_) => getIt<SearchUserBloc>(),
+        child: SearchUserScreen(),
+      ),
+    ),
   ];
 
   /// WARNING: Execute before app launch
