@@ -7,23 +7,27 @@ class PostCommentDto {
   final DateTime date;
   final String text;
   final UserDto author;
-  
+  final String postId;
+
   PostCommentDto({
     required this.date,
     required this.text,
     required this.author,
+    required this.postId,
   });
 
   PostCommentDto copyWith({
     String? id,
     DateTime? date,
     String? text,
+    String? postId,
     UserDto? author,
   }) {
     return PostCommentDto(
       date: date ?? this.date,
       text: text ?? this.text,
       author: author ?? this.author,
+      postId: postId ?? this.postId,
     );
   }
 
@@ -32,6 +36,7 @@ class PostCommentDto {
       'date': date.millisecondsSinceEpoch,
       'text': text,
       'author': author.toMap(),
+      'postId': postId,
     };
   }
 
@@ -39,6 +44,7 @@ class PostCommentDto {
     return PostCommentDto(
       date: DateTime.fromMillisecondsSinceEpoch(map['date']),
       text: map['text'],
+      postId: map['postId'],
       author: UserDto.fromMap(map['author']),
     );
   }
@@ -47,6 +53,7 @@ class PostCommentDto {
   String toString() {
     return 'PostCommentDto(date: $date'
         ', text: $text'
+        ', postId: $postId'
         ', author: $author'
         ')';
   }
@@ -58,15 +65,15 @@ class PostCommentDto {
     return other is PostCommentDto &&
       other.date == date &&
       other.text == text &&
+      other.postId == postId &&
       other.author == author;
   }
 
   @override
-  int get hashCode {
-    return date.hashCode ^
+  int get hashCode => date.hashCode ^
       text.hashCode ^
+      postId.hashCode ^
       author.hashCode;
-  }
 }
 
 class PostDto {

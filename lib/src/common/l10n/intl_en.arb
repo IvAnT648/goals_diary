@@ -97,6 +97,7 @@
   "screenFeedAtTime": "at",
   "screenFeedNoComments": "No comments yet...",
   "screenFeedNoPosts": "No posts yet...",
+  "screenFeedEmptyComment": "Comment can't be empty",
 
   "screenSubscriptionsTitle": "My subscriptions",
   "screenSubscriptionsHaveNoSubs": "You don't have any subscriptions yet"

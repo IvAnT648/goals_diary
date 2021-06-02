@@ -6,3 +6,4 @@ export 'usecases/subscribing.dart';
 export 'usecases/delete_goal.dart';
 export 'usecases/save_goal.dart';
 export 'usecases/activity.dart';
+export 'usecases/comments.dart';

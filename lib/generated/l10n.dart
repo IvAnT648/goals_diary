@@ -930,6 +930,16 @@ class S {
     );
   }
 
+  /// `Comment can't be empty`
+  String get screenFeedEmptyComment {
+    return Intl.message(
+      'Comment can\'t be empty',
+      name: 'screenFeedEmptyComment',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `My subscriptions`
   String get screenSubscriptionsTitle {
     return Intl.message(

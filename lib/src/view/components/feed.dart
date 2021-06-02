@@ -264,7 +264,16 @@ class _FeedPostState extends State<FeedPost>
                             size: 24,
                           ),
                           onTap: () {
-                            widget.onSentComment(_commentTextController.text);
+                            if (_commentTextController.text.isEmpty) {
+                              showErrorSnackBar(
+                                S.of(context).screenFeedEmptyComment,
+                                context,
+                              );
+                            } else {
+                              final comment = _commentTextController.text;
+                              _commentTextController.text = '';
+                              widget.onSentComment(comment);
+                            }
                           },
                         ),
                       ),

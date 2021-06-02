@@ -4,10 +4,12 @@ import 'package:injectable/injectable.dart';
 
 import '../../domain/models.dart';
 import '../models/feed.dart';
+import 'auth.dart';
 import 'profile.dart';
 
 abstract class CommentsRepository {
-  Stream<List<PostCommentDto>> byPostId(String postId);
+  Stream<List<PostCommentDto>> byPostIds(List<String> postIds);
+  Future<bool> addComment(String postId, String text);
 }
 
 @Injectable(as: CommentsRepository)
@@ -26,27 +28,32 @@ class CommentsRepositoryImpl implements CommentsRepository {
   );
 
   final ProfileRepository _profileRepository;
+  final AuthRepository _authRepository;
 
-  CommentsRepositoryImpl(this._profileRepository);
+  CommentsRepositoryImpl(this._profileRepository, this._authRepository);
 
-  Stream<List<PostCommentDto>> byPostId(String postId) async* {
-    if (postId.isEmpty) return;
+  Stream<List<PostCommentDto>> byPostIds(List<String> postIds) async* {
+    if (postIds.isEmpty) {
+      yield [];
+      return;
+    }
 
-    final stream = convertedCollection
-        .where(PostCommentRaw.postIdKey, isEqualTo: postId)
-        .snapshots().map((s) => s.docs.map((doc) {
-          return doc.data();
-        }).toList());
-
-    await for (final rawList in stream) {
-      final list = <PostCommentDto>[];
-      for (var raw in rawList) {
-        if (raw == null) continue;
-        final domain = await _toDomain(raw);
-        if (domain == null) continue;
-        list.add(domain);
+    try {
+      final stream = convertedCollection
+          .where(PostCommentRaw.postIdKey, whereIn: postIds)
+          .snapshots().map((s) => s.docs);
+      await for (final rawDocList in stream) {
+        final list = <PostCommentDto>[];
+        for (var rawDoc in rawDocList) {
+          if (rawDoc.data() == null) continue;
+          final domain = await _toDomain(rawDoc.data()!);
+          if (domain == null) continue;
+          list.add(domain);
+        }
+        yield list;
       }
-      yield list;
+    } catch (e) {
+      print(e);
     }
   }
 
@@ -59,6 +66,31 @@ class CommentsRepositoryImpl implements CommentsRepository {
       date: raw.createdAt,
       text: raw.text,
       author: author,
+      postId: raw.postId,
     );
+  }
+
+  @override
+  Future<bool> addComment(String postId, String text) async {
+    if (postId.isEmpty
+        || text.isEmpty
+        || _authRepository.currentUserId == null
+    ) {
+      return false;
+    }
+    try {
+      await collection.add(
+          PostCommentRaw(
+            postId: postId,
+            authorId: _authRepository.currentUserId!,
+            text: text,
+            createdAt: DateTime.now(),
+          ).toMap(),
+      );
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
   }
 }

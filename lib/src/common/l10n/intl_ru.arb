@@ -97,6 +97,7 @@
   "screenFeedAtTime": "в",
   "screenFeedNoComments": "Комментариев пока нет...",
   "screenFeedNoPosts": "Здесь пока пусто...",
+  "screenFeedEmptyComment": "Комментарий не может быть пустым",
 
   "screenSubscriptionsTitle": "Мои подписки",
   "screenSubscriptionsHaveNoSubs": "У вас ещё нет подписок"

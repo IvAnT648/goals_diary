@@ -1,15 +1,18 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../domain/models.dart';
 import '../models.dart';
 import 'auth.dart';
+import 'comments.dart';
 import 'goals.dart';
 import 'profile.dart';
 import 'subscriptions.dart';
 
 abstract class PostsRepository {
-  Stream<List<PostDto>> get posts;
+  Stream<List<PostDto>> posts();
 
   Future<bool> like(PostDto post);
 
@@ -54,7 +57,7 @@ class PostsRepositoryFirestore implements PostsRepository {
   );
 
   @override
-  Stream<List<PostDto>> get posts async* {
+  Stream<List<PostDto>> posts() async* {
     if (_auth.currentUser == null) {
       yield [];
       return;
@@ -69,16 +72,12 @@ class PostsRepositoryFirestore implements PostsRepository {
           .snapshots()
           .map((s) => s.docs);
 
-
       await for (var postDocs in postDocsStream) {
-        if (postDocs.isEmpty) {
-          yield [];
-          continue;
-        }
         final posts = <PostDto>[];
+
         for (var postDoc in postDocs) {
           if (postDoc.data() == null) continue;
-          final domain = await _toDomain(postDoc.id, postDoc.data()!);
+          var domain = await _toDomain(postDoc.id, postDoc.data()!);
           if (domain == null) continue;
           posts.add(domain);
         }

@@ -24,6 +24,6 @@ class PostsUseCaseImpl implements PostsUseCase {
 
   @override
   Stream<List<PostDto>> get all async* {
-    yield* _repository.posts;
+    yield* _repository.posts();
   }
 }

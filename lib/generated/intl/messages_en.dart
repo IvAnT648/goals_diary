@@ -98,6 +98,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenEditGoalTypeLabel":
             MessageLookupByLibrary.simpleMessage("Goal type:"),
         "screenFeedAtTime": MessageLookupByLibrary.simpleMessage("at"),
+        "screenFeedEmptyComment":
+            MessageLookupByLibrary.simpleMessage("Comment can\'t be empty"),
         "screenFeedGoalProgressText":
             MessageLookupByLibrary.simpleMessage("goal progress"),
         "screenFeedNoComments":

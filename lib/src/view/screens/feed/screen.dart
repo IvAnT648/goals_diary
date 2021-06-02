@@ -82,7 +82,7 @@ class _LoadedState extends StatelessWidget {
             FeedPost(
               post: post,
               onSentComment: (comment) {
-                // TODO: send comment
+                context.read<FeedScreenCubit>().addComment(post, comment);
               },
               onAuthorTap: () {
                 Navigation.to(ProfileScreen.idOther, params: {
