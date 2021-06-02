@@ -1,11 +1,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:goals_diary/src/view/screens/profile/screen.dart';
 
 import '../../../common/resources.dart';
 import '../../components.dart';
 import '../../navigation.dart';
+import '../profile/screen.dart';
 import 'bloc.dart';
 
 class SearchUserScreen extends StatefulWidget {
