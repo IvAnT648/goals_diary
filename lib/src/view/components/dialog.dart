@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../generated/l10n.dart';
+import '../../common/resources.dart';
 import '../navigation.dart';
 
 class YesNoAlertDialog extends StatelessWidget {
@@ -40,3 +40,23 @@ class YesNoAlertDialog extends StatelessWidget {
     );
   }
 }
+
+class InfoDialog extends StatelessWidget {
+  final String title;
+  final String content;
+
+  const InfoDialog({
+    Key? key,
+    required this.title,
+    required this.content,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text(title),
+      content: Text(content),
+    );
+  }
+}
+

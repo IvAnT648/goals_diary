@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,7 +23,45 @@ class ProfileScreen extends StatelessWidget {
   static const String idOther = '/profile:user';
   static const String userArg = 'user';
 
-  const ProfileScreen({Key? key}) : super(key: key);
+  final goals = <GoalDto>[
+    GoalDto(
+      id: '0',
+      title: 'Test',
+      type: GoalType.public,
+      description: "AlertDialig имеет необязательный заголовок и необязательное содержимое. Заголовок отображается над содержимым, а действия (например кнопка 'Ok') отображаются под содержимым.",
+      sendNotifications: false,
+    ),
+    GoalDto(
+      id: '0',
+      title: 'Test 2',
+      type: GoalType.public,
+      description: '',
+      sendNotifications: false,
+    ),
+    GoalDto(
+      id: '0',
+      title: 'Test 2',
+      type: GoalType.public,
+      description: '',
+      sendNotifications: false,
+    ),
+    GoalDto(
+      id: '0',
+      title: 'Test 2',
+      type: GoalType.public,
+      description: '',
+      sendNotifications: false,
+    ),
+    GoalDto(
+      id: '0',
+      title: 'Test 2',
+      type: GoalType.public,
+      description: '',
+      sendNotifications: false,
+    ),
+  ];
+
+  ProfileScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,10 +84,12 @@ class ProfileScreen extends StatelessWidget {
             subscribed: (info) => ViewProfileComponent(
               info: info,
               isSubscribed: true,
+              goals: goals,
             ),
             unsubscribed: (info) => ViewProfileComponent(
               info: info,
               isSubscribed: false,
+              goals: goals,
             ),
             userNotFound: () => const _UserNotFound(),
           ),

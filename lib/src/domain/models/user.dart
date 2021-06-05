@@ -1,4 +1,6 @@
 
+import 'goal.dart';
+
 class UserDto {
   final String id;
   final String name;
@@ -7,6 +9,7 @@ class UserDto {
   final String? about;
   final String? motto;
   final String? avatarUrl;
+  final List<GoalDto> goals;
 
   const UserDto({
     required this.id,
@@ -16,6 +19,7 @@ class UserDto {
     this.about,
     this.motto,
     this.avatarUrl,
+    this.goals = const [],
   });
 
   String get nicknameWithAt => nickname != null ? '@$nickname' : '';

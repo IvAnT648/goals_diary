@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:goals_diary/src/domain/models.dart';
 
 import '../../../common/resources.dart';
+import '../../../domain/models.dart';
 import '../../components.dart';
 import '../../navigation.dart';
 import '../../screens.dart';
@@ -88,7 +88,6 @@ class _SuccessState extends StatelessWidget {
     );
   }
 }
-
 
 class _FloatingNewGoalButton extends StatelessWidget {
   const _FloatingNewGoalButton({Key? key}) : super(key: key);
