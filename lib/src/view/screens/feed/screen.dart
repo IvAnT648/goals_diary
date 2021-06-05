@@ -89,7 +89,7 @@ class _LoadedStateState extends State<_LoadedState> {
               post: post,
               onSentComment: (comment) {
                 context.read<FeedScreenCubit>().addComment(post, comment);
-                setState(() {});
+                // setState(() {});
               },
               onAuthorTap: () {
                 Navigation.to(ProfileScreen.idOther, params: {

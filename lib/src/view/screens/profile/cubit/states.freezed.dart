@@ -16,22 +16,15 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$ProfileScreenStateTearOff {
   const _$ProfileScreenStateTearOff();
 
-  OwnProfileScreenState own(UserDto info, bool withReturnableAppBar) {
+  OwnProfileScreenState own(UserDto info) {
     return OwnProfileScreenState(
       info,
-      withReturnableAppBar,
     );
   }
 
-  SubscribedProfileScreenState subscribed(UserDto info) {
-    return SubscribedProfileScreenState(
-      info,
-    );
-  }
-
-  UnsubscribedProfileScreenState unsubscribed(UserDto info) {
-    return UnsubscribedProfileScreenState(
-      info,
+  OtherProfileScreenState other(UserDto user) {
+    return OtherProfileScreenState(
+      user,
     );
   }
 
@@ -51,18 +44,16 @@ const $ProfileScreenState = _$ProfileScreenStateTearOff();
 mixin _$ProfileScreenState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(UserDto info, bool withReturnableAppBar) own,
-    required TResult Function(UserDto info) subscribed,
-    required TResult Function(UserDto info) unsubscribed,
+    required TResult Function(UserDto info) own,
+    required TResult Function(UserDto user) other,
     required TResult Function() loading,
     required TResult Function() userNotFound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UserDto info, bool withReturnableAppBar)? own,
-    TResult Function(UserDto info)? subscribed,
-    TResult Function(UserDto info)? unsubscribed,
+    TResult Function(UserDto info)? own,
+    TResult Function(UserDto user)? other,
     TResult Function()? loading,
     TResult Function()? userNotFound,
     required TResult orElse(),
@@ -71,9 +62,7 @@ mixin _$ProfileScreenState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(OwnProfileScreenState value) own,
-    required TResult Function(SubscribedProfileScreenState value) subscribed,
-    required TResult Function(UnsubscribedProfileScreenState value)
-        unsubscribed,
+    required TResult Function(OtherProfileScreenState value) other,
     required TResult Function(LoadingProfileScreenState value) loading,
     required TResult Function(UserNotFoundProfileScreenState value)
         userNotFound,
@@ -82,8 +71,7 @@ mixin _$ProfileScreenState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(OwnProfileScreenState value)? own,
-    TResult Function(SubscribedProfileScreenState value)? subscribed,
-    TResult Function(UnsubscribedProfileScreenState value)? unsubscribed,
+    TResult Function(OtherProfileScreenState value)? other,
     TResult Function(LoadingProfileScreenState value)? loading,
     TResult Function(UserNotFoundProfileScreenState value)? userNotFound,
     required TResult orElse(),
@@ -113,7 +101,7 @@ abstract class $OwnProfileScreenStateCopyWith<$Res> {
   factory $OwnProfileScreenStateCopyWith(OwnProfileScreenState value,
           $Res Function(OwnProfileScreenState) then) =
       _$OwnProfileScreenStateCopyWithImpl<$Res>;
-  $Res call({UserDto info, bool withReturnableAppBar});
+  $Res call({UserDto info});
 }
 
 /// @nodoc
@@ -130,17 +118,12 @@ class _$OwnProfileScreenStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? info = freezed,
-    Object? withReturnableAppBar = freezed,
   }) {
     return _then(OwnProfileScreenState(
       info == freezed
           ? _value.info
           : info // ignore: cast_nullable_to_non_nullable
               as UserDto,
-      withReturnableAppBar == freezed
-          ? _value.withReturnableAppBar
-          : withReturnableAppBar // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -148,16 +131,14 @@ class _$OwnProfileScreenStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$OwnProfileScreenState implements OwnProfileScreenState {
-  const _$OwnProfileScreenState(this.info, this.withReturnableAppBar);
+  const _$OwnProfileScreenState(this.info);
 
   @override
   final UserDto info;
-  @override
-  final bool withReturnableAppBar;
 
   @override
   String toString() {
-    return 'ProfileScreenState.own(info: $info, withReturnableAppBar: $withReturnableAppBar)';
+    return 'ProfileScreenState.own(info: $info)';
   }
 
   @override
@@ -165,17 +146,12 @@ class _$OwnProfileScreenState implements OwnProfileScreenState {
     return identical(this, other) ||
         (other is OwnProfileScreenState &&
             (identical(other.info, info) ||
-                const DeepCollectionEquality().equals(other.info, info)) &&
-            (identical(other.withReturnableAppBar, withReturnableAppBar) ||
-                const DeepCollectionEquality()
-                    .equals(other.withReturnableAppBar, withReturnableAppBar)));
+                const DeepCollectionEquality().equals(other.info, info)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(info) ^
-      const DeepCollectionEquality().hash(withReturnableAppBar);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(info);
 
   @JsonKey(ignore: true)
   @override
@@ -186,27 +162,25 @@ class _$OwnProfileScreenState implements OwnProfileScreenState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(UserDto info, bool withReturnableAppBar) own,
-    required TResult Function(UserDto info) subscribed,
-    required TResult Function(UserDto info) unsubscribed,
+    required TResult Function(UserDto info) own,
+    required TResult Function(UserDto user) other,
     required TResult Function() loading,
     required TResult Function() userNotFound,
   }) {
-    return own(info, withReturnableAppBar);
+    return own(info);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UserDto info, bool withReturnableAppBar)? own,
-    TResult Function(UserDto info)? subscribed,
-    TResult Function(UserDto info)? unsubscribed,
+    TResult Function(UserDto info)? own,
+    TResult Function(UserDto user)? other,
     TResult Function()? loading,
     TResult Function()? userNotFound,
     required TResult orElse(),
   }) {
     if (own != null) {
-      return own(info, withReturnableAppBar);
+      return own(info);
     }
     return orElse();
   }
@@ -215,9 +189,7 @@ class _$OwnProfileScreenState implements OwnProfileScreenState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(OwnProfileScreenState value) own,
-    required TResult Function(SubscribedProfileScreenState value) subscribed,
-    required TResult Function(UnsubscribedProfileScreenState value)
-        unsubscribed,
+    required TResult Function(OtherProfileScreenState value) other,
     required TResult Function(LoadingProfileScreenState value) loading,
     required TResult Function(UserNotFoundProfileScreenState value)
         userNotFound,
@@ -229,8 +201,7 @@ class _$OwnProfileScreenState implements OwnProfileScreenState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(OwnProfileScreenState value)? own,
-    TResult Function(SubscribedProfileScreenState value)? subscribed,
-    TResult Function(UnsubscribedProfileScreenState value)? unsubscribed,
+    TResult Function(OtherProfileScreenState value)? other,
     TResult Function(LoadingProfileScreenState value)? loading,
     TResult Function(UserNotFoundProfileScreenState value)? userNotFound,
     required TResult orElse(),
@@ -243,46 +214,41 @@ class _$OwnProfileScreenState implements OwnProfileScreenState {
 }
 
 abstract class OwnProfileScreenState implements ProfileScreenState {
-  const factory OwnProfileScreenState(UserDto info, bool withReturnableAppBar) =
-      _$OwnProfileScreenState;
+  const factory OwnProfileScreenState(UserDto info) = _$OwnProfileScreenState;
 
   UserDto get info => throw _privateConstructorUsedError;
-  bool get withReturnableAppBar => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $OwnProfileScreenStateCopyWith<OwnProfileScreenState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SubscribedProfileScreenStateCopyWith<$Res> {
-  factory $SubscribedProfileScreenStateCopyWith(
-          SubscribedProfileScreenState value,
-          $Res Function(SubscribedProfileScreenState) then) =
-      _$SubscribedProfileScreenStateCopyWithImpl<$Res>;
-  $Res call({UserDto info});
+abstract class $OtherProfileScreenStateCopyWith<$Res> {
+  factory $OtherProfileScreenStateCopyWith(OtherProfileScreenState value,
+          $Res Function(OtherProfileScreenState) then) =
+      _$OtherProfileScreenStateCopyWithImpl<$Res>;
+  $Res call({UserDto user});
 }
 
 /// @nodoc
-class _$SubscribedProfileScreenStateCopyWithImpl<$Res>
+class _$OtherProfileScreenStateCopyWithImpl<$Res>
     extends _$ProfileScreenStateCopyWithImpl<$Res>
-    implements $SubscribedProfileScreenStateCopyWith<$Res> {
-  _$SubscribedProfileScreenStateCopyWithImpl(
-      SubscribedProfileScreenState _value,
-      $Res Function(SubscribedProfileScreenState) _then)
-      : super(_value, (v) => _then(v as SubscribedProfileScreenState));
+    implements $OtherProfileScreenStateCopyWith<$Res> {
+  _$OtherProfileScreenStateCopyWithImpl(OtherProfileScreenState _value,
+      $Res Function(OtherProfileScreenState) _then)
+      : super(_value, (v) => _then(v as OtherProfileScreenState));
 
   @override
-  SubscribedProfileScreenState get _value =>
-      super._value as SubscribedProfileScreenState;
+  OtherProfileScreenState get _value => super._value as OtherProfileScreenState;
 
   @override
   $Res call({
-    Object? info = freezed,
+    Object? user = freezed,
   }) {
-    return _then(SubscribedProfileScreenState(
-      info == freezed
-          ? _value.info
-          : info // ignore: cast_nullable_to_non_nullable
+    return _then(OtherProfileScreenState(
+      user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
               as UserDto,
     ));
   }
@@ -290,59 +256,57 @@ class _$SubscribedProfileScreenStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SubscribedProfileScreenState implements SubscribedProfileScreenState {
-  const _$SubscribedProfileScreenState(this.info);
+class _$OtherProfileScreenState implements OtherProfileScreenState {
+  const _$OtherProfileScreenState(this.user);
 
   @override
-  final UserDto info;
+  final UserDto user;
 
   @override
   String toString() {
-    return 'ProfileScreenState.subscribed(info: $info)';
+    return 'ProfileScreenState.other(user: $user)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is SubscribedProfileScreenState &&
-            (identical(other.info, info) ||
-                const DeepCollectionEquality().equals(other.info, info)));
+        (other is OtherProfileScreenState &&
+            (identical(other.user, user) ||
+                const DeepCollectionEquality().equals(other.user, user)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(info);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(user);
 
   @JsonKey(ignore: true)
   @override
-  $SubscribedProfileScreenStateCopyWith<SubscribedProfileScreenState>
-      get copyWith => _$SubscribedProfileScreenStateCopyWithImpl<
-          SubscribedProfileScreenState>(this, _$identity);
+  $OtherProfileScreenStateCopyWith<OtherProfileScreenState> get copyWith =>
+      _$OtherProfileScreenStateCopyWithImpl<OtherProfileScreenState>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(UserDto info, bool withReturnableAppBar) own,
-    required TResult Function(UserDto info) subscribed,
-    required TResult Function(UserDto info) unsubscribed,
+    required TResult Function(UserDto info) own,
+    required TResult Function(UserDto user) other,
     required TResult Function() loading,
     required TResult Function() userNotFound,
   }) {
-    return subscribed(info);
+    return other(user);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UserDto info, bool withReturnableAppBar)? own,
-    TResult Function(UserDto info)? subscribed,
-    TResult Function(UserDto info)? unsubscribed,
+    TResult Function(UserDto info)? own,
+    TResult Function(UserDto user)? other,
     TResult Function()? loading,
     TResult Function()? userNotFound,
     required TResult orElse(),
   }) {
-    if (subscribed != null) {
-      return subscribed(info);
+    if (other != null) {
+      return other(user);
     }
     return orElse();
   }
@@ -351,177 +315,38 @@ class _$SubscribedProfileScreenState implements SubscribedProfileScreenState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(OwnProfileScreenState value) own,
-    required TResult Function(SubscribedProfileScreenState value) subscribed,
-    required TResult Function(UnsubscribedProfileScreenState value)
-        unsubscribed,
+    required TResult Function(OtherProfileScreenState value) other,
     required TResult Function(LoadingProfileScreenState value) loading,
     required TResult Function(UserNotFoundProfileScreenState value)
         userNotFound,
   }) {
-    return subscribed(this);
+    return other(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(OwnProfileScreenState value)? own,
-    TResult Function(SubscribedProfileScreenState value)? subscribed,
-    TResult Function(UnsubscribedProfileScreenState value)? unsubscribed,
+    TResult Function(OtherProfileScreenState value)? other,
     TResult Function(LoadingProfileScreenState value)? loading,
     TResult Function(UserNotFoundProfileScreenState value)? userNotFound,
     required TResult orElse(),
   }) {
-    if (subscribed != null) {
-      return subscribed(this);
+    if (other != null) {
+      return other(this);
     }
     return orElse();
   }
 }
 
-abstract class SubscribedProfileScreenState implements ProfileScreenState {
-  const factory SubscribedProfileScreenState(UserDto info) =
-      _$SubscribedProfileScreenState;
+abstract class OtherProfileScreenState implements ProfileScreenState {
+  const factory OtherProfileScreenState(UserDto user) =
+      _$OtherProfileScreenState;
 
-  UserDto get info => throw _privateConstructorUsedError;
+  UserDto get user => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SubscribedProfileScreenStateCopyWith<SubscribedProfileScreenState>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $UnsubscribedProfileScreenStateCopyWith<$Res> {
-  factory $UnsubscribedProfileScreenStateCopyWith(
-          UnsubscribedProfileScreenState value,
-          $Res Function(UnsubscribedProfileScreenState) then) =
-      _$UnsubscribedProfileScreenStateCopyWithImpl<$Res>;
-  $Res call({UserDto info});
-}
-
-/// @nodoc
-class _$UnsubscribedProfileScreenStateCopyWithImpl<$Res>
-    extends _$ProfileScreenStateCopyWithImpl<$Res>
-    implements $UnsubscribedProfileScreenStateCopyWith<$Res> {
-  _$UnsubscribedProfileScreenStateCopyWithImpl(
-      UnsubscribedProfileScreenState _value,
-      $Res Function(UnsubscribedProfileScreenState) _then)
-      : super(_value, (v) => _then(v as UnsubscribedProfileScreenState));
-
-  @override
-  UnsubscribedProfileScreenState get _value =>
-      super._value as UnsubscribedProfileScreenState;
-
-  @override
-  $Res call({
-    Object? info = freezed,
-  }) {
-    return _then(UnsubscribedProfileScreenState(
-      info == freezed
-          ? _value.info
-          : info // ignore: cast_nullable_to_non_nullable
-              as UserDto,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$UnsubscribedProfileScreenState
-    implements UnsubscribedProfileScreenState {
-  const _$UnsubscribedProfileScreenState(this.info);
-
-  @override
-  final UserDto info;
-
-  @override
-  String toString() {
-    return 'ProfileScreenState.unsubscribed(info: $info)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is UnsubscribedProfileScreenState &&
-            (identical(other.info, info) ||
-                const DeepCollectionEquality().equals(other.info, info)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(info);
-
-  @JsonKey(ignore: true)
-  @override
-  $UnsubscribedProfileScreenStateCopyWith<UnsubscribedProfileScreenState>
-      get copyWith => _$UnsubscribedProfileScreenStateCopyWithImpl<
-          UnsubscribedProfileScreenState>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(UserDto info, bool withReturnableAppBar) own,
-    required TResult Function(UserDto info) subscribed,
-    required TResult Function(UserDto info) unsubscribed,
-    required TResult Function() loading,
-    required TResult Function() userNotFound,
-  }) {
-    return unsubscribed(info);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UserDto info, bool withReturnableAppBar)? own,
-    TResult Function(UserDto info)? subscribed,
-    TResult Function(UserDto info)? unsubscribed,
-    TResult Function()? loading,
-    TResult Function()? userNotFound,
-    required TResult orElse(),
-  }) {
-    if (unsubscribed != null) {
-      return unsubscribed(info);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(OwnProfileScreenState value) own,
-    required TResult Function(SubscribedProfileScreenState value) subscribed,
-    required TResult Function(UnsubscribedProfileScreenState value)
-        unsubscribed,
-    required TResult Function(LoadingProfileScreenState value) loading,
-    required TResult Function(UserNotFoundProfileScreenState value)
-        userNotFound,
-  }) {
-    return unsubscribed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(OwnProfileScreenState value)? own,
-    TResult Function(SubscribedProfileScreenState value)? subscribed,
-    TResult Function(UnsubscribedProfileScreenState value)? unsubscribed,
-    TResult Function(LoadingProfileScreenState value)? loading,
-    TResult Function(UserNotFoundProfileScreenState value)? userNotFound,
-    required TResult orElse(),
-  }) {
-    if (unsubscribed != null) {
-      return unsubscribed(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class UnsubscribedProfileScreenState implements ProfileScreenState {
-  const factory UnsubscribedProfileScreenState(UserDto info) =
-      _$UnsubscribedProfileScreenState;
-
-  UserDto get info => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $UnsubscribedProfileScreenStateCopyWith<UnsubscribedProfileScreenState>
-      get copyWith => throw _privateConstructorUsedError;
+  $OtherProfileScreenStateCopyWith<OtherProfileScreenState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -565,9 +390,8 @@ class _$LoadingProfileScreenState implements LoadingProfileScreenState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(UserDto info, bool withReturnableAppBar) own,
-    required TResult Function(UserDto info) subscribed,
-    required TResult Function(UserDto info) unsubscribed,
+    required TResult Function(UserDto info) own,
+    required TResult Function(UserDto user) other,
     required TResult Function() loading,
     required TResult Function() userNotFound,
   }) {
@@ -577,9 +401,8 @@ class _$LoadingProfileScreenState implements LoadingProfileScreenState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UserDto info, bool withReturnableAppBar)? own,
-    TResult Function(UserDto info)? subscribed,
-    TResult Function(UserDto info)? unsubscribed,
+    TResult Function(UserDto info)? own,
+    TResult Function(UserDto user)? other,
     TResult Function()? loading,
     TResult Function()? userNotFound,
     required TResult orElse(),
@@ -594,9 +417,7 @@ class _$LoadingProfileScreenState implements LoadingProfileScreenState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(OwnProfileScreenState value) own,
-    required TResult Function(SubscribedProfileScreenState value) subscribed,
-    required TResult Function(UnsubscribedProfileScreenState value)
-        unsubscribed,
+    required TResult Function(OtherProfileScreenState value) other,
     required TResult Function(LoadingProfileScreenState value) loading,
     required TResult Function(UserNotFoundProfileScreenState value)
         userNotFound,
@@ -608,8 +429,7 @@ class _$LoadingProfileScreenState implements LoadingProfileScreenState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(OwnProfileScreenState value)? own,
-    TResult Function(SubscribedProfileScreenState value)? subscribed,
-    TResult Function(UnsubscribedProfileScreenState value)? unsubscribed,
+    TResult Function(OtherProfileScreenState value)? other,
     TResult Function(LoadingProfileScreenState value)? loading,
     TResult Function(UserNotFoundProfileScreenState value)? userNotFound,
     required TResult orElse(),
@@ -669,9 +489,8 @@ class _$UserNotFoundProfileScreenState
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(UserDto info, bool withReturnableAppBar) own,
-    required TResult Function(UserDto info) subscribed,
-    required TResult Function(UserDto info) unsubscribed,
+    required TResult Function(UserDto info) own,
+    required TResult Function(UserDto user) other,
     required TResult Function() loading,
     required TResult Function() userNotFound,
   }) {
@@ -681,9 +500,8 @@ class _$UserNotFoundProfileScreenState
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UserDto info, bool withReturnableAppBar)? own,
-    TResult Function(UserDto info)? subscribed,
-    TResult Function(UserDto info)? unsubscribed,
+    TResult Function(UserDto info)? own,
+    TResult Function(UserDto user)? other,
     TResult Function()? loading,
     TResult Function()? userNotFound,
     required TResult orElse(),
@@ -698,9 +516,7 @@ class _$UserNotFoundProfileScreenState
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(OwnProfileScreenState value) own,
-    required TResult Function(SubscribedProfileScreenState value) subscribed,
-    required TResult Function(UnsubscribedProfileScreenState value)
-        unsubscribed,
+    required TResult Function(OtherProfileScreenState value) other,
     required TResult Function(LoadingProfileScreenState value) loading,
     required TResult Function(UserNotFoundProfileScreenState value)
         userNotFound,
@@ -712,8 +528,7 @@ class _$UserNotFoundProfileScreenState
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(OwnProfileScreenState value)? own,
-    TResult Function(SubscribedProfileScreenState value)? subscribed,
-    TResult Function(UnsubscribedProfileScreenState value)? unsubscribed,
+    TResult Function(OtherProfileScreenState value)? other,
     TResult Function(LoadingProfileScreenState value)? loading,
     TResult Function(UserNotFoundProfileScreenState value)? userNotFound,
     required TResult orElse(),

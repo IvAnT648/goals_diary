@@ -10,6 +10,8 @@ class UserDto {
   final String? motto;
   final String? avatarUrl;
   final List<GoalDto> goals;
+  // The user has subscription to the current user flag
+  final bool? isSubscribed;
 
   const UserDto({
     required this.id,
@@ -20,6 +22,7 @@ class UserDto {
     this.motto,
     this.avatarUrl,
     this.goals = const [],
+    this.isSubscribed,
   });
 
   String get nicknameWithAt => nickname != null ? '@$nickname' : '';
@@ -43,6 +46,8 @@ class UserDto {
     String? about,
     String? motto,
     String? avatarUrl,
+    List<GoalDto>? goals,
+    bool? isSubscribed,
   }) {
     return UserDto(
       id: id ?? this.id,
@@ -51,6 +56,8 @@ class UserDto {
       about: about ?? this.about,
       motto: motto ?? this.motto,
       avatarUrl: avatarUrl ?? this.avatarUrl,
+      goals: goals ?? this.goals,
+      isSubscribed: isSubscribed ?? this.isSubscribed,
     );
   }
 
@@ -62,6 +69,8 @@ class UserDto {
       'about': about,
       'motto': motto,
       'avatarUrl': avatarUrl,
+      'goals': goals,
+      'isSubscribed': isSubscribed,
     };
   }
 
@@ -73,6 +82,8 @@ class UserDto {
       about: map['about'] as String?,
       motto: map['motto'] as String?,
       avatarUrl: map['avatarUrl'] as String?,
+      goals: map['goals'] as List<GoalDto>,
+      isSubscribed: map['isSubscribed'] as bool?,
     );
   }
 
@@ -84,6 +95,8 @@ class UserDto {
         ', about: $about'
         ', motto: $motto'
         ', avatarUrl: $avatarUrl'
+        ', goals: $goals'
+        ', isSubscribed: $isSubscribed'
         ')';
   }
 
@@ -97,6 +110,8 @@ class UserDto {
         other.nickname == nickname &&
         other.about == about &&
         other.motto == motto &&
+        other.goals == goals &&
+        other.isSubscribed == isSubscribed &&
         other.avatarUrl == avatarUrl;
   }
 
@@ -107,6 +122,8 @@ class UserDto {
         nickname.hashCode ^
         about.hashCode ^
         motto.hashCode ^
+        goals.hashCode ^
+        isSubscribed.hashCode ^
         avatarUrl.hashCode;
   }
 }

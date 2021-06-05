@@ -4,14 +4,16 @@ import 'package:injectable/injectable.dart';
 import '../../domain/models.dart';
 import '../models.dart';
 import 'auth.dart';
+import 'goals.dart';
+import 'subscriptions.dart';
 import 'utils.dart';
 
 abstract class ProfileRepository {
   Stream<UserDto?> get meStream;
 
-  Stream<UserDto?> get(String id);
+  Stream<UserDto?> get(String id, bool addGoals);
 
-  Future<UserDto?> getSingle(String id);
+  Future<UserDto?> getSingle({required String id, bool? publicFilter});
 
   Future<void> save(UserDto user);
 
@@ -37,8 +39,11 @@ class ProfileRepositoryImpl implements ProfileRepository {
   );
 
   final AuthRepository _authRepository;
+  final GoalsRepository _goalsRepository;
+  final SubscriptionsRepository _subscriptionsRepository;
 
-  ProfileRepositoryImpl(this._authRepository);
+  ProfileRepositoryImpl(this._authRepository, this._goalsRepository,
+      this._subscriptionsRepository);
 
   @override
   Stream<UserDto?> get meStream async* {
@@ -46,11 +51,22 @@ class ProfileRepositoryImpl implements ProfileRepository {
       yield null;
       return;
     }
-    yield* get(_authRepository.currentUser!.uid);
+    yield* get(_authRepository.currentUser!.uid, false);
   }
 
   @override
-  Stream<UserDto?> get(String id) async* {
+  Stream<UserDto?> get(String id, bool addGoals) async* {
+    if (addGoals) {
+      yield* collectionWithConverter
+          .doc(id)
+          .snapshots()
+          .asyncMap((doc) async {
+        List<GoalDto> goals =
+            await _goalsRepository.loadByAuthorId(authorId: id);
+        return doc.data()?.toDomain(id: id, goals: goals);
+      });
+      return;
+    }
     yield* collectionWithConverter.doc(id).snapshots().map(
             (doc) => doc.data()?.toDomain(id: id)
     );
@@ -98,15 +114,38 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<UserDto?> getSingle(String id) async {
+  Future<UserDto?> getSingle({
+    required String id,
+    bool? publicFilter,
+    bool addIsSubscribed = false,
+  }) async {
     if (id.isEmpty) return null;
+
+    List<GoalDto> goals = [];
+    if (publicFilter != null) {
+      goals = await _goalsRepository.loadByAuthorId(
+        authorId: id,
+        publicFilter: publicFilter,
+      );
+    }
+
+    bool? isSubscribed;
+    if (addIsSubscribed) {
+      isSubscribed = await _subscriptionsRepository.isSubscribed(id);
+    }
+
     final doc = await collectionWithConverter.doc(id).get();
-    return doc.data()?.toDomain(id: id);
+    return doc.data()?.toDomain(
+      id: id,
+      goals: goals,
+      isSubscribed: isSubscribed,
+    );
   }
 
   @override
   Future<List<UserDto>> search(String request) async {
     try {
+      // Fix search
       final snapshot = await collectionWithConverter
           .where(ProfileData.nicknameKey, isGreaterThanOrEqualTo: request)
           .get();

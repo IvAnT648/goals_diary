@@ -66,6 +66,8 @@ extension ProfileDataToDomain on ProfileData {
   UserDto toDomain({
     required String id,
     String? photoUrl,
+    List<GoalDto> goals = const [],
+    bool? isSubscribed,
   }) {
     return UserDto(
       id: id,
@@ -75,6 +77,8 @@ extension ProfileDataToDomain on ProfileData {
       motto: motto,
       about: about,
       avatarUrl: photoUrl,
+      goals: goals,
+      isSubscribed: isSubscribed,
     );
   }
 }

@@ -1,21 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../domain/models.dart';
 import '../models.dart';
 import 'auth.dart';
-import 'profile.dart';
 
 abstract class SubscriptionsRepository {
-  Stream<SubscriptionsDto> getById(String uid);
-
   Stream<List<String>> getSubsIds(String uid);
 
-  Stream<SubscriptionsDto> get own;
+  Stream<List<String>> get own;
 
   Future<void> subscribeTo(String uid);
 
   Future<void> unsubscribeFrom(String uid);
+
+  Stream<bool?> isSubscribedStream(String uid);
+
+  Future<bool?> isSubscribed(String uid);
 }
 
 @Injectable(as: SubscriptionsRepository)
@@ -23,7 +23,6 @@ class SubscriptionsRepositoryImpl implements SubscriptionsRepository {
   static const String _collectionName = 'subscriptions';
 
   final AuthRepository _auth;
-  final ProfileRepository _profile;
 
   final CollectionReference collection =
       FirebaseFirestore.instance.collection(_collectionName);
@@ -37,29 +36,11 @@ class SubscriptionsRepositoryImpl implements SubscriptionsRepository {
 
   String? get _userId => _auth.currentUser?.uid;
 
-  SubscriptionsRepositoryImpl(this._auth, this._profile);
+  SubscriptionsRepositoryImpl(this._auth);
 
-  Stream<SubscriptionsDto> get own async* {
+  Stream<List<String>> get own async* {
     if (_userId == null) return;
-    yield* getById(_userId!);
-  }
-
-  Stream<SubscriptionsDto> getById(String uid) async* {
-    if (uid.isEmpty) return;
-
-    await for (final userIds in getSubsIds(uid)) {
-      final subs = <UserDto>[];
-      for (final userId in userIds) {
-        final user = await _profile.getSingle(userId);
-        if (user != null) {
-          subs.add(user);
-        }
-      }
-      yield SubscriptionsDto(
-        uid: _userId!,
-        subscriptions: subs,
-      );
-    }
+    yield* getSubsIds(_userId!);
   }
 
   Stream<List<String>> getSubsIds(String uid) async* {
@@ -105,5 +86,31 @@ class SubscriptionsRepositoryImpl implements SubscriptionsRepository {
     } catch (e) {
       print(e);
     }
+  }
+
+  @override
+  Stream<bool?> isSubscribedStream(String uid) async* {
+    if (_userId == null || uid.isEmpty) return;
+
+    if (uid == _userId) {
+      yield null;
+      return;
+    }
+
+    yield* collectionWithConverter
+        .doc(_userId)
+        .snapshots()
+        .map((snapshot) {
+          final data = snapshot.data();
+          if (data == null) return false;
+          return data.subscriptions.contains(uid);
+        });
+  }
+
+  @override
+  Future<bool?> isSubscribed(String uid) async {
+    if (_userId == null || uid.isEmpty || _userId == uid) return null;
+    final doc = await collectionWithConverter.doc(_userId!).get();
+    return doc.data()?.subscriptions.contains(uid);
   }
 }

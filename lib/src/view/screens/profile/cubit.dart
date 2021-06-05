@@ -9,17 +9,22 @@ export 'cubit/states.dart';
 enum ProfileScreenType { own, other }
 
 class ProfileScreenCubit extends Cubit<ProfileScreenState> {
-  final ProfileUseCase _profile;
-  final SubscribingUseCase _subscription;
+  final ProfileUseCase _profileUseCase;
+  final SubscribingUseCase _subscriptionUseCase;
+  final GoalsUseCases _goalsUseCases;
   final ProfileScreenType type;
-  final UserDto? user;
+  UserDto? user;
 
-  bool get _isOwnProfile => type == ProfileScreenType.own
-      || (user != null && _profile.ownId != null && user!.id == _profile.ownId);
+  bool get _isOwnProfile =>
+      type == ProfileScreenType.own ||
+      (user != null &&
+          _profileUseCase.ownId != null &&
+          user!.id == _profileUseCase.ownId);
 
   ProfileScreenCubit(
-    this._profile,
-    this._subscription, {
+    this._profileUseCase,
+    this._subscriptionUseCase,
+    this._goalsUseCases, {
     required this.type,
     this.user,
   }) : super(ProfileScreenState.loading()) {
@@ -28,10 +33,11 @@ class ProfileScreenCubit extends Cubit<ProfileScreenState> {
 
   void _init() async {
     if (_isOwnProfile) {
-      _profile.ownStream.listen((profile) {
+      _profileUseCase.ownStream.listen((profile) {
         if (profile != null) {
-          emit(ProfileScreenState.own(profile, type != ProfileScreenType.own));
+          return emit(ProfileScreenState.own(profile));
         }
+        emit(ProfileScreenState.userNotFound());
       });
       return;
     }
@@ -41,17 +47,25 @@ class ProfileScreenCubit extends Cubit<ProfileScreenState> {
       return;
     }
 
-    _subscription.own.listen((e) {
-      // Check whether the user in subscriptions
-      final isSubscribed =
-          e.subscriptions.indexWhere((sub) => sub == user) != -1;
+    // listen goals changes
+    _goalsUseCases
+        .onlyPublicByAuthorId(user!.id)
+        .listen((goals) {
+          if (user != null) {
+            user = user!.copyWith(goals: goals);
+            emit(ProfileScreenState.other(user!));
+          }
+        });
 
-      if (isSubscribed) {
-        emit(ProfileScreenState.subscribed(user!));
-      } else {
-        emit(ProfileScreenState.unsubscribed(user!));
-      }
-    });
+    // listen subscriptions changes
+    _subscriptionUseCase
+        .isSubscribed(user!.id)
+        .listen((value) {
+          if (user != null) {
+            user = user!.copyWith(isSubscribed: value);
+            emit(ProfileScreenState.other(user!));
+          }
+        });
   }
 
   Future<SaveProfileResult> save({
@@ -64,7 +78,7 @@ class ProfileScreenCubit extends Cubit<ProfileScreenState> {
       return SaveProfileResult.emptyName();
     }
 
-    await _profile.saveOwn(UserDto(
+    await _profileUseCase.saveOwn(UserDto(
       id: '',
       name: name,
       surname: surname,
@@ -76,10 +90,10 @@ class ProfileScreenCubit extends Cubit<ProfileScreenState> {
   }
 
   void subscribe(UserDto user) {
-    _subscription.subscribeTo(user);
+    _subscriptionUseCase.subscribeTo(user);
   }
 
   void unsubscribe(UserDto user) {
-    _subscription.unsubscribeFrom(user);
+    _subscriptionUseCase.unsubscribeFrom(user);
   }
 }

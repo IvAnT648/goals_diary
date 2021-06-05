@@ -1,16 +1,14 @@
 
-import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
 
 import '../models.dart';
 
 class SubscriptionsDto {
-  final String uid;
+  final String? uid;
   final List<UserDto> subscriptions;
   
   SubscriptionsDto({
-    required this.uid,
+    this.uid,
     required this.subscriptions,
   });
 
@@ -39,11 +37,6 @@ class SubscriptionsDto {
       ),
     );
   }
-
-  String toJson() => json.encode(toMap());
-
-  factory SubscriptionsDto.fromJson(String source) =>
-      SubscriptionsDto.fromMap(json.decode(source));
 
   @override
   String toString() => 'SubscriptionsDto('

@@ -23,44 +23,6 @@ class ProfileScreen extends StatelessWidget {
   static const String idOther = '/profile:user';
   static const String userArg = 'user';
 
-  final goals = <GoalDto>[
-    GoalDto(
-      id: '0',
-      title: 'Test',
-      type: GoalType.public,
-      description: "AlertDialig имеет необязательный заголовок и необязательное содержимое. Заголовок отображается над содержимым, а действия (например кнопка 'Ok') отображаются под содержимым.",
-      sendNotifications: false,
-    ),
-    GoalDto(
-      id: '0',
-      title: 'Test 2',
-      type: GoalType.public,
-      description: '',
-      sendNotifications: false,
-    ),
-    GoalDto(
-      id: '0',
-      title: 'Test 2',
-      type: GoalType.public,
-      description: '',
-      sendNotifications: false,
-    ),
-    GoalDto(
-      id: '0',
-      title: 'Test 2',
-      type: GoalType.public,
-      description: '',
-      sendNotifications: false,
-    ),
-    GoalDto(
-      id: '0',
-      title: 'Test 2',
-      type: GoalType.public,
-      description: '',
-      sendNotifications: false,
-    ),
-  ];
-
   ProfileScreen({Key? key}) : super(key: key);
 
   @override
@@ -68,7 +30,7 @@ class ProfileScreen extends StatelessWidget {
     return BlocBuilder<ProfileScreenCubit, ProfileScreenState>(
       builder: (context, state) {
         return Scaffold(
-          appBar: state is OwnProfileScreenState && !state.withReturnableAppBar
+          appBar: state is OwnProfileScreenState
               ? MenuTopBar(title: S.of(context).screenMyProfileTitle)
               : ReturnableTopBar(
                   title: Text(
@@ -80,17 +42,8 @@ class ProfileScreen extends StatelessWidget {
               : null,
           body: state.when(
             loading: () => const _LoadingState(),
-            own: (info, withReturnableAppBar) => EditProfileComponent(info),
-            subscribed: (info) => ViewProfileComponent(
-              info: info,
-              isSubscribed: true,
-              goals: goals,
-            ),
-            unsubscribed: (info) => ViewProfileComponent(
-              info: info,
-              isSubscribed: false,
-              goals: goals,
-            ),
+            own: (info) => EditProfileComponent(info),
+            other: (info) => ViewProfileComponent(info: info),
             userNotFound: () => const _UserNotFound(),
           ),
         );

@@ -88,12 +88,13 @@ class PostsRepositoryFirestore implements PostsRepository {
   }
 
   Future<PostDto?> _toDomain(String id, PostRaw data) async {
-    final author = await _profile.getSingle(data.authorId);
+    final author =
+        await _profile.getSingle(id: data.authorId, publicFilter: true);
     if (author == null) {
       print('Author not found. Id was: ${data.authorId}.');
       return null;
     }
-    final goal = await _goals.get(data.goalId);
+    final goal = await _goals.load(data.goalId);
     if (goal == null) {
       print('Goal not found by id: ${data.goalId}');
       return null;

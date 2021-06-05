@@ -2,17 +2,17 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../domain/usecases.dart';
+import '../../../domain/usecases/goals.dart';
 import 'cubit/states.dart';
 
 export 'cubit/states.dart';
 
 @injectable
 class MyGoalsScreenCubit extends Cubit<MyGoalsScreenState> {
-  final GetMyGoalsUseCase _getMyGoals;
+  final GoalsUseCases _goalsUseCases;
 
-  MyGoalsScreenCubit(this._getMyGoals) : super(MyGoalsScreenState.loading()) {
-    _getMyGoals().listen((goals) {
+  MyGoalsScreenCubit(this._goalsUseCases) : super(MyGoalsScreenState.loading()) {
+    _goalsUseCases.myGoals().listen((goals) {
       if (goals.isEmpty) {
         return emit(MyGoalsScreenState.empty());
       }

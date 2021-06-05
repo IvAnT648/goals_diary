@@ -10,7 +10,7 @@ import '../models.dart';
 abstract class ProfileUseCase {
   Stream<UserDto?> get ownStream;
   String? get ownId;
-  Stream<UserDto?> getById(String id);
+  Stream<UserDto?> getById(String id, bool loadGoals);
   void save(UserDto user);
   Future<void> saveOwn(UserDto user);
   Future<bool> isAvailableNickname(String nickname);
@@ -40,8 +40,8 @@ class ProfileUseCaseImpl implements ProfileUseCase {
   }
 
   @override
-  Stream<UserDto?> getById(String id) async* {
-    yield* _profileRepository.get(id);
+  Stream<UserDto?> getById(String id, bool loadGoals) async* {
+    yield* _profileRepository.get(id, loadGoals);
   }
 
   @override

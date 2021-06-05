@@ -59,7 +59,7 @@ class CommentsRepositoryImpl implements CommentsRepository {
   }
 
   Future<PostCommentDto?> _toDomain(PostCommentRaw raw) async {
-    final author = await _profileRepository.getSingle(raw.authorId);
+    final author = await _profileRepository.getSingle(id: raw.authorId);
     if (author == null) {
       return null;
     }

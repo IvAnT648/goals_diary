@@ -72,6 +72,7 @@ abstract class Navigation {
         create: (_) => ProfileScreenCubit(
           getIt<ProfileUseCase>(),
           getIt<SubscribingUseCase>(),
+          getIt<GoalsUseCases>(),
           type: ProfileScreenType.own,
         ),
         child: ProfileScreen(),
@@ -91,6 +92,7 @@ abstract class Navigation {
           create: (_) => ProfileScreenCubit(
             getIt<ProfileUseCase>(),
             getIt<SubscribingUseCase>(),
+            getIt<GoalsUseCases>(),
             type: ProfileScreenType.other,
             user: user,
           ),

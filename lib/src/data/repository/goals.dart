@@ -8,12 +8,17 @@ import 'utils.dart';
 
 abstract class GoalsRepository {
   Future<SaveGoalResult> saveGoal(GoalDto goal);
-
   Future<void> deleteGoal(GoalDto goal);
-
+  Future<GoalDto?> load(String id);
   Stream<List<GoalDto>> get myGoals;
-
-  Future<GoalDto?> get(String id);
+  Future<List<GoalDto>> loadByAuthorId({
+    required String authorId,
+    bool? publicFilter,
+  });
+  Stream<List<GoalDto>> byAuthorId({
+    required String authorId,
+    bool? publicFilter,
+  });
 }
 
 @Injectable(as: GoalsRepository)
@@ -53,23 +58,9 @@ class GoalsRepositoryImpl implements GoalsRepository {
   Stream<List<GoalDto>> get myGoals async* {
     final user = _auth.currentUser;
     if (user == null) {
-      yield [];
       return;
     }
-
-    final goalDocsStream = convertedCollection
-        .where(GoalData.authorIdKey, isEqualTo: user.uid)
-        .snapshots()
-        .map((snapshot) => snapshot.docs);
-
-    await for (var goalDocs in goalDocsStream) {
-      final goals = <GoalDto>[];
-      for (var goalDoc in goalDocs) {
-        if (goalDoc.data() == null) continue;
-        goals.add(goalDoc.data()!.toDomain(id: goalDoc.id));
-      }
-      yield goals;
-    }
+    yield* byAuthorId(authorId: user.uid);
   }
 
   @override
@@ -78,11 +69,69 @@ class GoalsRepositoryImpl implements GoalsRepository {
   }
 
   @override
-  Future<GoalDto?> get(String id) async {
+  Future<GoalDto?> load(String id) async {
     if (id.isEmpty) {
       return null;
     }
     final doc = await convertedCollection.doc(id).get();
     return doc.data()?.toDomain(id: doc.id);
+  }
+
+  @override
+  Future<List<GoalDto>> loadByAuthorId({
+    required String authorId,
+    bool? publicFilter,
+  }) async {
+    if (authorId.isEmpty) return [];
+
+    late final QuerySnapshot<GoalData?> snapshot;
+    if (publicFilter != null) {
+      snapshot = await convertedCollection
+          .where(GoalData.authorIdKey, isEqualTo: authorId)
+          .where(GoalData.isPublicKey, isEqualTo: publicFilter)
+          .get();
+    } else {
+      snapshot = await convertedCollection
+          .where(GoalData.authorIdKey, isEqualTo: authorId)
+          .get();
+    }
+
+    final list = <GoalDto>[];
+    for (var doc in snapshot.docs) {
+      if (doc.data() == null) continue;
+      list.add(doc.data()!.toDomain(id: doc.id));
+    }
+    return list;
+  }
+
+  @override
+  Stream<List<GoalDto>> byAuthorId({
+    required String authorId,
+    bool? publicFilter,
+  }) async* {
+    if (authorId.isEmpty) return;
+
+    late final Stream<List<QueryDocumentSnapshot<GoalData?>>> docsStream;
+
+    if (publicFilter != null) {
+      docsStream = convertedCollection
+          .where(GoalData.authorIdKey, isEqualTo: authorId)
+          .where(GoalData.isPublicKey, isEqualTo: publicFilter)
+          .snapshots().map((snapshot) => snapshot.docs);
+    } else {
+      docsStream = convertedCollection
+          .where(GoalData.authorIdKey, isEqualTo: authorId)
+          .snapshots().map((snapshot) => snapshot.docs);
+    }
+
+    await for (var docs in docsStream) {
+      final list = <GoalDto>[];
+      for (var doc in docs) {
+        if (doc.data() != null) {
+          list.add(doc.data()!.toDomain(id: doc.id));
+        }
+      }
+      yield list;
+    }
   }
 }

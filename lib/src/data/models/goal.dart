@@ -2,6 +2,7 @@ import 'dart:convert';
 
 class GoalData {
   static const String authorIdKey = 'authorId';
+  static const String isPublicKey = 'isPublic';
 
   final String title;
   final String? description;

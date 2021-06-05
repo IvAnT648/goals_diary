@@ -2,14 +2,10 @@ part of 'screen.dart';
 
 class ViewProfileComponent extends StatelessWidget {
   final UserDto info;
-  final bool isSubscribed;
-  final List<GoalDto> goals;
 
   const ViewProfileComponent({
     Key? key,
     required this.info,
-    required this.isSubscribed,
-    required this.goals,
   }) : super(key: key);
 
   @override
@@ -22,12 +18,9 @@ class ViewProfileComponent extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.center,
-              child: _ProfileInfo(
-                info: info,
-                isSubscribed: isSubscribed,
-              ),
+              child: _ProfileInfo(info: info),
             ),
-            _Goals(goals: goals),
+            _Goals(goals: info.goals),
           ],
         ),
       ),
@@ -37,12 +30,10 @@ class ViewProfileComponent extends StatelessWidget {
 
 class _ProfileInfo extends StatelessWidget {
   final UserDto info;
-  final bool isSubscribed;
 
   const _ProfileInfo({
     Key? key,
     required this.info,
-    required this.isSubscribed,
   }) : super(key: key);
 
   @override
@@ -96,22 +87,24 @@ class _ProfileInfo extends StatelessWidget {
             ),
           ),
         ],
-        const SizedBox(height: 20),
-        RoundedButtonWrap(
-          type: isSubscribed ? ButtonType.outlined : ButtonType.filled,
-          text: isSubscribed
-              ? l10n.screenProfileUnsubscribeButton
-              : l10n.screenProfileSubscribeButton,
-          padding: buttonsPadding,
-          primaryColor: AppColors.secondary,
-          onTap: () {
-            if (isSubscribed) {
-              context.read<ProfileScreenCubit>().unsubscribe(info);
-            } else {
-              context.read<ProfileScreenCubit>().subscribe(info);
-            }
-          },
-        ),
+        if (info.isSubscribed != null) ...[
+          const SizedBox(height: 20),
+          RoundedButtonWrap(
+            type: info.isSubscribed! ? ButtonType.outlined : ButtonType.filled,
+            text: info.isSubscribed!
+                ? l10n.screenProfileUnsubscribeButton
+                : l10n.screenProfileSubscribeButton,
+            padding: buttonsPadding,
+            primaryColor: AppColors.secondary,
+            onTap: () {
+              if (info.isSubscribed!) {
+                context.read<ProfileScreenCubit>().unsubscribe(info);
+              } else {
+                context.read<ProfileScreenCubit>().subscribe(info);
+              }
+            },
+          ),
+        ],
         const SizedBox(height: 50),
       ],
     );
