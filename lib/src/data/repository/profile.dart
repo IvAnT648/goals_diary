@@ -153,7 +153,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
           doc.data()?.toDomain(id: doc.id)).toList();
       final list = <UserDto>[];
       for (var el in nullableList) {
-        if (el == null) continue;
+        if (el == null || el.id == _authRepository.currentUserId) continue;
         list.add(el);
       }
       return list;
