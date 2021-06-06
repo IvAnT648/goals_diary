@@ -800,6 +800,26 @@ class S {
     );
   }
 
+  /// `The user has no published goals yet.`
+  String get screenProfileHasNoPublicGoals {
+    return Intl.message(
+      'The user has no published goals yet.',
+      name: 'screenProfileHasNoPublicGoals',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User's goals:`
+  String get screenProfileUserGoalsTitle {
+    return Intl.message(
+      'User\'s goals:',
+      name: 'screenProfileUserGoalsTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Tasks for today`
   String get screenActivityTitle {
     return Intl.message(

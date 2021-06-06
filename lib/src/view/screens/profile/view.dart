@@ -125,7 +125,7 @@ class _Goals extends StatelessWidget {
       return Align(
         alignment: Alignment.center,
         child: Text(
-          'У пользователя пока нет целей.',
+          S.of(context).screenProfileHasNoPublicGoals,
           style: TextStyle(
             fontSize: 16,
             color: AppColors.hintText,
@@ -138,7 +138,7 @@ class _Goals extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Цели пользователя:',
+          S.of(context).screenProfileUserGoalsTitle,
           style: TextStyle(
             fontSize: 16,
             color: AppColors.hintText,
@@ -148,6 +148,7 @@ class _Goals extends StatelessWidget {
         ...goals.expand((goal) => [
           UserGoalsListItem(
             goal: goal,
+            trailingIcon: Icons.info_outline,
             onTap: () {
               showCupertinoDialog(
                 context: context,

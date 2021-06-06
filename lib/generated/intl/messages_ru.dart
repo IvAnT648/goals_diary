@@ -137,6 +137,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenProfileAboutMe": MessageLookupByLibrary.simpleMessage("О себе"),
         "screenProfileEmptyNameFail":
             MessageLookupByLibrary.simpleMessage("Имя не может быть пустым"),
+        "screenProfileHasNoPublicGoals": MessageLookupByLibrary.simpleMessage(
+            "У пользователя пока нет опубликованных целей."),
         "screenProfileMottoField":
             MessageLookupByLibrary.simpleMessage("Девиз"),
         "screenProfileNameField": MessageLookupByLibrary.simpleMessage("Имя"),
@@ -153,6 +155,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenProfileTitle": MessageLookupByLibrary.simpleMessage("Профиль"),
         "screenProfileUnsubscribeButton":
             MessageLookupByLibrary.simpleMessage("Отписаться"),
+        "screenProfileUserGoalsTitle":
+            MessageLookupByLibrary.simpleMessage("Цели пользователя:"),
         "screenSearchUserFieldPlaceholder":
             MessageLookupByLibrary.simpleMessage("Начните набирать никнейм"),
         "screenSearchUserSearchResult":

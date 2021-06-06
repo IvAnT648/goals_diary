@@ -82,6 +82,8 @@
   "screenProfileEmptyNameFail": "Имя не может быть пустым",
   "screenProfileSuccessSave": "Успешно сохранено",
   "screenProfileNotFound": "Пользователь не найден",
+  "screenProfileHasNoPublicGoals": "У пользователя пока нет опубликованных целей.",
+  "screenProfileUserGoalsTitle": "Цели пользователя:",
 
   "screenActivityTitle": "Задачи на сегодня",
   "screenActivityGoalNotAchieved": "Цель сегодня не достигнута!",

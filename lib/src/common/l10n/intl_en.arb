@@ -82,6 +82,8 @@
   "screenProfileEmptyNameFail": "Name can't be empty",
   "screenProfileSuccessSave": "Saved successfully",
   "screenProfileNotFound": "The user not found",
+  "screenProfileHasNoPublicGoals": "The user has no published goals yet.",
+  "screenProfileUserGoalsTitle": "User's goals:",
 
   "screenActivityTitle": "Tasks for today",
   "screenActivityGoalNotAchieved": "The goal is not achieved today!",

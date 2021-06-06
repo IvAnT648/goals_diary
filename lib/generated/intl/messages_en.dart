@@ -131,6 +131,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("About me"),
         "screenProfileEmptyNameFail":
             MessageLookupByLibrary.simpleMessage("Name can\'t be empty"),
+        "screenProfileHasNoPublicGoals": MessageLookupByLibrary.simpleMessage(
+            "The user has no published goals yet."),
         "screenProfileMottoField":
             MessageLookupByLibrary.simpleMessage("Motto"),
         "screenProfileNameField": MessageLookupByLibrary.simpleMessage("Name"),
@@ -146,6 +148,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenProfileTitle": MessageLookupByLibrary.simpleMessage("Profile"),
         "screenProfileUnsubscribeButton":
             MessageLookupByLibrary.simpleMessage("Unsubscribe"),
+        "screenProfileUserGoalsTitle":
+            MessageLookupByLibrary.simpleMessage("User\'s goals:"),
         "screenSearchUserFieldPlaceholder":
             MessageLookupByLibrary.simpleMessage("Start typing a nickname"),
         "screenSearchUserSearchResult":

@@ -85,11 +85,13 @@ class UserGoalsListItem extends StatelessWidget {
 
   final GoalDto goal;
   final VoidCallback onTap;
+  final IconData trailingIcon;
 
   const UserGoalsListItem({
     Key? key,
     required this.goal,
     required this.onTap,
+    this.trailingIcon = Icons.arrow_forward_ios_outlined,
   }) : super(key: key);
 
   @override
@@ -143,7 +145,7 @@ class UserGoalsListItem extends StatelessWidget {
               ],
             ),
             Icon(
-              Icons.arrow_forward_ios_outlined,
+              trailingIcon,
               color: AppColors.accent,
             ),
           ],
