@@ -42,10 +42,10 @@ extension GoalActivityDtoToData on GoalActivityDto {
 }
 
 extension GoalActivityDataToDomain on GoalActivityData {
-  GoalActivityDto toDomain(GoalDto goal, [String? id]) {
+  GoalActivityDto toDomain(GoalDto goal, [String? id, bool isDone = true]) {
     return GoalActivityDto(
       id: id,
-      isDone: true,
+      isDone: isDone,
       goal: goal,
     );
   }

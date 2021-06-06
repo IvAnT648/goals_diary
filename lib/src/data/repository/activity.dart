@@ -42,42 +42,50 @@ class ActivityRepositoryImpl implements ActivityRepository {
         return;
       }
 
-      final idGoalMap = _getIdGoalMap(goals);
+      final goalIds = _getGoalIds(goals);
       final todayInMs = getTodayWithoutTime().millisecondsSinceEpoch;
-      yield* collection
-          .withConverter<GoalActivityData>(
-              fromFirestore: (snapshot, _) =>
-                  GoalActivityData.fromMap(snapshot.data() ?? {}),
-              toFirestore: (activity, _) => activity.toMap())
-          .where(GoalActivityData.goalIdKey, whereIn: idGoalMap.keys.toList())
+
+      final docsStream = collection
+          .withConverter<GoalActivityData?>(
+              fromFirestore: (snapshot, _) => snapshot.data() != null
+                  ? GoalActivityData.fromMap(snapshot.data()!)
+                  : null,
+              toFirestore: (activity, _) => activity?.toMap() ?? {})
+          .where(GoalActivityData.goalIdKey, whereIn: goalIds)
           .where(GoalActivityData.dateKey, isEqualTo: todayInMs)
           .snapshots()
-          .map((snapshot) => snapshot.docs.map((doc) {
-                final raw = doc.data();
-                // Null check because we used 'where'
-                return raw.toDomain(idGoalMap[raw.goalId]!);
-              }).toList())
-          .map((activities) {
-        // Add not completed activities
-        for (final goal in goals) {
-          if (activities.any((el) => el.goal == goal)) {
-            continue;
-          }
-          activities.add(GoalActivityDto(goal: goal, isDone: false));
+          .map((snapshot) => snapshot.docs);
+
+      await for (final docs in docsStream) {
+        // Get completed activities IDs
+        final completedActivityIds = <String, bool>{};
+        for (var doc in docs) {
+          final raw = doc.data();
+          if (raw == null) continue;
+          completedActivityIds[raw.goalId] = true;
         }
-        return activities;
-      });
+        // Form activities list
+        final activities = <GoalActivityDto>[];
+        for (final goal in goals) {
+          activities.add(GoalActivityDto(
+            goal: goal,
+            isDone: completedActivityIds[goal.id] != null,
+          ));
+        }
+
+        yield activities;
+      }
     }
   }
 
-  Map<String, GoalDto> _getIdGoalMap(List<GoalDto> goals) {
-    final map = <String, GoalDto>{};
+  List<String> _getGoalIds(List<GoalDto> goals) {
+    final array = <String>[];
     for (final goal in goals) {
       if (goal.id != null) {
-        map[goal.id!] = goal;
+        array.add(goal.id!);
       }
     }
-    return map;
+    return array;
   }
 
   @override
