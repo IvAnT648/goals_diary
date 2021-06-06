@@ -145,7 +145,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   @override
   Future<List<UserDto>> search(String request) async {
     try {
-      // Fix search
+      // TODO: Fix search
       final snapshot = await collectionWithConverter
           .where(ProfileData.nicknameKey, isGreaterThanOrEqualTo: request)
           .get();
