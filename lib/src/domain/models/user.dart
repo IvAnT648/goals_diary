@@ -42,6 +42,7 @@ class UserDto {
   UserDto copyWith({
     String? id,
     String? name,
+    String? surname,
     String? nickname,
     String? about,
     String? motto,
@@ -52,6 +53,7 @@ class UserDto {
     return UserDto(
       id: id ?? this.id,
       name: name ?? this.name,
+      surname: surname ?? this.surname,
       nickname: nickname ?? this.nickname,
       about: about ?? this.about,
       motto: motto ?? this.motto,
@@ -65,6 +67,7 @@ class UserDto {
     return {
       'id': id,
       'name': name,
+      'surname': surname,
       'nickname': nickname,
       'about': about,
       'motto': motto,
@@ -78,6 +81,7 @@ class UserDto {
     return UserDto(
       id: map['id'] as String,
       name: map['name'] as String,
+      surname: map['surname'] as String?,
       nickname: map['nickname'] as String?,
       about: map['about'] as String?,
       motto: map['motto'] as String?,
@@ -91,6 +95,7 @@ class UserDto {
   String toString() {
     return 'UserDto(id: $id'
         ', name: $name'
+        ', surname: $surname'
         ', nickname: $nickname'
         ', about: $about'
         ', motto: $motto'
@@ -107,6 +112,7 @@ class UserDto {
     return other is UserDto &&
         other.id == id &&
         other.name == name &&
+        other.surname == surname &&
         other.nickname == nickname &&
         other.about == about &&
         other.motto == motto &&
@@ -119,6 +125,7 @@ class UserDto {
   int get hashCode {
     return id.hashCode ^
         name.hashCode ^
+        surname.hashCode ^
         nickname.hashCode ^
         about.hashCode ^
         motto.hashCode ^
