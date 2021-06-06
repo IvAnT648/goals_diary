@@ -56,6 +56,7 @@ extension UserDtoToData on UserDto {
     return ProfileData(
       name: name,
       surname: surname,
+      nickname: nickname,
       motto: motto,
       about: about,
     );

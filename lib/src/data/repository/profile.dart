@@ -33,8 +33,11 @@ class ProfileRepositoryImpl implements ProfileRepository {
   final CollectionReference collection =
       FirebaseFirestore.instance.collection(_collectionName);
 
-  late final collectionWithConverter = collection.withConverter<ProfileData?>(
-    fromFirestore: (snapshot, _) => ProfileData.fromMap(snapshot.data() ?? {}),
+  late final convertedCollection = collection.withConverter<ProfileData?>(
+    fromFirestore: (snapshot, _) =>
+        snapshot.data() != null
+            ? ProfileData.fromMap(snapshot.data()!)
+            : null,
     toFirestore: (profile, _) => profile?.toMap() ?? {},
   );
 
@@ -56,35 +59,50 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
   @override
   Stream<UserDto?> get(String id, bool addGoals) async* {
+    late final Stream<UserDto?> stream;
+    final docStream = convertedCollection
+        .doc(id)
+        .snapshots()
+        .handleError((e) {
+          print('Error when listening user $id.\n$e');
+        });
+
     if (addGoals) {
-      yield* collectionWithConverter
-          .doc(id)
-          .snapshots()
-          .asyncMap((doc) async {
+      stream = docStream.asyncMap((doc) async {
         List<GoalDto> goals =
             await _goalsRepository.loadByAuthorId(authorId: id);
         return doc.data()?.toDomain(id: id, goals: goals);
       });
-      return;
+    } else {
+     stream = docStream.map((doc) => doc.data()?.toDomain(id: id));
     }
-    yield* collectionWithConverter.doc(id).snapshots().map(
-            (doc) => doc.data()?.toDomain(id: id)
-    );
+
+    yield* stream;
   }
 
   @override
   Future<void> delete(UserDto user) async {
-    await collection.doc(user.id).delete();
+    await collection
+        .doc(user.id)
+        .delete()
+        .catchError((e) {
+          print('Error when user ${user.id} deleting');
+        });
   }
 
   @override
   Future<void> save(UserDto user) async {
-    await collection.doc(user.id).set(user.toData().toMap());
+    await collection
+        .doc(user.id)
+        .set(user.toData().toMap())
+        .catchError((e) {
+          print('Error when user ${user.id} saving');
+        });
   }
 
   @override
   Future<bool> isAvailableNickname(String nickname) async {
-    final result = await collectionWithConverter
+    final result = await convertedCollection
         .where(ProfileData.nicknameKey, isEqualTo: nickname)
         .get();
     return result.docs.length == 0;
@@ -92,25 +110,16 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
   @override
   Future<void> saveOwn(UserDto user) async {
-    final newData = user.toData();
-    if (_authRepository.currentUser != null) {
-      final userData = (await collectionWithConverter
-          .doc(_authRepository.currentUser!.uid)
-          .get()).data();
-      if (userData == null) {
-        return;
-      }
-      final data = userData.copyWith(
-        name: newData.name,
-        surname: newData.surname,
-        nickname: newData.nickname,
-        motto: newData.motto,
-        about: newData.about,
-      );
-      await collection
-          .doc(_authRepository.currentUser!.uid)
-          .update(data.toMap());
-    }
+    final id = _authRepository.currentUser?.uid;
+    if (id == null) return;
+
+    final data = user.toData();
+    await collection
+        .doc(id)
+        .update(data.toMap())
+        .catchError((e) {
+          print('Error when saving profile $id:\n$e');
+        });
   }
 
   @override
@@ -121,20 +130,22 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }) async {
     if (id.isEmpty) return null;
 
-    List<GoalDto> goals = [];
-    if (publicFilter != null) {
-      goals = await _goalsRepository.loadByAuthorId(
-        authorId: id,
-        publicFilter: publicFilter,
-      );
-    }
+    final goals = await _goalsRepository.loadByAuthorId(
+      authorId: id,
+      publicFilter: publicFilter,
+    );
 
     bool? isSubscribed;
     if (addIsSubscribed) {
       isSubscribed = await _subscriptionsRepository.isSubscribed(id);
     }
 
-    final doc = await collectionWithConverter.doc(id).get();
+    final doc = await convertedCollection
+        .doc(id)
+        .get()
+        .catchError((e) {
+          print('Error when user $id loading:\n$e');
+        });
     return doc.data()?.toDomain(
       id: id,
       goals: goals,
@@ -146,11 +157,13 @@ class ProfileRepositoryImpl implements ProfileRepository {
   Future<List<UserDto>> search(String request) async {
     try {
       // TODO: Fix search
-      final snapshot = await collectionWithConverter
+      final snapshot = await convertedCollection
           .where(ProfileData.nicknameKey, isGreaterThanOrEqualTo: request)
           .get();
-      final nullableList = snapshot.docs.map((doc) =>
-          doc.data()?.toDomain(id: doc.id)).toList();
+
+      final nullableList = snapshot.docs
+          .map((doc) => doc.data()?.toDomain(id: doc.id)).toList();
+
       final list = <UserDto>[];
       for (var el in nullableList) {
         if (el == null || el.id == _authRepository.currentUserId) continue;
@@ -158,7 +171,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
       }
       return list;
     } catch (e) {
-      print(e);
+      print('Error when search by $request request:\n$e');
       return [];
     }
   }

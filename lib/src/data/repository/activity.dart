@@ -7,7 +7,6 @@ import '../models.dart';
 import 'auth.dart';
 import 'goals.dart';
 import 'posts.dart';
-import 'utils.dart';
 
 abstract class ActivityRepository {
   Stream<List<GoalActivityDto>> get myActivities;
@@ -54,6 +53,7 @@ class ActivityRepositoryImpl implements ActivityRepository {
           .where(GoalActivityData.goalIdKey, whereIn: goalIds)
           .where(GoalActivityData.dateKey, isEqualTo: todayInMs)
           .snapshots()
+          .handleError((e) => print('Error when listen my activities:\n$e'))
           .map((snapshot) => snapshot.docs);
 
       await for (final docs in docsStream) {
@@ -114,7 +114,12 @@ class ActivityRepositoryImpl implements ActivityRepository {
         createdAt: date,
         isPublic: activity.goal.isPublic,
       );
-      final activityDoc = await collection.add(data.toMap());
+      final activityDoc = await collection
+          .add(data.toMap())
+          .catchError((e) {
+            print('Error when create activity for the goal '
+                '${activity.goal.id!}:\n$e');
+          });
       if (activity.goal.isPublic) {
         await _postsRepository.create(
           authorId: authorId,
@@ -134,8 +139,9 @@ class ActivityRepositoryImpl implements ActivityRepository {
               await _postsRepository.delete(
                 authorId: authorId,
                 activityId: el.id,
-              );
+              ).onError((e, _) => print('Error when post deleting:\n$e'));
               await collection.doc(el.id).delete();
-            }));
+            }))
+        .catchError((e) => print('Error when get activities:\n$e'));
   }
 }

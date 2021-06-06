@@ -41,7 +41,11 @@ class CommentsRepositoryImpl implements CommentsRepository {
     try {
       final stream = convertedCollection
           .where(PostCommentRaw.postIdKey, whereIn: postIds)
-          .snapshots().map((s) => s.docs);
+          .snapshots()
+          .handleError((e) {
+            print('Error when listening comments for the posts $postIds.\n$e');
+          })
+          .map((s) => s.docs);
       await for (final rawDocList in stream) {
         final list = <PostCommentDto>[];
         for (var rawDoc in rawDocList) {
@@ -80,17 +84,17 @@ class CommentsRepositoryImpl implements CommentsRepository {
       return false;
     }
     try {
-      await collection.add(
-          PostCommentRaw(
-            postId: postId,
-            authorId: _authRepository.currentUserId!,
-            text: text,
-            createdAt: DateTime.now(),
-          ).toMap(),
+      await convertedCollection.add(
+        PostCommentRaw(
+          postId: postId,
+          authorId: _authRepository.currentUserId!,
+          text: text,
+          createdAt: DateTime.now(),
+        ),
       );
       return true;
     } catch (e) {
-      print(e);
+      print('Error when add comment to the post $postId:\n$e');
       return false;
     }
   }

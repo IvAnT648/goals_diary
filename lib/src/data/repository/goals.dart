@@ -49,7 +49,7 @@ class GoalsRepositoryImpl implements GoalsRepository {
       await collection.doc(goal.id).set(data);
       return SaveGoalResult.success();
     } catch (e) {
-      print(e);
+      print('Error when the goal ${goal.id} saving:\n$e');
       return SaveGoalResult.internalError();
     }
   }
@@ -65,7 +65,12 @@ class GoalsRepositoryImpl implements GoalsRepository {
 
   @override
   Future<void> deleteGoal(GoalDto goal) {
-    return collection.doc(goal.id).delete();
+    return collection
+        .doc(goal.id)
+        .delete()
+        .catchError((e) {
+          print('Error when the goal ${goal.id} deleting:\n$e');
+        });
   }
 
   @override
@@ -73,7 +78,12 @@ class GoalsRepositoryImpl implements GoalsRepository {
     if (id.isEmpty) {
       return null;
     }
-    final doc = await convertedCollection.doc(id).get();
+    final doc = await convertedCollection
+        .doc(id)
+        .get()
+        .catchError((e) {
+          print('Error when load the goal $id:\n$e');
+        });
     return doc.data()?.toDomain(id: doc.id);
   }
 
@@ -84,17 +94,19 @@ class GoalsRepositoryImpl implements GoalsRepository {
   }) async {
     if (authorId.isEmpty) return [];
 
-    late final QuerySnapshot<GoalData?> snapshot;
+    late final Query<GoalData?> query;
     if (publicFilter != null) {
-      snapshot = await convertedCollection
+      query = convertedCollection
           .where(GoalData.authorIdKey, isEqualTo: authorId)
-          .where(GoalData.isPublicKey, isEqualTo: publicFilter)
-          .get();
+          .where(GoalData.isPublicKey, isEqualTo: publicFilter);
     } else {
-      snapshot = await convertedCollection
-          .where(GoalData.authorIdKey, isEqualTo: authorId)
-          .get();
+      query = convertedCollection
+          .where(GoalData.authorIdKey, isEqualTo: authorId);
     }
+    final snapshot = await query.get()
+        .catchError((e) {
+          print('Error when goals loading by author ID $authorId:\n$e');
+        });
 
     final list = <GoalDto>[];
     for (var doc in snapshot.docs) {
@@ -111,18 +123,22 @@ class GoalsRepositoryImpl implements GoalsRepository {
   }) async* {
     if (authorId.isEmpty) return;
 
-    late final Stream<List<QueryDocumentSnapshot<GoalData?>>> docsStream;
+    late final Query<GoalData?> query;
 
     if (publicFilter != null) {
-      docsStream = convertedCollection
+      query = convertedCollection
           .where(GoalData.authorIdKey, isEqualTo: authorId)
-          .where(GoalData.isPublicKey, isEqualTo: publicFilter)
-          .snapshots().map((snapshot) => snapshot.docs);
+          .where(GoalData.isPublicKey, isEqualTo: publicFilter);
     } else {
-      docsStream = convertedCollection
-          .where(GoalData.authorIdKey, isEqualTo: authorId)
-          .snapshots().map((snapshot) => snapshot.docs);
+      query = convertedCollection
+          .where(GoalData.authorIdKey, isEqualTo: authorId);
     }
+    final docsStream = query
+        .snapshots()
+        .handleError((e) {
+          print('Error when listening goals by author ID $authorId.\n$e');
+        })
+        .map((snapshot) => snapshot.docs);
 
     await for (var docs in docsStream) {
       final list = <GoalDto>[];

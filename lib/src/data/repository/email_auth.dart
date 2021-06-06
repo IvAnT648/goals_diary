@@ -34,7 +34,7 @@ class EmailAuthRepositoryFirebase implements EmailAuthRepository {
         return SignInResult.invalidEmail();
       }
     } on Exception catch (e) {
-      print(e);
+      print('Auth error:\n$e');
     }
     return SignInResult.internalError();
   }
@@ -60,13 +60,13 @@ class EmailAuthRepositoryFirebase implements EmailAuthRepository {
         return SignUpResult.invalidEmail();
       }
     } on Exception catch (e) {
-      print(e);
+      print('Auth error:\n$e');
     }
     return SignUpResult.internalError();
   }
 
   @override
   Future<void> signOut() async {
-    await _auth.signOut();
+    await _auth.signOut().catchError((e) => print('Sign out error:\n$e'));
   }
 }

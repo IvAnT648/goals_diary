@@ -70,6 +70,7 @@ class PostsRepositoryFirestore implements PostsRepository {
           .where(PostRaw.authorIdKey, whereIn: [
             ...subIds, _auth.currentUser!.uid])
           .snapshots()
+          .handleError((e) => print('Error when listening feed posts:\n$e'))
           .map((s) => s.docs);
 
       await for (var postDocs in postDocsStream) {
@@ -91,12 +92,10 @@ class PostsRepositoryFirestore implements PostsRepository {
     final author =
         await _profile.getSingle(id: data.authorId, publicFilter: true);
     if (author == null) {
-      print('Author not found. Id was: ${data.authorId}.');
       return null;
     }
     final goal = await _goals.load(data.goalId);
     if (goal == null) {
-      print('Goal not found by id: ${data.goalId}');
       return null;
     }
     final like = _auth.currentUser != null
@@ -131,7 +130,9 @@ class PostsRepositoryFirestore implements PostsRepository {
           likedIt: [],
           createdAt: DateTime.now(),
         ).toMap()
-    );
+    ).catchError((e) {
+      print('Error when creating post for the activity $activityId:\n$e');
+    });
   }
 
   @override
@@ -143,9 +144,13 @@ class PostsRepositoryFirestore implements PostsRepository {
         .where(PostRaw.activityIdKey, isEqualTo: activityId)
         .where(PostRaw.authorIdKey, isEqualTo: authorId)
         .get()
-        .then((data) => data.docs.forEach((doc) async {
-          await collection.doc(doc.id).delete();
-        }));
+        .then((data) =>
+          data.docs.forEach((doc) async {
+            await collection.doc(doc.id).delete();
+          }))
+        .catchError((e) {
+          print('Error when deleting post for the activity $activityId:\n$e');
+        });
   }
 
   int _sortComparator(PostDto a, PostDto b) {
@@ -161,7 +166,7 @@ class PostsRepositoryFirestore implements PostsRepository {
       });
       return true;
     } catch (e) {
-      print(e);
+      print('Error when like the post ${post.id}.\n$e');
       return false;
     }
   }
@@ -175,7 +180,7 @@ class PostsRepositoryFirestore implements PostsRepository {
       });
       return true;
     } catch (e) {
-      print(e);
+      print('Error when unlike the post ${post.id}.\n$e');
       return false;
     }
   }
