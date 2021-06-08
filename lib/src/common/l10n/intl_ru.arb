@@ -52,6 +52,7 @@
   "screenSignUpInvalidEmailFail": "Некорректный e-mail",
   "screenSignUpWeakPasswordFail": "Пароль не достаточно безопасный. Минимальная длина - 6 символов",
   "screenSignUpDuplicatedNicknameFail": "Этот никнейм уже занят",
+  "screenSignUpFieldCanNotBeEmpty": "Поле не может быть пустым",
 
   "screenMyGoalsTitle": "Мои цели",
 

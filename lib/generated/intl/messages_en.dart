@@ -160,6 +160,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("The nickname already exists"),
         "screenSignUpEmailLabel":
             MessageLookupByLibrary.simpleMessage("E-mail"),
+        "screenSignUpFieldCanNotBeEmpty":
+            MessageLookupByLibrary.simpleMessage("The field can\'t be empty"),
         "screenSignUpFieldsMustBeNotEmpty":
             MessageLookupByLibrary.simpleMessage(
                 "E-mail, name, nickname and passwords fields are required"),

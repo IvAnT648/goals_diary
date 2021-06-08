@@ -52,6 +52,7 @@
   "screenSignUpInvalidEmailFail": "The email address is not valid",
   "screenSignUpWeakPasswordFail": "The password is not strong enough. Password must be at least 6 characters",
   "screenSignUpDuplicatedNicknameFail": "The nickname already exists",
+  "screenSignUpFieldCanNotBeEmpty": "The field can't be empty",
 
   "screenMyGoalsTitle": "My goals",
 

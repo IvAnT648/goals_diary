@@ -530,6 +530,16 @@ class S {
     );
   }
 
+  /// `The field can't be empty`
+  String get screenSignUpFieldCanNotBeEmpty {
+    return Intl.message(
+      'The field can\'t be empty',
+      name: 'screenSignUpFieldCanNotBeEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `My goals`
   String get screenMyGoalsTitle {
     return Intl.message(

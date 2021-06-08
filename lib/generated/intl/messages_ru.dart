@@ -167,6 +167,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Этот никнейм уже занят"),
         "screenSignUpEmailLabel":
             MessageLookupByLibrary.simpleMessage("E-mail"),
+        "screenSignUpFieldCanNotBeEmpty":
+            MessageLookupByLibrary.simpleMessage("Поле не может быть пустым"),
         "screenSignUpFieldsMustBeNotEmpty": MessageLookupByLibrary.simpleMessage(
             "Поля e-mail, имя, никнейм и пароль обязательны для заполнения"),
         "screenSignUpInvalidEmailFail":
