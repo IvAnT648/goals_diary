@@ -4,11 +4,14 @@ import '../../common/resources.dart';
 import '../../domain/models/user.dart';
 
 class UserAvatar extends StatelessWidget {
+  static const double _borderSize = 1;
+
   final UserDto userInfo;
   final double radius;
   final Color? abbrColor;
   final Color? abbrBackgroundColor;
   final bool isBoldAbbr;
+  final bool isBordered;
 
   const UserAvatar({
     Key? key,
@@ -17,6 +20,7 @@ class UserAvatar extends StatelessWidget {
     this.abbrColor,
     this.abbrBackgroundColor,
     this.isBoldAbbr = true,
+    this.isBordered = false,
   }) : super(key: key);
 
   @override
@@ -33,6 +37,12 @@ class UserAvatar extends StatelessWidget {
       color: abbrColor ?? AppColors.accent,
       backgroundColor: abbrBackgroundColor ?? AppColors.onPrimary,
       isBold: isBoldAbbr,
+      borderSide: isBordered
+          ? BorderSide(
+              color: AppColors.gray.withOpacity(0.3),
+              width: _borderSize,
+            )
+          : BorderSide.none,
     );
   }
 }
@@ -65,6 +75,7 @@ class AbbrCircleAvatar extends StatelessWidget {
   final Color color;
   final Color backgroundColor;
   final bool isBold;
+  final BorderSide borderSide;
 
   const AbbrCircleAvatar({
     Key? key,
@@ -73,12 +84,15 @@ class AbbrCircleAvatar extends StatelessWidget {
     required this.color,
     required this.backgroundColor,
     required this.isBold,
+    required this.borderSide,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      radius: radius,
+    final isBordered = borderSide != BorderSide.none;
+
+    final avatar = CircleAvatar(
+      radius: !isBordered ? radius : radius - borderSide.width,
       backgroundColor: backgroundColor,
       child: Text(
         text,
@@ -88,6 +102,14 @@ class AbbrCircleAvatar extends StatelessWidget {
           fontSize: radius / _fontSizeCoeff,
         ),
       ),
+    );
+    if (!isBordered) {
+      return avatar;
+    }
+    return CircleAvatar(
+      radius: radius,
+      backgroundColor: borderSide.color,
+      child: avatar,
     );
   }
 }

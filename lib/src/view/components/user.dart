@@ -26,7 +26,7 @@ class SubscriptionListItem extends StatelessWidget {
         ),
         child: Row(
           children: [
-            UserAvatar(userInfo: user),
+            UserAvatar(userInfo: user, isBordered: true),
             const SizedBox(width: 12),
             Expanded(
               child: Column(
