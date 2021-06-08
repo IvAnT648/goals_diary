@@ -4,7 +4,7 @@ import 'goal.dart';
 class UserDto {
   final String id;
   final String name;
-  final String? nickname;
+  final String nickname;
   final String? surname;
   final String? about;
   final String? motto;
@@ -16,7 +16,7 @@ class UserDto {
   const UserDto({
     required this.id,
     required this.name,
-    this.nickname,
+    required this.nickname,
     this.surname,
     this.about,
     this.motto,
@@ -25,7 +25,7 @@ class UserDto {
     this.isSubscribed,
   });
 
-  String get nicknameWithAt => nickname != null ? '@$nickname' : '';
+  String get nicknameWithAt => nickname.isNotEmpty ? '@$nickname' : '';
 
   String get fullName {
     if (surname == null || surname!.isEmpty) {
@@ -36,7 +36,10 @@ class UserDto {
 
   String get nameAbbreviation {
     return (name.isNotEmpty ? name[0].toUpperCase() : '')
-        + (surname != null ? surname![0].toUpperCase() : '');
+        + ((surname != null && surname!.isNotEmpty)
+            ? surname![0].toUpperCase()
+            : ''
+        );
   }
 
   UserDto copyWith({
@@ -82,7 +85,7 @@ class UserDto {
       id: map['id'] as String,
       name: map['name'] as String,
       surname: map['surname'] as String?,
-      nickname: map['nickname'] as String?,
+      nickname: map['nickname'] as String,
       about: map['about'] as String?,
       motto: map['motto'] as String?,
       avatarUrl: map['avatarUrl'] as String?,

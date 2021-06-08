@@ -75,23 +75,30 @@ class EditProfileComponent extends StatelessWidget {
   }
 
   void _submit(BuildContext context) async {
-    final result = await context.read<ProfileScreenCubit>().save(
-      name: _nameFieldController.text,
-      surname: _surnameFieldController.text,
-      motto: _mottoFieldController.text,
-      about: _aboutFieldController.text,
-    );
+    final _name = _nameFieldController.text;
+    final _surname = _surnameFieldController.text;
+    final _motto = _mottoFieldController.text;
+    final _about = _aboutFieldController.text;
+
     final l10n = S.of(context);
-    result.when(
-      success: () {
-        showSuccessSnackBar(l10n.screenProfileSuccessSave, context);
-      },
-      emptyName: () {
-        showErrorSnackBar(l10n.screenProfileEmptyNameFail, context);
-      },
-      error: () {
-        showErrorSnackBar(l10n.commonInternalErrorText, context);
-      },
-    );
+    context
+        .read<ProfileScreenCubit>()
+        .save(
+          name: _name,
+          surname: _surname,
+          motto: _motto,
+          about: _about,
+        )
+        .then((result) => result.when(
+              success: () {
+                showSuccessSnackBar(l10n.screenProfileSuccessSave, context);
+              },
+              emptyName: () {
+                showErrorSnackBar(l10n.screenProfileEmptyNameFail, context);
+              },
+              error: () {
+                showErrorSnackBar(l10n.commonInternalErrorText, context);
+              },
+            ));
   }
 }

@@ -12,18 +12,23 @@ class SignInScreen extends StatelessWidget {
   static const double _submitButtonWidth = 236;
   static String id = '/sign-in';
 
+  final _formKey = GlobalKey<FormState>();
+
   final _emailField = TextEditingController();
   final _passwordField = TextEditingController();
 
   void _submit(BuildContext context) async {
-    final l10n = S.of(context);
-    if (_emailField.text.isEmpty || _passwordField.text.isEmpty) {
-      return showErrorSnackBar(l10n.screenLoginFieldsMustNotBeEmpty, context);
+    if (!(_formKey.currentState?.validate() ?? false)) {
+      return;
     }
+
+    final l10n = S.of(context);
+
     final result = await context.read<SignInCubit>().signIn(
       email: _emailField.text,
       password: _passwordField.text,
     );
+
     result.when(
       success: () {
         Navigation.replaceTo(Navigation.home);
@@ -45,6 +50,7 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = S.of(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.background,
@@ -62,39 +68,48 @@ class SignInScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 90),
                 child: Text(
-                  S.of(context).screenLoginTitle,
+                  l10n.screenLoginTitle,
                   style: TextStyles.h1,
                   textAlign: TextAlign.center,
                 ),
               ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  DefaultTextField(
-                    label: S.of(context).screenLoginNicknameLabel,
-                    controller: _emailField,
-                  ),
-                  const SizedBox(height: _inputFieldsPadding),
-                  DefaultTextField(
-                    label: S.of(context).screenLoginPasswordLabel,
-                    controller: _passwordField,
-                    obscureText: true,
-                  ),
-                  const SizedBox(height: 60),
-                  SizedBox(
-                    width: _submitButtonWidth,
-                    child: RoundedButton(
-                      onTap: () => _submit(context),
-                      text: S.of(context).screenLoginSignInButton,
+              Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    CTextFormField(
+                      label: l10n.screenLoginNicknameLabel,
+                      controller: _emailField,
+                      validator: (val) => val == null || val.isEmpty
+                          ? l10n.screenSignUpFieldCanNotBeEmpty
+                          : null,
                     ),
-                  ),
-                ],
+                    const SizedBox(height: _inputFieldsPadding),
+                    CTextFormField(
+                      label: l10n.screenLoginPasswordLabel,
+                      controller: _passwordField,
+                      obscureText: true,
+                      validator: (val) => val == null || val.isEmpty
+                          ? l10n.screenSignUpFieldCanNotBeEmpty
+                          : null,
+                    ),
+                    const SizedBox(height: 60),
+                    SizedBox(
+                      width: _submitButtonWidth,
+                      child: RoundedButton(
+                        onTap: () => _submit(context),
+                        text: l10n.screenLoginSignInButton,
+                      ),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 1),
               Padding(
                 padding: const EdgeInsets.only(bottom: 50),
                 child: HyperLinkButton(
-                  text: S.of(context).screenLoginSignUpButton,
+                  text: l10n.screenLoginSignUpButton,
                   onTap: () {
                     Navigation.replaceTo(SignUpScreen.id);
                   },

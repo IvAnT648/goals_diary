@@ -8,12 +8,15 @@ import '../../../../generated/l10n.dart';
 import '../../components.dart';
 import '../../navigation.dart';
 import '../../screens.dart';
+import '../../utils.dart';
 import 'cubit.dart';
 
 class SignUpScreen extends StatelessWidget {
   static const double _inputFieldsPadding = 40;
   static const double _submitButtonWidth = 236;
   static const String id = '/sign-up';
+
+  final _formKey = GlobalKey<FormState>();
 
   final _emailField = TextEditingController();
   final _nameField = TextEditingController();
@@ -27,21 +30,14 @@ class SignUpScreen extends StatelessWidget {
   void _submit(BuildContext context) async {
     final l10n = S.of(context);
 
-    if (_emailField.text.isEmpty
-        || _nameField.text.isEmpty
-        || _nicknameField.text.isEmpty
-        || _passwordField.text.isEmpty
-        || _password2Field.text.isEmpty
-    ) {
-      return showErrorSnackBar(
-          l10n.screenSignUpFieldsMustBeNotEmpty,
-          context
-      );
+    if (!(_formKey.currentState?.validate() ?? false)) {
+      return;
     }
+
     if (_passwordField.text != _password2Field.text) {
       return showErrorSnackBar(
-          l10n.screenSignUpInvalidPassword,
-          context
+        l10n.screenSignUpInvalidPassword,
+        context,
       );
     }
 
@@ -50,7 +46,7 @@ class SignUpScreen extends StatelessWidget {
       password: _passwordField.text,
       name: _nameField.text,
       surname: _surnameField.text.toNullable(),
-      nickname: _nicknameField.text.toNullable(),
+      nickname: _nicknameField.text,
     );
 
     result.when(
@@ -77,6 +73,7 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = S.of(context);
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SafeArea(
@@ -103,49 +100,73 @@ class SignUpScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 60),
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    DefaultTextField(
-                      label: S.of(context).screenSignUpEmailLabel,
-                      controller: _emailField,
-                    ),
-                    const SizedBox(height: _inputFieldsPadding),
-                    DefaultTextField(
-                      label: S.of(context).screenSignUpNameLabel,
-                      controller: _nameField,
-                    ),
-                    const SizedBox(height: _inputFieldsPadding),
-                    DefaultTextField(
-                      label: S.of(context).screenSignUpSurnameLabel,
-                      controller: _surnameField,
-                    ),
-                    const SizedBox(height: _inputFieldsPadding),
-                    DefaultTextField(
-                      label: S.of(context).screenSignUpNicknameLabel,
-                      controller: _nicknameField,
-                    ),
-                    const SizedBox(height: _inputFieldsPadding),
-                    DefaultTextField(
-                      label: S.of(context).screenSignUpPasswordLabel,
-                      controller: _passwordField,
-                      obscureText: true,
-                    ),
-                    const SizedBox(height: _inputFieldsPadding),
-                    DefaultTextField(
-                      label: S.of(context).screenSignUpPasswordConfirmLabel,
-                      controller: _password2Field,
-                      obscureText: true,
-                    ),
-                    const SizedBox(height: 50),
-                    SizedBox(
-                      width: _submitButtonWidth,
-                      child: RoundedButton(
-                        text: S.of(context).screenSignUpSubmitButton,
-                        onTap: () => _submit(context),
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      CTextFormField(
+                        label: S.of(context).screenSignUpEmailLabel,
+                        controller: _emailField,
+                        validator: (val) => val == null || val.isEmpty
+                            ? l10n.screenSignUpFieldCanNotBeEmpty
+                            : null,
                       ),
-                    ),
-                  ],
+                      const SizedBox(height: _inputFieldsPadding),
+                      CTextFormField(
+                        label: S.of(context).screenSignUpNameLabel,
+                        controller: _nameField,
+                        validator: (val) => val == null || val.isEmpty
+                            ? l10n.screenSignUpFieldCanNotBeEmpty
+                            : null,
+                      ),
+                      const SizedBox(height: _inputFieldsPadding),
+                      CTextFormField(
+                        label: S.of(context).screenSignUpSurnameLabel,
+                        controller: _surnameField,
+                        validator: (val) => val == null || val.isEmpty
+                            ? l10n.screenSignUpFieldCanNotBeEmpty
+                            : null,
+                      ),
+                      const SizedBox(height: _inputFieldsPadding),
+                      CTextFormField(
+                        label: S.of(context).screenSignUpNicknameLabel,
+                        controller: _nicknameField,
+                        validator: (val) => val == null || val.isEmpty
+                            ? l10n.screenSignUpFieldCanNotBeEmpty
+                            : null,
+                        inputFormatters: [
+                          LowerCaseTextFormatter()
+                        ],
+                      ),
+                      const SizedBox(height: _inputFieldsPadding),
+                      CTextFormField(
+                        label: S.of(context).screenSignUpPasswordLabel,
+                        controller: _passwordField,
+                        obscureText: true,
+                        validator: (val) => val == null || val.isEmpty
+                            ? l10n.screenSignUpFieldCanNotBeEmpty
+                            : null,
+                      ),
+                      const SizedBox(height: _inputFieldsPadding),
+                      CTextFormField(
+                        label: S.of(context).screenSignUpPasswordConfirmLabel,
+                        controller: _password2Field,
+                        obscureText: true,
+                        validator: (val) => val == null || val.isEmpty
+                            ? l10n.screenSignUpFieldCanNotBeEmpty
+                            : null,
+                      ),
+                      const SizedBox(height: 50),
+                      SizedBox(
+                        width: _submitButtonWidth,
+                        child: RoundedButton(
+                          text: S.of(context).screenSignUpSubmitButton,
+                          onTap: () => _submit(context),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 20),
                 Padding(
@@ -165,4 +186,3 @@ class SignUpScreen extends StatelessWidget {
     );
   }
 }
-

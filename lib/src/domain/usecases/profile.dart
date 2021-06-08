@@ -11,8 +11,8 @@ abstract class ProfileUseCase {
   Stream<UserDto?> get ownStream;
   String? get ownId;
   Stream<UserDto?> getById(String id, bool loadGoals);
-  void save(UserDto user);
-  Future<void> saveOwn(UserDto user);
+  Future<SaveProfileResult> save(UserDto user);
+  Future<SaveProfileResult> saveOwn(UserDto user);
   Future<bool> isAvailableNickname(String nickname);
   Future<List<UserDto>> search(String request);
 }
@@ -30,9 +30,13 @@ class ProfileUseCaseImpl implements ProfileUseCase {
   }
 
   @override
-  void save(UserDto user) async => await _profileRepository.save(user);
+  Future<SaveProfileResult> save(UserDto user) async {
+    return await _profileRepository.save(user);
+  }
 
-  Future<void> saveOwn(UserDto user) => _profileRepository.saveOwn(user);
+  Future<SaveProfileResult> saveOwn(UserDto user) async {
+    return await _profileRepository.saveOwn(user);
+  }
 
   @override
   Future<bool> isAvailableNickname(String nickname) async {

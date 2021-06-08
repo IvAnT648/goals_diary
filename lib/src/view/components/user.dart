@@ -29,9 +29,19 @@ class SubscriptionListItem extends StatelessWidget {
             UserAvatar(userInfo: user),
             const SizedBox(width: 12),
             Expanded(
-              child: Text(
-                user.fullName,
-                style: TextStyles.h4,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    user.fullName,
+                    style: TextStyles.h4,
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    user.nicknameWithAt,
+                    style: TextStyles.h5.copyWith(color: AppColors.hintText),
+                  ),
+                ],
               ),
             ),
           ],

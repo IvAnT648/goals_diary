@@ -6,14 +6,14 @@ class ProfileData {
 
   final String name;
   final String? surname;
-  final String? nickname;
+  final String nickname;
   final String? motto;
   final String? about;
   
   ProfileData({
     required this.name,
     this.surname,
-    this.nickname,
+    required this.nickname,
     this.motto,
     this.about,
   });
@@ -46,9 +46,9 @@ class ProfileData {
 
   factory ProfileData.fromMap(Map<String, dynamic> map) {
     return ProfileData(
-      name: map['name'] as String,
+      name: (map['name'] ?? '') as String,
       surname: map['surname'] as String?,
-      nickname: map['nickname'] as String?,
+      nickname: (map['nickname'] ?? '') as String,
       motto: map['motto'] as String?,
       about: map['about'] as String?,
     );

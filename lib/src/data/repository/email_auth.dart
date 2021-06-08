@@ -2,16 +2,24 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../domain/models.dart';
+import 'profile.dart';
 
 abstract class EmailAuthRepository {
   Future<SignInResult> signIn(String email, String password);
-  Future<SignUpResult> signUp(String email, String password);
+  Future<SignUpResult> signUp({
+    required String email,
+    required String password,
+    required String nickname,
+  });
   Future<void> signOut();
 }
 
 @Injectable(as: EmailAuthRepository)
 class EmailAuthRepositoryFirebase implements EmailAuthRepository {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final ProfileRepository _profileRepository;
+
+  EmailAuthRepositoryFirebase(this._profileRepository);
 
   @override
   Future<SignInResult> signIn(String email, String password) async {
@@ -40,8 +48,18 @@ class EmailAuthRepositoryFirebase implements EmailAuthRepository {
   }
 
   @override
-  Future<SignUpResult> signUp(String email, String password) async {
+  Future<SignUpResult> signUp({
+    required String email,
+    required String password,
+    required String nickname,
+  }) async {
     try {
+      final isAvailableNickname =
+          await _profileRepository.isAvailableNickname(nickname);
+      if (!isAvailableNickname) {
+        return SignUpResult.duplicatedNickname();
+      }
+
       var result = await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,

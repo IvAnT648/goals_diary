@@ -17,9 +17,7 @@ class ProfileScreenCubit extends Cubit<ProfileScreenState> {
 
   bool get _isOwnProfile =>
       type == ProfileScreenType.own ||
-      (user != null &&
-          _profileUseCase.ownId != null &&
-          user!.id == _profileUseCase.ownId);
+      (user != null && user!.id == _profileUseCase.ownId);
 
   ProfileScreenCubit(
     this._profileUseCase,
@@ -35,6 +33,7 @@ class ProfileScreenCubit extends Cubit<ProfileScreenState> {
     if (_isOwnProfile) {
       _profileUseCase.ownStream.listen((profile) {
         if (profile != null) {
+          user = profile;
           return emit(ProfileScreenState.own(profile));
         }
         emit(ProfileScreenState.userNotFound());
@@ -77,16 +76,18 @@ class ProfileScreenCubit extends Cubit<ProfileScreenState> {
     if (name.isEmpty) {
       return SaveProfileResult.emptyName();
     }
+    if (user == null) {
+      return SaveProfileResult.error();
+    }
 
-    await _profileUseCase.saveOwn(UserDto(
-      id: '',
-      name: name,
-      surname: surname,
-      motto: motto,
-      about: about,
-    ));
-
-    return SaveProfileResult.success();
+    return await _profileUseCase.saveOwn(
+        user!.copyWith(
+          name: name,
+          surname: surname,
+          motto: motto,
+          about: about,
+        )
+    );
   }
 
   void subscribe(UserDto user) {

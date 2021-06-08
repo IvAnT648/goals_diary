@@ -15,9 +15,11 @@ abstract class ProfileRepository {
 
   Future<UserDto?> getSingle({required String id, bool? publicFilter});
 
-  Future<void> save(UserDto user);
+  Future<SaveProfileResult> save(UserDto user);
 
-  Future<void> saveOwn(UserDto user);
+  Future<SaveProfileResult> saveOwn(UserDto user);
+
+  Future<SignUpResult> register(UserDto user);
 
   Future<void> delete(UserDto user);
 
@@ -65,6 +67,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
         .snapshots()
         .handleError((e) {
           print('Error when listening user $id.\n$e');
+          return null;
         });
 
     if (addGoals) {
@@ -91,13 +94,36 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<void> save(UserDto user) async {
-    await collection
-        .doc(user.id)
-        .set(user.toData().toMap())
-        .catchError((e) {
-          print('Error when user ${user.id} saving');
-        });
+  Future<SaveProfileResult> save(UserDto user) async {
+    try {
+      await convertedCollection
+          .doc(user.id)
+          .set(user.toData());
+      return SaveProfileResult.success();
+    } catch (e) {
+      print('Error when user saving $user');
+      return SaveProfileResult.error();
+    }
+  }
+
+  @override
+  Future<SaveProfileResult> saveOwn(UserDto user) async {
+    final id = _authRepository.currentUser?.uid;
+    if (id == null) return SaveProfileResult.error();
+
+    try {
+      final data = user.toData().toMap();
+      await collection
+          .doc(id)
+          .update(data)
+          .catchError((e) {
+            print('Error when saving own profile $user:\n$e');
+          });
+      return SaveProfileResult.success();
+    } catch (e) {
+      print('Error when user saving $user');
+      return SaveProfileResult.error();
+    }
   }
 
   @override
@@ -108,18 +134,19 @@ class ProfileRepositoryImpl implements ProfileRepository {
     return result.docs.length == 0;
   }
 
-  @override
-  Future<void> saveOwn(UserDto user) async {
-    final id = _authRepository.currentUser?.uid;
-    if (id == null) return;
-
-    final data = user.toData();
-    await collection
-        .doc(id)
-        .update(data.toMap())
-        .catchError((e) {
-          print('Error when saving profile $id:\n$e');
-        });
+  Future<SignUpResult> register(UserDto user) async {
+    if (user.id.isEmpty || user.nickname.isEmpty) {
+      return SignUpResult.internalError();
+    }
+    try {
+      await convertedCollection
+          .doc(user.id)
+          .set(user.toData());
+      return SignUpResult.success(user.id);
+    } catch (e) {
+      print('Error when register profile $user:\n$e');
+      return SignUpResult.internalError();
+    }
   }
 
   @override
@@ -140,17 +167,19 @@ class ProfileRepositoryImpl implements ProfileRepository {
       isSubscribed = await _subscriptionsRepository.isSubscribed(id);
     }
 
-    final doc = await convertedCollection
-        .doc(id)
-        .get()
-        .catchError((e) {
-          print('Error when user $id loading:\n$e');
-        });
-    return doc.data()?.toDomain(
-      id: id,
-      goals: goals,
-      isSubscribed: isSubscribed,
-    );
+    try {
+      final doc = await convertedCollection
+          .doc(id)
+          .get();
+      return doc.data()?.toDomain(
+        id: id,
+        goals: goals,
+        isSubscribed: isSubscribed,
+      );
+    } catch (e) {
+      print('Error when user $id loading:\n$e');
+      return null;
+    }
   }
 
   @override
@@ -171,7 +200,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
       }
       return list;
     } catch (e) {
-      print('Error when search by $request request:\n$e');
+      print('Error when search by "$request" request:\n$e');
       return [];
     }
   }
