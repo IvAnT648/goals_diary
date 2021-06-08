@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:weekday_selector/weekday_selector.dart';
 
 import '../../common/resources.dart';
@@ -17,6 +18,8 @@ class DefaultTextField extends StatelessWidget {
   final bool obscureText;
   final bool autofocus;
   final Function(String)? onChanged;
+  final TextCapitalization textCapitalization;
+  final List<TextInputFormatter>? inputFormatters;
 
   const DefaultTextField({
     Key? key,
@@ -25,6 +28,8 @@ class DefaultTextField extends StatelessWidget {
     this.onChanged,
     this.autofocus = false,
     this.obscureText = false,
+    this.textCapitalization = TextCapitalization.none,
+    this.inputFormatters,
   }) : super(key: key);
 
   @override
@@ -36,6 +41,8 @@ class DefaultTextField extends StatelessWidget {
       cursorColor: AppColors.primary,
       autofocus: autofocus,
       cursorWidth: 1,
+      textCapitalization: textCapitalization,
+      inputFormatters: inputFormatters,
       decoration: InputDecoration(
         alignLabelWithHint: true,
         labelText: label,
@@ -148,6 +155,57 @@ class OutlinedTextField extends StatelessWidget {
         fillColor: AppColors.onPrimary,
         isDense: true,
         contentPadding: const EdgeInsets.all(10),
+      ),
+    );
+  }
+}
+
+/// Custom text form field component
+class CTextFormField extends StatelessWidget {
+  static const double _borderWidth = 1.2;
+  static const double _labelHeight = 0.8;
+
+  final TextEditingController? controller;
+  final String? label;
+  final bool obscureText;
+  final bool autofocus;
+  final Function(String)? onChanged;
+  final List<TextInputFormatter>? inputFormatters;
+  final FormFieldValidator<String>? validator;
+
+  const CTextFormField({
+    Key? key,
+    this.controller,
+    this.onChanged,
+    this.label,
+    this.obscureText = false,
+    this.autofocus = false,
+    this.inputFormatters,
+    this.validator,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      validator: validator,
+      controller: controller,
+      onChanged: onChanged,
+      obscureText: obscureText,
+      autofocus: autofocus,
+      inputFormatters: inputFormatters,
+      decoration: InputDecoration(
+        alignLabelWithHint: true,
+        labelText: label,
+        labelStyle: TextStyle(
+          height: _labelHeight,
+        ),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColors.primary,
+            width: _borderWidth,
+          ),
+        ),
+        isDense: true,
       ),
     );
   }
