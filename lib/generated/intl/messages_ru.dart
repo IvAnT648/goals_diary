@@ -134,6 +134,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenMyGoalsTitle": MessageLookupByLibrary.simpleMessage("Мои цели"),
         "screenMyProfileTitle":
             MessageLookupByLibrary.simpleMessage("Мой профиль"),
+        "screenPostNotFound":
+            MessageLookupByLibrary.simpleMessage("Пост не найден"),
+        "screenPostTitle":
+            MessageLookupByLibrary.simpleMessage("Активность пользователя"),
         "screenProfileAboutMe": MessageLookupByLibrary.simpleMessage("О себе"),
         "screenProfileEmptyNameFail":
             MessageLookupByLibrary.simpleMessage("Имя не может быть пустым"),

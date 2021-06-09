@@ -9,3 +9,4 @@ export 'screens/feed/screen.dart';
 export 'screens/subscriptions/screen.dart';
 export 'screens/drawer/screen.dart';
 export 'screens/search_user/screen.dart';
+export 'screens/post/screen.dart';

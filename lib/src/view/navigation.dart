@@ -128,6 +128,21 @@ abstract class Navigation {
         child: SearchUserScreen(),
       ),
     ),
+    SeafarerRoute(
+      name: PostScreen.id,
+      params: [
+        SeafarerParam<PostDto>(
+          name: PostScreen.postArg,
+          isRequired: true,
+        ),
+      ],
+      builder: (_, __, params) => BlocProvider<PostScreenBloc>(
+        create: (_) => PostScreenBloc(
+          post: params.param<PostDto>(PostScreen.postArg),
+        ),
+        child: PostScreen(),
+      ),
+    ),
   ];
 
   /// WARNING: Execute before app launch

@@ -102,6 +102,9 @@
   "screenFeedNoPosts": "No posts yet...",
   "screenFeedEmptyComment": "Comment can't be empty",
 
+  "screenPostTitle": "User's activity",
+  "screenPostNotFound": "The post not found",
+
   "screenSearchUserFieldPlaceholder": "Start typing a nickname",
   "screenSearchUserSearchResult": "Search result:",
 

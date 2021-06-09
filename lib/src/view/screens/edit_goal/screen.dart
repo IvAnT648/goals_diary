@@ -52,7 +52,6 @@ class EditGoalScreen extends StatelessWidget {
       appBar: ReturnableTopBar(
         title: Text(
           goal == null ? l10n.screenEditGoalNewTitle : l10n.screenEditGoalTitle,
-          style: TextStyles.h3.copyWith(color: AppColors.regularText),
         ),
         actions: [
           if (goal != null)

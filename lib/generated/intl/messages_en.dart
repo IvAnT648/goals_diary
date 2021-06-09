@@ -127,6 +127,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenMyGoalsTitle": MessageLookupByLibrary.simpleMessage("My goals"),
         "screenMyProfileTitle":
             MessageLookupByLibrary.simpleMessage("My profile"),
+        "screenPostNotFound":
+            MessageLookupByLibrary.simpleMessage("The post not found"),
+        "screenPostTitle":
+            MessageLookupByLibrary.simpleMessage("User\'s activity"),
         "screenProfileAboutMe":
             MessageLookupByLibrary.simpleMessage("About me"),
         "screenProfileEmptyNameFail":

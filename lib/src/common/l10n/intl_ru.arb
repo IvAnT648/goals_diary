@@ -102,6 +102,9 @@
   "screenFeedNoPosts": "Здесь пока пусто...",
   "screenFeedEmptyComment": "Комментарий не может быть пустым",
 
+  "screenPostTitle": "Активность пользователя",
+  "screenPostNotFound": "Пост не найден",
+
   "screenSearchUserFieldPlaceholder": "Начните набирать никнейм",
   "screenSearchUserSearchResult": "Результаты поиска:",
 

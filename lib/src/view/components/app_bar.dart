@@ -55,7 +55,12 @@ class ReturnableTopBar extends StatelessWidget with DefaultPreferredSizeAppBar {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: title,
+      title: title != null
+          ? DefaultTextStyle.merge(
+              child: title!,
+              style: TextStyles.h3.copyWith(color: AppColors.regularText),
+            )
+          : null,
       centerTitle: true,
       backgroundColor: AppColors.gray[20],
       leading: IconButton(

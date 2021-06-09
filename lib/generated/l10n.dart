@@ -970,6 +970,26 @@ class S {
     );
   }
 
+  /// `User's activity`
+  String get screenPostTitle {
+    return Intl.message(
+      'User\'s activity',
+      name: 'screenPostTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The post not found`
+  String get screenPostNotFound {
+    return Intl.message(
+      'The post not found',
+      name: 'screenPostNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Start typing a nickname`
   String get screenSearchUserFieldPlaceholder {
     return Intl.message(

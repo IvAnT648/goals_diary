@@ -342,14 +342,14 @@ class _LikeButtonState extends State<LikeButton> {
 }
 
 class CommentButton extends StatefulWidget {
-  final List<PostCommentDto> comments;
+  final int qty;
   final void Function(bool) onTap;
   final bool isActive;
   final double size;
 
   const CommentButton({
     Key? key,
-    required this.comments,
+    required this.qty,
     required this.onTap,
     required this.isActive,
     this.size = 24,
@@ -379,15 +379,60 @@ class _CommentButtonState extends State<CommentButton> {
             color: _isActive ? AppColors.primary : AppColors.gray[-10],
             size: widget.size,
           ),
-          if (widget.comments.length != 0) ...[
+          if (widget.qty != 0) ...[
             const SizedBox(width: 4),
             Text(
-              widget.comments.length.toString(),
+              widget.qty.toString(),
               style: TextStyles.normalHint,
             ),
           ],
         ],
       ),
+    );
+  }
+}
+
+class CommentFakeButton extends StatelessWidget {
+  final int qty;
+  final bool isActive;
+  final VoidCallback? onTap;
+  final double size;
+
+  const CommentFakeButton({
+    Key? key,
+    required this.qty,
+    required this.isActive,
+    this.onTap,
+    this.size = 24,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final widget = Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(
+          isActive ? Icons.chat_bubble : Icons.chat_bubble_outline,
+          color: isActive ? AppColors.primary : AppColors.gray[-10],
+          size: size,
+        ),
+        if (qty != 0) ...[
+          const SizedBox(width: 4),
+          Text(
+            qty.toString(),
+            style: TextStyles.normalHint,
+          ),
+        ],
+      ],
+    );
+
+    if (onTap == null) {
+      return widget;
+    }
+
+    return TouchableArea(
+      onTap: onTap,
+      child: widget,
     );
   }
 }

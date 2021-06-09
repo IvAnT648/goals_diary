@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:goals_diary/src/view/screens.dart';
 
 import '../../../domain/models.dart';
 import '../../../common/resources.dart';
 import '../../components.dart';
 import '../../navigation.dart';
+import '../../screens.dart';
 import '../drawer/screen.dart';
 import 'cubit.dart';
 
@@ -87,17 +87,13 @@ class _LoadedStateState extends State<_LoadedState> {
             FeedPost(
               key: UniqueKey(),
               post: post,
-              onSentComment: (comment) {
-                context.read<FeedScreenCubit>().addComment(post, comment);
-                // setState(() {});
-              },
-              onAuthorTap: () {
-                Navigation.to(ProfileScreen.idOther, params: {
-                  ProfileScreen.userArg: post.author,
+              onTap: () {
+                Navigation.to(PostScreen.id, params: {
+                  PostScreen.postArg: post,
                 });
               },
-              onGoalTitleTap: () {
-                // TODO: show modal screen with goal detail page
+              onLikeTap: () {
+                context.read<FeedScreenCubit>().toggleLike(post);
               },
             ),
             const SizedBox(height: _postsPadding),

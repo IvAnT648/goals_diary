@@ -33,10 +33,6 @@ class FeedScreenCubit extends Cubit<FeedScreenState> {
     });
   }
 
-  void _emitLoaded() {
-    emit(FeedScreenState.loaded(_posts.values.toList()));
-  }
-
   void _commentsListener(List<PostCommentDto> allComments) {
     _posts.values.forEach((el) {
       el.comments.clear();
@@ -46,15 +42,18 @@ class FeedScreenCubit extends Cubit<FeedScreenState> {
         _posts[comment.postId]!.comments.add(comment);
       }
     });
-    _emitLoaded();
+    emit(FeedScreenState.loaded(_posts.values.toList()));
   }
 
   void toggleLike(PostDto post) async {
-    await _postsUseCase.toggleLike(post);
+    _postsUseCase.toggleLike(post);
   }
 
   Future<bool> addComment(PostDto post, String text) async {
-    final result = await _commentsUseCase.addComment(post, text);
-    return result;
+    return await _commentsUseCase.addComment(post, text);
+  }
+
+  Stream<List<PostDto>> get postsStream {
+    return _postsUseCase.all;
   }
 }
