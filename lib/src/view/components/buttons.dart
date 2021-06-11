@@ -255,7 +255,7 @@ enum _LikeButtonIconState {
 class LikeButton extends StatefulWidget {
   final int qty;
   final bool isActive;
-  final void Function() onTap;
+  final VoidCallback? onTap;
   final double size;
 
   const LikeButton({
@@ -307,7 +307,9 @@ class _LikeButtonState extends State<LikeButton> {
   }
 
   void _onTap() {
-    widget.onTap();
+    if (widget.onTap != null) {
+      widget.onTap!();
+    }
     setState(() {
       _state = _LikeButtonIconState.loading;
     });
