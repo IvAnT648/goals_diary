@@ -138,6 +138,8 @@ abstract class Navigation {
       ],
       builder: (_, __, params) => BlocProvider<PostScreenBloc>(
         create: (_) => PostScreenBloc(
+          getIt<PostsUseCase>(),
+          getIt<CommentsUseCase>(),
           post: params.param<PostDto>(PostScreen.postArg),
         ),
         child: PostScreen(),

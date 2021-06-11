@@ -79,7 +79,7 @@ class PostCommentDto {
 class PostDto {
   final String id;
   final UserDto author;
-  final GoalDto? goal;
+  final GoalDto goal;
   final DateTime date;
   final String? text;
   final int likeQty;
@@ -123,7 +123,7 @@ class PostDto {
     return {
       'id': id,
       'author': author.toMap(),
-      'goal': goal?.toMap(),
+      'goal': goal.toMap(),
       'date': date.millisecondsSinceEpoch,
       'comment': text,
       'likeQty': likeQty,

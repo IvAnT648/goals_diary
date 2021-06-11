@@ -8,7 +8,8 @@ import 'auth.dart';
 import 'profile.dart';
 
 abstract class CommentsRepository {
-  Stream<List<PostCommentDto>> byPostIds(List<String> postIds);
+  Stream<List<PostCommentDto>> byPostId(String postId);
+  Future<List<PostCommentDto>> loadByPostId(String postId);
   Future<bool> addComment(String postId, String text);
 }
 
@@ -32,18 +33,18 @@ class CommentsRepositoryImpl implements CommentsRepository {
 
   CommentsRepositoryImpl(this._profileRepository, this._authRepository);
 
-  Stream<List<PostCommentDto>> byPostIds(List<String> postIds) async* {
-    if (postIds.isEmpty) {
+  Stream<List<PostCommentDto>> byPostId(String postId) async* {
+    if (postId.isEmpty) {
       yield [];
       return;
     }
 
     try {
       final stream = convertedCollection
-          .where(PostCommentRaw.postIdKey, whereIn: postIds)
+          .where(PostCommentRaw.postIdKey, isEqualTo: postId)
           .snapshots()
           .handleError((e) {
-            print('Error when listening comments for the posts $postIds.\n$e');
+            print('Error when listening comments for the post $postId.\n$e');
           })
           .map((s) => s.docs);
       await for (final rawDocList in stream) {
@@ -99,8 +100,28 @@ class CommentsRepositoryImpl implements CommentsRepository {
     }
   }
 
+  Future<List<PostCommentDto>> loadByPostId(String postId) async {
+    try {
+      final snapshot = await convertedCollection
+          .where(PostCommentRaw.postIdKey, isEqualTo: postId)
+          .get();
+      final comments = <PostCommentDto>[];
+      for (var doc in snapshot.docs) {
+        final data = doc.data();
+        if (data == null) continue;
+        final domain = await _toDomain(data);
+        if (domain == null) continue;
+        comments.add(domain);
+      }
+      return comments;
+    } catch (e) {
+      print('Error when loading comments for the post $postId.\n$e');
+      return [];
+    }    
+  }
+
   int _sortComparator(PostCommentDto a, PostCommentDto b) {
-    // by desc
-    return a.date.compareTo(b.date);
+    // by date desc
+    return b.date.compareTo(a.date);
   }
 }

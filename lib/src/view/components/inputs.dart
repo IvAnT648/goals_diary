@@ -121,6 +121,7 @@ class OutlinedTextField extends StatelessWidget {
   final bool obscureText;
   final Function(String)? onChanged;
   final double fontSize;
+  final String? hintText;
 
   OutlinedTextField({
     Key? key,
@@ -128,6 +129,7 @@ class OutlinedTextField extends StatelessWidget {
     this.obscureText = false,
     this.onChanged,
     this.fontSize = 14,
+    this.hintText,
   }) : super(key: key);
 
   @override
@@ -155,6 +157,7 @@ class OutlinedTextField extends StatelessWidget {
         fillColor: AppColors.onPrimary,
         isDense: true,
         contentPadding: const EdgeInsets.all(10),
+        hintText: hintText,
       ),
     );
   }

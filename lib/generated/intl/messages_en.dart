@@ -127,6 +127,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenMyGoalsTitle": MessageLookupByLibrary.simpleMessage("My goals"),
         "screenMyProfileTitle":
             MessageLookupByLibrary.simpleMessage("My profile"),
+        "screenPostCommentFieldPlaceholder":
+            MessageLookupByLibrary.simpleMessage("Your comment..."),
         "screenPostNotFound":
             MessageLookupByLibrary.simpleMessage("The post not found"),
         "screenPostTitle":

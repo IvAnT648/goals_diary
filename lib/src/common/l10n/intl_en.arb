@@ -104,6 +104,7 @@
 
   "screenPostTitle": "User's activity",
   "screenPostNotFound": "The post not found",
+  "screenPostCommentFieldPlaceholder": "Your comment...",
 
   "screenSearchUserFieldPlaceholder": "Start typing a nickname",
   "screenSearchUserSearchResult": "Search result:",

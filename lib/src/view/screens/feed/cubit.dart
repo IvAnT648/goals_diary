@@ -11,49 +11,19 @@ export 'cubit/states.dart';
 @injectable
 class FeedScreenCubit extends Cubit<FeedScreenState> {
   final PostsUseCase _postsUseCase;
-  final CommentsUseCase _commentsUseCase;
 
-  Map<String, PostDto> _posts = {};
-
-  FeedScreenCubit(this._postsUseCase, this._commentsUseCase)
+  FeedScreenCubit(this._postsUseCase)
       : super(FeedScreenState.loading()
   ) {
     _postsUseCase.all.listen((posts) {
       if (posts.isEmpty) {
         emit(FeedScreenState.empty());
-        _posts = {};
-        return;
       }
-      posts.forEach((post) {
-        _posts[post.id] = post;
-      });
-      _commentsUseCase
-          .byPostIds(_posts.keys.toList())
-          .listen(_commentsListener);
+      emit(FeedScreenState.loaded(posts));
     });
-  }
-
-  void _commentsListener(List<PostCommentDto> allComments) {
-    _posts.values.forEach((el) {
-      el.comments.clear();
-    });
-    allComments.forEach((comment) {
-      if (_posts[comment.postId] != null) {
-        _posts[comment.postId]!.comments.add(comment);
-      }
-    });
-    emit(FeedScreenState.loaded(_posts.values.toList()));
   }
 
   void toggleLike(PostDto post) async {
     _postsUseCase.toggleLike(post);
-  }
-
-  Future<bool> addComment(PostDto post, String text) async {
-    return await _commentsUseCase.addComment(post, text);
-  }
-
-  Stream<List<PostDto>> get postsStream {
-    return _postsUseCase.all;
   }
 }

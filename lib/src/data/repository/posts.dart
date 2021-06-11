@@ -14,6 +14,8 @@ import 'subscriptions.dart';
 abstract class PostsRepository {
   Stream<List<PostDto>> posts();
 
+  Stream<PostDto?> byId(String id);
+
   Future<bool> like(PostDto post);
 
   Future<bool> unlike(PostDto post);
@@ -48,12 +50,14 @@ class PostsRepositoryFirestore implements PostsRepository {
   final AuthRepository _auth;
   final ProfileRepository _profile;
   final GoalsRepository _goals;
+  final CommentsRepository _comments;
 
   PostsRepositoryFirestore(
-      this._subscriptions,
-      this._auth,
-      this._profile,
-      this._goals,
+    this._subscriptions,
+    this._auth,
+    this._profile,
+    this._goals,
+    this._comments,
   );
 
   @override
@@ -67,8 +71,8 @@ class PostsRepositoryFirestore implements PostsRepository {
 
     await for (var subIds in subIdsStream) {
       final postDocsStream = convertedCollection
-          .where(PostRaw.authorIdKey, whereIn: [
-            ...subIds, _auth.currentUser!.uid])
+          .where(PostRaw.authorIdKey,
+              whereIn: [...subIds, _auth.currentUser!.uid])
           .snapshots()
           .handleError((e) => print('Error when listening feed posts:\n$e'))
           .map((s) => s.docs);
@@ -88,30 +92,19 @@ class PostsRepositoryFirestore implements PostsRepository {
     }
   }
 
-  Future<PostDto?> _toDomain(String id, PostRaw data) async {
-    final author =
-        await _profile.getSingle(id: data.authorId, publicFilter: true);
-    if (author == null) {
-      return null;
-    }
-    final goal = await _goals.load(data.goalId);
-    if (goal == null) {
-      return null;
-    }
-    final like = _auth.currentUser != null
-        ? data.likedIt.contains(_auth.currentUser!.uid)
-        : false;
-    return PostDto(
-      id: id,
-      date: data.createdAt,
-      author: author,
-      goal: goal,
-      text: data.text,
-      likeQty: data.likedIt.length,
-      like: like,
-      // Comments will be loaded later
-      comments: [],
-    );
+  @override
+  Stream<PostDto?> byId(String id) async* {
+    if (id.isEmpty) yield null;
+
+    yield* convertedCollection
+        .doc(id)
+        .snapshots()
+        .handleError(
+            (e) => print('Error when listening feed post by id $id:\n$e'))
+        .asyncMap((doc) async {
+      final data = doc.data();
+      return data == null ? null : await _toDomain(id, data);
+    });
   }
 
   @override
@@ -121,16 +114,16 @@ class PostsRepositoryFirestore implements PostsRepository {
     required String goalId,
     String? text,
   }) async {
-    await collection.add(
-        PostRaw(
-          activityId: activityId,
-          authorId: authorId,
-          goalId: goalId,
-          text: text,
-          likedIt: [],
-          createdAt: DateTime.now(),
-        ).toMap()
-    ).catchError((e) {
+    await collection
+        .add(PostRaw(
+      activityId: activityId,
+      authorId: authorId,
+      goalId: goalId,
+      text: text,
+      likedIt: [],
+      createdAt: DateTime.now(),
+    ).toMap())
+        .catchError((e) {
       print('Error when creating post for the activity $activityId:\n$e');
     });
   }
@@ -144,13 +137,12 @@ class PostsRepositoryFirestore implements PostsRepository {
         .where(PostRaw.activityIdKey, isEqualTo: activityId)
         .where(PostRaw.authorIdKey, isEqualTo: authorId)
         .get()
-        .then((data) =>
-          data.docs.forEach((doc) async {
-            await collection.doc(doc.id).delete();
-          }))
+        .then((data) => data.docs.forEach((doc) async {
+              await collection.doc(doc.id).delete();
+            }))
         .catchError((e) {
-          print('Error when deleting post for the activity $activityId:\n$e');
-        });
+      print('Error when deleting post for the activity $activityId:\n$e');
+    });
   }
 
   int _sortComparator(PostDto a, PostDto b) {
@@ -183,5 +175,33 @@ class PostsRepositoryFirestore implements PostsRepository {
       print('Error when unlike the post ${post.id}.\n$e');
       return false;
     }
+  }
+
+  Future<PostDto?> _toDomain(String id, PostRaw data) async {
+    final author =
+        await _profile.getSingle(id: data.authorId, publicFilter: true);
+    if (author == null) {
+      return null;
+    }
+    final goal = await _goals.load(data.goalId);
+    if (goal == null) {
+      return null;
+    }
+    final like = _auth.currentUser != null
+        ? data.likedIt.contains(_auth.currentUser!.uid)
+        : false;
+
+    final comments = await _comments.loadByPostId(id);
+
+    return PostDto(
+      id: id,
+      date: data.createdAt,
+      author: author,
+      goal: goal,
+      text: data.text,
+      likeQty: data.likedIt.length,
+      like: like,
+      comments: comments,
+    );
   }
 }

@@ -16,10 +16,6 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$PostScreenStateTearOff {
   const _$PostScreenStateTearOff();
 
-  LoadingPostScreenState loading() {
-    return const LoadingPostScreenState();
-  }
-
   NotFoundPostScreenState notFound() {
     return const NotFoundPostScreenState();
   }
@@ -38,14 +34,12 @@ const $PostScreenState = _$PostScreenStateTearOff();
 mixin _$PostScreenState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
     required TResult Function() notFound,
     required TResult Function(PostDto post) show,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
     TResult Function()? notFound,
     TResult Function(PostDto post)? show,
     required TResult orElse(),
@@ -53,14 +47,12 @@ mixin _$PostScreenState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LoadingPostScreenState value) loading,
     required TResult Function(NotFoundPostScreenState value) notFound,
     required TResult Function(ShowPostScreenState value) show,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoadingPostScreenState value)? loading,
     TResult Function(NotFoundPostScreenState value)? notFound,
     TResult Function(ShowPostScreenState value)? show,
     required TResult orElse(),
@@ -83,96 +75,6 @@ class _$PostScreenStateCopyWithImpl<$Res>
   final PostScreenState _value;
   // ignore: unused_field
   final $Res Function(PostScreenState) _then;
-}
-
-/// @nodoc
-abstract class $LoadingPostScreenStateCopyWith<$Res> {
-  factory $LoadingPostScreenStateCopyWith(LoadingPostScreenState value,
-          $Res Function(LoadingPostScreenState) then) =
-      _$LoadingPostScreenStateCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$LoadingPostScreenStateCopyWithImpl<$Res>
-    extends _$PostScreenStateCopyWithImpl<$Res>
-    implements $LoadingPostScreenStateCopyWith<$Res> {
-  _$LoadingPostScreenStateCopyWithImpl(LoadingPostScreenState _value,
-      $Res Function(LoadingPostScreenState) _then)
-      : super(_value, (v) => _then(v as LoadingPostScreenState));
-
-  @override
-  LoadingPostScreenState get _value => super._value as LoadingPostScreenState;
-}
-
-/// @nodoc
-
-class _$LoadingPostScreenState implements LoadingPostScreenState {
-  const _$LoadingPostScreenState();
-
-  @override
-  String toString() {
-    return 'PostScreenState.loading()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is LoadingPostScreenState);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function() notFound,
-    required TResult Function(PostDto post) show,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function()? notFound,
-    TResult Function(PostDto post)? show,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(LoadingPostScreenState value) loading,
-    required TResult Function(NotFoundPostScreenState value) notFound,
-    required TResult Function(ShowPostScreenState value) show,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoadingPostScreenState value)? loading,
-    TResult Function(NotFoundPostScreenState value)? notFound,
-    TResult Function(ShowPostScreenState value)? show,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class LoadingPostScreenState implements PostScreenState {
-  const factory LoadingPostScreenState() = _$LoadingPostScreenState;
 }
 
 /// @nodoc
@@ -215,7 +117,6 @@ class _$NotFoundPostScreenState implements NotFoundPostScreenState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
     required TResult Function() notFound,
     required TResult Function(PostDto post) show,
   }) {
@@ -225,7 +126,6 @@ class _$NotFoundPostScreenState implements NotFoundPostScreenState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
     TResult Function()? notFound,
     TResult Function(PostDto post)? show,
     required TResult orElse(),
@@ -239,7 +139,6 @@ class _$NotFoundPostScreenState implements NotFoundPostScreenState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LoadingPostScreenState value) loading,
     required TResult Function(NotFoundPostScreenState value) notFound,
     required TResult Function(ShowPostScreenState value) show,
   }) {
@@ -249,7 +148,6 @@ class _$NotFoundPostScreenState implements NotFoundPostScreenState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoadingPostScreenState value)? loading,
     TResult Function(NotFoundPostScreenState value)? notFound,
     TResult Function(ShowPostScreenState value)? show,
     required TResult orElse(),
@@ -330,7 +228,6 @@ class _$ShowPostScreenState implements ShowPostScreenState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loading,
     required TResult Function() notFound,
     required TResult Function(PostDto post) show,
   }) {
@@ -340,7 +237,6 @@ class _$ShowPostScreenState implements ShowPostScreenState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
     TResult Function()? notFound,
     TResult Function(PostDto post)? show,
     required TResult orElse(),
@@ -354,7 +250,6 @@ class _$ShowPostScreenState implements ShowPostScreenState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LoadingPostScreenState value) loading,
     required TResult Function(NotFoundPostScreenState value) notFound,
     required TResult Function(ShowPostScreenState value) show,
   }) {
@@ -364,7 +259,6 @@ class _$ShowPostScreenState implements ShowPostScreenState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoadingPostScreenState value)? loading,
     TResult Function(NotFoundPostScreenState value)? notFound,
     TResult Function(ShowPostScreenState value)? show,
     required TResult orElse(),

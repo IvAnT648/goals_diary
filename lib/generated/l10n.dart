@@ -990,6 +990,16 @@ class S {
     );
   }
 
+  /// `Your comment...`
+  String get screenPostCommentFieldPlaceholder {
+    return Intl.message(
+      'Your comment...',
+      name: 'screenPostCommentFieldPlaceholder',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Start typing a nickname`
   String get screenSearchUserFieldPlaceholder {
     return Intl.message(

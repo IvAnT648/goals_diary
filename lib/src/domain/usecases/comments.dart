@@ -5,7 +5,7 @@ import '../../data/repository/comments.dart';
 import '../models.dart';
 
 abstract class CommentsUseCase {
-  Stream<List<PostCommentDto>> byPostIds(List<String> ids);
+  Stream<List<PostCommentDto>> byPostId(String id);
   Future<bool> addComment(PostDto post, String text);
 }
 
@@ -15,8 +15,8 @@ class CommentsUseCaseImpl implements CommentsUseCase {
 
   CommentsUseCaseImpl(this._repository);
 
-  Stream<List<PostCommentDto>> byPostIds(List<String> ids) async* {
-    yield* _repository.byPostIds(ids);
+  Stream<List<PostCommentDto>> byPostId(String id) async* {
+    yield* _repository.byPostId(id);
   }
 
   @override

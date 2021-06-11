@@ -7,6 +7,7 @@ import '../models.dart';
 abstract class PostsUseCase {
   Future<bool> toggleLike(PostDto post);
   Stream<List<PostDto>> get all;
+  Stream<PostDto?> byIdStream(String id);
 }
 
 @Injectable(as: PostsUseCase)
@@ -25,5 +26,10 @@ class PostsUseCaseImpl implements PostsUseCase {
   @override
   Stream<List<PostDto>> get all async* {
     yield* _repository.posts();
+  }
+
+  @override
+  Stream<PostDto?> byIdStream(String id) async* {
+    yield* _repository.byId(id);
   }
 }

@@ -134,6 +134,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenMyGoalsTitle": MessageLookupByLibrary.simpleMessage("Мои цели"),
         "screenMyProfileTitle":
             MessageLookupByLibrary.simpleMessage("Мой профиль"),
+        "screenPostCommentFieldPlaceholder":
+            MessageLookupByLibrary.simpleMessage("Ваш комментарий..."),
         "screenPostNotFound":
             MessageLookupByLibrary.simpleMessage("Пост не найден"),
         "screenPostTitle":

@@ -104,6 +104,7 @@
 
   "screenPostTitle": "Активность пользователя",
   "screenPostNotFound": "Пост не найден",
+  "screenPostCommentFieldPlaceholder": "Ваш комментарий...",
 
   "screenSearchUserFieldPlaceholder": "Начните набирать никнейм",
   "screenSearchUserSearchResult": "Результаты поиска:",

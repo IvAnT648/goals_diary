@@ -45,8 +45,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i5.AppDrawerCubit>(() =>
       _i5.AppDrawerCubit(get<_i4.ProfileUseCase>(), get<_i4.LogoutUseCase>()));
   gh.factory<_i6.AuthRepository>(() => _i6.AuthRepositoryImpl());
-  gh.factory<_i7.FeedScreenCubit>(() =>
-      _i7.FeedScreenCubit(get<_i4.PostsUseCase>(), get<_i4.CommentsUseCase>()));
+  gh.factory<_i7.FeedScreenCubit>(
+      () => _i7.FeedScreenCubit(get<_i4.PostsUseCase>()));
   gh.factory<_i8.GoalsRepository>(
       () => _i8.GoalsRepositoryImpl(get<_i6.AuthRepository>()));
   gh.factory<_i9.GoalsUseCases>(
@@ -87,7 +87,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       get<_i14.SubscriptionsRepository>(),
       get<_i6.AuthRepository>(),
       get<_i17.ProfileRepository>(),
-      get<_i8.GoalsRepository>()));
+      get<_i8.GoalsRepository>(),
+      get<_i21.CommentsRepository>()));
   gh.factory<_i25.PostsUseCase>(
       () => _i25.PostsUseCaseImpl(get<_i24.PostsRepository>()));
   gh.factory<_i10.SignInUseCase>(
