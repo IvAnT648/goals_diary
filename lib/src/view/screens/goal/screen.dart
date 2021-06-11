@@ -9,7 +9,7 @@ import '../../components.dart';
 import '../../navigation.dart';
 import 'cubit.dart';
 
-class EditGoalScreen extends StatelessWidget {
+class GoalScreen extends StatelessWidget {
   static const String id = '/goals/form';
   static const String goalArg = 'goal';
   static const GoalType _defaultGoalType = GoalType.private;
@@ -31,7 +31,7 @@ class EditGoalScreen extends StatelessWidget {
 
   GoalType get _goalType => goal?.type ?? _defaultGoalType;
 
-  EditGoalScreen({
+  GoalScreen({
     Key? key,
     this.goal,
   }) : super(key: key) {
@@ -67,7 +67,7 @@ class EditGoalScreen extends StatelessWidget {
                   builder: (_) => YesNoAlertDialog(
                     title: l10n.screenEditGoalDeleteGoalAlert,
                     onYesTap: () {
-                      context.read<EditGoalCubit>().delete(goal!);
+                      context.read<GoalScreenCubit>().delete(goal!);
                       Navigation.pop();
                       Navigation.pop();
                     },
@@ -131,7 +131,7 @@ class EditGoalScreen extends StatelessWidget {
   }
 
   void _submit(BuildContext context) async {
-    final result = await context.read<EditGoalCubit>().save(_collectData());
+    final result = await context.read<GoalScreenCubit>().save(_collectData());
     final l10n = S.of(context);
     result.when(
       success: () {

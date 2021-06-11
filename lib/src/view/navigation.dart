@@ -51,18 +51,18 @@ abstract class Navigation {
       ),
     ),
     SeafarerRoute(
-      name: EditGoalScreen.id,
+      name: GoalScreen.id,
       params: [
         SeafarerParam<GoalDto>(
-          name: EditGoalScreen.goalArg,
+          name: GoalScreen.goalArg,
           defaultValue: null,
         ),
       ],
       builder: (_, __, params) {
-        final goal = params.param<GoalDto>(EditGoalScreen.goalArg);
-        return BlocProvider<EditGoalCubit>(
-          create: (_) => getIt<EditGoalCubit>(),
-          child: EditGoalScreen(goal: goal),
+        final goal = params.param<GoalDto>(GoalScreen.goalArg);
+        return BlocProvider<GoalScreenCubit>(
+          create: (_) => getIt<GoalScreenCubit>(),
+          child: GoalScreen(goal: goal),
         );
       },
     ),

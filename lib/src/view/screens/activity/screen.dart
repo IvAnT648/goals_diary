@@ -55,7 +55,7 @@ class _EmptyState extends StatelessWidget {
               horizontal: 35,
             ),
             onTap: () {
-              Navigation.to(EditGoalScreen.id);
+              Navigation.to(GoalScreen.id);
             },
           ),
         ],

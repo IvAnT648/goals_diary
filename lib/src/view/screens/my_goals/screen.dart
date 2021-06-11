@@ -79,8 +79,8 @@ class _SuccessState extends StatelessWidget {
         itemBuilder: (_, i) => MyGoalsListItem(
           goal: goals[i],
           onTap: () {
-            Navigation.to(EditGoalScreen.id, params: {
-              EditGoalScreen.goalArg: goals[i],
+            Navigation.to(GoalScreen.id, params: {
+              GoalScreen.goalArg: goals[i],
             });
           },
         ),
@@ -97,7 +97,7 @@ class _FloatingNewGoalButton extends StatelessWidget {
     final theme = Theme.of(context);
     return FloatingActionButton(
       onPressed: () {
-        Navigation.to(EditGoalScreen.id);
+        Navigation.to(GoalScreen.id);
       },
       child: Text(
         '+',

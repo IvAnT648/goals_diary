@@ -5,13 +5,13 @@ import 'package:injectable/injectable.dart';
 import '../../../domain/usecases/goals.dart';
 import '../../../domain/models.dart';
 
-class EditGoalState {}
+class GoalScreenState {}
 
 @injectable
-class EditGoalCubit extends Cubit<EditGoalState> {
+class GoalScreenCubit extends Cubit<GoalScreenState> {
   final GoalsUseCases _goalsUseCases;
 
-  EditGoalCubit(this._goalsUseCases) : super(EditGoalState());
+  GoalScreenCubit(this._goalsUseCases) : super(GoalScreenState());
 
   Future<SaveGoalResult> save(GoalDto goal) async {
     if (goal.title.isEmpty) {

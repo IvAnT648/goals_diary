@@ -25,8 +25,8 @@ import '../../domain/usecases/profile.dart' as _i18;
 import '../../domain/usecases/subscribing.dart' as _i20;
 import '../../view/screens/activity/cubit.dart' as _i3;
 import '../../view/screens/drawer/cubit.dart' as _i5;
-import '../../view/screens/edit_goal/cubit.dart' as _i16;
 import '../../view/screens/feed/cubit.dart' as _i7;
+import '../../view/screens/goal/cubit.dart' as _i16;
 import '../../view/screens/my_goals/cubit.dart' as _i11;
 import '../../view/screens/search_user/bloc.dart' as _i19;
 import '../../view/screens/sign_in/cubit.dart' as _i28;
@@ -63,8 +63,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i14.SubscriptionsRepositoryImpl(get<_i6.AuthRepository>()));
   gh.factory<_i15.SubscriptionsScreenCubit>(
       () => _i15.SubscriptionsScreenCubit(get<_i4.SubscribingUseCase>()));
-  gh.factory<_i16.EditGoalCubit>(
-      () => _i16.EditGoalCubit(get<_i9.GoalsUseCases>()));
+  gh.factory<_i16.GoalScreenCubit>(
+      () => _i16.GoalScreenCubit(get<_i9.GoalsUseCases>()));
   gh.factory<_i17.ProfileRepository>(() => _i17.ProfileRepositoryImpl(
       get<_i6.AuthRepository>(),
       get<_i8.GoalsRepository>(),
