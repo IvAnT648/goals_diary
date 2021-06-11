@@ -11,6 +11,7 @@ abstract class CommentsRepository {
   Stream<List<PostCommentDto>> byPostId(String postId);
   Future<List<PostCommentDto>> loadByPostId(String postId);
   Future<bool> addComment(String postId, String text);
+  Future<bool> deleteAll(String postId);
 }
 
 @Injectable(as: CommentsRepository)
@@ -123,5 +124,21 @@ class CommentsRepositoryImpl implements CommentsRepository {
   int _sortComparator(PostCommentDto a, PostCommentDto b) {
     // by date desc
     return b.date.compareTo(a.date);
+  }
+
+  @override
+  Future<bool> deleteAll(String postId) async {
+    try {
+      final comments = await collection
+          .where(PostCommentRaw.postIdKey, isEqualTo: postId)
+          .get();
+      for (var doc in comments.docs) {
+        await collection.doc(doc.id).delete();
+      }
+      return true;
+    } catch (e) {
+      print('Error when deleting comments for the post $postId.\n$e');
+      return false;
+    }
   }
 }

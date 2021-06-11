@@ -114,18 +114,18 @@ class PostsRepositoryFirestore implements PostsRepository {
     required String goalId,
     String? text,
   }) async {
-    await collection
-        .add(PostRaw(
-      activityId: activityId,
-      authorId: authorId,
-      goalId: goalId,
-      text: text,
-      likedIt: [],
-      createdAt: DateTime.now(),
-    ).toMap())
+    await collection.add(
+        PostRaw(
+          activityId: activityId,
+          authorId: authorId,
+          goalId: goalId,
+          text: text,
+          likedIt: [],
+          createdAt: DateTime.now(),
+        ).toMap())
         .catchError((e) {
-      print('Error when creating post for the activity $activityId:\n$e');
-    });
+          print('Error when creating post for the activity $activityId:\n$e');
+        });
   }
 
   @override
@@ -138,11 +138,12 @@ class PostsRepositoryFirestore implements PostsRepository {
         .where(PostRaw.authorIdKey, isEqualTo: authorId)
         .get()
         .then((data) => data.docs.forEach((doc) async {
-              await collection.doc(doc.id).delete();
-            }))
+          await _comments.deleteAll(doc.id);
+          await collection.doc(doc.id).delete();
+        }))
         .catchError((e) {
-      print('Error when deleting post for the activity $activityId:\n$e');
-    });
+          print('Error when deleting post for the activity $activityId:\n$e');
+        });
   }
 
   int _sortComparator(PostDto a, PostDto b) {
