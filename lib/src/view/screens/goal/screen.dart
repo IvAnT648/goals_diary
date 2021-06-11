@@ -12,36 +12,13 @@ import 'cubit.dart';
 class GoalScreen extends StatelessWidget {
   static const String id = '/goals/form';
   static const String goalArg = 'goal';
-  static const GoalType _defaultGoalType = GoalType.private;
-  static const bool _defaultNotifyValue = false;
-  static const double _inputsPadding = 40;
-  static const EdgeInsets _padding = EdgeInsets.only(
-    top: 60,
-    left: 60,
-    right: 60,
-    bottom: 30,
-  );
 
   final GoalDto? goal;
-
-  final _titleField = TextEditingController();
-  final _descriptionField = TextEditingController();
-  final _goalTypeField = SingleValue(_defaultGoalType);
-  final _notificationsEnabledField = SingleValue(_defaultNotifyValue);
-
-  GoalType get _goalType => goal?.type ?? _defaultGoalType;
 
   GoalScreen({
     Key? key,
     this.goal,
-  }) : super(key: key) {
-    if (goal != null) {
-      _titleField.text = goal!.title;
-      _descriptionField.text = goal!.description ?? '';
-      _goalTypeField.value = goal!.type;
-      _notificationsEnabledField.value = goal!.sendNotifications;
-    }
-  }
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -77,43 +54,95 @@ class GoalScreen extends StatelessWidget {
             ),
         ],
       ),
-      body: Padding(
+      body: _Form(goal: goal),
+    );
+  }
+}
+
+class _Form extends StatefulWidget {
+  final GoalDto? goal;
+
+  const _Form({
+    Key? key,
+    required this.goal,
+  }) : super(key: key);
+
+  @override
+  _FormState createState() => _FormState();
+}
+
+class _FormState extends State<_Form> {
+  static const GoalType _defaultGoalType = GoalType.private;
+  static const bool _defaultNotifyValue = false;
+  static const double _inputsPadding = 40;
+  static const EdgeInsets _padding = EdgeInsets.only(
+    top: 60,
+    left: 60,
+    right: 60,
+    bottom: 30,
+  );
+
+  final _titleField = TextEditingController();
+  final _descriptionField = TextEditingController();
+  GoalType _goalType = _defaultGoalType;
+  bool _notificationsEnabled = _defaultNotifyValue;
+
+  GoalDto? get goal => widget.goal;
+  GoalType get widgetGoalType => goal?.type ?? _defaultGoalType;
+
+  @override
+  void initState() {
+    super.initState();
+    if (goal != null) {
+      _titleField.text = goal!.title;
+      _descriptionField.text = goal!.description ?? '';
+      _goalType = goal!.type;
+      _notificationsEnabled = goal!.sendNotifications;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = S.of(context);
+
+    return SingleChildScrollView(
+      child: Padding(
         padding: _padding,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                DefaultTextField(
-                  label: l10n.screenEditGoalTitleLabel,
-                  controller: _titleField,
-                ),
-                const SizedBox(height: _inputsPadding),
-                BigTextField(
-                  label: l10n.screenEditGoalDescriptionLabel,
-                  controller: _descriptionField,
-                ),
-                const SizedBox(height: _inputsPadding),
-                GoalTypeSelector(
-                  selected: _goalType,
-                  onChanged: (newType) {
-                    _goalTypeField.value = newType;
-                  },
-                ),
-              ],
+            DefaultTextField(
+              label: l10n.screenEditGoalTitleLabel,
+              controller: _titleField,
             ),
-            // TODO: notifications
-            // const SizedBox(height: 30),
-            // CheckboxWithLabel(
-            //   label: l10n.screenEditGoalNotificationsEnabledLabel,
-            //   value: goal?.sendNotifications ?? false,
-            //   onChanged: (newValue) {
-            //     _notificationsEnabledField.value = newValue ?? false;
-            //   },
-            // ),
-            // const SizedBox(height: 20),
-            // SetNotificationsTime(time: goal?.notificationsTime),
+            const SizedBox(height: _inputsPadding),
+            BigTextField(
+              label: l10n.screenEditGoalDescriptionLabel,
+              controller: _descriptionField,
+            ),
+            const SizedBox(height: _inputsPadding),
+            GoalTypeSelector(
+              selected: widgetGoalType, // TODO: check it
+              onChanged: (newType) {
+                _goalType = newType;
+              },
+            ),
+            const SizedBox(height: 40),
+            CheckboxWithLabel(
+              label: l10n.screenEditGoalNotificationsEnabledLabel,
+              value: goal?.sendNotifications ?? false,
+              onChanged: (newValue) {
+                setState(() {
+                  _notificationsEnabled = newValue ?? false;
+                });
+              },
+            ),
+            if (_notificationsEnabled) ...[
+              const SizedBox(height: 20),
+              SetNotificationsTime(
+                time: goal?.notificationsTime,
+              ),
+            ],
+            const SizedBox(height: 30),
             RoundedButtonWrap(
               text: l10n.screenEditGoalSaveButton,
               type: ButtonType.filled,
@@ -152,15 +181,16 @@ class GoalScreen extends StatelessWidget {
       return goal!.copyWith(
         title: _titleField.text,
         description: _descriptionField.text,
-        type: _goalTypeField.value,
-        sendNotifications: _notificationsEnabledField.value,
+        type: _goalType,
+        sendNotifications: _notificationsEnabled,
       );
     }
     return GoalDto(
       title: _titleField.text,
       description: _descriptionField.text,
-      type: _goalTypeField.value,
-      sendNotifications: _notificationsEnabledField.value,
+      type: _goalType,
+      sendNotifications: _notificationsEnabled,
     );
   }
 }
+

@@ -92,7 +92,7 @@ class _FeedPostState extends State<FeedPost> {
                       ),
                       children: [
                         TextSpan(
-                          text: post.goal!.title.toUpperCase(),
+                          text: post.goal.title.toUpperCase(),
                           style:
                               TextStyles.h4.copyWith(color: AppColors.primary),
                         ),

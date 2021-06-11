@@ -364,7 +364,13 @@ class _SetNotificationsTimeState extends State<SetNotificationsTime> {
   static NotificationTime _defaultTime = NotificationTime(
     hour: 9,
     minute: 0,
-    weekDays: WeekDays.values.toSet(),
+    weekDays: {
+      WeekDays.monday,
+      WeekDays.tuesday,
+      WeekDays.wednesday,
+      WeekDays.thursday,
+      WeekDays.friday,
+    },
   );
   static List<String> _weekdayNames = [
     WeekDays.sunday.toShortLocaleStr(),
@@ -376,15 +382,9 @@ class _SetNotificationsTimeState extends State<SetNotificationsTime> {
     WeekDays.saturday.toShortLocaleStr(),
   ];
 
-  final values = List.filled(7, true);
+  late NotificationTime _time = widget.time ?? _defaultTime;
 
-  late NotificationTime _time;
-
-  @override
-  void initState() {
-    _time = widget.time ?? _defaultTime;
-    super.initState();
-  }
+  late final values = _time.toWeekdaysSelector();
 
   @override
   Widget build(BuildContext context) {
@@ -430,13 +430,12 @@ class _SetNotificationsTimeState extends State<SetNotificationsTime> {
               style: TextStyles.normalHint,
             ),
             const SizedBox(height: 7),
-            // TODO: integrate
             WeekdaySelector(
               selectedElevation: 10,
               elevation: 5,
               disabledElevation: 0,
               shortWeekdays: _weekdayNames,
-              firstDayOfWeek: DateTime.monday,
+              firstDayOfWeek: 0,
               onChanged: (i) {
                 setState(() {
                   final index = i % 7;

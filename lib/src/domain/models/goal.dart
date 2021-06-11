@@ -20,7 +20,7 @@ class GoalDto {
     this.description,
     this.sendNotifications = false,
     this.notificationsTime,
-  }) : assert(!sendNotifications || notificationsTime != null);
+  });
 
   GoalDto copyWith({
     String? id,

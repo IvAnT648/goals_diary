@@ -58,3 +58,13 @@ extension FeedDateTimeExt on DateTime {
     return '$firstPart${S.of(context).screenFeedAtTime} $time$date';
   }
 }
+
+extension NotificationTimeForSelector on NotificationTime {
+  List<bool> toWeekdaysSelector() {
+    final array = <bool>[];
+    for (var day in WeekDays.values) {
+      array.add(weekDays.contains(day));
+    }
+    return array;
+  }
+}

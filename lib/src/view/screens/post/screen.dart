@@ -167,7 +167,7 @@ class _PostInfo extends StatelessWidget {
               ),
               children: [
                 TextSpan(
-                  text: post.goal!.title.toUpperCase(),
+                  text: post.goal.title.toUpperCase(),
                   style: TextStyles.h4.copyWith(color: AppColors.primary),
                   recognizer: _tapGestureRecognizer
                     ..onTap = onGoalTap,
