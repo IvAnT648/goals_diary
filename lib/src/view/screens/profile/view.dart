@@ -150,14 +150,7 @@ class _Goals extends StatelessWidget {
             goal: goal,
             trailingIcon: Icons.info_outline,
             onTap: () {
-              showCupertinoDialog(
-                context: context,
-                barrierDismissible: true,
-                builder: (_) => InfoDialog(
-                  title: goal.title,
-                  content: goal.description ?? '',
-                ),
-              );
+              showGoalInfoModal(context, goal);
             },
           ),
           const SizedBox(height: 7),

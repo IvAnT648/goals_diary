@@ -42,8 +42,8 @@ class YesNoAlertDialog extends StatelessWidget {
 }
 
 class InfoDialog extends StatelessWidget {
-  final String title;
-  final String content;
+  final Text title;
+  final Widget content;
 
   const InfoDialog({
     Key? key,
@@ -54,8 +54,8 @@ class InfoDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(title),
-      content: Text(content),
+      title: title,
+      content: content,
     );
   }
 }

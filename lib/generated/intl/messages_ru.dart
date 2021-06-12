@@ -19,6 +19,8 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ru';
 
+  static String m0(goal) => "Цель \"${goal}\"";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appName": MessageLookupByLibrary.simpleMessage("Дневник целей"),
@@ -57,6 +59,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Отслеживаемые цели"),
         "drawerUnauthorizedHeader":
             MessageLookupByLibrary.simpleMessage("Вы не вошли в систему"),
+        "modalGoalInfoDescriptionLabel":
+            MessageLookupByLibrary.simpleMessage("Описание"),
+        "modalGoalInfoPeriodicityLabel":
+            MessageLookupByLibrary.simpleMessage("Переодичность"),
+        "modalGoalInfoTitle": m0,
         "screenActivityCancelGoalButton":
             MessageLookupByLibrary.simpleMessage("Отменить"),
         "screenActivityCompleteGoalButton":

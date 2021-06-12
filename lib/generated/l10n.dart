@@ -290,6 +290,36 @@ class S {
     );
   }
 
+  /// `The "{goal}" goal`
+  String modalGoalInfoTitle(Object goal) {
+    return Intl.message(
+      'The "$goal" goal',
+      name: 'modalGoalInfoTitle',
+      desc: '',
+      args: [goal],
+    );
+  }
+
+  /// `Description`
+  String get modalGoalInfoDescriptionLabel {
+    return Intl.message(
+      'Description',
+      name: 'modalGoalInfoDescriptionLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Periodicity`
+  String get modalGoalInfoPeriodicityLabel {
+    return Intl.message(
+      'Periodicity',
+      name: 'modalGoalInfoPeriodicityLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Sign In`
   String get screenLoginTitle {
     return Intl.message(

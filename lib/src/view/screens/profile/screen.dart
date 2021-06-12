@@ -6,6 +6,7 @@ import '../../../domain/models.dart';
 import '../../../common/resources.dart';
 import '../../components.dart';
 import '../drawer/screen.dart';
+import '../modals/goal.dart';
 import 'cubit.dart';
 
 part 'view.dart';

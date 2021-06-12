@@ -2,13 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:goals_diary/src/view/screens/profile/screen.dart';
 
 import '../../../common/resources.dart';
 import '../../../domain/models.dart';
 import '../../components.dart';
 import '../../components/utils.dart';
 import '../../navigation.dart';
+import '../modals/goal.dart';
+import '../profile/screen.dart';
 import 'bloc.dart';
 
 class PostScreen extends StatelessWidget {
@@ -68,14 +69,7 @@ class _Post extends StatelessWidget {
                   );
                 },
                 onGoalTap: () {
-                  showCupertinoDialog(
-                    context: context,
-                    barrierDismissible: true,
-                    builder: (_) => InfoDialog(
-                      title: post.goal.title,
-                      content: post.goal.description ?? '',
-                    ),
-                  );
+                  showGoalInfoModal(context, post.goal);
                 },
               );
             },
@@ -404,35 +398,4 @@ class _LoadingWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return LinearProgressIndicator();
   }
-}
-
-class _CommentHeaderDelegate extends SliverPersistentHeaderDelegate {
-  final Widget child;
-  final Color? color;
-  final double maxHeight;
-  final double minHeight;
-
-  _CommentHeaderDelegate({
-    required this.child,
-    this.color,
-    this.maxHeight = 50,
-    this.minHeight = 50,
-  });
-
-  @override
-  Widget build(context, double shrinkOffset, bool overlapsContent) {
-    return Container(
-      child: child,
-      color: color ?? Colors.transparent,
-    );
-  }
-
-  @override
-  double get maxExtent => maxHeight;
-
-  @override
-  double get minExtent => minHeight;
-
-  @override
-  bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) => false;
 }

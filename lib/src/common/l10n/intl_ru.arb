@@ -27,6 +27,10 @@
   "drawerSignInButton": "Войти",
   "drawerLogOutButton": "Выйти из аккаунта",
 
+  "modalGoalInfoTitle": "Цель \"{goal}\"",
+  "modalGoalInfoDescriptionLabel": "Описание",
+  "modalGoalInfoPeriodicityLabel": "Переодичность",
+
   "screenLoginTitle": "Вход в аккаунт",
   "screenLoginNicknameLabel": "Логин",
   "screenLoginPasswordLabel": "Пароль",

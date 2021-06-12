@@ -27,6 +27,10 @@
   "drawerSignInButton": "Sign in",
   "drawerLogOutButton": "Log out",
 
+  "modalGoalInfoTitle": "The \"{goal}\" goal",
+  "modalGoalInfoDescriptionLabel": "Description",
+  "modalGoalInfoPeriodicityLabel": "Periodicity",
+
   "screenLoginTitle": "Sign In",
   "screenLoginNicknameLabel": "Nickname",
   "screenLoginPasswordLabel": "Password",
