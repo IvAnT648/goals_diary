@@ -22,7 +22,6 @@ class MyGoalsListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return TouchableArea(
       onTap: onTap,
       hasSplashEffect: true,
@@ -31,40 +30,30 @@ class MyGoalsListItem extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: goal.notificationsTime == null ? 7 : 0,
+            Flexible(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: goal.notificationsTime == null ? 7 : 0,
+                    ),
+                    child: Text(
+                      goal.title,
+                      style: TextStyles.h3,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        goal.title,
-                        style: TextStyles.h3,
-                      ),
-                      if (goal.isPrivate) ...[
-                        const SizedBox(width: 3),
-                        Icon(
-                          Icons.lock_outline,
-                          color: theme.colorScheme.secondary,
-                          size: 12,
-                        ),
-                      ],
-                    ],
-                  ),
-                ),
-                if (goal.notificationsTime != null) ...[
-                  const SizedBox(height: 5),
-                  Text(
-                    goal.notificationsTime!.getWeekDaysLine(),
-                    style: TextStyles.h5.copyWith(color: AppColors.hintText),
-                  ),
+                  if (goal.notificationsTime != null) ...[
+                    const SizedBox(height: 5),
+                    Text(
+                      goal.notificationsTime!.getWeekDaysLine(),
+                      style: TextStyles.h5.copyWith(color: AppColors.hintText),
+                    ),
+                  ],
                 ],
-              ],
+              ),
             ),
             Icon(
               Icons.arrow_forward_ios_outlined,

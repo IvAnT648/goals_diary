@@ -8,7 +8,7 @@ class GoalDto {
   final String? description;
   final GoalType type;
   final bool sendNotifications;
-  final NotificationTime? notificationsTime;
+  final NotificationTimeDto? notificationsTime;
 
   bool get isPrivate => type == GoalType.private;
   bool get isPublic => type == GoalType.public;
@@ -28,7 +28,7 @@ class GoalDto {
     String? description,
     GoalType? type,
     bool? sendNotifications,
-    NotificationTime? notificationsTime,
+    NotificationTimeDto? notificationsTime,
   }) {
     return GoalDto(
       title: title ?? this.title,

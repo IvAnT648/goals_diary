@@ -2,9 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../common/utils.dart';
 import '../../../common/resources.dart';
-import '../../../domain/models/goal.dart';
+import '../../../domain/models.dart';
 import '../../components.dart';
 import '../../navigation.dart';
 import 'cubit.dart';
@@ -81,14 +80,24 @@ class _FormState extends State<_Form> {
     right: 60,
     bottom: 30,
   );
+  static const Set<WeekDays> _defaultPeriodicity = {
+    WeekDays.monday,
+    WeekDays.tuesday,
+    WeekDays.wednesday,
+    WeekDays.thursday,
+    WeekDays.friday,
+  };
+  static const TimeOfDay _defaultTime = TimeOfDay(hour: 9, minute: 0);
+
+  GoalDto? get goal => widget.goal;
 
   final _titleField = TextEditingController();
   final _descriptionField = TextEditingController();
-  GoalType _goalType = _defaultGoalType;
-  bool _notificationsEnabled = _defaultNotifyValue;
 
-  GoalDto? get goal => widget.goal;
-  GoalType get widgetGoalType => goal?.type ?? _defaultGoalType;
+  late GoalType _goalType = goal?.type ?? _defaultGoalType;
+  late bool _notificationsEnabled =
+      goal?.sendNotifications ?? _defaultNotifyValue;
+  late NotificationTimeDto? _notificationTime = goal?.notificationsTime;
 
   @override
   void initState() {
@@ -121,12 +130,26 @@ class _FormState extends State<_Form> {
             ),
             const SizedBox(height: _inputsPadding),
             GoalTypeSelector(
-              selected: widgetGoalType, // TODO: check it
+              selected: _goalType,
               onChanged: (newType) {
                 _goalType = newType;
               },
             ),
-            const SizedBox(height: 40),
+            const SizedBox(height: _inputsPadding),
+            GoalPeriodicity(
+              days: goal?.notificationsTime?.weekDays ?? _defaultPeriodicity,
+              onChanged: (newPeriodicity) {
+                _notificationTime = _notificationTime != null
+                    ? _notificationTime!.copyWith(
+                  weekDays: newPeriodicity,
+                ) : NotificationTimeDto(
+                  hour: _defaultTime.hour,
+                  minute: _defaultTime.minute,
+                  weekDays: newPeriodicity,
+                );
+              },
+            ),
+            const SizedBox(height: _inputsPadding),
             CheckboxWithLabel(
               label: l10n.screenEditGoalNotificationsEnabledLabel,
               value: goal?.sendNotifications ?? false,
@@ -138,8 +161,20 @@ class _FormState extends State<_Form> {
             ),
             if (_notificationsEnabled) ...[
               const SizedBox(height: 20),
-              SetNotificationsTime(
-                time: goal?.notificationsTime,
+              GoalNotificationTime(
+                time: _notificationTime ?? _defaultTime,
+                onChanged: (time) {
+                  _notificationTime = _notificationTime != null
+                      ? _notificationTime!.copyWith(
+                          hour: time.hour,
+                          minute: time.minute,
+                        )
+                      : NotificationTimeDto(
+                          hour: time.hour,
+                          minute: time.minute,
+                          weekDays: _defaultPeriodicity,
+                        );
+                },
               ),
             ],
             const SizedBox(height: 30),
@@ -183,6 +218,7 @@ class _FormState extends State<_Form> {
         description: _descriptionField.text,
         type: _goalType,
         sendNotifications: _notificationsEnabled,
+        notificationsTime: _notificationTime,
       );
     }
     return GoalDto(
@@ -190,7 +226,7 @@ class _FormState extends State<_Form> {
       description: _descriptionField.text,
       type: _goalType,
       sendNotifications: _notificationsEnabled,
+      notificationsTime: _notificationTime,
     );
   }
 }
-

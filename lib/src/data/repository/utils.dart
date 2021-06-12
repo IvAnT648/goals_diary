@@ -11,6 +11,7 @@ extension GoalDtoToData on GoalDto {
       isPublic: isPublic,
       isNotifying: sendNotifications,
       authorId: authorId,
+      notificationTime: notificationsTime?.toFirestore(),
     );
   }
 }
@@ -23,6 +24,7 @@ extension GoalDataToDomain on GoalData {
       description: description,
       type: isPublic ? GoalType.public : GoalType.private,
       sendNotifications: isNotifying,
+      notificationsTime: notificationTime?.toDomain(),
     );
   }
 }
@@ -99,6 +101,27 @@ extension SubscriptionDataToDomainExt on SubscriptionsData {
     return SubscriptionsDto(
         uid: userId,
         subscriptions: subs,
+    );
+  }
+}
+
+extension NotificationTimeFirestoreExt on NotificationTimeDto {
+  NotificationTimeRaw toFirestore() {
+    return NotificationTimeRaw(
+      days: weekDays.map((e) => e.index).toList(),
+      hour: hour,
+      minute: minute,
+    );
+  }
+}
+
+extension NotificationTimeToDomainExt on NotificationTimeRaw {
+  NotificationTimeDto toDomain() {
+    final weekDays = WeekDays.values;
+    return NotificationTimeDto(
+      weekDays: days.map((i) => weekDays[i]).toSet(),
+      hour: hour,
+      minute: minute,
     );
   }
 }

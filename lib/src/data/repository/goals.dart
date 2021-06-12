@@ -58,6 +58,7 @@ class GoalsRepositoryImpl implements GoalsRepository {
   Stream<List<GoalDto>> get myGoals async* {
     final user = _auth.currentUser;
     if (user == null) {
+      yield [];
       return;
     }
     yield* byAuthorId(authorId: user.uid);
@@ -134,7 +135,7 @@ class GoalsRepositoryImpl implements GoalsRepository {
           .where(GoalData.authorIdKey, isEqualTo: authorId);
     }
     final docsStream = query
-        .snapshots()
+        .snapshots(includeMetadataChanges: true)
         .handleError((e) {
           print('Error when listening goals by author ID $authorId.\n$e');
         })

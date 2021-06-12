@@ -346,45 +346,25 @@ class _CheckboxWithLabelState extends State<CheckboxWithLabel> {
   }
 }
 
-class SetNotificationsTime extends StatefulWidget {
-  final NotificationTime? time;
+class GoalNotificationTime extends StatefulWidget {
+  final TimeOfDay time;
+  final void Function(TimeOfDay) onChanged;
 
-  const SetNotificationsTime({
+  const GoalNotificationTime({
     Key? key,
-    this.time,
+    required this.time,
+    required this.onChanged,
   }) : super(key: key);
 
   @override
-  State<SetNotificationsTime> createState() => _SetNotificationsTimeState();
+  State<GoalNotificationTime> createState() => _GoalNotificationTimeState();
 }
 
-class _SetNotificationsTimeState extends State<SetNotificationsTime> {
+class _GoalNotificationTimeState extends State<GoalNotificationTime> {
   static const double _iconSize = 24;
   static const double _rowVerticalSpace = 20;
-  static NotificationTime _defaultTime = NotificationTime(
-    hour: 9,
-    minute: 0,
-    weekDays: {
-      WeekDays.monday,
-      WeekDays.tuesday,
-      WeekDays.wednesday,
-      WeekDays.thursday,
-      WeekDays.friday,
-    },
-  );
-  static List<String> _weekdayNames = [
-    WeekDays.sunday.toShortLocaleStr(),
-    WeekDays.monday.toShortLocaleStr(),
-    WeekDays.tuesday.toShortLocaleStr(),
-    WeekDays.wednesday.toShortLocaleStr(),
-    WeekDays.thursday.toShortLocaleStr(),
-    WeekDays.friday.toShortLocaleStr(),
-    WeekDays.saturday.toShortLocaleStr(),
-  ];
 
-  late NotificationTime _time = widget.time ?? _defaultTime;
-
-  late final values = _time.toWeekdaysSelector();
+  late TimeOfDay _time = widget.time;
 
   @override
   Widget build(BuildContext context) {
@@ -400,7 +380,7 @@ class _SetNotificationsTimeState extends State<SetNotificationsTime> {
               ),
               const SizedBox(width: 8),
               Text(
-                _time.toDefaultTimeFormat(),
+                _time.format(context),
                 style: TextStyles.normal,
               ),
             ],
@@ -416,43 +396,95 @@ class _SetNotificationsTimeState extends State<SetNotificationsTime> {
                 initialEntryMode: TimePickerEntryMode.dial,
               );
               if (newTime != null) {
-                _updateTime(newTime);
+                setState(() {
+                  _time = newTime;
+                });
+                widget.onChanged(_time);
               }
             },
           ),
         ),
         const SizedBox(height: _rowVerticalSpace),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              S.of(context).screenEditGoalNotificationsDaysLabel + ':',
-              style: TextStyles.normalHint,
-            ),
-            const SizedBox(height: 7),
-            WeekdaySelector(
-              selectedElevation: 10,
-              elevation: 5,
-              disabledElevation: 0,
-              shortWeekdays: _weekdayNames,
-              firstDayOfWeek: 0,
-              onChanged: (i) {
-                setState(() {
-                  final index = i % 7;
-                  values[index] = !values[index];
-                });
-              },
-              values: values,
-            ),
-          ],
+      ],
+    );
+  }
+}
+
+class GoalPeriodicity extends StatefulWidget {
+  final Set<WeekDays> days;
+  final void Function(Set<WeekDays>) onChanged;
+
+  const GoalPeriodicity({
+    Key? key,
+    required this.days,
+    required this.onChanged,
+  }) : super(key: key);
+
+  @override
+  _GoalPeriodicityState createState() => _GoalPeriodicityState();
+}
+
+class _GoalPeriodicityState extends State<GoalPeriodicity> {
+  static List<String> _weekdayNames = [
+    WeekDays.monday.toShortLocaleStr(),
+    WeekDays.tuesday.toShortLocaleStr(),
+    WeekDays.wednesday.toShortLocaleStr(),
+    WeekDays.thursday.toShortLocaleStr(),
+    WeekDays.friday.toShortLocaleStr(),
+    WeekDays.saturday.toShortLocaleStr(),
+    WeekDays.sunday.toShortLocaleStr(),
+  ];
+
+  late Set<WeekDays> _days = widget.days;
+  late final values = toWeekDaysSelector(_days);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          S.of(context).screenEditGoalNotificationsDaysLabel + ':',
+          style: TextStyles.normalHint,
+        ),
+        const SizedBox(height: 7),
+        WeekdaySelector(
+          selectedElevation: 10,
+          elevation: 5,
+          disabledElevation: 0,
+          shortWeekdays: _weekdayNames,
+          firstDayOfWeek: 0,
+          onChanged: (i) {
+            setState(() {
+              final index = i % 7;
+              values[index] = !values[index];
+              _days = fromWeekDaysSelector(values);
+            });
+            widget.onChanged(_days);
+          },
+          values: values,
         ),
       ],
     );
   }
 
-  void _updateTime(TimeOfDay newTime) {
-    setState(() {
-      _time = _time.copyWith(hour: newTime.hour, minute: newTime.minute);
-    });
+  List<bool> toWeekDaysSelector(Set<WeekDays> set) {
+    final array = <bool>[];
+    for (var day in WeekDays.values) {
+      array.add(set.contains(day));
+    }
+    return array;
+  }
+
+  Set<WeekDays> fromWeekDaysSelector(List<bool> array) {
+    Set<WeekDays> set = {};
+    final values = WeekDays.values;
+    for (var i = 0; i < values.length; i++) {
+      if (array[i]) {
+        set.add(values[i]);
+      }
+    }
+    return set;
   }
 }
+

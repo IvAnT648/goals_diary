@@ -17,7 +17,7 @@ extension GoalTypeToLocalizedString on GoalType {
   }
 }
 
-extension NotificationTimePresentationExt on NotificationTime {
+extension NotificationTimePresentationExt on NotificationTimeDto {
   String getWeekDaysLine({bool asEnum = false}) {
     if (weekDays.length == WeekDays.values.length && !asEnum) {
       return S.current.commonDailyPeriodicity;
@@ -56,15 +56,5 @@ extension FeedDateTimeExt on DateTime {
 
     final time = DateFormat.jm().format(this);
     return '$firstPart${S.of(context).screenFeedAtTime} $time$date';
-  }
-}
-
-extension NotificationTimeForSelector on NotificationTime {
-  List<bool> toWeekdaysSelector() {
-    final array = <bool>[];
-    for (var day in WeekDays.values) {
-      array.add(weekDays.contains(day));
-    }
-    return array;
   }
 }

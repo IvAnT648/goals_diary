@@ -12,13 +12,12 @@ enum WeekDays {
   sunday,
 }
 
-class NotificationTime extends TimeOfDay with WeekDaysPeriodicity {
-  NotificationTime({
+class NotificationTimeDto extends TimeOfDay with WeekDaysPeriodicity {
+  NotificationTimeDto({
     required int hour,
     required int minute,
     required Set<WeekDays> weekDays,
-  }) : super(hour: hour, minute: minute)
-  {
+  }) : super(hour: hour, minute: minute) {
     this.weekDays = weekDays;
   }
 
@@ -35,12 +34,12 @@ class NotificationTime extends TimeOfDay with WeekDaysPeriodicity {
     return '$hourLabel:$minuteLabel';
   }
 
-  NotificationTime copyWith({
+  NotificationTimeDto copyWith({
     int? hour,
     int? minute,
     Set<WeekDays>? weekDays,
   }) {
-    return NotificationTime(
+    return NotificationTimeDto(
       hour: hour ?? this.hour,
       minute: minute ?? this.minute,
       weekDays: weekDays ?? this.weekDays,
@@ -48,7 +47,19 @@ class NotificationTime extends TimeOfDay with WeekDaysPeriodicity {
   }
 
   @override
-  String toString() => '$NotificationTime(${toDefaultTimeFormat()}, $weekDays)';
+  String toString() => '$NotificationTimeDto(${toDefaultTimeFormat()}, $weekDays)';
+
+
+  @override
+  bool operator ==(Object other) {
+    return other is NotificationTimeDto
+        && other.hour == hour
+        && other.minute == minute
+        && other.weekDays == weekDays;
+  }
+
+  @override
+  int get hashCode => hour.hashCode ^ minute.hashCode ^ weekDays.hashCode;
 }
 
 mixin WeekDaysPeriodicity {
