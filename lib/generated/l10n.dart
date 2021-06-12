@@ -620,10 +620,10 @@ class S {
     );
   }
 
-  /// `Week days`
+  /// `Periodicity`
   String get screenEditGoalNotificationsDaysLabel {
     return Intl.message(
-      'Week days',
+      'Periodicity',
       name: 'screenEditGoalNotificationsDaysLabel',
       desc: '',
       args: [],

@@ -85,7 +85,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "screenEditGoalNewTitle":
             MessageLookupByLibrary.simpleMessage("Создать цель"),
         "screenEditGoalNotificationsDaysLabel":
-            MessageLookupByLibrary.simpleMessage("Дни недели"),
+            MessageLookupByLibrary.simpleMessage("Периодичность"),
         "screenEditGoalNotificationsEnabledLabel":
             MessageLookupByLibrary.simpleMessage("Получать push-уведомления"),
         "screenEditGoalNotificationsTimeLabel":

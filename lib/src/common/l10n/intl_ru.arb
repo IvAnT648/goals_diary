@@ -63,7 +63,7 @@
   "screenEditGoalTypeLabel": "Тип цели:",
   "screenEditGoalNotificationsEnabledLabel": "Получать push-уведомления",
   "screenEditGoalNotificationsTimeLabel": "Время уведомлений",
-  "screenEditGoalNotificationsDaysLabel": "Дни недели",
+  "screenEditGoalNotificationsDaysLabel": "Периодичность",
   "screenEditGoalSelectNotificationsDaysLabel": "Выберите дни недели",
   "screenEditGoalSaveButton": "Сохранить",
   "screenEditGoalEmptyTitleSnackBar": "Название цели не может быть пустым",

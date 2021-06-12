@@ -63,7 +63,7 @@
   "screenEditGoalTypeLabel": "Goal type:",
   "screenEditGoalNotificationsEnabledLabel": "Receive push-notifications",
   "screenEditGoalNotificationsTimeLabel": "Notifications time",
-  "screenEditGoalNotificationsDaysLabel": "Week days",
+  "screenEditGoalNotificationsDaysLabel": "Periodicity",
   "screenEditGoalSelectNotificationsDaysLabel": "Select week days",
   "screenEditGoalSaveButton": "Save",
   "screenEditGoalEmptyTitleSnackBar": "Goal title can't be empty",
