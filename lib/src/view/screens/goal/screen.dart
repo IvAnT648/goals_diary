@@ -149,34 +149,35 @@ class _FormState extends State<_Form> {
                 );
               },
             ),
-            const SizedBox(height: _inputsPadding),
-            CheckboxWithLabel(
-              label: l10n.screenEditGoalNotificationsEnabledLabel,
-              value: goal?.sendNotifications ?? false,
-              onChanged: (newValue) {
-                setState(() {
-                  _notificationsEnabled = newValue ?? false;
-                });
-              },
-            ),
-            if (_notificationsEnabled) ...[
-              const SizedBox(height: 20),
-              GoalNotificationTime(
-                time: _notificationTime ?? _defaultTime,
-                onChanged: (time) {
-                  _notificationTime = _notificationTime != null
-                      ? _notificationTime!.copyWith(
-                          hour: time.hour,
-                          minute: time.minute,
-                        )
-                      : NotificationTimeDto(
-                          hour: time.hour,
-                          minute: time.minute,
-                          weekDays: _defaultPeriodicity,
-                        );
-                },
-              ),
-            ],
+            // TODO: push-notifications
+            // const SizedBox(height: _inputsPadding),
+            // CheckboxWithLabel(
+            //   label: l10n.screenEditGoalNotificationsEnabledLabel,
+            //   value: goal?.sendNotifications ?? false,
+            //   onChanged: (newValue) {
+            //     setState(() {
+            //       _notificationsEnabled = newValue ?? false;
+            //     });
+            //   },
+            // ),
+            // if (_notificationsEnabled) ...[
+            //   const SizedBox(height: 20),
+            //   GoalNotificationTime(
+            //     time: _notificationTime ?? _defaultTime,
+            //     onChanged: (time) {
+            //       _notificationTime = _notificationTime != null
+            //           ? _notificationTime!.copyWith(
+            //               hour: time.hour,
+            //               minute: time.minute,
+            //             )
+            //           : NotificationTimeDto(
+            //               hour: time.hour,
+            //               minute: time.minute,
+            //               weekDays: _defaultPeriodicity,
+            //             );
+            //     },
+            //   ),
+            // ],
             const SizedBox(height: 30),
             RoundedButtonWrap(
               text: l10n.screenEditGoalSaveButton,
