@@ -95,7 +95,7 @@
   "screenActivityGoalAchieved": "Цель на сегодня выполнена!",
   "screenActivityCompleteGoalButton": "Выполнить",
   "screenActivityCancelGoalButton": "Отменить",
-  "screenActivityHaveNoGoalsMsg": "Вы пока не создали ни одной цели",
+  "screenActivityHaveNoTasksMsg": "У вас нет задач на сегодня",
   "screenActivityToGoalsCreatingButton": "Создать",
   "screenActivityOnShortPressSnackBarText": "Используйте долгое нажатие",
 

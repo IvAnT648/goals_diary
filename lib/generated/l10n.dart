@@ -910,11 +910,11 @@ class S {
     );
   }
 
-  /// `You haven't created any goals yet`
-  String get screenActivityHaveNoGoalsMsg {
+  /// `You haven't any tasks for the today`
+  String get screenActivityHaveNoTasksMsg {
     return Intl.message(
-      'You haven\'t created any goals yet',
-      name: 'screenActivityHaveNoGoalsMsg',
+      'You haven\'t any tasks for the today',
+      name: 'screenActivityHaveNoTasksMsg',
       desc: '',
       args: [],
     );

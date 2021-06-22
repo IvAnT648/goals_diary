@@ -68,8 +68,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "The goal for today is completed!"),
         "screenActivityGoalNotAchieved": MessageLookupByLibrary.simpleMessage(
             "The goal is not achieved today!"),
-        "screenActivityHaveNoGoalsMsg": MessageLookupByLibrary.simpleMessage(
-            "You haven\'t created any goals yet"),
+        "screenActivityHaveNoTasksMsg": MessageLookupByLibrary.simpleMessage(
+            "You haven\'t any tasks for the today"),
         "screenActivityOnShortPressSnackBarText":
             MessageLookupByLibrary.simpleMessage("Use a long press"),
         "screenActivityTitle":

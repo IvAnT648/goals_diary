@@ -72,8 +72,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Цель на сегодня выполнена!"),
         "screenActivityGoalNotAchieved":
             MessageLookupByLibrary.simpleMessage("Цель сегодня не достигнута!"),
-        "screenActivityHaveNoGoalsMsg": MessageLookupByLibrary.simpleMessage(
-            "Вы пока не создали ни одной цели"),
+        "screenActivityHaveNoTasksMsg":
+            MessageLookupByLibrary.simpleMessage("У вас нет задач на сегодня"),
         "screenActivityOnShortPressSnackBarText":
             MessageLookupByLibrary.simpleMessage("Используйте долгое нажатие"),
         "screenActivityTitle":

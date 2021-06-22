@@ -95,7 +95,7 @@
   "screenActivityGoalAchieved": "The goal for today is completed!",
   "screenActivityCompleteGoalButton": "Done",
   "screenActivityCancelGoalButton": "Cancel",
-  "screenActivityHaveNoGoalsMsg": "You haven't created any goals yet",
+  "screenActivityHaveNoTasksMsg": "You haven't any tasks for the today",
   "screenActivityToGoalsCreatingButton": "Create now",
   "screenActivityOnShortPressSnackBarText": "Use a long press",
 

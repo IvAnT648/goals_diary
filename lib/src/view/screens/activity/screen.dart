@@ -40,23 +40,11 @@ class _EmptyState extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            S.of(context).screenActivityHaveNoGoalsMsg,
+            S.of(context).screenActivityHaveNoTasksMsg,
             style: TextStyle(
               fontSize: 16,
               color: AppColors.hintText,
             ),
-          ),
-          const SizedBox(height: 15),
-          RoundedButton(
-            text: S.of(context).screenActivityToGoalsCreatingButton,
-            textStyle: TextStyles.h4,
-            padding: const EdgeInsets.symmetric(
-              vertical: 12,
-              horizontal: 35,
-            ),
-            onTap: () {
-              Navigation.to(GoalScreen.id);
-            },
           ),
         ],
       ),

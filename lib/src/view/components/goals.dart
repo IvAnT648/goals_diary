@@ -222,14 +222,17 @@ class ActivityCard extends StatelessWidget {
                   child: Text(
                     entity.goal.title,
                     style: TextStyles.h2.copyWith(color: onColor),
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                if (entity.isDone)
+                if (entity.isDone) ...[
+                  const SizedBox(width: 1),
                   Icon(
                     Icons.check_circle_outline_outlined,
                     color: AppColors.positive[10],
                     size: _iconSize,
                   ),
+                ],
               ],
             ),
           ),
