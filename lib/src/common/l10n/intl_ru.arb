@@ -59,6 +59,7 @@
   "screenSignUpFieldCanNotBeEmpty": "Поле не может быть пустым",
 
   "screenMyGoalsTitle": "Мои цели",
+  "screenMyGoalsMaxGoalsQtyAreCreated": "Максимальное кол-во целей уже создано",
 
   "screenEditGoalTitle": "Редактировать цель",
   "screenEditGoalNewTitle": "Создать цель",

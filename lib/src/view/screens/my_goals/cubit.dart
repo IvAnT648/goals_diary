@@ -8,6 +8,8 @@ export 'cubit/states.dart';
 
 @injectable
 class MyGoalsScreenCubit extends Cubit<MyGoalsScreenState> {
+  static const int maxGoalsQty = 10;
+
   final GoalsUseCases _goalsUseCases;
 
   MyGoalsScreenCubit(this._goalsUseCases)

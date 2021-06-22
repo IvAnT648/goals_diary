@@ -131,6 +131,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("User not found"),
         "screenLoginWrongPassword":
             MessageLookupByLibrary.simpleMessage("Wrong password"),
+        "screenMyGoalsMaxGoalsQtyAreCreated":
+            MessageLookupByLibrary.simpleMessage(
+                "Maximum number of goals created"),
         "screenMyGoalsTitle": MessageLookupByLibrary.simpleMessage("My goals"),
         "screenMyProfileTitle":
             MessageLookupByLibrary.simpleMessage("My profile"),

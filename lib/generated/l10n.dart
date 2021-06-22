@@ -580,6 +580,16 @@ class S {
     );
   }
 
+  /// `Maximum number of goals created`
+  String get screenMyGoalsMaxGoalsQtyAreCreated {
+    return Intl.message(
+      'Maximum number of goals created',
+      name: 'screenMyGoalsMaxGoalsQtyAreCreated',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Edit the goal`
   String get screenEditGoalTitle {
     return Intl.message(

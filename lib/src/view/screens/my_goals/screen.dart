@@ -16,16 +16,20 @@ class MyGoalsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: MenuTopBar(
-        title: S.of(context).screenMyGoalsTitle,
-      ),
-      drawer: AppDrawer(
-        selected: DrawerMenuItemType.goals,
-      ),
-      floatingActionButton: _FloatingNewGoalButton(),
-      body: BlocBuilder<MyGoalsScreenCubit, MyGoalsScreenState>(
-        builder: (context, state) => state.when(
+    return BlocBuilder<MyGoalsScreenCubit, MyGoalsScreenState>(
+      builder: (context, state) => Scaffold(
+        appBar: MenuTopBar(
+          title: S.of(context).screenMyGoalsTitle,
+        ),
+        drawer: AppDrawer(
+          selected: DrawerMenuItemType.goals,
+        ),
+        floatingActionButton: _FloatingNewGoalButton(
+          canCreate: state is SuccessMyGoalsScreenState
+              ? state.goals.length < MyGoalsScreenCubit.maxGoalsQty
+              : true,
+        ),
+        body: state.when(
           empty: () => const _EmptyState(),
           loading: () => const _LoadingState(),
           success: (goals) => _SuccessState(goals),
@@ -90,14 +94,25 @@ class _SuccessState extends StatelessWidget {
 }
 
 class _FloatingNewGoalButton extends StatelessWidget {
-  const _FloatingNewGoalButton({Key? key}) : super(key: key);
+  final bool canCreate;
+
+  const _FloatingNewGoalButton({
+    Key? key,
+    required this.canCreate,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = S.of(context);
+
     return FloatingActionButton(
       onPressed: () {
-        Navigation.to(GoalScreen.id);
+        if (canCreate) {
+          Navigation.to(GoalScreen.id);
+          return;
+        }
+        showErrorSnackBar(l10n.screenMyGoalsMaxGoalsQtyAreCreated, context);
       },
       child: Text(
         '+',

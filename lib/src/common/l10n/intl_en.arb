@@ -59,6 +59,7 @@
   "screenSignUpFieldCanNotBeEmpty": "The field can't be empty",
 
   "screenMyGoalsTitle": "My goals",
+  "screenMyGoalsMaxGoalsQtyAreCreated": "Maximum number of goals created",
 
   "screenEditGoalTitle": "Edit the goal",
   "screenEditGoalNewTitle": "Create a goal",
