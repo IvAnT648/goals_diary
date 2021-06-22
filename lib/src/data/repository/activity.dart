@@ -35,14 +35,17 @@ class ActivityRepositoryImpl implements ActivityRepository {
 
   @override
   Stream<List<GoalActivityDto>> get myActivities async* {
-    await for (final goals in _goalsRepository.myGoals) {
+    final today = getTodayWithoutTime();
+    final todayInMs = today.millisecondsSinceEpoch;
+    final weekday = today.weekday - 1;
+
+    await for (final goals in _goalsRepository.goalsForDay(weekday)) {
       if (goals.isEmpty) {
         yield [];
         return;
       }
 
       final goalIds = _getGoalIds(goals);
-      final todayInMs = getTodayWithoutTime().millisecondsSinceEpoch;
 
       final docsStream = collection
           .withConverter<GoalActivityData?>(

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../common/resources.dart';
 import '../../domain/models.dart';
 import '../components.dart';
-import 'utils.dart';
+import '../utils.dart';
 
 class MyGoalsListItem extends StatelessWidget {
   static const _padding = EdgeInsets.symmetric(
@@ -37,7 +37,7 @@ class MyGoalsListItem extends StatelessWidget {
                 children: [
                   Padding(
                     padding: EdgeInsets.symmetric(
-                      vertical: goal.notificationsTime == null ? 7 : 0,
+                      vertical: goal.periodicity.isEmpty ? 7 : 0,
                     ),
                     child: Text(
                       goal.title,
@@ -45,10 +45,10 @@ class MyGoalsListItem extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                  if (goal.notificationsTime != null) ...[
+                  if (goal.periodicity.isNotEmpty) ...[
                     const SizedBox(height: 5),
                     Text(
-                      goal.notificationsTime!.getWeekDaysLine(),
+                      goal.getWeekDaysLine(),
                       style: TextStyles.h5.copyWith(color: AppColors.hintText),
                     ),
                   ],
@@ -104,7 +104,7 @@ class UserGoalsListItem extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.symmetric(
-                    vertical: goal.notificationsTime == null ? 7 : 0,
+                    vertical: goal.periodicity.isEmpty ? 7 : 0,
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
@@ -124,10 +124,10 @@ class UserGoalsListItem extends StatelessWidget {
                     ],
                   ),
                 ),
-                if (goal.notificationsTime != null) ...[
+                if (goal.periodicity.isNotEmpty) ...[
                   const SizedBox(height: 5),
                   Text(
-                    goal.notificationsTime!.getWeekDaysLine(),
+                    goal.getWeekDaysLine(),
                     style: TextStyles.h5.copyWith(color: AppColors.hintText),
                   ),
                 ],

@@ -9,6 +9,7 @@ class GoalDto {
   final GoalType type;
   final bool sendNotifications;
   final NotificationTimeDto? notificationsTime;
+  final Set<WeekDays> periodicity;
 
   bool get isPrivate => type == GoalType.private;
   bool get isPublic => type == GoalType.public;
@@ -20,6 +21,7 @@ class GoalDto {
     this.description,
     this.sendNotifications = false,
     this.notificationsTime,
+    required this.periodicity,
   });
 
   GoalDto copyWith({
@@ -29,14 +31,16 @@ class GoalDto {
     GoalType? type,
     bool? sendNotifications,
     NotificationTimeDto? notificationsTime,
+    Set<WeekDays>? periodicity,
   }) {
     return GoalDto(
+      id: id ?? this.id,
       title: title ?? this.title,
       description: description ?? this.description,
       type: type ?? this.type,
       sendNotifications: sendNotifications ?? this.sendNotifications,
       notificationsTime: notificationsTime ?? this.notificationsTime,
-      id: id ?? this.id,
+      periodicity: periodicity ?? this.periodicity,
     );
   }
 
@@ -48,6 +52,7 @@ class GoalDto {
       'type': type.index,
       'sendNotifications': sendNotifications,
       'notificationsTime': notificationsTime,
+      'periodicity': periodicity,
     };
   }
 
@@ -59,6 +64,7 @@ class GoalDto {
       type: GoalType.values[map['type']],
       sendNotifications: map['sendNotifications'],
       notificationsTime: map['notificationsTime'],
+      periodicity: map['periodicity'],
     );
   }
 
@@ -69,7 +75,9 @@ class GoalDto {
         'description: $description, '
         'type: $type, '
         'sendNotifications: $sendNotifications, '
-        'notificationsTime: $notificationsTime)';
+        'notificationsTime: $notificationsTime, '
+        'periodicity: $periodicity, '
+        ')';
   }
 
   @override
@@ -82,7 +90,8 @@ class GoalDto {
         other.description == description &&
         other.type == type &&
         other.sendNotifications == sendNotifications &&
-        other.notificationsTime == notificationsTime;
+        other.notificationsTime == notificationsTime &&
+        other.periodicity == periodicity;
   }
 
   @override
@@ -91,5 +100,6 @@ class GoalDto {
         id.hashCode ^
         type.hashCode ^
         sendNotifications.hashCode ^
-        notificationsTime.hashCode;
+        notificationsTime.hashCode ^
+        periodicity.hashCode;
 }

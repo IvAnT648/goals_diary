@@ -72,7 +72,6 @@ class _Form extends StatefulWidget {
 
 class _FormState extends State<_Form> {
   static const GoalType _defaultGoalType = GoalType.private;
-  static const bool _defaultNotifyValue = false;
   static const double _inputsPadding = 40;
   static const EdgeInsets _padding = EdgeInsets.only(
     top: 60,
@@ -87,17 +86,14 @@ class _FormState extends State<_Form> {
     WeekDays.thursday,
     WeekDays.friday,
   };
-  static const TimeOfDay _defaultTime = TimeOfDay(hour: 9, minute: 0);
 
   GoalDto? get goal => widget.goal;
 
   final _titleField = TextEditingController();
   final _descriptionField = TextEditingController();
 
-  late GoalType _goalType = goal?.type ?? _defaultGoalType;
-  late bool _notificationsEnabled =
-      goal?.sendNotifications ?? _defaultNotifyValue;
-  late NotificationTimeDto? _notificationTime = goal?.notificationsTime;
+  GoalType _goalType = _defaultGoalType;
+  Set<WeekDays> _periodicity = _defaultPeriodicity;
 
   @override
   void initState() {
@@ -106,7 +102,9 @@ class _FormState extends State<_Form> {
       _titleField.text = goal!.title;
       _descriptionField.text = goal!.description ?? '';
       _goalType = goal!.type;
-      _notificationsEnabled = goal!.sendNotifications;
+      if (goal!.periodicity.isNotEmpty) {
+        _periodicity = goal!.periodicity;
+      }
     }
   }
 
@@ -137,47 +135,11 @@ class _FormState extends State<_Form> {
             ),
             const SizedBox(height: _inputsPadding),
             GoalPeriodicity(
-              days: goal?.notificationsTime?.weekDays ?? _defaultPeriodicity,
+              days: _periodicity,
               onChanged: (newPeriodicity) {
-                _notificationTime = _notificationTime != null
-                    ? _notificationTime!.copyWith(
-                  weekDays: newPeriodicity,
-                ) : NotificationTimeDto(
-                  hour: _defaultTime.hour,
-                  minute: _defaultTime.minute,
-                  weekDays: newPeriodicity,
-                );
+                _periodicity = newPeriodicity;
               },
             ),
-            // TODO: push-notifications
-            // const SizedBox(height: _inputsPadding),
-            // CheckboxWithLabel(
-            //   label: l10n.screenEditGoalNotificationsEnabledLabel,
-            //   value: goal?.sendNotifications ?? false,
-            //   onChanged: (newValue) {
-            //     setState(() {
-            //       _notificationsEnabled = newValue ?? false;
-            //     });
-            //   },
-            // ),
-            // if (_notificationsEnabled) ...[
-            //   const SizedBox(height: 20),
-            //   GoalNotificationTime(
-            //     time: _notificationTime ?? _defaultTime,
-            //     onChanged: (time) {
-            //       _notificationTime = _notificationTime != null
-            //           ? _notificationTime!.copyWith(
-            //               hour: time.hour,
-            //               minute: time.minute,
-            //             )
-            //           : NotificationTimeDto(
-            //               hour: time.hour,
-            //               minute: time.minute,
-            //               weekDays: _defaultPeriodicity,
-            //             );
-            //     },
-            //   ),
-            // ],
             const SizedBox(height: 30),
             RoundedButtonWrap(
               text: l10n.screenEditGoalSaveButton,
@@ -218,16 +180,14 @@ class _FormState extends State<_Form> {
         title: _titleField.text,
         description: _descriptionField.text,
         type: _goalType,
-        sendNotifications: _notificationsEnabled,
-        notificationsTime: _notificationTime,
+        periodicity: _periodicity,
       );
     }
     return GoalDto(
       title: _titleField.text,
       description: _descriptionField.text,
       type: _goalType,
-      sendNotifications: _notificationsEnabled,
-      notificationsTime: _notificationTime,
+      periodicity: _periodicity,
     );
   }
 }

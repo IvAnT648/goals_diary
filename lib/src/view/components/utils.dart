@@ -5,6 +5,7 @@ import 'package:timeago/timeago.dart' as timeago;
 
 import '../../common/resources.dart';
 import '../../domain/models.dart';
+import '../utils.dart';
 
 extension GoalTypeToLocalizedString on GoalType {
   String toText() {
@@ -14,15 +15,6 @@ extension GoalTypeToLocalizedString on GoalType {
       case GoalType.public:
         return S.current.commonPublicGoal;
     }
-  }
-}
-
-extension NotificationTimePresentationExt on NotificationTimeDto {
-  String getWeekDaysLine({bool asEnum = false}) {
-    if (weekDays.length == WeekDays.values.length && !asEnum) {
-      return S.current.commonDailyPeriodicity;
-    }
-    return joinWeekDaysShort();
   }
 }
 

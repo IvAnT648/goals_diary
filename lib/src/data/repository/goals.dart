@@ -11,6 +11,7 @@ abstract class GoalsRepository {
   Future<void> deleteGoal(GoalDto goal);
   Future<GoalDto?> load(String id);
   Stream<List<GoalDto>> get myGoals;
+  Stream<List<GoalDto>> goalsForDay(int weekdayIndex);
   Future<List<GoalDto>> loadByAuthorId({
     required String authorId,
     bool? publicFilter,
@@ -18,6 +19,7 @@ abstract class GoalsRepository {
   Stream<List<GoalDto>> byAuthorId({
     required String authorId,
     bool? publicFilter,
+    int? weekdayFilter,
   });
 }
 
@@ -25,14 +27,15 @@ abstract class GoalsRepository {
 class GoalsRepositoryImpl implements GoalsRepository {
   static const String _goalsCollectionName = 'goals';
 
-  final CollectionReference collection =
+  CollectionReference collection =
       FirebaseFirestore.instance.collection(_goalsCollectionName);
 
-  late final convertedCollection = collection.withConverter<GoalData?>(
-    fromFirestore: (snapshot, _) => snapshot.data() != null
-        ? GoalData.fromFirestore(snapshot.data()!)
-        : null,
-    toFirestore: (goal, _) => goal?.toMap() ?? {},
+  late CollectionReference<GoalData?> convertedCollection =
+      collection.withConverter<GoalData?>(
+        fromFirestore: (snapshot, _) => snapshot.data() != null
+            ? GoalData.fromFirestore(snapshot.data()!)
+            : null,
+        toFirestore: (goal, _) => goal?.toMap() ?? {},
   );
 
   final AuthRepository _auth;
@@ -62,6 +65,16 @@ class GoalsRepositoryImpl implements GoalsRepository {
       return;
     }
     yield* byAuthorId(authorId: user.uid);
+  }
+
+  @override
+  Stream<List<GoalDto>> goalsForDay(int weekdayIndex) async* {
+    final user = _auth.currentUser;
+    if (user == null) {
+      yield [];
+      return;
+    }
+    yield* byAuthorId(authorId: user.uid, weekdayFilter: weekdayIndex);
   }
 
   @override
@@ -121,21 +134,24 @@ class GoalsRepositoryImpl implements GoalsRepository {
   Stream<List<GoalDto>> byAuthorId({
     required String authorId,
     bool? publicFilter,
+    int? weekdayFilter,
   }) async* {
     if (authorId.isEmpty) return;
 
-    late final Query<GoalData?> query;
+    Query<GoalData?>? query = convertedCollection
+        .where(GoalData.authorIdKey, isEqualTo: authorId);
 
     if (publicFilter != null) {
-      query = convertedCollection
-          .where(GoalData.authorIdKey, isEqualTo: authorId)
-          .where(GoalData.isPublicKey, isEqualTo: publicFilter);
-    } else {
-      query = convertedCollection
-          .where(GoalData.authorIdKey, isEqualTo: authorId);
+      query = query.where(GoalData.isPublicKey, isEqualTo: publicFilter);
     }
+
+    if (weekdayFilter != null) {
+      query = query
+          .where(GoalData.periodicityKey, arrayContains: weekdayFilter);
+    }
+
     final docsStream = query
-        .snapshots(includeMetadataChanges: true)
+        .snapshots()
         .handleError((e) {
           print('Error when listening goals by author ID $authorId.\n$e');
         })

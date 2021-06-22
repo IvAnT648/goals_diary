@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../utils.dart';
-
 enum WeekDays {
   monday,
   tuesday,
@@ -12,14 +10,11 @@ enum WeekDays {
   sunday,
 }
 
-class NotificationTimeDto extends TimeOfDay with WeekDaysPeriodicity {
+class NotificationTimeDto extends TimeOfDay {
   NotificationTimeDto({
     required int hour,
     required int minute,
-    required Set<WeekDays> weekDays,
-  }) : super(hour: hour, minute: minute) {
-    this.weekDays = weekDays;
-  }
+  }) : super(hour: hour, minute: minute);
 
   String _addLeadingZeroIfNeeded(int value) {
     if (value < 10)
@@ -37,50 +32,24 @@ class NotificationTimeDto extends TimeOfDay with WeekDaysPeriodicity {
   NotificationTimeDto copyWith({
     int? hour,
     int? minute,
-    Set<WeekDays>? weekDays,
   }) {
     return NotificationTimeDto(
       hour: hour ?? this.hour,
       minute: minute ?? this.minute,
-      weekDays: weekDays ?? this.weekDays,
     );
   }
 
   @override
-  String toString() => '$NotificationTimeDto(${toDefaultTimeFormat()}, $weekDays)';
+  String toString() => '$NotificationTimeDto(${toDefaultTimeFormat()})';
 
 
   @override
   bool operator ==(Object other) {
     return other is NotificationTimeDto
         && other.hour == hour
-        && other.minute == minute
-        && other.weekDays == weekDays;
+        && other.minute == minute;
   }
 
   @override
-  int get hashCode => hour.hashCode ^ minute.hashCode ^ weekDays.hashCode;
-}
-
-mixin WeekDaysPeriodicity {
-  late final Set<WeekDays> weekDays;
-  final String weekDaysJoinSeparator = ',';
-
-  String joinWeekDaysShort() {
-    var result = '';
-    var count = weekDays.length;
-    WeekDays.values.forEach((element) {
-      if (weekDays.contains(element)) {
-        result += element.toShortLocaleStr();
-        if (--count != 0) {
-          result += _getWeekDaysJoinSeparator();
-        }
-      }
-    });
-    return result;
-  }
-
-  String _getWeekDaysJoinSeparator() {
-    return '$weekDaysJoinSeparator ';
-  }
+  int get hashCode => hour.hashCode ^ minute.hashCode;
 }

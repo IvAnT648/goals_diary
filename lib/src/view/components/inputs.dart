@@ -4,7 +4,7 @@ import 'package:weekday_selector/weekday_selector.dart';
 
 import '../../common/resources.dart';
 import '../../domain/models.dart';
-import '../../domain/utils.dart';
+import '../../view/utils.dart';
 import '../components.dart';
 import 'layout.dart';
 import 'utils.dart';
@@ -457,6 +457,10 @@ class _GoalPeriodicityState extends State<GoalPeriodicity> {
           onChanged: (i) {
             setState(() {
               final index = i % 7;
+              // Prevent empty periodicity
+              if (values[index] && values.length == 1) {
+                return;
+              }
               values[index] = !values[index];
               _days = fromWeekDaysSelector(values);
             });
